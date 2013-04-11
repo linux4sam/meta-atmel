@@ -1,0 +1,4 @@
+OpenEmbedded/Yocto layer for for Atmel AT91SAM SoC
+For now it supports only SAMAD3 product family (http://www.atmel.com/products/microcontrollers/arm/sama5d3.aspx)
+
+It is hosted on http://github.com/linux4sam/meta-atmel
