@@ -36,8 +36,3 @@ do_install() {
 	make INSTALL_ROOT=${D} install
 
 }
-
-#install -d ${D}/opt/HomeAutomation/
-#install -m 0755  ${S}/HomeAutomation ${D}/opt/HomeAutomation/
-#oe_runmake INSTALL_ROOT=${D} install
-
