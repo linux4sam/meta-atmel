@@ -63,5 +63,5 @@ PR = "r1"
 
 # Override COMPATIBLE_MACHINE to include your machine in a bbappend
 # file. Leaving it empty here ensures an early explicit build failure.
-COMPATIBLE_MACHINE = "sama5d3xek"
+COMPATIBLE_MACHINE = "(sama5d3xek|at91sam9x5ek)"
 
