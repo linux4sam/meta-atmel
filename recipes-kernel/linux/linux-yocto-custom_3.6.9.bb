@@ -47,7 +47,7 @@ require recipes-kernel/linux/linux-yocto.inc
 # Override SRC_URI in a bbappend file to point at a different source
 # tree if you do not want to build from Linus' tree.
 SRC_URI = "git://github.com/linux4sam/linux-at91.git;protocol=git;nocheckout=1"
-SRC_URI += "file://defconfig"
+SRC_URI += "file://${MACHINE}/defconfig"
 
 LINUX_VERSION ?= "3.6.9"
 LINUX_VERSION_EXTENSION ?= "-custom"
