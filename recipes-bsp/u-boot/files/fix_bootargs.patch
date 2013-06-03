@@ -1,0 +1,26 @@
+Index: git/include/configs/at91sam9x5ek.h
+===================================================================
+--- git.orig/include/configs/at91sam9x5ek.h	2013-05-24 10:41:35.810752734 -0400
++++ git/include/configs/at91sam9x5ek.h	2013-06-03 16:41:34.019283257 -0400
+@@ -238,7 +238,7 @@
+ 	"mtdparts=atmel_nand:256k(bootstrap)ro,512k(uboot)ro,"		\
+ 	"256k(env),256k(env_redundant),256k(spare),"			\
+ 	"512k(dtb),6M(kernel)ro,-(rootfs) "				\
+-	"rootfstype=ubifs ubi.mtd=7 root=ubi0:rootfs rw"
++	"rootfstype=ubifs ubi.mtd=7 root=ubi0:at91sam9x5ek-rootfs rw"
+ #endif
+ 
+ #define CONFIG_BAUDRATE		115200
+Index: git/include/configs/sama5d3xek.h
+===================================================================
+--- git.orig/include/configs/sama5d3xek.h	2013-05-24 10:41:35.910756408 -0400
++++ git/include/configs/sama5d3xek.h	2013-06-03 16:43:00.134403527 -0400
+@@ -250,7 +250,7 @@
+ 	"mtdparts=atmel_nand:256k(bootstrap)ro,512k(uboot)ro,"		\
+ 	"256K(env),256k(evn_redundent),256k(spare),"			\
+ 	"512k(dtb),6M(kernel)ro,-(rootfs) "				\
+-	"rootfstype=ubifs ubi.mtd=7 root=ubi0:rootfs"
++	"rootfstype=ubifs ubi.mtd=7 root=ubi0:sama5d3xek-rootfs"
+ #endif
+ 
+ #define CONFIG_BAUDRATE			115200

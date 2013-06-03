@@ -22,6 +22,10 @@ PV = "v2012.10-at91"
 PR = "r1"
 
 SRC_URI = "git://github.com/linux4sam/u-boot-at91.git;branch=u-boot-2012.10-at91;protocol=git"
+SRC_URI += "file://fix_bootargs.patch;name=fix_bootargs_patch"
+
+SRC_URI[fix_bootargs_patch.md5sum] = "08983496880ab2099f856730e48838af"
+SRC_URI[fix_bootargs_patch.sha256sum] = "e50c6b0d64cd2519add9ed48928baf731669a28a0f5b303c3812337aec9ff1ff"
 
 S = "${WORKDIR}/git"
 
