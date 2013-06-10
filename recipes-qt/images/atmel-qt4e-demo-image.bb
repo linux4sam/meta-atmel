@@ -60,5 +60,8 @@ IMAGE_INSTALL += "\
 	qmlbrowser \
 "
 
+
 inherit core-image
+
+IMAGE_INSTALL += "package_management"
 
