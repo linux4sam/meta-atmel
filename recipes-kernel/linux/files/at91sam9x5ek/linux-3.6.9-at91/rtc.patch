@@ -1,0 +1,56 @@
+diff --git a/arch/arm/boot/dts/at91sam9x5.dtsi b/arch/arm/boot/dts/at91sam9x5.dtsi
+index 11412c2..23d1a6b 100644
+--- a/arch/arm/boot/dts/at91sam9x5.dtsi
++++ b/arch/arm/boot/dts/at91sam9x5.dtsi
+@@ -66,6 +66,12 @@
+ 				status = "disabled";
+ 			};
+
++			rtc@fffffeb0 {
++				compatible = "atmel,at91rm9200-rtc";
++				reg = <0xfffffeb0 0x40>;
++				interrupts = <1 4 7>;
++			};
++
+ 			spi1: spi@f0004000 {
+ 				#address-cells = <1>;
+ 				#size-cells = <0>;
+diff --git a/arch/arm/boot/dts/at91sam9g25ek.dts b/arch/arm/boot/dts/at91sam9g25ek.dts
+index 5ae11a3..0a68b89 100644
+--- a/arch/arm/boot/dts/at91sam9g25ek.dts
++++ b/arch/arm/boot/dts/at91sam9g25ek.dts
+@@ -35,6 +35,10 @@
+ 			watchdog@fffffe40 {
+ 				status = "okay";
+ 			};
++
++			rtc@fffffeb0 {
++				status = "okay";
++			};
+ 		};
+ 	};
+ };
+diff --git a/drivers/rtc/rtc-at91rm9200.c b/drivers/rtc/rtc-at91rm9200.c
+index 7ec3d9d..09105ee 100644
+--- a/drivers/rtc/rtc-at91rm9200.c
++++ b/drivers/rtc/rtc-at91rm9200.c
+@@ -228,7 +228,7 @@ static irqreturn_t at91_rtc_interrupt(int irq, void *dev_id)
+ 	unsigned int rtsr;
+ 	unsigned long events = 0;
+
+-	rtsr = at91_rtc_read(AT91_RTC_SR) & at91_rtc_read(AT91_RTC_IMR);
++	rtsr = at91_rtc_read(AT91_RTC_SR);
+ 	if (rtsr) {		/* this interrupt is shared!  Is it ours? */
+ 		if (rtsr & AT91_RTC_ALARM)
+ 			events |= (RTC_AF | RTC_IRQF);
+@@ -404,7 +404,7 @@ static struct platform_driver at91_rtc_driver = {
+ 
+ static int __init at91_rtc_init(void)
+ {
+-	return platform_driver_probe(&at91_rtc_driver, at91_rtc_probe);
++	return platform_driver_register(&at91_rtc_driver);
+ }
+ 
+ static void __exit at91_rtc_exit(void)
+-- 
+1.7.10.4

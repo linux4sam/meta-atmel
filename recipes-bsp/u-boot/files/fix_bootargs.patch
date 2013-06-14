@@ -1,8 +1,19 @@
 Index: git/include/configs/at91sam9x5ek.h
 ===================================================================
---- git.orig/include/configs/at91sam9x5ek.h	2013-05-24 10:41:35.810752734 -0400
-+++ git/include/configs/at91sam9x5ek.h	2013-06-03 16:41:34.019283257 -0400
-@@ -238,7 +238,7 @@
+--- git.orig/include/configs/at91sam9x5ek.h	2013-06-03 16:51:35.321077255 -0400
++++ git/include/configs/at91sam9x5ek.h	2013-06-07 14:46:52.590964956 -0400
+@@ -194,7 +194,9 @@
+ #define CONFIG_ENV_SIZE		0x20000		/* 1 sector = 128 kB */
+ #define CONFIG_BOOTCOMMAND	"nand read " \
+ 				"0x22000000 0x200000 0x300000; " \
+-				"bootm 0x22000000"
++				"nand read " \
++				"0x21000000 0x180000 0x40000; " \
++				"bootm 0x22000000 - 0x21000000"
+ #elif defined(CONFIG_SYS_USE_SPIFLASH)
+ /* bootstrap + u-boot + env + linux in spi flash */
+ #define CONFIG_ENV_IS_IN_SPI_FLASH
+@@ -238,7 +240,7 @@
  	"mtdparts=atmel_nand:256k(bootstrap)ro,512k(uboot)ro,"		\
  	"256k(env),256k(env_redundant),256k(spare),"			\
  	"512k(dtb),6M(kernel)ro,-(rootfs) "				\
@@ -13,8 +24,8 @@ Index: git/include/configs/at91sam9x5ek.h
  #define CONFIG_BAUDRATE		115200
 Index: git/include/configs/sama5d3xek.h
 ===================================================================
---- git.orig/include/configs/sama5d3xek.h	2013-05-24 10:41:35.910756408 -0400
-+++ git/include/configs/sama5d3xek.h	2013-06-03 16:43:00.134403527 -0400
+--- git.orig/include/configs/sama5d3xek.h	2013-06-03 16:51:35.453082040 -0400
++++ git/include/configs/sama5d3xek.h	2013-06-03 16:51:38.117178635 -0400
 @@ -250,7 +250,7 @@
  	"mtdparts=atmel_nand:256k(bootstrap)ro,512k(uboot)ro,"		\
  	"256K(env),256k(evn_redundent),256k(spare),"			\
