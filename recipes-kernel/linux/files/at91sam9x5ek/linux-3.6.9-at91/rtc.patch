@@ -43,14 +43,5 @@ index 7ec3d9d..09105ee 100644
  	if (rtsr) {		/* this interrupt is shared!  Is it ours? */
  		if (rtsr & AT91_RTC_ALARM)
  			events |= (RTC_AF | RTC_IRQF);
-@@ -404,7 +404,7 @@ static struct platform_driver at91_rtc_driver = {
- 
- static int __init at91_rtc_init(void)
- {
--	return platform_driver_probe(&at91_rtc_driver, at91_rtc_probe);
-+	return platform_driver_register(&at91_rtc_driver);
- }
- 
- static void __exit at91_rtc_exit(void)
 -- 
 1.7.10.4
