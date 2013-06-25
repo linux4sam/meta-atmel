@@ -55,6 +55,7 @@ IMAGE_INSTALL += "\
 	homeautomation \
 	applicationlauncher \
 	qmlbrowser \
+	samegame \
 	atmel-qt-demo-init \
 "
 
