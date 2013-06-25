@@ -4,5 +4,6 @@ COMPATIBLE_MACHINE_at91sam9x5ek = "at91sam9x5ek"
 SRC_URI_append_at91sam9x5ek += "file://${MACHINE}/${KBRANCH}/UBI_config.cfg \
     file://${MACHINE}/${KBRANCH}/rtc.patch \
     file://${MACHINE}/${KBRANCH}/usart3.patch \
+    file://${MACHINE}/${KBRANCH}/usb-c.patch \
     "
 

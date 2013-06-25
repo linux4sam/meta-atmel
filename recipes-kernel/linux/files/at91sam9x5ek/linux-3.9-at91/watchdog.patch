@@ -1,0 +1,47 @@
+From 70f264f5e98f65e0ea0bf42da131bac11ff5b07f Mon Sep 17 00:00:00 2001
+From: Bryan Evenson <bevenson@melinkcorp.com>
+Date: Mon, 24 Jun 2013 20:50:39 -0400
+Subject: [PATCH] Add watchdog support.
+
+
+Signed-off-by: Bryan Evenson <bevenson@melinkcorp.com>
+---
+ arch/arm/boot/dts/at91sam9g25ek.dts |    4 ++++
+ arch/arm/boot/dts/at91sam9x5.dtsi   |    6 ++++++
+ 2 files changed, 10 insertions(+)
+
+diff --git a/arch/arm/boot/dts/at91sam9g25ek.dts b/arch/arm/boot/dts/at91sam9g25ek.dts
+index d3531f4..14ddd80 100644
+--- a/arch/arm/boot/dts/at91sam9g25ek.dts
++++ b/arch/arm/boot/dts/at91sam9g25ek.dts
+@@ -28,6 +28,10 @@
+ 			rtc@fffffeb0 {
+ 				status = "okay";
+ 			};
++
++			watchdog@fffffe40 {
++				status = "okay";
++			};
+ 		};
+ 	};
+ };
+diff --git a/arch/arm/boot/dts/at91sam9x5.dtsi b/arch/arm/boot/dts/at91sam9x5.dtsi
+index 6bc0409b..2acedcd 100644
+--- a/arch/arm/boot/dts/at91sam9x5.dtsi
++++ b/arch/arm/boot/dts/at91sam9x5.dtsi
+@@ -648,6 +648,12 @@
+ 				interrupts = <1 4 7>;
+ 				status = "disabled";
+ 			};
++
++			watchdog@fffffe40 {
++				compatible = "atmel,at91sam9260-wdt";
++				reg = <0xfffffe40 0x10>;
++				status = "disabled";
++			};
+ 		};
+ 
+ 		nand0: nand@40000000 {
+-- 
+1.7.9.5
+
