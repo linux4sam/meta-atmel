@@ -44,11 +44,11 @@
 inherit kernel
 require recipes-kernel/linux/linux-yocto.inc
 
-KBRANCH= "linux-3.9-at91"
+KBRANCH = "linux-3.9-at91"
 
 # Override SRC_URI in a bbappend file to point at a different source
 # tree if you do not want to build from Linus' tree.
-SRC_URI = "git://github.com/linux4sam/linux-at91.git;branch=${BRANCH};protocol=git;nocheckout=1"
+SRC_URI = "git://github.com/linux4sam/linux-at91.git;branch=${KBRANCH};protocol=git;nocheckout=1"
 SRC_URI += "file://${MACHINE}/${KBRANCH}/defconfig"
 
 LINUX_VERSION ?= "3.9.0"
