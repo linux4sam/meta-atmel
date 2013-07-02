@@ -56,9 +56,9 @@ IMAGE_INSTALL += "\
 	applicationlauncher \
 	qmlbrowser \
 	samegame \
+	minehunt \
 	atmel-qt-demo-init \
 "
-
 
 inherit core-image
 
