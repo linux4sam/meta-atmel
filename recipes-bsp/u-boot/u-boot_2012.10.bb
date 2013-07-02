@@ -4,12 +4,12 @@ DESCRIPTION = "u-boot bootloader for ARM MPU devices"
 LICENSE = "GPLv2+"
 LIC_FILES_CHKSUM = "file://COPYING;md5=1707d6db1d42237583f50183a5651ecb"
 
-COMPATIBLE_MACHINE = "sama5d3xek"
+COMPATIBLE_MACHINE = "(sama5d3xek|at91sam9x5ek)"
 
 # To build u-boot for your machine, provide the following lines in
 # your machine config, replacing the assignments as appropriate for
 # your machine.
-UBOOT_MACHINE = "sama5d3xek_nandflash_config"
+UBOOT_MACHINE_${MACHINE} = "${MACHINE}_nandflash_config"
 UBOOT_ENTRYPOINT = "0x20002000"
 UBOOT_LOADADDRESS = "0x20002000"
 
