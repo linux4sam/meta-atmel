@@ -1,0 +1,9 @@
+patch usb-c.patch
+patch usart3.patch
+patch rtc.patch
+patch serial_dma.patch
+patch watchdog.patch
+
+kconf hardware UBI.cfg
+kconf hardware dma.cfg
+
