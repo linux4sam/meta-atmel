@@ -8,21 +8,21 @@ For now it supports only SAMAD3 product family (http://www.atmel.com/products/mi
 
 It is hosted on http://github.com/linux4sam/meta-atmel
 
---- 
+---
 Build procedure:
 
 1/ Clone yocto/poky git repository
 git clone git://git.yoctoproject.org/poky
 
 2/ Checkout dylan-9.0.1 tag
-cd poky 
+cd poky
 git checkout dylan-9.0.1 -b my_branch
 
 3/ Clone meta-atmel layer
 git clone http://github.com/linux4sam/meta-atmel
 
-4/ Initialize build directory 
-source oe-init-build-env build-atmel 
+4/ Initialize build directory
+source oe-init-build-env build-atmel
 
 5/ Add meta-atmel layer patch to bblayer configuration file
 vim conf/bblayers.conf:
@@ -40,7 +40,7 @@ BBLAYERS ?= " \
   /home/pvilchez/workspace/github/poky/meta-yocto \
   /home/pvilchez/workspace/github/poky/meta-yocto-bsp \
   "
-5/ Edit local.conf to specify the machine, location of source archived, package type (rpm, deb or ipk) 
+5/ Edit local.conf to specify the machine, location of source archived, package type (rpm, deb or ipk)
 vim conf/local.conf:
 [...]
 MACHINE ??= "sama5d3xek"
@@ -49,17 +49,8 @@ DL_DIR ?= "your_download_directory_path"
 [...]
 PACKAGE_CLASSES ?= "package_ipk"
 
-6/ Build core minimal image 
+6/ Build core minimal image
 bitbake core-image-minimal
 
 7/ Build Atmel Qt-embedded demo
 bitbake atmel-qt4e-demo-image
-
-
-
-
-
-
-
-
-
