@@ -41,7 +41,7 @@ BBLAYERS ?= " \
   /home/pvilchez/workspace/github/poky/meta-yocto-bsp \
   "
 5/ Edit local.conf to specify the machine, location of source archived, package type (rpm, deb or ipk) 
-vim conf/bblayers.conf:
+vim conf/local.conf:
 [...]
 MACHINE ??= "sama5d3xek"
 [...]
