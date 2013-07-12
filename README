@@ -52,5 +52,12 @@ PACKAGE_CLASSES ?= "package_ipk"
 6/ Build core minimal image
 bitbake core-image-minimal
 
-7/ Build Atmel Qt-embedded demo
+7/ We found that additional local.conf changes are needed for our QT demo
+image. You can add these two lines at the end of the file:
+vim conf/local.conf:
+[...]
+LICENSE_FLAGS_WHITELIST += "commercial"
+SYSVINIT_ENABLED_GETTYS = ""
+
+8/ Build Atmel Qt-embedded demo
 bitbake atmel-qt4e-demo-image
