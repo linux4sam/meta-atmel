@@ -1,7 +1,7 @@
 This Layer depends on :
 URI: git://git.yoctoproject.org/poky
 URI: http://git.yoctoproject.org/git/poky
-Tag: danny-8.0.1
+Tag: dylan-9.0.1
 
 OpenEmbedded/Yocto layer for for Atmel AT91SAM SoC
 For now it supports only SAMAD3 product family (http://www.atmel.com/products/microcontrollers/arm/sama5d3.aspx)
@@ -14,9 +14,9 @@ Build procedure:
 1/ Clone yocto/poky git repository
 git clone git://git.yoctoproject.org/poky
 
-2/ Checkout danny-8.0.1 tag
+2/ Checkout dylan-9.0.1 tag
 cd poky 
-git checkout danny-8.0.1 -b my_branch
+git checkout dylan-9.0.1 -b my_branch
 
 3/ Clone meta-atmel layer
 git clone http://github.com/linux4sam/meta-atmel
