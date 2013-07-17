@@ -2,8 +2,8 @@ DESCRIPTION = "Atmel QT home automation demo"
 LICENSE = "ATMEL_LLA"
 LIC_FILES_CHKSUM = "file://main.cpp;endline=146;md5=1fcdee2511227a06256bca182ee2ad2c"
 
-DEFAULT_PREFERENCE = "-1"
-PR = "r2"
+DEFAULT_PREFERENCE = "12"
+PR = "r1"
 
 PACKAGES = "${PN}-dbg ${PN}"
 
@@ -11,8 +11,8 @@ DEPENDS = "qt4-embedded libv4l"
 
 SRC_URI = "ftp://ftp.linux4sam.org/pub/demo/qtdemo/home-automation-${PV}.tar.gz"
 
-SRC_URI[md5sum] = "8f92bdc450854a7aa31f6c65a4fbd6bc"
-SRC_URI[sha256sum] = "7b4ac19703f0ba8f1d573e4d033d3927c83e00723ad309c5eaf3cadf0c73d1de"
+SRC_URI[md5sum] = "ae639cb2855d3f2920b7b7a42cf606d5"
+SRC_URI[sha256sum] = "cb92c34ce439ee838790a5996d546e5d82d03ab4844e89aa838452b984f6ae07"
 
 S = "${WORKDIR}/home-automation-${PV}"
 

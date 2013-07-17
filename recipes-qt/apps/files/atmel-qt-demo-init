@@ -1,0 +1,36 @@
+#!/bin/sh
+
+set -e
+
+start()
+{
+  if [ -f /etc/profile.d/tslib.sh ]; then
+     source /etc/profile.d/tslib.sh
+  fi
+
+  if [ ! -f /etc/pointercal ]; then
+     /usr/bin/ts_calibrate
+  fi
+
+  echo "Starting Demo..."
+  export QWS_MOUSE_PROTO=Tslib:${TSLIB_TSDEVICE}
+  /opt/ApplicationLauncher/resources/ApplicationLauncher.sh
+}
+
+stop()
+{
+  echo "Killing Application Launcher..."
+  killall ApplicationLauncher
+}
+
+
+case "$1" in
+  start)
+    start
+  ;;
+  stop)
+    stop
+  ;;
+  *)
+  ;;
+esac

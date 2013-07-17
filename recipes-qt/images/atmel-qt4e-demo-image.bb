@@ -5,8 +5,11 @@ PR = "r3"
 LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=3f40d7994397109285ec7b81fdeb3b58 \
                     file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
 
+IMAGE_FEATURES += "package-management"
+
 IMAGE_INSTALL += "\
 	${CORE_IMAGE_BASE_INSTALL} \
+	qt4-embedded \
 	libqt-embedded3support4 \
 	libqt-embeddedclucene4 \
 	libqt-embeddedcore4 \
@@ -22,6 +25,7 @@ IMAGE_INSTALL += "\
 	libqt-embeddedtest4 \
 	libqt-embeddedwebkit4 \
 	libqt-embeddedxml4 \
+	libqt-embeddedxmlpatterns4 \
 	qt4-embedded-fonts-ttf-dejavu \
 	qt4-embedded-fonts-ttf-vera \
 	qt4-embedded-plugin-iconengine-svgicon \
@@ -34,30 +38,26 @@ IMAGE_INSTALL += "\
 	qt4-embedded-plugin-mousedriver-tslib \
 	qt4-embedded-plugin-phonon-backend-gstreamer \
 	qt4-embedded-plugin-script-dbus \
-	qt4-embedded-plugin-sqldriver-sqlite \
+	qt4-embedded-plugin-sqldriver-sqlite \	
+	libicui18n \
 	tslib \
 	tslib-calibrate \
 	tslib-tests \
 	opkg \
 	gstreamer \
-	gst-plugins-base \
+        gst-meta-base \
+        gst-meta-video \
+        gst-meta-audio \
 	gst-plugins-good \
-	gst-plugins-bad \
-	gst-plugins-good-avi \
-	gst-plugins-base-alsa \
-	gst-plugins-good-ossaudio \
-	gst-plugins-base-audioresample \
-	gst-plugins-base-audioconvert \
+	gst-plugins-good-videofilter \
+	gst-plugins-ugly-mpeg2dec \
 	gst-plugins-bad-fbdevsink \
-	gst-plugins-base-typefindfunctions \
-	gst-plugins-base-ffmpegcolorspace \
-	gst-plugins-base-ogg \
-	gst-plugins-base-theora \
-	gst-plugins-good-rtsp \
-	gst-plugins-base-vorbis \
 	homeautomation \
 	applicationlauncher \
 	qmlbrowser \
+	samegame \
+	minehunt \
+	atmel-qt-demo-init \
 "
 
 inherit core-image
