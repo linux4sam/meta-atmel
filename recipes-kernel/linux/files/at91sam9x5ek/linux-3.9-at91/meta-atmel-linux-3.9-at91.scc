@@ -6,4 +6,4 @@ patch watchdog.patch
 
 kconf hardware UBI.cfg
 kconf hardware dma.cfg
-
+kconf hardware at24.cfg

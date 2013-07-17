@@ -5,4 +5,4 @@ SRC_URI += " file://${MACHINE}/${KBRANCH}/meta-atmel-${KBRANCH}.scc \
     "
 
 # Increment the recipe revision
-PRINC := "${@int(PRINC) + 1}"
+PRINC := "${@int(PRINC) + 2}"
