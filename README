@@ -4,7 +4,9 @@ URI: http://git.yoctoproject.org/git/poky
 Tag: dylan-9.0.1
 
 OpenEmbedded/Yocto layer for for Atmel AT91SAM SoC
-For now it supports only SAMAD3 product family (http://www.atmel.com/products/microcontrollers/arm/sama5d3.aspx)
+For now it supports:
+- SAMAD3 product family (http://www.atmel.com/products/microcontrollers/arm/sama5d3.aspx)
+- AT91SAM9x5 product family (AT91SAM9G15, AT91SAM9G25, AT91SAM9X25, AT91SAM9G35 and AT91SAM9X35)
 
 It is hosted on http://github.com/linux4sam/meta-atmel
 
