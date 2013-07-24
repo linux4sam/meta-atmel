@@ -1,17 +1,16 @@
-From e57176130192aef79c491487ae9eb0feb718f8cc Mon Sep 17 00:00:00 2001
+From 4701e3dcf19d0e15b72e1c229cb755c9975e54a7 Mon Sep 17 00:00:00 2001
 From: Bryan Evenson <bevenson@melinkcorp.com>
-Date: Mon, 8 Jul 2013 12:43:59 -0400
-Subject: [PATCH] Fix bootargs and add config
+Date: Fri, 19 Jul 2013 05:39:49 -0400
+Subject: [PATCH] fix bootargs
 
 
 Signed-off-by: Bryan Evenson <bevenson@melinkcorp.com>
 ---
- include/configs/at91sam9x5ek.h |   11 +++++++++--
- include/configs/sama5d3xek.h   |    2 +-
- 2 files changed, 10 insertions(+), 3 deletions(-)
+ include/configs/at91sam9x5ek.h |   13 ++++++++++++-
+ 1 file changed, 12 insertions(+), 1 deletion(-)
 
 diff --git a/include/configs/at91sam9x5ek.h b/include/configs/at91sam9x5ek.h
-index 6057d46..991963e 100644
+index 6057d46..2ed43ea 100644
 --- a/include/configs/at91sam9x5ek.h
 +++ b/include/configs/at91sam9x5ek.h
 @@ -145,6 +145,7 @@
@@ -22,7 +21,7 @@ index 6057d46..991963e 100644
  #endif
  
  /* MMC */
-@@ -181,6 +182,10 @@
+@@ -181,6 +182,14 @@
  #define CONFIG_USB_STORAGE
  #endif
  
@@ -30,10 +29,14 @@ index 6057d46..991963e 100644
 +#define CONFIG_HW_WATCHDOG
 +#define CONFIG_AT91SAM9_WATCHDOG
 +
++/* Watchdog */
++#define CONFIG_HW_WATCHDOG
++#define CONFIG_AT91SAM9_WATCHDOG
++
  #define CONFIG_SYS_LOAD_ADDR		0x22000000	/* load address */
  
  #define CONFIG_SYS_MEMTEST_START	CONFIG_SYS_SDRAM_BASE
-@@ -194,7 +199,9 @@
+@@ -194,7 +203,9 @@
  #define CONFIG_ENV_SIZE		0x20000		/* 1 sector = 128 kB */
  #define CONFIG_BOOTCOMMAND	"nand read " \
  				"0x22000000 0x200000 0x300000; " \
@@ -44,28 +47,6 @@ index 6057d46..991963e 100644
  #elif defined(CONFIG_SYS_USE_SPIFLASH)
  /* bootstrap + u-boot + env + linux in spi flash */
  #define CONFIG_ENV_IS_IN_SPI_FLASH
-@@ -238,7 +245,7 @@
- 	"mtdparts=atmel_nand:256k(bootstrap)ro,512k(uboot)ro,"		\
- 	"256k(env),256k(env_redundant),256k(spare),"			\
- 	"512k(dtb),6M(kernel)ro,-(rootfs) "				\
--	"rootfstype=ubifs ubi.mtd=7 root=ubi0:rootfs rw"
-+	"rootfstype=ubifs ubi.mtd=7 root=ubi0:at91sam9x5ek-rootfs rw"
- #endif
- 
- #define CONFIG_BAUDRATE		115200
-diff --git a/include/configs/sama5d3xek.h b/include/configs/sama5d3xek.h
-index 9377362..8426fa3 100644
---- a/include/configs/sama5d3xek.h
-+++ b/include/configs/sama5d3xek.h
-@@ -250,7 +250,7 @@
- 	"mtdparts=atmel_nand:256k(bootstrap)ro,512k(uboot)ro,"		\
- 	"256K(env),256k(evn_redundent),256k(spare),"			\
- 	"512k(dtb),6M(kernel)ro,-(rootfs) "				\
--	"rootfstype=ubifs ubi.mtd=7 root=ubi0:rootfs"
-+	"rootfstype=ubifs ubi.mtd=7 root=ubi0:sama5d3xek-rootfs"
- #endif
- 
- #define CONFIG_BAUDRATE			115200
 -- 
 1.7.9.5
 
