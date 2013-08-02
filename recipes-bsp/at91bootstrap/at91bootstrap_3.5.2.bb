@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://main.c;endline=27;md5=42f86d2f6fd17d1221c5c651b487a07
 
 COMPATIBLE_MACHINE = '(sama5d3xek|at91sam9x5ek)'
 
-PR = "r1"
+PR = "r2"
 SRCREV="v3.5.2"
 PV="v3.5.2"
 
@@ -48,6 +48,34 @@ do_compile() {
 inherit deploy
 
 addtask deploy before do_package after do_install
+
+FILES_${PN} += " \
+    /boot/* \
+    "
+
+do_install_${MACHINE} () {
+    install -d ${D}/boot
+    install ${S}/binaries/${MACHINE}-nandflashboot-uboot-3.5.2.bin ${D}/boot
+    ln -s /boot/${MACHINE}-nandflashboot-uboot-3.5.2.bin ${D}/boot/at91bootstrap.bin
+}
+
+pkg_postinst_${PN} () {
+#!/bin/sh -e
+# Burn the bootstrap to flash, but only attempt if we're on the actual platform
+bootstrap_file=/boot/at91bootstrap.bin
+if test "x$D" = "x"; then
+    if [ -e "$bootstrap_file" ]; then
+        echo "Erasing old bootstrap..."
+        flash_erase /dev/mtd0 0 0
+        echo "Writing new bootstrap..."
+        nandwrite -p /dev/mtd0 "$bootstrap_file"
+        echo "Bootstrap upgrade complete."
+        touch /var/run/reboot-required
+        echo "${PN}" >>/var/run/reboot-required.pkgs
+    fi
+fi   
+
+}
 
 do_deploy () {
 	install -d ${DEPLOY_DIR_IMAGE}
