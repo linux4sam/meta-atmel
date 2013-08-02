@@ -19,7 +19,7 @@ UBOOT_LOADADDRESS = "0x20002000"
 SRCREV = "c1515d14eae4ee3495ede5a8bb49911c600786e4"
 
 PV = "v2012.10-at91"
-PR = "r1"
+PR = "r2"
 
 SRC_URI = "git://github.com/linux4sam/u-boot-at91.git;branch=u-boot-2012.10-at91;protocol=git"
 SRC_URI += "file://fix_bootargs.patch;name=fix_bootargs_patch \

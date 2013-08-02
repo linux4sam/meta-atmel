@@ -1,16 +1,16 @@
-From 4701e3dcf19d0e15b72e1c229cb755c9975e54a7 Mon Sep 17 00:00:00 2001
+From e4b4b4e3676544160d486e52b07975e16747ed5d Mon Sep 17 00:00:00 2001
 From: Bryan Evenson <bevenson@melinkcorp.com>
-Date: Fri, 19 Jul 2013 05:39:49 -0400
-Subject: [PATCH] fix bootargs
+Date: Wed, 31 Jul 2013 16:43:50 -0400
+Subject: [PATCH] Fix bootargs
 
 
 Signed-off-by: Bryan Evenson <bevenson@melinkcorp.com>
 ---
- include/configs/at91sam9x5ek.h |   13 ++++++++++++-
- 1 file changed, 12 insertions(+), 1 deletion(-)
+ include/configs/at91sam9x5ek.h |   17 ++++++++++++++---
+ 1 file changed, 14 insertions(+), 3 deletions(-)
 
 diff --git a/include/configs/at91sam9x5ek.h b/include/configs/at91sam9x5ek.h
-index 6057d46..2ed43ea 100644
+index 6057d46..afd107c 100644
 --- a/include/configs/at91sam9x5ek.h
 +++ b/include/configs/at91sam9x5ek.h
 @@ -145,6 +145,7 @@
@@ -47,6 +47,18 @@ index 6057d46..2ed43ea 100644
  #elif defined(CONFIG_SYS_USE_SPIFLASH)
  /* bootstrap + u-boot + env + linux in spi flash */
  #define CONFIG_ENV_IS_IN_SPI_FLASH
+@@ -235,9 +246,9 @@
+ #else
+ #define CONFIG_BOOTARGS							\
+ 	"console=ttyS0,115200 earlyprintk "				\
+-	"mtdparts=atmel_nand:256k(bootstrap)ro,512k(uboot)ro,"		\
++	"mtdparts=atmel_nand:256k(bootstrap),512k(uboot),"		\
+ 	"256k(env),256k(env_redundant),256k(spare),"			\
+-	"512k(dtb),6M(kernel)ro,-(rootfs) "				\
++	"512k(dtb),6M(kernel),-(rootfs) "				\
+ 	"rootfstype=ubifs ubi.mtd=7 root=ubi0:rootfs rw"
+ #endif
+ 
 -- 
 1.7.9.5
 

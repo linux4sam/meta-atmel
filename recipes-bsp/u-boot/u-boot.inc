@@ -82,4 +82,23 @@ do_deploy () {
     fi
 }
 
+pkg_postinst_${PN} () {
+#!/bin/sh -e
+# Burn U-Boot to flash, but only attempt if we're on the actual platform
+uboot_file=/boot/u-boot.bin
+if test "x$D" = "x"; then
+    if [ -e "$uboot_file" ]; then
+        echo "Erasing old U-Boot..."
+        flash_erase /dev/mtd1 0 0
+        echo "Writing new U-Boot..."
+        nandwrite -p /dev/mtd1 "$uboot_file"
+        echo "U-Boot upgrade complete."
+        touch /var/run/reboot-required
+        echo "${PN}" >>/var/run/reboot-required.pkgs
+    fi
+fi   
+
+}
+
+
 addtask deploy before do_build after do_compile
