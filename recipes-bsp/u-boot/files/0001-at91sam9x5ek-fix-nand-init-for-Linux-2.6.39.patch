@@ -1,0 +1,78 @@
+From 20aef8723efb1afde64b3285ffd7fe59197e79c9 Mon Sep 17 00:00:00 2001
+From: Julius Hemanth <juliushemanth@gmail.com>
+Date: Wed, 24 Apr 2013 15:50:07 -0500
+Subject: [PATCH 1/2] at91sam9x5ek: fix nand init for Linux-2.6.39
+
+Signed-off-by: Julius Hemanth <juliushemanth@gmail.com>
+Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
+---
+ board/atmel/at91sam9x5ek/at91sam9x5ek.c |   27 +++++++++++++++++++++++++++
+ include/configs/at91sam9x5ek.h          |    7 +++++++
+ 2 files changed, 34 insertions(+)
+
+diff --git a/board/atmel/at91sam9x5ek/at91sam9x5ek.c b/board/atmel/at91sam9x5ek/at91sam9x5ek.c
+index 8773e6f..14af51f 100644
+--- a/board/atmel/at91sam9x5ek/at91sam9x5ek.c
++++ b/board/atmel/at91sam9x5ek/at91sam9x5ek.c
+@@ -46,6 +46,29 @@
+ 
+ DECLARE_GLOBAL_DATA_PTR;
+ 
++#ifdef CONFIG_LOAD_ONE_WIRE_INFO
++static u32 system_rev;
++static u32 system_serial_low;
++
++u32 get_board_rev(void)
++{
++	return system_rev;
++}
++
++void get_board_serial(struct tag_serialnr *serialnr)
++{
++	serialnr->high = 0; /* Not used */
++	serialnr->low = system_serial_low;
++}
++
++void load_1wire_info(void)
++{
++	/* serial is in GPBR #2 and revision is in GPBR #3 */
++	system_serial_low = readl(ATMEL_BASE_GPBR + 4 * 2);
++	system_rev = readl(ATMEL_BASE_GPBR + 4 * 3);
++}
++#endif
++
+ /* ------------------------------------------------------------------------- */
+ /*
+  * Miscelaneous platform dependent initialisations
+@@ -282,6 +305,10 @@ int board_init(void)
+ 	/* adress of boot parameters */
+ 	gd->bd->bi_boot_params = CONFIG_SYS_SDRAM_BASE + 0x100;
+ 
++#ifdef CONFIG_LOAD_ONE_WIRE_INFO
++	load_1wire_info();
++#endif
++
+ #ifdef CONFIG_CMD_NAND
+ 	at91sam9x5ek_nand_hw_init();
+ #endif
+diff --git a/include/configs/at91sam9x5ek.h b/include/configs/at91sam9x5ek.h
+index ee6e3fc..5dd2295 100644
+--- a/include/configs/at91sam9x5ek.h
++++ b/include/configs/at91sam9x5ek.h
+@@ -38,6 +38,13 @@
+ #define CONFIG_CMDLINE_TAG		/* enable passing of ATAGs */
+ #define CONFIG_SETUP_MEMORY_TAGS
+ #define CONFIG_INITRD_TAG
++
++#define CONFIG_LOAD_ONE_WIRE_INFO 1
++#ifdef CONFIG_LOAD_ONE_WIRE_INFO
++#define CONFIG_REVISION_TAG 1
++#define CONFIG_SERIAL_TAG 1
++#endif
++
+ #define CONFIG_SKIP_LOWLEVEL_INIT
+ #define CONFIG_BOARD_EARLY_INIT_F
+ #define CONFIG_DISPLAY_CPUINFO
+-- 
+1.7.10.4
+

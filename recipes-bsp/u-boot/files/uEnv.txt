@@ -1,0 +1,13 @@
+#Aria G25 board
+fdtfile=/at91ariag25.dtb
+
+#Default u-boot settings:
+#console=ttyS0,115200
+#optargs=console=tty0
+
+mmcroot=/dev/mmcblk0p2 ro
+mmcrootfstype=ext4 rootwait fixrtc
+
+#Run custom u-boot commands early:
+loadfiles=fatload mmc 0 0x22000000 image.bin ; fatload mmc 0 0x27ff0000 at91-ariag25.dtb
+uenvcmd=run loadfiles ; bootm 0x22000000 - 0x27ff0000
