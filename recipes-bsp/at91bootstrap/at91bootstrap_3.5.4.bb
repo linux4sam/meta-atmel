@@ -15,7 +15,7 @@ SRC_URI = " \
 		  file://at91ariag25-add-board-support.patch;patch=1 \
 		  file://git/board/at91ariag25/at91ariag25.h \
 		  file://git/board/at91ariag25/at91ariag25.c \
-		  file://git/board/at91ariag25/at91ariag25sd_defconfig \
+		  file://git/board/at91ariag25/at91ariag25sd_uboot_defconfig \
 		  file://git/board/at91ariag25/board.mk \
 		  "
 
