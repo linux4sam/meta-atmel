@@ -1,9 +1,10 @@
-DESCRIPTION = "Whatever."
-LICENSE = "MIT"
-PR = "r0"
+DESCRIPTION = "Minimal image with opkg."
+require recipes-images/angstrom/console-base-image.bb
 
-LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=3f40d7994397109285ec7b81fdeb3b58 \
-                    file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
+export IMAGE_BASENAME = "bootstrap-image"
+
+LICENSE = "GPLv3+"
+PR = "r0"
 
 IMAGE_FEATURES += "package-management"
 
@@ -13,4 +14,3 @@ IMAGE_INSTALL += "\
 "
 
 inherit core-image
-
