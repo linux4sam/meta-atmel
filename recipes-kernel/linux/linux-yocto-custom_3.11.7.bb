@@ -51,6 +51,7 @@ KBRANCH ?= "3.11.y"
 # tree if you do not want to build from Linus' tree.
 SRC_URI = "git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git;protocol=git;branch=linux-${KBRANCH}.y;nocheckout=1"
 SRC_URI += "file://defconfig"
+SRC_URI += "file://${MACHINE}.dts"
 
 # Override SRCREV to point to a different commit in a bbappend file to
 # build a different release of the Linux kernel.
