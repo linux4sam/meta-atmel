@@ -55,17 +55,19 @@ SRC_URI += "file://${MACHINE}.dts"
 
 # Override SRCREV to point to a different commit in a bbappend file to
 # build a different release of the Linux kernel.
-# tag: v3.11.7 53f2fed3ccce9c7173845283f980792f7196c928
-#SRCREV="53f2fed3ccce9c7173845283f980792f7196c928"
 SRCREV="6b0f1a5c057c686c5e71269418c3944d74d982b1"
 
-
 PV = "${LINUX_VERSION}+${SRCREV}"
-
-
 PR = "r1"
 
 # Override COMPATIBLE_MACHINE to include your machine in a bbappend
 # file. Leaving it empty here ensures an early explicit build failure.
 COMPATIBLE_MACHINE = "(sama5d3xek|at91sam9x5ek|at91ariag25)"
 
+KERNEL_IMAGETYPE = "uImage"
+
+KERNEL_DEVICETREE = "${S}/arch/arm/boot/dts/${MACHINE}.dts"
+
+do_install_prepend() {
+  	cp ${WORKDIR}/${MACHINE}.dts ${S}/arch/arm/boot/dts
+}
