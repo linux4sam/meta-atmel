@@ -43,6 +43,8 @@
 
 inherit kernel
 require recipes-kernel/linux/linux-yocto.inc
+DEPENDS += "xz-native"
+
 LINUX_VERSION ?= "3.11.7"
 LINUX_VERSION_EXTENSION ?= "-custom"
 KBRANCH ?= "3.11.y"
