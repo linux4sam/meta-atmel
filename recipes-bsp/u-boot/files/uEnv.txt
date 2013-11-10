@@ -1,4 +1,4 @@
-#Aria G25 board
+# Ariag25 board
 fdtfile=/at91ariag25.dtb
 
 #Default u-boot settings:
@@ -8,6 +8,17 @@ fdtfile=/at91ariag25.dtb
 mmcroot=/dev/mmcblk0p2 ro
 mmcrootfstype=ext4 rootwait fixrtc
 
-#Run custom u-boot commands early:
-loadfiles=fatload mmc 0 0x22000000 image.bin ; fatload mmc 0 0x27ff0000 at91-ariag25.dtb
-uenvcmd=run loadfiles ; bootm 0x22000000 - 0x27ff0000
+# Run custom u-boot commands early:
+
+# Prepare for loading the regular kernel.
+execimage=bootm 0x22000000 - 0x27ff0000
+loadkernel=fatload mmc 0 0x22000000 image.bin ; fatload mmc 0 0x27ff0000 at91-ariag25.dtb
+runkernel=run loadkernel; run execimage
+# Prepare for loading the original kernel.
+loadorig=fatload mmc 0 0x22000000 origimage.bin ; fatload mmc 0 0x27ff0000 at91-ariag25.dtb
+runorig=run loadorig; run execimage
+# Select original or regular kernel based on the existence of a "factoryreset"
+# file.
+chkfactory=if fatload mmc 0 0x22000000 factoryreset; then run runorig; else run runkernel; fi
+
+uenvcmd=run chkfactory

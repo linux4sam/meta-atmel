@@ -18,7 +18,6 @@ IMAGE_INSTALL += "\
 	bash \
 	busybox \
 	systemd \
-	nfs-client \
 	connman \
 	coreutils \
 "
