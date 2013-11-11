@@ -1,7 +1,7 @@
 export IMAGE_BASENAME = "micro-image"
-export IMAGE_TYPES = "cpio.gz"
+export IMAGE_TYPES = "ext4.lzma"
 #export IMAGE_FSTYPES = "empty"
-export IMAGE_FSTYPES = "ext3"
+export IMAGE_FSTYPES = "ext4.lzma"
 
 RPROVIDES_${PN} += "task-boot"
 RREPLACES_${PN} += "task-boot"
@@ -12,8 +12,8 @@ inherit packagegroup
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 IMAGE_PREPROCESS_COMMAND = "rootfs_update_timestamp"
 
-#BOOTSTRAP = "at91bootstrap u-boot"
-BOOTSTRAP = " "
+BOOTSTRAP = "at91bootstrap u-boot"
+#BOOTSTRAP = " "
 
 DEPENDS = " \
 	virtual/kernel \
@@ -53,3 +53,9 @@ IMAGE_INITSCRIPTS = " "
 IMAGE_LOGIN_MANAGER = " "
 
 inherit image
+
+do_rootfs_${PN}_append () {
+	mkimage -A arm -O linux -T ramdisk -C lzma -n "Linux EXT4 RD" -d ${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.rootfs.ext4.lzma ${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.initrd.lzma
+	echo "Test" > ${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.initrd.txt
+	rm ${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.rootfs.ext4.lzma
+}
