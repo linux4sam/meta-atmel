@@ -54,8 +54,7 @@ IMAGE_LOGIN_MANAGER = " "
 
 inherit image
 
-do_rootfs_${PN}_append () {
+do_rootfs_append () {
 	mkimage -A arm -O linux -T ramdisk -C lzma -n "Linux EXT4 RD" -d ${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.rootfs.ext4.lzma ${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.initrd.lzma
-	echo "Test" > ${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.initrd.txt
 	rm ${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.rootfs.ext4.lzma
 }
