@@ -1,0 +1,11 @@
+--- aiccu/unix-console/Makefile.orig	2013-11-11 11:49:13.489989774 +0100
++++ aiccu/unix-console/Makefile			2013-11-11 11:49:58.489991864 +0100
+@@ -150,7 +150,7 @@
+ all: aiccu
+ 
+ aiccu:	$(OBJS) ${SRCS} ${INCS}
+-	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(OBJS)
++	$(CC) $(CFLAGS) -pthread -o $@ $(OBJS) $(LDFLAGS) -lgnutls -lresolv
+ ifeq ($(shell echo $(CFLAGS) | grep -c "DEBUG"),0)
+ ifeq ($(shell echo "$(RPM_OPT_FLAGS)" | wc -c),1)
+ 	strip $@

@@ -1,7 +1,7 @@
 export IMAGE_BASENAME = "micro-image"
 export IMAGE_TYPES = "cpio.gz"
 #export IMAGE_FSTYPES = "empty"
-export IMAGE_FSTYPES = "cpio.gz"
+export IMAGE_FSTYPES = "ext3"
 
 RPROVIDES_${PN} += "task-boot"
 RREPLACES_${PN} += "task-boot"
@@ -12,7 +12,8 @@ inherit packagegroup
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 IMAGE_PREPROCESS_COMMAND = "rootfs_update_timestamp"
 
-BOOTSTRAP = "at91bootstrap u-boot"
+#BOOTSTRAP = "at91bootstrap u-boot"
+BOOTSTRAP = " "
 
 DEPENDS = " \
 	virtual/kernel \
@@ -47,7 +48,7 @@ IMAGE_INSTALL = " \
 	dropbear \
 "
 
-#IMAGE_INITSCRIPTS = " "
+IMAGE_INITSCRIPTS = " "
 #IMAGE_LOGIN_MANAGER = "tinylogin shadow"
 IMAGE_LOGIN_MANAGER = " "
 
