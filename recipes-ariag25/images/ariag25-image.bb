@@ -6,6 +6,7 @@ export IMAGE_BASENAME = "bootstrap-image"
 LICENSE = "GPLv3+"
 PR = "r0"
 
+ASSUME_PROVIDED += "qemu"
 #PREFERRED_VERSION_qemu = "1.6.1"
 
 IMAGE_FEATURES += "package-management"

@@ -10,8 +10,8 @@ SRCREV="v3.5.4"
 PV="v3.5.4"
 
 SRC_URI = " \
-		  git://github.com/linux4sam/at91bootstrap.git;protocol=git \
-		  "
+	git://github.com/linux4sam/at91bootstrap.git;protocol=git \
+"
 
 S = "${WORKDIR}/git"
 
