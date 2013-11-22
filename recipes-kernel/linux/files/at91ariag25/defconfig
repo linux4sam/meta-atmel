@@ -1,4 +1,4 @@
-#
+1;3406;0c#
 # Automatically generated file; DO NOT EDIT.
 # Linux/arm 3.12.0 Kernel Configuration
 #
@@ -1779,7 +1779,7 @@ CONFIG_LEDS_CLASS=y
 #
 # LED drivers
 #
-CONFIG_LEDS_ATMEL_PWM=y
+CONFIG_LEDS_ATMEL_PWM=n
 # CONFIG_LEDS_LM3530 is not set
 # CONFIG_LEDS_LM3642 is not set
 # CONFIG_LEDS_PCA9532 is not set
@@ -1793,7 +1793,7 @@ CONFIG_LEDS_GPIO=y
 # CONFIG_LEDS_PCA963X is not set
 # CONFIG_LEDS_PCA9685 is not set
 # CONFIG_LEDS_DAC124S085 is not set
-CONFIG_LEDS_PWM=m
+CONFIG_LEDS_PWM=y
 # CONFIG_LEDS_BD2802 is not set
 # CONFIG_LEDS_LT3593 is not set
 # CONFIG_LEDS_TCA6507 is not set
