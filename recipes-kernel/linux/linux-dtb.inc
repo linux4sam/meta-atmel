@@ -15,10 +15,13 @@ do_install_append() {
 			DTB_BASE_NAME=`basename ${DTB} .dtb`
 			DTB_NAME=`echo ${KERNEL_IMAGE_BASE_NAME} | sed "s/${MACHINE}/${DTB_BASE_NAME}/g"`
 			DTB_SYMLINK_NAME=`echo ${KERNEL_IMAGE_SYMLINK_NAME} | sed "s/${MACHINE}/${DTB_BASE_NAME}/g"`
-			DTB_PATH="${B}/arch/${ARCH}/boot/dts/${DTB}"
+			DTB_PATH="${S}/arch/${ARCH}/boot/dts/${DTB}"
 			oe_runmake ${DTB}
 			if [ ! -e "${DTB_PATH}" ]; then
-				DTB_PATH="${B}/arch/${ARCH}/boot/${DTB}"
+				DTB_PATH="${S}/arch/${ARCH}/boot/${DTB}"
+			fi
+			if [ ! -e "${DTB_PATH}" ]; then
+				DTB_PATH="${S}/arch/${ARCH}/boot/dts/${DTB}"
 			fi
 			install -m 0644 ${DTB_PATH} ${D}/${KERNEL_IMAGEDEST}/devicetree-${DTB_SYMLINK_NAME}.dtb
 		done
@@ -35,9 +38,13 @@ do_deploy_append() {
 			DTB_BASE_NAME=`basename ${DTB} .dtb`
 			DTB_NAME=`echo ${KERNEL_IMAGE_BASE_NAME} | sed "s/${MACHINE}/${DTB_BASE_NAME}/g"`
 			DTB_SYMLINK_NAME=`echo ${KERNEL_IMAGE_SYMLINK_NAME} | sed "s/${MACHINE}/${DTB_BASE_NAME}/g"`
-			DTB_PATH="${B}/arch/${ARCH}/boot/dts/${DTB}"
+			DTB_PATH="${S}/arch/${ARCH}/boot/dts/${DTB}"
+			oe_runmake ${DTB}
 			if [ ! -e "${DTB_PATH}" ]; then
-				DTB_PATH="${B}/arch/${ARCH}/boot/${DTB}"
+				DTB_PATH="${S}/arch/${ARCH}/boot/${DTB}"
+			fi
+			if [ ! -e "${DTB_PATH}" ]; then
+				DTB_PATH="${S}/arch/${ARCH}/boot/dts/${DTB}"
 			fi
 			install -d ${DEPLOYDIR}
 			install -m 0644 ${DTB_PATH} ${DEPLOYDIR}/${DTB_NAME}.dtb
