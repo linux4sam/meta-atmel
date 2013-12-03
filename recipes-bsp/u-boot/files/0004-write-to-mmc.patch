@@ -1,6 +1,6 @@
 --- ./include/configs/at91sam9x5ek.h.old	2013-10-31 15:59:14.611938977 +0100
 +++ ./include/configs/at91sam9x5ek.h	2013-10-31 15:49:40.197414151 +0100
-@@ -151,6 +151,10 @@
+@@ -151,6 +151,11 @@
  #define CONFIG_CMD_EXT2
  #define CONFIG_CMD_EXT4
  #define CONFIG_CMD_FS_GENERIC
@@ -8,6 +8,7 @@
 +#define CONFIG_CMD_EXT4_WRITE
 +#define CONFIG_CMD_FAT_WRITE
 +#define CONFIG_FAT_WRITE
++#define CONFIG_CMD_SETEXPR
  
  /* Add bootm support. */
  #define CONFIG_CMD_BOOTM
