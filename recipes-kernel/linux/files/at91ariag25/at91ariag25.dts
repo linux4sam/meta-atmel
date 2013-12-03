@@ -33,9 +33,7 @@
 
 	memory {
 		/* 128 MB, change this for 256 MB revision */
-		/* reg = <0x20000000 0x8000000>; */
-		/* 256 MB, change this for 128 MB revision */
-		reg = <0x20000000 0x10000000>;
+		reg = <0x20000000 0x8000000>;
 	};
 
 	clocks {
@@ -91,8 +89,8 @@
 
 			usart1: serial@f8020000 {
 				pinctrl-0 = <&pinctrl_usart1
-					     &pinctrl_usart1_rts
-					     &pinctrl_usart1_cts
+					     /* &pinctrl_usart1_rts */
+					     /* &pinctrl_usart1_cts */
 					    >;
 				status = "okay";
 			};
@@ -130,18 +128,17 @@
 			 * UART0/1 pins are marked as GPIO on
 			 * Aria documentation.
 			 * Change to "okay" if you need additional serial ports
-			 * Change to "disabled" if you need additional GPIOs
 			 */
 			uart0: serial@f8040000 {
-				status = "okay";
+				status = "disabled";
 			};
 
 			uart1: serial@f8044000 {
-				status = "okay";
+				status = "disabled";
 			};
 
 			adc0: adc@f804c000 {
-				status = "disabled";
+				status = "okay";
 				atmel,adc-channels-used = <0xf>;
 				atmel,adc-num-channels = <4>;
 			};
@@ -155,6 +152,9 @@
 					pinctrl_w1_0: w1_0-0 {
 						atmel,pins = <0 21 0x0 0x1>; /* PA21 PIO, pull-up */
 					};
+					pinctrl_w2_0: w2_0-0 {
+						atmel,pins = <2 23 0x0 0x1>; /* PC23 PIO, pull-up */
+					};
 				};
 			};
 
@@ -166,6 +166,10 @@
 		usb0: ohci@00600000 {
 			status = "okay";
 			num-ports = <3>;
+			atmel,vbus-gpio = <0 /* &pioD 18 1 *//* Activate to have access to port A */
+						&pioD 19 1
+						&pioD 20 1
+			>;
 		};
 
 		usb1: ehci@00700000 {
@@ -183,19 +187,145 @@
 			linux,default-trigger = "heartbeat";
 		};
 
-    	led1 {
-      		 label = "led1";
-      		 gpios = <&pioB 11 GPIO_ACTIVE_LOW>; /* PB11 */
-      		 linux,default-trigger = "none";
-      		 default-state = "off";
-    	};
+        connected {
+          label = "connected";
+          gpios = <&pioB 12 GPIO_ACTIVE_LOW>;
+          linux,default-trigger = "none";
+          default-state = "off";
+        };
+        power {
+          label = "power";
+          gpios = <&pioB 13 GPIO_ACTIVE_LOW>;
+          linux,default-trigger = "heartbeat";
+        };
 
-    	led2 {
-      		 label = "led2";
-      		 gpios = <&pioB 12 GPIO_ACTIVE_LOW>; /* PB12 */
-      		 linux,default-trigger = "none";
-      		 default-state = "off";
-    	};
+        led0 {
+          label = "led0";
+          gpios = <&pioC 2 GPIO_ACTIVE_LOW>;
+          linux,default-trigger = "none";
+          default-state = "off";
+        };
+        led1 {
+          label = "led1";
+          gpios = <&pioC 3 GPIO_ACTIVE_LOW>;
+          linux,default-trigger = "none";
+          default-state = "off";
+        };
+        led2 {
+          label = "led2";
+          gpios = <&pioC 4 GPIO_ACTIVE_LOW>;
+          linux,default-trigger = "none";
+          default-state = "off";
+        };
+        led3 {
+          label = "led3";
+          gpios = <&pioC 5 GPIO_ACTIVE_LOW>;
+          linux,default-trigger = "none";
+          default-state = "off";
+        };
+        led4 {
+          label = "led4";
+          gpios = <&pioC 6 GPIO_ACTIVE_LOW>;
+          linux,default-trigger = "none";
+          default-state = "off";
+        };
+        led5 {
+          label = "led5";
+          gpios = <&pioC 7 GPIO_ACTIVE_LOW>;
+          linux,default-trigger = "none";
+          default-state = "off";
+        };
+        led6 {
+          label = "led6";
+          gpios = <&pioC 8 GPIO_ACTIVE_LOW>;
+          linux,default-trigger = "none";
+          default-state = "off";
+        };
+        led7 {
+          label = "led7";
+          gpios = <&pioC 9 GPIO_ACTIVE_LOW>;
+          linux,default-trigger = "none";
+          default-state = "off";
+        };
+        led8 {
+          label = "led8";
+          gpios = <&pioC 10 GPIO_ACTIVE_LOW>;
+          linux,default-trigger = "none";
+          default-state = "off";
+        };
+        led9 {
+          label = "led9";
+          gpios = <&pioC 11 GPIO_ACTIVE_LOW>;
+          linux,default-trigger = "none";
+          default-state = "off";
+        };
+
+        relay0 {
+          label = "relay0";
+          gpios = <&pioC 18 GPIO_ACTIVE_HIGH>;
+          linux,default-trigger = "none";
+          default-state = "off";
+        };
+        relay1 {
+          label = "relay1";
+          gpios = <&pioC 24 GPIO_ACTIVE_HIGH>;
+          linux,default-trigger = "none";
+          default-state = "off";
+        };
+        grounded {
+          label = "grounded";
+          gpios = <&pioC 22 GPIO_ACTIVE_HIGH>;
+          linux,default-trigger = "none";
+          default-state = "off";
+        };
+        relay2 {
+          label = "relay2";
+          gpios = <&pioC 21 GPIO_ACTIVE_HIGH>;
+          linux,default-trigger = "none";
+          default-state = "off";
+        };
+        relay3 {
+          label = "relay3";
+          gpios = <&pioA 24 GPIO_ACTIVE_HIGH>;
+          linux,default-trigger = "none";
+          default-state = "off";
+        };
+        relay4 {
+          label = "relay4";
+          gpios = <&pioC 20 GPIO_ACTIVE_HIGH>;
+          linux,default-trigger = "none";
+          default-state = "off";
+        };
+        relay5 {
+          label = "relay5";
+          gpios = <&pioC 13 GPIO_ACTIVE_HIGH>;
+          linux,default-trigger = "none";
+          default-state = "off";
+        };
+        relay6 {
+          label = "relay6";
+          gpios = <&pioC 14 GPIO_ACTIVE_HIGH>;
+          linux,default-trigger = "none";
+          default-state = "off";
+        };
+        relay7 {
+          label = "relay7";
+          gpios = <&pioC 15 GPIO_ACTIVE_HIGH>;
+          linux,default-trigger = "none";
+          default-state = "off";
+        };
+        relay8 {
+          label = "relay8";
+          gpios = <&pioC 16 GPIO_ACTIVE_HIGH>;
+          linux,default-trigger = "none";
+          default-state = "off";
+        };
+        relay9 {
+          label = "relay9";
+          gpios = <&pioC 17 GPIO_ACTIVE_HIGH>;
+          linux,default-trigger = "none";
+          default-state = "off";
+        };
 	};
 
 	onewire@0 {
