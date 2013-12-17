@@ -8,6 +8,9 @@
  * pin assignments
  *
  * Licensed under GPLv2 or later.
+ *
+ * Changed by Ole Wolf <wolf@blazingangles.com> to match self-manufactured
+ * board.
  */
 /dts-v1/;
 #include "at91sam9g25.dtsi"
@@ -15,7 +18,7 @@
 / {
 	model = "Acme Systems Aria G25";
 	compatible = "acme,ariag25", "atmel,at91sam9x5ek",
-		     "atmel,at91sam9x5", "atmel,at91sam9";
+				 "atmel,at91sam9x5", "atmel,at91sam9";
 
 	aliases {
 		serial0 = &dbgu;
@@ -28,12 +31,12 @@
 	};
 
 	chosen {
-		bootargs = "console=ttyS0,115200 root=/dev/mmcblk0p2 rw rootwait";
+		bootargs = "mem=256M console=ttyS0,115200 root=/dev/mmcblk0p2 rw rootwait";
 	};
 
 	memory {
-		/* 128 MB, change this for 256 MB revision */
-		reg = <0x20000000 0x8000000>;
+		/* 256 MBytes beginning at 0x20000000. */
+		reg = <0x20000000 0x10000000>;
 	};
 
 	clocks {
@@ -51,7 +54,6 @@
 		apb {
 			mmc0: mmc@f0008000 {
 				/* N.B. Aria has no SD card detect (CD), assumed present */
-
 				pinctrl-0 = <
 					&pinctrl_mmc0_slot0_clk_cmd_dat0
 					&pinctrl_mmc0_slot0_dat1_3>;
@@ -67,37 +69,34 @@
 			};
 
 			/*
-			 * I2C-1 pins are marked as GPIO on
-			 * Aria documentation.
-			 * Change to "okay" if you need an additional I2C bus
+			 * I2C-1 pins are marked as GPIO in the Aria documentation.
+			 * Change to "okay" if you need an additional I2C bus.
 			 */
-
 			i2c1: i2c@f8014000 {
 				status = "disabled";
 			};
 
 			/* TWD2+TCLK2 hidden behind ethernet, so no i2c2 */
-
 			usart0: serial@f801c000 {
 				pinctrl-0 = <&pinctrl_usart0
-					     &pinctrl_usart0_rts
-					     &pinctrl_usart0_cts>;
-					     linux,rs485-enabled-at-boot-time;
-						 rs485-rts-delay = <0 200>;
+							&pinctrl_usart0_rts
+							&pinctrl_usart0_cts>;
+				linux,rs485-enabled-at-boot-time;
+				rs485-rts-delay = <0 200>;
 				status = "okay";
 			};
 
 			usart1: serial@f8020000 {
 				pinctrl-0 = <&pinctrl_usart1
-					     /* &pinctrl_usart1_rts */
-					     /* &pinctrl_usart1_cts */
-					    >;
+							/* &pinctrl_usart1_rts */
+							/* &pinctrl_usart1_cts */
+							>;
 				status = "okay";
 			};
 
 			usart2: serial@f8024000 {
-				/* cannot activate RTS2+CTS2, clash with
-				 * ethernet on PB0 and PB1 */
+				/* Cannot activate RTS2+CTS2, because they clash with
+				 * ethernet on PB0 and PB1. */
 				pinctrl-0 = <&pinctrl_usart2>;
 				status = "okay";
 			};
@@ -107,26 +106,26 @@
 				reg = <0xf8028000 0x200>;
 				interrupts = <8 4 5>;
 				pinctrl-names = "default";
-				pinctrl-0 = <&pinctrl_usart3
-					     /* &pinctrl_usart3_rts */
-					     /* &pinctrl_usart3_cts */
-					    >;
+				pinctrl-0 = <
+							&pinctrl_usart3
+							/* &pinctrl_usart3_rts */
+							/* &pinctrl_usart3_cts */
+							>;
 				status = "disabled";
 			};
 
 			macb0: ethernet@f802c000 {
 				phy-mode = "rmii";
 				/*
-				 * following can be overwritten by bootloader:
-				 * for example u-boot 'ftd set' command
+				 * U-boot may override the MAC address using the
+				 * 'ftd set' command.
 				 */
 				local-mac-address = [00 00 00 00 00 00];
 				status = "okay";
 			};
 
 			/*
-			 * UART0/1 pins are marked as GPIO on
-			 * Aria documentation.
+			 * UART0/1 pins are marked as GPIO in the Aria documentation.
 			 * Change to "okay" if you need additional serial ports
 			 */
 			uart0: serial@f8040000 {
@@ -197,134 +196,6 @@
           label = "power";
           gpios = <&pioB 13 GPIO_ACTIVE_LOW>;
           linux,default-trigger = "heartbeat";
-        };
-
-        led0 {
-          label = "led0";
-          gpios = <&pioC 2 GPIO_ACTIVE_LOW>;
-          linux,default-trigger = "none";
-          default-state = "off";
-        };
-        led1 {
-          label = "led1";
-          gpios = <&pioC 3 GPIO_ACTIVE_LOW>;
-          linux,default-trigger = "none";
-          default-state = "off";
-        };
-        led2 {
-          label = "led2";
-          gpios = <&pioC 4 GPIO_ACTIVE_LOW>;
-          linux,default-trigger = "none";
-          default-state = "off";
-        };
-        led3 {
-          label = "led3";
-          gpios = <&pioC 5 GPIO_ACTIVE_LOW>;
-          linux,default-trigger = "none";
-          default-state = "off";
-        };
-        led4 {
-          label = "led4";
-          gpios = <&pioC 6 GPIO_ACTIVE_LOW>;
-          linux,default-trigger = "none";
-          default-state = "off";
-        };
-        led5 {
-          label = "led5";
-          gpios = <&pioC 7 GPIO_ACTIVE_LOW>;
-          linux,default-trigger = "none";
-          default-state = "off";
-        };
-        led6 {
-          label = "led6";
-          gpios = <&pioC 8 GPIO_ACTIVE_LOW>;
-          linux,default-trigger = "none";
-          default-state = "off";
-        };
-        led7 {
-          label = "led7";
-          gpios = <&pioC 9 GPIO_ACTIVE_LOW>;
-          linux,default-trigger = "none";
-          default-state = "off";
-        };
-        led8 {
-          label = "led8";
-          gpios = <&pioC 10 GPIO_ACTIVE_LOW>;
-          linux,default-trigger = "none";
-          default-state = "off";
-        };
-        led9 {
-          label = "led9";
-          gpios = <&pioC 11 GPIO_ACTIVE_LOW>;
-          linux,default-trigger = "none";
-          default-state = "off";
-        };
-
-        relay0 {
-          label = "relay0";
-          gpios = <&pioC 18 GPIO_ACTIVE_HIGH>;
-          linux,default-trigger = "none";
-          default-state = "off";
-        };
-        relay1 {
-          label = "relay1";
-          gpios = <&pioC 24 GPIO_ACTIVE_HIGH>;
-          linux,default-trigger = "none";
-          default-state = "off";
-        };
-        grounded {
-          label = "grounded";
-          gpios = <&pioC 22 GPIO_ACTIVE_HIGH>;
-          linux,default-trigger = "none";
-          default-state = "off";
-        };
-        relay2 {
-          label = "relay2";
-          gpios = <&pioC 21 GPIO_ACTIVE_HIGH>;
-          linux,default-trigger = "none";
-          default-state = "off";
-        };
-        relay3 {
-          label = "relay3";
-          gpios = <&pioA 24 GPIO_ACTIVE_HIGH>;
-          linux,default-trigger = "none";
-          default-state = "off";
-        };
-        relay4 {
-          label = "relay4";
-          gpios = <&pioC 20 GPIO_ACTIVE_HIGH>;
-          linux,default-trigger = "none";
-          default-state = "off";
-        };
-        relay5 {
-          label = "relay5";
-          gpios = <&pioC 13 GPIO_ACTIVE_HIGH>;
-          linux,default-trigger = "none";
-          default-state = "off";
-        };
-        relay6 {
-          label = "relay6";
-          gpios = <&pioC 14 GPIO_ACTIVE_HIGH>;
-          linux,default-trigger = "none";
-          default-state = "off";
-        };
-        relay7 {
-          label = "relay7";
-          gpios = <&pioC 15 GPIO_ACTIVE_HIGH>;
-          linux,default-trigger = "none";
-          default-state = "off";
-        };
-        relay8 {
-          label = "relay8";
-          gpios = <&pioC 16 GPIO_ACTIVE_HIGH>;
-          linux,default-trigger = "none";
-          default-state = "off";
-        };
-        relay9 {
-          label = "relay9";
-          gpios = <&pioC 17 GPIO_ACTIVE_HIGH>;
-          linux,default-trigger = "none";
-          default-state = "off";
         };
 	};
 
