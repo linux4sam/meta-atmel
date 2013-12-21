@@ -1,24 +1,31 @@
 # Ariag25 board
-fdtfile=/at91ariag25.dtb
 
-#Default u-boot settings:
-#console=ttyS0,115200
-#optargs=console=tty0
+# Use a locally administered MAC address (second least bit of the most
+# significant byte is 1):
+ethaddr=02:a0:30:ad:55:bf
 
-mmcroot=/dev/mmcblk0p2 ro
-mmcrootfstype=ext4 rootwait fixrtc
+console=ttyS0,115200n8
+optargs=mem=128M fixrtc
 
-# Run custom u-boot commands early:
+fdtfile=at91ariag25.dtb
+fdtaddr=0x27ff0000
+kernelfile=uImage
+kerneladdr=0x22000000
 
-# Prepare for loading the regular kernel.
-execimage=bootm 0x22000000 - 0x27ff0000
-loadkernel=fatload mmc 0 0x22000000 image.bin ; fatload mmc 0 0x27ff0000 at91-ariag25.dtb
-runkernel=run loadkernel; run execimage
-# Prepare for loading the original kernel.
-loadorig=fatload mmc 0 0x22000000 origimage.bin ; fatload mmc 0 0x27ff0000 at91-ariag25.dtb
-runorig=run loadorig; run execimage
-# Select original or regular kernel based on the existence of a "factoryreset"
-# file.
-chkfactory=if fatload mmc 0 0x22000000 factoryreset; then run runorig; else run runkernel; fi
+mmcroot=/dev/mmcblk0p2 rw
+mmcrootfstype=ext4 rootwait
+mmcdev=0
+mmcargs=setenv bootargs console=${console} ${optargs} root=${mmcroot} rootfstype=${mmcrootfstype}
 
-uenvcmd=run chkfactory
+loadkernel=fatload mmc ${mmcdev} ${kerneladdr} ${kernelfile}
+loadfdt=fatload mmc ${mmcdev} ${fdtaddr} ${fdtfile}
+
+mmcboot=echo Booting from mmc ...; run mmcargs; bootm ${kerneladdr} - ${fdtaddr}
+uenvcmd=run loadkernel; run loadfdt; run mmcboot
+
+
+###mmcpart=1
+###setenv mmcargs=setenv bootargs console=${console} ${optargs} root=${mmcroot} rootfstype=${mmcrootfstype} video=${video}
+###mmcroot=/dev/mmcblk0p2 ro
+###loadkernel=load mmc ${mmcdev}:${mmcpart} ${loadkernel} ${kernel}
+###loadfdt=load mmc ${mmcdev}:${mmcpart} ${fdtaddr} ${fdtfile}
