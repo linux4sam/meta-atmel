@@ -3,7 +3,7 @@ require linux-yocto.inc
 
 KERNEL_MAJOR = "3"
 KERNEL_MINOR = "12"
-KERNEL_REVISION = "5"
+KERNEL_REVISION = "6"
 
 PARALLEL_MAKE = "-j10"
 
