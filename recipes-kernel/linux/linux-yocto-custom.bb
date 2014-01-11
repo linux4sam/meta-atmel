@@ -20,11 +20,11 @@ SRC_URI = " \
 	git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git;protocol=git;branch=${KBRANCH};tag=${KTAG};nocheckout=1 \
 	file://defconfig \
 	file://${MACHINE}.dts \
-	https://www.kernel.org/pub/linux/kernel/projects/rt/${KERNEL_MAJOR}.${KERNEL_MINOR}/patch-${KERNEL_MAJOR}.${KERNEL_MINOR}.${KERNEL_REVISION}-rt9.patch.bz2;patch=0 \
 "
 # Validation of the RTLinux patch.
-SRC_URI[md5sum] = "fb0531490fc251724133747471f02878"
-SRC_URI[sha256sum] = "3eee8df31f97888980824189264f384561deef43f57b776435d353b51332fcac"
+#	https://www.kernel.org/pub/linux/kernel/projects/rt/${KERNEL_MAJOR}.${KERNEL_MINOR}/patch-${KERNEL_MAJOR}.${KERNEL_MINOR}.${KERNEL_REVISION}-rt9.patch.bz2;patch=0 \
+#SRC_URI[md5sum] = "fb0531490fc251724133747471f02878"
+#SRC_URI[sha256sum] = "3eee8df31f97888980824189264f384561deef43f57b776435d353b51332fcac"
 
 LINUX_VERSION ?= "${KERNEL_MAJOR}.${KERNEL_MINOR}.${KERNEL_REVISION}"
 
