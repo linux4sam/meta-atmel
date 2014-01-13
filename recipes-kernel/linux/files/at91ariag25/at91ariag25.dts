@@ -31,12 +31,12 @@
 	};
 
 	chosen {
-		bootargs = "mem=256M console=ttyS0,115200 root=/dev/mmcblk0p2 rw rootwait";
+		bootargs = "mem=128M console=ttyS0,115200 root=/dev/mmcblk0p2 rw rootwait";
 	};
 
 	memory {
-		/* 256 MBytes beginning at 0x20000000. */
-		reg = <0x20000000 0x10000000>;
+		/* 128 MBytes beginning at 0x20000000. */
+		reg = <0x20000000 0x08000000>;
 	};
 
 	clocks {
@@ -179,17 +179,18 @@
 	leds {
 		compatible = "gpio-leds";
 
-		/* little green LED in middle of Aria G25 module */
+		/* little LED in middle of Aria G25 module */
 		aria_led {
 			label = "aria_led";
 			gpios = <&pioB 8 GPIO_ACTIVE_HIGH>; /* PB8 */
 			linux,default-trigger = "heartbeat";
 		};
 
-        power {
-          label = "power";
-          gpios = <&pioB 11 GPIO_ACTIVE_LOW>;
-          linux,default-trigger = "heartbeat";
+        status {
+          label = "status";
+          gpios = <&pioB 11 GPIO_ACTIVE_HIGH>;
+          linux,default-trigger = "none";
+		  default-state = "off";
         };
         ready {
           label = "ready";
