@@ -190,7 +190,7 @@
           label = "status";
           gpios = <&pioB 11 GPIO_ACTIVE_HIGH>;
           linux,default-trigger = "none";
-		  default-state = "off";
+		  default-state = "on";
         };
         ready {
           label = "ready";
