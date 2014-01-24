@@ -1,0 +1,36 @@
+# Ariag25 board
+
+# Use a locally administered MAC address (second least bit of the most
+# significant byte is 1):
+ethaddr=02:a0:30:ad:55:bf
+
+console=ttyS0,115200n8
+optargs=mem=128M fixrtc
+
+fdtfile=at91ariag25.dtb
+fdtaddr=0x27ff0000
+kernelfile=uImage
+kerneladdr=0x22000000
+
+setenv mtdids nand0=atmel_nand
+setenv mtdparts mtdparts=atmel_nand:256k(bootstrap)ro,512k(uboot)ro,256k(env),256k(env_redundant),256k(spare),512k(dtb),6M(kernel)ro,-(rootfolder)
+
+mtdsetup=${mtdparts} ubi.mtd=7
+
+mmcroot=/dev/mmcblk0p2 rw
+mmcrootfstype=ext4 rootwait
+mmcdev=0
+mmcargs=setenv bootargs console=${console} earlyprintk mtdsetup=${mtdsetup} ${optargs} root=${mmcroot} rootfstype=${mmcrootfstype}
+
+loadkernel=fatload mmc ${mmcdev} ${kerneladdr} ${kernelfile}
+loadfdt=fatload mmc ${mmcdev} ${fdtaddr} ${fdtfile}
+
+mmcboot=echo Booting from mmc ...; run mmcargs; bootm ${kerneladdr} - ${fdtaddr}
+uenvcmd=run loadkernel; run loadfdt; run mmcboot
+
+
+###mmcpart=1
+###setenv mmcargs=setenv bootargs console=${console} ${optargs} root=${mmcroot} rootfstype=${mmcrootfstype} video=${video}
+###mmcroot=/dev/mmcblk0p2 ro
+###loadkernel=load mmc ${mmcdev}:${mmcpart} ${loadkernel} ${kernel}
+###loadfdt=load mmc ${mmcdev}:${mmcpart} ${fdtaddr} ${fdtfile}

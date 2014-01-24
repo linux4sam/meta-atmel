@@ -9,12 +9,14 @@ PR = "r1"
 SRCREV="v3.5.4"
 PV="v3.5.4"
 
-SRC_URI =  "git://github.com/linux4sam/at91bootstrap.git;protocol=git"
-
+SRC_URI = " \
+	git://github.com/linux4sam/at91bootstrap.git;protocol=git \
+"
 
 S = "${WORKDIR}/git"
 
 PARALLEL_MAKE = ""
+
 
 do_configure() {
 	unset LDFLAGS
