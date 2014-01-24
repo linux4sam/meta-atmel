@@ -12,10 +12,15 @@ fdtaddr=0x27ff0000
 kernelfile=uImage
 kerneladdr=0x22000000
 
+setenv mtdids nand0=atmel_nand
+setenv mtdparts mtdparts=atmel_nand:256k(bootstrap)ro,512k(uboot)ro,256k(env),256k(env_redundant),256k(spare),512k(dtb),6M(kernel)ro,-(rootfolder)
+
+mtdsetup=${mtdparts} ubi.mtd=7
+
 mmcroot=/dev/mmcblk0p2 rw
 mmcrootfstype=ext4 rootwait
 mmcdev=0
-mmcargs=setenv bootargs console=${console} ${optargs} root=${mmcroot} rootfstype=${mmcrootfstype}
+mmcargs=setenv bootargs console=${console} earlyprintk mtdsetup=${mtdsetup} ${optargs} root=${mmcroot} rootfstype=${mmcrootfstype}
 
 loadkernel=fatload mmc ${mmcdev} ${kerneladdr} ${kernelfile}
 loadfdt=fatload mmc ${mmcdev} ${fdtaddr} ${fdtfile}
