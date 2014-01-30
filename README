@@ -1,7 +1,7 @@
 This Layer depends on :
 URI: git://git.yoctoproject.org/poky
 URI: http://git.yoctoproject.org/git/poky
-Tag: dora-10.0.0
+Tag: dora-10.0.1
 
 OpenEmbedded/Yocto layer for for Atmel AT91SAM SoC
 For now it supports:
@@ -16,9 +16,9 @@ Build procedure:
 1/ Clone yocto/poky git repository
 git clone git://git.yoctoproject.org/poky
 
-2/ Checkout dora-10.0.0 tag
+2/ Checkout dora-10.0.1 tag
 cd poky
-git checkout dora-10.0.0 -b my_branch
+git checkout dora-10.0.1 -b my_branch
 
 3/ Clone meta-atmel layer
 git clone http://github.com/linux4sam/meta-atmel
