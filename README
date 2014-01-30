@@ -1,7 +1,13 @@
 This Layer depends on :
+- Poky
 URI: git://git.yoctoproject.org/poky
 URI: http://git.yoctoproject.org/git/poky
 Tag: dora-10.0.1
+
+- meta-openembedded
+URI: git://git.openembedded.org/meta-openembedded
+URI: http://cgit.openembedded.org/meta-openembedded/
+(tested with commit ID: 6572316557e742c2dc93848e4d560242bf0c3995)
 
 OpenEmbedded/Yocto layer for for Atmel AT91SAM SoC
 For now it supports:
@@ -41,6 +47,8 @@ BBLAYERS ?= " \
   /home/pvilchez/workspace/github/poky/meta \
   /home/pvilchez/workspace/github/poky/meta-yocto \
   /home/pvilchez/workspace/github/poky/meta-yocto-bsp \
+  /home/pvilchez/workspace/yocto/poky/meta-openembedded/meta-oe \
+  /home/pvilchez/workspace/yocto/poky/meta-openembedded/meta-networking \
   "
 5/ Edit local.conf to specify the machine, location of source archived, package type (rpm, deb or ipk)
 vim conf/local.conf:
@@ -61,5 +69,7 @@ vim conf/local.conf:
 LICENSE_FLAGS_WHITELIST += "commercial"
 SYSVINIT_ENABLED_GETTYS = ""
 
-8/ Build Atmel Qt-embedded demo
+8/ Build Atmel demo images
 bitbake atmel-qt4e-demo-image
+or
+bitbake atmel-xplained-demo-image
