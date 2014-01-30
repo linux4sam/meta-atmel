@@ -3,18 +3,14 @@ HOMEPAGE = "http://www.denx.de/wiki/U-Boot/WebHome"
 SECTION = "bootloaders"
 PROVIDES = "virtual/bootloader"
 
-inherit deploy
+inherit uboot-config deploy
 
 EXTRA_OEMAKE = 'CROSS_COMPILE=${TARGET_PREFIX} CC="${TARGET_PREFIX}gcc ${TOOLCHAIN_OPTIONS}"'
 
-python () {
-	if not d.getVar("UBOOT_MACHINE", True):
-		PN = d.getVar("PN", True)
-		FILE = os.path.basename(d.getVar("FILE", True))
-		bb.debug(1, "To build %s, see %s for instructions on \
-			     setting up your machine config" % (PN, FILE))
-		raise bb.parse.SkipPackage("because UBOOT_MACHINE is not set")
-}
+# Allow setting an additional version string that will be picked up by the
+# u-boot build system and appended to the u-boot version.  If the .scmversion
+# file already exists it will not be overwritten.
+UBOOT_LOCALVERSION ?= ""
 
 # Some versions of u-boot use .bin and others use .img.  By default use .bin
 # but enable individual recipes to change this value.
@@ -40,6 +36,13 @@ do_compile () {
 	unset LDFLAGS
 	unset CFLAGS
 	unset CPPFLAGS
+
+	if [ ! -e ${B}/.scmversion -a ! -e ${S}/.scmversion ]
+	then
+		echo ${UBOOT_LOCALVERSION} > ${B}/.scmversion
+		echo ${UBOOT_LOCALVERSION} > ${S}/.scmversion
+	fi
+
 	oe_runmake ${UBOOT_MACHINE}
 	oe_runmake ${UBOOT_MAKE_TARGET}
 }
