@@ -7,11 +7,16 @@ IMAGE_FEATURES += "ssh-server-openssh package-management"
 IMAGE_INSTALL = "\
     packagegroup-core-boot \
     packagegroup-core-basic \
-    ${CORE_IMAGE_EXTRA_INSTALL} \
+    packagegroup-base-wifi \
+    packagegroup-base-bluetooth \
+    packagegroup-base-3g \
+    packagegroup-base-usbhost \
+    packagegroup-base-usbgadget \
+    kernel-modules \
+    lrzsz \
+    setserial \
     opkg \
     iperf \
-    wpa-supplicant \
-    wireless-tools \
     linux-firmware \
     i2c-tools \
     dosfstools \
@@ -22,6 +27,10 @@ IMAGE_INSTALL = "\
     canutils \
     python-pyserial \
     python-ctypes \
+    gdbserver \
+    usbutils \
+    wget \
+    ${CORE_IMAGE_EXTRA_INSTALL} \
     "
 
 inherit core-image
