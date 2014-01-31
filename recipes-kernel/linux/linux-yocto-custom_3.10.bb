@@ -32,7 +32,7 @@
 #   patches: patches can be merged into to the source git tree itself,
 #            added via the SRC_URI, or controlled via a BSP
 #            configuration.
-#
+#   
 #   example configuration addition:
 #            SRC_URI += "file://smp.cfg"
 #   example patch addition (for kernel v3.4 only):
@@ -43,21 +43,22 @@
 
 inherit kernel
 require recipes-kernel/linux/linux-yocto.inc
-LINUX_VERSION ?= "3.10"
-LINUX_VERSION_EXTENSION ?= "-custom"
-KBRANCH ?= "3.10-at91"
 
 # Override SRC_URI in a bbappend file to point at a different source
 # tree if you do not want to build from Linus' tree.
-SRC_URI = "git://github.com/linux4sam/linux-at91.git;protocol=git;branch=${KBRANCH};nocheckout=1"
-SRC_URI += "file://defconfig"
+SRC_URI = "git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git;protocol=git;nocheckout=1"
 
-SRCREV="7af80e5ee631aa0ee817aa2a093d5ece8eda2975"
-PV = "${LINUX_VERSION}+${SRCREV}"
+LINUX_VERSION ?= "3.10"
+LINUX_VERSION_EXTENSION ?= "-custom"
+
+# Override SRCREV to point to a different commit in a bbappend file to
+# build a different release of the Linux kernel.
+# tag: v3.10 8bb495e3f02401ee6f76d1b1d77f3ac9f079e376"
+SRCREV = "8bb495e3f02401ee6f76d1b1d77f3ac9f079e376"
 
 PR = "r1"
+PV = "${LINUX_VERSION}+git${SRCPV}"
 
 # Override COMPATIBLE_MACHINE to include your machine in a bbappend
 # file. Leaving it empty here ensures an early explicit build failure.
-COMPATIBLE_MACHINE = "(sama5d3xek|sama5d3_xplained|at91sam9x5ek)"
-
+COMPATIBLE_MACHINE = "(^$)"
