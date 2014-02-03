@@ -35,3 +35,5 @@ IMAGE_INSTALL = "\
 
 inherit core-image
 
+# we don't need the kernel in the image
+ROOTFS_POSTPROCESS_COMMAND += "rm -f ${IMAGE_ROOTFS}/boot/*Image*; "
