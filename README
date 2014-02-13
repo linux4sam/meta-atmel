@@ -82,3 +82,9 @@ SYSVINIT_ENABLED_GETTYS = ""
 bitbake atmel-qt4e-demo-image
 or
 bitbake atmel-xplained-demo-image
+
+12/ Build bootloaders (optional)
+These two commands allow you to build the bootloaders needed for your AT91
+board:
+bitbake at91bootstrap
+bitbake u-boot
