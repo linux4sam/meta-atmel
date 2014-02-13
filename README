@@ -42,7 +42,7 @@ git clone http://github.com/linux4sam/meta-atmel
 source oe-init-build-env build-atmel
 
 7/ Add meta-atmel layer patch to bblayer configuration file
-vim conf/bblayers.conf:
+vim conf/bblayers.conf
 
 # LAYER_CONF_VERSION is increased each time build/conf/bblayers.conf
 # changes incompatibly
@@ -56,11 +56,11 @@ BBLAYERS ?= " \
   /home/pvilchez/workspace/github/poky/meta \
   /home/pvilchez/workspace/github/poky/meta-yocto \
   /home/pvilchez/workspace/github/poky/meta-yocto-bsp \
-  /home/pvilchez/workspace/yocto/poky/meta-openembedded/meta-oe \
-  /home/pvilchez/workspace/yocto/poky/meta-openembedded/meta-networking \
+  /home/pvilchez/workspace/github/poky/meta-openembedded/meta-oe \
+  /home/pvilchez/workspace/github/poky/meta-openembedded/meta-networking \
   "
 8/ Edit local.conf to specify the machine, location of source archived, package type (rpm, deb or ipk)
-vim conf/local.conf:
+vim conf/local.conf
 [...]
 MACHINE ??= "sama5d3xek"
 [...]
@@ -73,7 +73,7 @@ bitbake core-image-minimal
 
 10/ We found that additional local.conf changes are needed for our QT demo
 image. You can add these two lines at the end of the file:
-vim conf/local.conf:
+vim conf/local.conf
 [...]
 LICENSE_FLAGS_WHITELIST += "commercial"
 SYSVINIT_ENABLED_GETTYS = ""
