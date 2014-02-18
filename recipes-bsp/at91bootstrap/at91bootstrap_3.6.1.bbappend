@@ -27,5 +27,5 @@ do_configure_at91ariag25() {
 
 do_deploy_at91ariag25 () {
     install -d ${DEPLOY_DIR_IMAGE}
-    install ${S}/binaries/${MACHINE}-sdcardboot-uboot-3.5.4.bin ${DEPLOY_DIR_IMAGE}/
+    install ${S}/binaries/${MACHINE}-sdcardboot-uboot-${PV}.bin ${DEPLOY_DIR_IMAGE}/
 }
