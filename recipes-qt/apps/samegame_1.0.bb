@@ -1,10 +1,10 @@
 DESCRIPTION = "Atmel QT home automation demo"
-LICENSE = "LGPL"
+LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://main.cpp;endline=39;md5=8f2a7549bdcd8bed89187e21d29be11f"
 
 PACKAGES = "${PN}-dbg ${PN}"
 
-PR = "r1"
+PR = "r2"
 
 DEPENDS = "qt4-embedded"
 
@@ -24,6 +24,7 @@ FILES_${PN}-dbg = " \
   /opt/samegame/samegame.pro \
   /opt/samegame/samegame.qmlproject \
   /opt/samegame/main.cpp \
+  /opt/samegame/moc_qmlapplicationviewer.cpp \
 "
 
 FILES_${PN} = " \

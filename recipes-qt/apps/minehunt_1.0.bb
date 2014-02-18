@@ -1,10 +1,10 @@
 DESCRIPTION = "Atmel QT home automation demo"
-LICENSE = "LGPL"
+LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://main.cpp;endline=40;md5=ade79b42cecba4adb92be7b0e83bad33"
 
 PACKAGES = "${PN}-dbg ${PN}"
 
-PR = "r1"
+PR = "r2"
 
 DEPENDS = "qt4-embedded"
 
@@ -26,6 +26,9 @@ FILES_${PN}-dbg = " \
   /opt/minehunt/minehunt.cpp \
   /opt/minehunt/main.cpp \
   /opt/minehunt/minehunt.pro \
+  /opt/minehunt/qrc_minehunt.cpp \
+  /opt/minehunt/moc_minehunt.cpp \
+  /opt/minehunt/moc_qmlapplicationviewer.cpp \
 "
 
 FILES_${PN} = " \
