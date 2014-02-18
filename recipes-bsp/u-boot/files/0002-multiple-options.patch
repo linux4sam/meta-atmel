@@ -1,0 +1,28 @@
+--- git/include/configs/at91sam9x5ek.h.orig	2014-02-18 21:04:10.136947149 +0100
++++ git/include/configs/at91sam9x5ek.h	2014-02-18 21:07:58.372073578 +0100
+@@ -20,6 +20,25 @@
+ #define CONFIG_AT91SAM9X5EK
+ #define CONFIG_AT91FAMILY
+ 
++#define CONFIG_CMD_EXT2
++#define CONFIG_CMD_EXT4
++#define CONFIG_CMD_FS_GENERIC
++#define CONFIG_CMD_EXT2_WRITE
++#define CONFIG_CMD_EXT4_WRITE
++#define CONFIG_CMD_FAT_WRITE
++#define CONFIG_FAT_WRITE
++#define CONFIG_CMD_SETEXPR
++#define CONFIG_CMD_NAND
++#define CONFIG_CMD_UBI
++#define CONFIG_CMD_UBIFS
++#define CONFIG_RBTREE
++#define CONFIG_MTD_DEVICE
++#define CONFIG_MTD_PARTITIONS
++#define CONFIG_CMD_MTDPARTS
++#define CONFIG_LZO
++#define CONFIG_CMD_BOOTM
++
++
+ #define CONFIG_CMDLINE_TAG		/* enable passing of ATAGs */
+ #define CONFIG_SETUP_MEMORY_TAGS
+ #define CONFIG_INITRD_TAG
