@@ -8,7 +8,7 @@ COMPATIBLE_MACHINE = '(sama5d3xek|at91sam9x5ek|at91ariag25)'
 PR = "r1"
 
 SRC_URI =  " \
-	git://github.com/tanzilli/at91bootstrap.git;protocol=http \
+	git://github.com/tanzilli/at91bootstrap.git;branch=ariag25;protocol=http \
 "
 SRCREV="${AUTOREV}"
 
@@ -49,7 +49,7 @@ addtask deploy before do_package after do_install
 
 do_deploy () {
 	install -d ${DEPLOY_DIR_IMAGE}
-	install ${S}/binaries/${MACHINE}-*-${PV}.bin ${DEPLOY_DIR_IMAGE}/
+	install -m 0664 ${S}/binaries/${MACHINE}-*${PV}*.bin ${DEPLOY_DIR_IMAGE}/
 }
 
 # Name of binary doesn't follow ${MACHINE} naming convention for the SAMA5D3 series.  Use
