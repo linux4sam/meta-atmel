@@ -2,11 +2,7 @@ inherit kernel
 require linux-yocto.inc
 KERNEL_MAJOR = "3"
 KERNEL_MINOR = "13"
-KERNEL_REVISION = "0"
-
-SRC_URI = " \
-	git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git;protocol=git;tag=v3.13;nocheckout=1 \
-"
+KERNEL_REVISION = "3"
 
 # The kernel type determines which subdirectory under "files" to use.  Comment
 # this to get a standard kernel.  The RT kernel won't build; this has yet to be
@@ -20,10 +16,8 @@ PARALLEL_MAKE = "-j10"
 KBRANCH = "linux-${KERNEL_MAJOR}.${KERNEL_MINOR}.y"
 KTAG = "v${KERNEL_MAJOR}.${KERNEL_MINOR}.${KERNEL_REVISION}"
 SRCREV="${AUTOREV}"
-SRC_URI ?= " \
+SRC_URI = " \
 	git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git;protocol=git;branch=${KBRANCH};tag=${KTAG};nocheckout=1 \
-"
-SRC_URI += " \
 	file://defconfig \
 	file://${MACHINE}.dts \
 "
