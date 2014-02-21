@@ -1,8 +1,8 @@
 KBRANCH = "linux-3.10-at91"
-SRCREV = "ab887451fc66465021602f6e8880dbfa58438e11"
+SRCREV = "ea25eb8a3ac9fcebc6c0d3b1c8e0c1223684d331"
 PV = "${LINUX_VERSION}+${SRCREV}"
 
-PR = "r3"
+PR = "r4"
 
 FILESEXTRAPATHS_prepend := "${THISDIR}/files/${MACHINE}:"
 
