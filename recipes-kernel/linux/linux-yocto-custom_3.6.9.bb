@@ -43,7 +43,7 @@
 
 LINUX_VERSION ?= "3.6.9"
 LINUX_VERSION_EXTENSION ?= "-custom"
-KBRANCH ?= "3.6.9-at91"
+KBRANCH ?= "linux-3.6.9-at91"
 
 inherit kernel
 require recipes-kernel/linux/linux-yocto.inc
