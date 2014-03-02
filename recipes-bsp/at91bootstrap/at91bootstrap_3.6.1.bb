@@ -16,12 +16,14 @@ S = "${WORKDIR}/git"
 
 PARALLEL_MAKE = ""
 
+AT91BOOTSTRAP_MACHINE ??= "${MACHINE}"
+
 do_configure() {
 	unset LDFLAGS
 	unset CFLAGS
 	unset CPPFLAGS
 	unset ASFLAGS
-	make CROSS_COMPILE=${TARGET_PREFIX} ${MACHINE}nf_uboot_defconfig
+	make CROSS_COMPILE=${TARGET_PREFIX} ${AT91BOOTSTRAP_MACHINE}nf_uboot_defconfig
 }
 
 do_compile() {
@@ -38,7 +40,7 @@ addtask deploy before do_package after do_install
 
 do_deploy () {
 	install -d ${DEPLOY_DIR_IMAGE}
-	install ${S}/binaries/${MACHINE}-nandflashboot-uboot-${PV}.bin ${DEPLOY_DIR_IMAGE}/
+	install ${S}/binaries/${AT91BOOTSTRAP_MACHINE}-nandflashboot-uboot-${PV}.bin ${DEPLOY_DIR_IMAGE}/
 }
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
