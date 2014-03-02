@@ -39,8 +39,8 @@ inherit deploy
 addtask deploy before do_package after do_install
 
 do_deploy () {
-	install -d ${DEPLOY_DIR_IMAGE}
-	install ${S}/binaries/${AT91BOOTSTRAP_MACHINE}-nandflashboot-uboot-${PV}.bin ${DEPLOY_DIR_IMAGE}/
+	install -d ${DEPLOYDIR}
+	install ${S}/binaries/${AT91BOOTSTRAP_MACHINE}-nandflashboot-uboot-${PV}.bin ${DEPLOYDIR}/
 }
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"

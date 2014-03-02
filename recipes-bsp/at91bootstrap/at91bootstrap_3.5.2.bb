@@ -57,8 +57,8 @@ do_deploy () {
 # Name of binary doesn't follow ${MACHINE} naming convention for the SAMA5D3 series.  Use
 # a separate deploy task
 do_deploy_sama5d3xek() {
-	install -d ${DEPLOY_DIR_IMAGE}
-	install ${S}/binaries/at91sama5d3xek-nandflashboot-uboot-3.5.2.bin ${DEPLOY_DIR_IMAGE}/
+	install -d ${DEPLOYDIR}
+	install ${S}/binaries/at91sama5d3xek-nandflashboot-uboot-3.5.2.bin ${DEPLOYDIR}/
 }
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
