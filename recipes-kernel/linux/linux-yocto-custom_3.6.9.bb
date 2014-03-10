@@ -41,11 +41,12 @@
 #            SRC_URI += "file://feature.scc"
 #
 
-inherit kernel
-require recipes-kernel/linux/linux-yocto.inc
 LINUX_VERSION ?= "3.6.9"
 LINUX_VERSION_EXTENSION ?= "-custom"
-KBRANCH ?= "3.6.9-at91"
+KBRANCH ?= "linux-3.6.9-at91"
+
+inherit kernel
+require recipes-kernel/linux/linux-yocto.inc
 
 # Override SRC_URI in a bbappend file to point at a different source
 # tree if you do not want to build from Linus' tree.
