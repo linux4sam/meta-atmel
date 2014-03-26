@@ -53,6 +53,7 @@ IMAGE_INSTALL += "\
 	gst-plugins-ugly-mpeg2dec \
 	gst-plugins-bad-fbdevsink \
 	homeautomation \
+	smartrefrigerator \
 	applicationlauncher \
 	qmlbrowser \
 	samegame \
