@@ -1,0 +1,136 @@
+/*
+ * FDT blobs which includes all SAMA5D3X-EK with PDA4
+ */
+
+/ {
+	images {
+		fdt_sama5d31ek@pda4 {
+			description = "Flattened Device Tree blob for SAMA5D31EK with PDA4";
+			data = /incbin/("./sama5d31ek_pda4.dtb");
+			type = "flat_dt";
+			arch = "arm";
+			compression = "none";
+			hash@1 {
+				algo = "crc32";
+			};
+		};
+		fdt_sama5d33ek@pda4 {
+			description = "Flattened Device Tree blob for SAMA5D33EK with PDA4";
+			data = /incbin/("./sama5d33ek_pda4.dtb");
+			type = "flat_dt";
+			arch = "arm";
+			compression = "none";
+			hash@1 {
+				algo = "crc32";
+			};
+		};
+		fdt_sama5d34ek@pda4 {
+			description = "Flattened Device Tree blob for SAMA5D34EK with PDA4";
+			data = /incbin/("./sama5d34ek_pda4.dtb");
+			type = "flat_dt";
+			arch = "arm";
+			compression = "none";
+			hash@1 {
+				algo = "crc32";
+			};
+		};
+		fdt_sama5d36ek@pda4 {
+			description = "Flattened Device Tree blob for SAMA5D36EK with PDA4";
+			data = /incbin/("./sama5d36ek_pda4.dtb");
+			type = "flat_dt";
+			arch = "arm";
+			compression = "none";
+			hash@1 {
+				algo = "crc32";
+			};
+		};
+
+		/* rev.C MB */
+		fdt_sama5d31ek_revc@pda4 {
+			description = "Flattened Device Tree blob for SAMA5D31EK revC with PDA4";
+			data = /incbin/("./sama5d31ek_revc_pda4.dtb");
+			type = "flat_dt";
+			arch = "arm";
+			compression = "none";
+			hash@1 {
+				algo = "crc32";
+			};
+		};
+		fdt_sama5d33ek_revc@pda4 {
+			description = "Flattened Device Tree blob for SAMA5D33EK revC with PDA4";
+			data = /incbin/("./sama5d33ek_revc_pda4.dtb");
+			type = "flat_dt";
+			arch = "arm";
+			compression = "none";
+			hash@1 {
+				algo = "crc32";
+			};
+		};
+		fdt_sama5d34ek_revc@pda4 {
+			description = "Flattened Device Tree blob for SAMA5D34EK revC with PDA4";
+			data = /incbin/("./sama5d34ek_revc_pda4.dtb");
+			type = "flat_dt";
+			arch = "arm";
+			compression = "none";
+			hash@1 {
+				algo = "crc32";
+			};
+		};
+		fdt_sama5d36ek_revc@pda4 {
+			description = "Flattened Device Tree blob for SAMA5D36EK revC with PDA4";
+			data = /incbin/("./sama5d36ek_revc_pda4.dtb");
+			type = "flat_dt";
+			arch = "arm";
+			compression = "none";
+			hash@1 {
+				algo = "crc32";
+			};
+		};
+	};
+
+	configurations {
+		conf@sama5d31ek_pda4 {
+			description = "Boot Linux kernel with SAMA5D31EK PDA4 FDT blob";
+			kernel = "kernel@1";
+			fdt = "fdt_sama5d31ek@pda4";
+		};
+		conf@sama5d33ek_pda4 {
+			description = "Boot Linux kernel with SAMA5D33EK PDA4 FDT blob";
+			kernel = "kernel@1";
+			fdt = "fdt_sama5d33ek@pda4";
+		};
+		conf@sama5d34ek_pda4 {
+			description = "Boot Linux kernel with SAMA5D34EK PDA4 FDT blob";
+			kernel = "kernel@1";
+			fdt = "fdt_sama5d34ek@pda4";
+		};
+		conf@sama5d36ek_pda4 {
+			description = "Boot Linux kernel with SAMA5D36EK PDA4 FDT blob";
+			kernel = "kernel@1";
+			fdt = "fdt_sama5d36ek@pda4";
+		};
+
+		/* rev.C MB */
+		conf@sama5d31ek_revc_pda4 {
+			description = "Boot Linux kernel with SAMA5D31EK rev.C PDA4 FDT blob";
+			kernel = "kernel@1";
+			fdt = "fdt_sama5d31ek_revc@pda4";
+		};
+		conf@sama5d33ek_revc_pda4 {
+			description = "Boot Linux kernel with SAMA5D33EK rev.C PDA4 FDT blob";
+			kernel = "kernel@1";
+			fdt = "fdt_sama5d33ek_revc@pda4";
+		};
+		conf@sama5d34ek_revc_pda4 {
+			description = "Boot Linux kernel with SAMA5D34EK rev.C PDA4 FDT blob";
+			kernel = "kernel@1";
+			fdt = "fdt_sama5d34ek_revc@pda4";
+		};
+		conf@sama5d36ek_revc_pda4 {
+			description = "Boot Linux kernel with SAMA5D36EK rev.C PDA4 FDT blob";
+			kernel = "kernel@1";
+			fdt = "fdt_sama5d36ek_revc@pda4";
+		};
+	};
+
+};
