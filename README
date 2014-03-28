@@ -13,6 +13,7 @@ OpenEmbedded/Yocto layer for for Atmel AT91SAM SoC
 For now it supports:
 - SAMAD3 product family (http://www.atmel.com/products/microcontrollers/arm/sama5d3.aspx)
 - AT91SAM9x5 product family (AT91SAM9G15, AT91SAM9G25, AT91SAM9X25, AT91SAM9G35 and AT91SAM9X35)
+- AT91SAM9RL
 
 It is hosted on http://github.com/linux4sam/meta-atmel
 
@@ -67,6 +68,12 @@ MACHINE ??= "sama5d3xek"
 DL_DIR ?= "your_download_directory_path"
 [...]
 PACKAGE_CLASSES ?= "package_ipk"
+
+Here are the machines that are supported:
+MACHINE ??= "at91sam9rlek"
+MACHINE ??= "at91sam9x5ek"
+MACHINE ??= "sama5d3xek"
+MACHINE ??= "sama5d3_xplained"
 
 9/ Build core minimal image
 bitbake core-image-minimal
