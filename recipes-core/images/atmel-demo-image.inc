@@ -20,7 +20,11 @@ IMAGE_INSTALL = "\
     bridge-utils \
     canutils \
     python-pyserial \
+    python-smbus \
     python-ctypes \
+    python-pip \
+    python-setuptools \
+    python-pycurl \
     gdbserver \
     usbutils \
     wget \
