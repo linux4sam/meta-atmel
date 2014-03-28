@@ -9,7 +9,7 @@ URI: git://git.openembedded.org/meta-openembedded
 URI: http://cgit.openembedded.org/meta-openembedded/
 (tested with commit ID: 6572316557e742c2dc93848e4d560242bf0c3995)
 
-OpenEmbedded/Yocto layer for for Atmel AT91SAM SoC
+OpenEmbedded/Yocto layer for Atmel AT91SAM SoC
 For now it supports:
 - SAMAD3 product family (http://www.atmel.com/products/microcontrollers/arm/sama5d3.aspx)
 - AT91SAM9x5 product family (AT91SAM9G15, AT91SAM9G25, AT91SAM9X25, AT91SAM9G35 and AT91SAM9X35)
