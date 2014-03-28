@@ -5,9 +5,8 @@ LIC_FILES_CHKSUM = "file://main.c;endline=27;md5=42f86d2f6fd17d1221c5c651b487a07
 
 COMPATIBLE_MACHINE = '(sama5d3xek|at91sam9x5ek)'
 
-PR = "r1"
+PR = "r2"
 SRCREV="v3.5.4"
-PV="v3.5.4"
 
 SRC_URI =  "git://github.com/linux4sam/at91bootstrap.git;protocol=git"
 
