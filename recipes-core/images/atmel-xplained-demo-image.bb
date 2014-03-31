@@ -9,9 +9,6 @@ IMAGE_INSTALL += "\
     packagegroup-base-usbhost \
     "
 
-module_autoload_atmel_usba_udc = "atmel_usba_udc"
-module_autoload_g_serial = "g_serial"
-
 sama5d3_xplained_rootfs_postprocess() {
     curdir=$PWD
     cd ${IMAGE_ROOTFS}
@@ -23,5 +20,3 @@ sama5d3_xplained_rootfs_postprocess() {
 
     cd $curdir
 }
-
-ROOTFS_POSTPROCESS_COMMAND += "sama5d3_xplained_rootfs_postprocess; "
