@@ -12,11 +12,11 @@ SRC_URI_append_sama5d3xek += " file://sama5d3xek.its \
 			file://sama5d3xek_pda4.its \
 			file://sama5d3xek_pda7.its"
 
-do_uboot_fit_image() {
+do_deploy_append() {
 	if [ ${UBOOT_FIT_IMAGE} = "xyes" ]; then
-		DTB_PATH="${B}/arch/${ARCH}/boot/dts/${DTB}"
+		DTB_PATH="${B}/arch/${ARCH}/boot/dts/"
 		if [ ! -e "${DTB_PATH}" ]; then
-			DTB_PATH="${B}/arch/${ARCH}/boot/${DTB}"
+			DTB_PATH="${B}/arch/${ARCH}/boot/"
 		fi
 		cp ${WORKDIR}/${MACHINE}*.its ${DTB_PATH}
 		cd ${DTB_PATH}
@@ -25,7 +25,5 @@ do_uboot_fit_image() {
 		cd -
 	fi
 }
-
-addtask uboot_fit_image after do_deploy
 
 COMPATIBLE_MACHINE = "(sama5d3xek|sama5d3_xplained|at91sam9x5ek|at91sam9rlek)"
