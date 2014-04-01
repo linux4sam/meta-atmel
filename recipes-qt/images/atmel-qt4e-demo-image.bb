@@ -5,10 +5,40 @@ PR = "r3"
 LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=3f40d7994397109285ec7b81fdeb3b58 \
                     file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
 
-IMAGE_FEATURES += "package-management"
+IMAGE_FEATURES += "ssh-server-openssh package-management"
 
 IMAGE_INSTALL += "\
+	packagegroup-core-boot \
+	packagegroup-core-basic \
+	packagegroup-base-wifi \
+	packagegroup-base-bluetooth \
+	packagegroup-base-usbgadget \
+	openssh-sftp \
+	openssh-sftp-server \
+	kernel-modules \
+	lrzsz \
+	setserial \
+	opkg \
+	iperf \
+	\
+	nbench-byte \
+	lmbench \
+	\
+	linux-firmware-ralink \
+	linux-firmware-ath6k \
+	\
+	i2c-tools \
+	dosfstools \
+	mtd-utils \
+	iproute2 \
+	iptables \
+	bridge-utils \
+	canutils \
+	gdbserver \
+	usbutils \
+	wget \
 	${CORE_IMAGE_BASE_INSTALL} \
+	\
 	qt4-embedded \
 	libqt-embedded3support4 \
 	libqt-embeddedclucene4 \
@@ -38,12 +68,12 @@ IMAGE_INSTALL += "\
 	qt4-embedded-plugin-mousedriver-tslib \
 	qt4-embedded-plugin-phonon-backend-gstreamer \
 	qt4-embedded-plugin-script-dbus \
-	qt4-embedded-plugin-sqldriver-sqlite \	
+	qt4-embedded-plugin-sqldriver-sqlite \
+	\
 	libicui18n \
 	tslib \
 	tslib-calibrate \
 	tslib-tests \
-	opkg \
 	gstreamer \
         gst-meta-base \
         gst-meta-video \
@@ -63,3 +93,15 @@ IMAGE_INSTALL += "\
 
 inherit core-image
 
+# we don't need the kernel in the image
+ROOTFS_POSTPROCESS_COMMAND += "rm -f ${IMAGE_ROOTFS}/boot/*Image*; "
+
+atmel_qte_rootfs_postprocess() {
+    curdir=$PWD
+    # remove qtopia extra files
+    rm -rf usr/bin/qtopia/demos
+    rm -rf usr/bin/qtopia/examples
+    rm -rf usr/share/doc
+    rm -rf usr/share/qtopia/mkspecs
+    cd $curdir
+}
