@@ -1,6 +1,6 @@
 KBRANCH = "linux-3.10-at91"
 SRCREV = "68f2c28207fbc081f7be75fc01aca4827aa4a9f1"
-PV = "${LINUX_VERSION}+${SRCREV}"
+PV = "${LINUX_VERSION}+${SRCPV}"
 
 PR = "r5"
 

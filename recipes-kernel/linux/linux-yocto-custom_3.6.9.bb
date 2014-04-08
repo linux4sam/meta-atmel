@@ -59,7 +59,7 @@ SRC_URI += "file://defconfig"
 # build a different release of the Linux kernel.
 # tag: v3.4 76e10d158efb6d4516018846f60c2ab5501900bc
 SRCREV="59134b04621dd73254d54cb67d9ffbf4f626dbc5"
-PV = "${LINUX_VERSION}+${SRCREV}"
+PV = "${LINUX_VERSION}+${SRCPV}"
 
 
 PR = "r1"
