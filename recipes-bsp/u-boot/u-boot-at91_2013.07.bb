@@ -10,14 +10,21 @@ LICENSE = "GPLv2+"
 LIC_FILES_CHKSUM = "file://COPYING;md5=1707d6db1d42237583f50183a5651ecb \
                     file://README;beginline=1;endline=22;md5=78b195c11cb6ef63e6985140db7d7bab"
 
-# This revision corresponds to the tag "v2013.07"
-# We use the revision in order to avoid having to fetch it from the repo during parse
-SRCREV = "62c175fbb8a0f9a926c88294ea9f7e88eb898f6c"
+SRCREV = "40cc76407f09ecf79d62247eafbb31dd5c9ffd34"
 
-PV = "v2013.07+git${SRCPV}"
+PV = "v2013.07-at91"
+PR = "r2"
 
-SRC_URI = "git://git.denx.de/u-boot.git;branch=master"
+COMPATIBLE_MACHINE = "(sama5d3xek|at91sam9x5ek|sama5d3_xplained)"
 
+# To build u-boot for your machine, provide the following lines in
+# your machine config, replacing the assignments as appropriate for
+# your machine.
+UBOOT_MACHINE_${MACHINE} = "${MACHINE}_nandflash_config"
+UBOOT_ENTRYPOINT = "0x20002000"
+UBOOT_LOADADDRESS = "0x20002000"
+
+SRC_URI = "git://github.com/linux4sam/u-boot-at91.git;branch=u-boot-2013.07-at91;protocol=git"
 S = "${WORKDIR}/git"
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
