@@ -1,8 +1,8 @@
 This Layer depends on :
-- Poky
-URI: git://git.yoctoproject.org/poky
-URI: http://git.yoctoproject.org/git/poky
-Tag: dora-10.0.1
+- OpenEmbedded-core
+URI: git://git.openembedded.org/openembedded-core
+URI: http://cgit.openembedded.orgopenembedded-core/
+Branch: dora
 
 - meta-openembedded
 URI: git://git.openembedded.org/meta-openembedded
