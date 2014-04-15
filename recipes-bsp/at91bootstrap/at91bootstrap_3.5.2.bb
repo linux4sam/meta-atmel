@@ -9,7 +9,9 @@ PR = "r2"
 SRCREV="v3.5.2"
 
 SRC_URI =  "git://github.com/linux4sam/at91bootstrap.git;protocol=git"
-SRC_URI += "file://at91sama5d3xek-add-arch-armv7a-gcc-option.patch;name=armv7a_patch"
+SRC_URI += "file://at91sama5d3xek-add-arch-armv7a-gcc-option.patch;name=armv7a_patch \
+    ${@base_contains("MACHINE_FEATURES", "watchdog", "file://enable_watchdog.patch", "", d)} \
+    "
 
 SRC_URI[armv7a_patch.md5sum] = "23cc3bc49cbb3f44f6590c1051bd931f"
 SRC_URI[armv7a_patch.sha256sum] = "940d46c55e0f972d99fd5958d0b639516523135226ee48f8c4e919ce3876cde6"
@@ -47,6 +49,34 @@ do_compile() {
 inherit deploy
 
 addtask deploy before do_package after do_install
+
+FILES_${PN} += " \
+    /boot/* \
+    "
+
+do_install_${MACHINE} () {
+    install -d ${D}/boot
+    install ${S}/binaries/${MACHINE}-nandflashboot-uboot-3.5.2.bin ${D}/boot
+    ln -s /boot/${MACHINE}-nandflashboot-uboot-3.5.2.bin ${D}/boot/at91bootstrap.bin
+}
+
+pkg_postinst_${PN} () {
+#!/bin/sh -e
+# Burn the bootstrap to flash, but only attempt if we're on the actual platform
+bootstrap_file=/boot/at91bootstrap.bin
+if test "x$D" = "x"; then
+    if [ -e "$bootstrap_file" ]; then
+        echo "Erasing old bootstrap..."
+        flash_erase /dev/mtd0 0 0
+        echo "Writing new bootstrap..."
+        nandwrite -p /dev/mtd0 "$bootstrap_file"
+        echo "Bootstrap upgrade complete."
+        touch /var/run/reboot-required
+        echo "${PN}" >>/var/run/reboot-required.pkgs
+    fi
+fi   
+
+}
 
 do_deploy () {
 	install -d ${DEPLOY_DIR_IMAGE}

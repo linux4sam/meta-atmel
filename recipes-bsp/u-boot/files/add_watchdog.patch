@@ -1,0 +1,29 @@
+From 96b84b6cd947b0dbd3762fb66d16b5c019b06b88 Mon Sep 17 00:00:00 2001
+From: Bryan Evenson <bevenson@melinkcorp.com>
+Date: Thu, 13 Jun 2013 17:35:43 -0400
+Subject: [PATCH] Add watchdog support
+
+
+Signed-off-by: Bryan Evenson <bevenson@melinkcorp.com>
+---
+ include/configs/at91sam9x5ek.h |    4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/include/configs/at91sam9x5ek.h b/include/configs/at91sam9x5ek.h
+index 1a747e2..04597c0 100644
+--- a/include/configs/at91sam9x5ek.h
++++ b/include/configs/at91sam9x5ek.h
+@@ -181,6 +181,10 @@
+ #define CONFIG_USB_STORAGE
+ #endif
+ 
++/* Watchdog */
++#define CONFIG_HW_WATCHDOG
++#define CONFIG_AT91SAM9_WATCHDOG
++
+ #define CONFIG_SYS_LOAD_ADDR		0x22000000	/* load address */
+ 
+ #define CONFIG_SYS_MEMTEST_START	CONFIG_SYS_SDRAM_BASE
+-- 
+1.7.9.5
+

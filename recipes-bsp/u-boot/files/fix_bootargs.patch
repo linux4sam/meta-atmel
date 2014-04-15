@@ -1,0 +1,64 @@
+From e4b4b4e3676544160d486e52b07975e16747ed5d Mon Sep 17 00:00:00 2001
+From: Bryan Evenson <bevenson@melinkcorp.com>
+Date: Wed, 31 Jul 2013 16:43:50 -0400
+Subject: [PATCH] Fix bootargs
+
+
+Signed-off-by: Bryan Evenson <bevenson@melinkcorp.com>
+---
+ include/configs/at91sam9x5ek.h |   17 ++++++++++++++---
+ 1 file changed, 14 insertions(+), 3 deletions(-)
+
+diff --git a/include/configs/at91sam9x5ek.h b/include/configs/at91sam9x5ek.h
+index 6057d46..afd107c 100644
+--- a/include/configs/at91sam9x5ek.h
++++ b/include/configs/at91sam9x5ek.h
+@@ -145,6 +145,7 @@
+ #define CONFIG_LZO
+ #define CONFIG_CMD_UBI
+ #define CONFIG_CMD_UBIFS
++#define CONFIG_CMD_NAND_TRIMFFS
+ #endif
+ 
+ /* MMC */
+@@ -181,6 +182,14 @@
+ #define CONFIG_USB_STORAGE
+ #endif
+ 
++/* Watchdog */
++#define CONFIG_HW_WATCHDOG
++#define CONFIG_AT91SAM9_WATCHDOG
++
++/* Watchdog */
++#define CONFIG_HW_WATCHDOG
++#define CONFIG_AT91SAM9_WATCHDOG
++
+ #define CONFIG_SYS_LOAD_ADDR		0x22000000	/* load address */
+ 
+ #define CONFIG_SYS_MEMTEST_START	CONFIG_SYS_SDRAM_BASE
+@@ -194,7 +203,9 @@
+ #define CONFIG_ENV_SIZE		0x20000		/* 1 sector = 128 kB */
+ #define CONFIG_BOOTCOMMAND	"nand read " \
+ 				"0x22000000 0x200000 0x300000; " \
+-				"bootm 0x22000000"
++				"nand read " \
++				"0x21000000 0x180000 0x40000; " \
++				"bootm 0x22000000 - 0x21000000"
+ #elif defined(CONFIG_SYS_USE_SPIFLASH)
+ /* bootstrap + u-boot + env + linux in spi flash */
+ #define CONFIG_ENV_IS_IN_SPI_FLASH
+@@ -235,9 +246,9 @@
+ #else
+ #define CONFIG_BOOTARGS							\
+ 	"console=ttyS0,115200 earlyprintk "				\
+-	"mtdparts=atmel_nand:256k(bootstrap)ro,512k(uboot)ro,"		\
++	"mtdparts=atmel_nand:256k(bootstrap),512k(uboot),"		\
+ 	"256k(env),256k(env_redundant),256k(spare),"			\
+-	"512k(dtb),6M(kernel)ro,-(rootfs) "				\
++	"512k(dtb),6M(kernel),-(rootfs) "				\
+ 	"rootfstype=ubifs ubi.mtd=7 root=ubi0:rootfs rw"
+ #endif
+ 
+-- 
+1.7.9.5
+

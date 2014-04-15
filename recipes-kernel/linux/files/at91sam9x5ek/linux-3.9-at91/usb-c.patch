@@ -1,0 +1,27 @@
+From fc8523de721a14a54b07065aa3369cd8cafa80f3 Mon Sep 17 00:00:00 2001
+From: Bryan Evenson <bevenson@melinkcorp.com>
+Date: Tue, 18 Jun 2013 08:19:27 -0400
+Subject: [PATCH] Add USB-C to device tree.
+
+
+Signed-off-by: Bryan Evenson <bevenson@melinkcorp.com>
+---
+ arch/arm/boot/dts/at91sam9x5ek.dtsi |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm/boot/dts/at91sam9x5ek.dtsi b/arch/arm/boot/dts/at91sam9x5ek.dtsi
+index 620ec3e..be64771 100644
+--- a/arch/arm/boot/dts/at91sam9x5ek.dtsi
++++ b/arch/arm/boot/dts/at91sam9x5ek.dtsi
+@@ -94,7 +94,7 @@
+ 
+ 		usb0: ohci@00600000 {
+ 			status = "okay";
+-			num-ports = <2>;
++			num-ports = <3>;
+ 			atmel,vbus-gpio = <&pioD 19 1
+ 					   &pioD 20 1
+ 					  >;
+-- 
+1.7.9.5
+

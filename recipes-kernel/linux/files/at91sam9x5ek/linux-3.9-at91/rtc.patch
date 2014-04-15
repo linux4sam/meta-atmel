@@ -1,0 +1,56 @@
+From 5477245d70abc6c4c0b663b9e7e38fa84321d3ec Mon Sep 17 00:00:00 2001
+From: Bryan Evenson <bevenson@melinkcorp.com>
+Date: Sun, 23 Jun 2013 23:52:47 -0400
+Subject: [PATCH 4/4] Turn on RTC
+
+Signed-off-by: Bryan Evenson <bevenson@melinkcorp.com>
+---
+ arch/arm/boot/dts/at91sam9g25ek.dts |    4 ++++
+ arch/arm/boot/dts/at91sam9x5.dtsi   |    2 +-
+ drivers/rtc/rtc-at91rm9200.c        |    2 +-
+ 3 files changed, 6 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm/boot/dts/at91sam9g25ek.dts b/arch/arm/boot/dts/at91sam9g25ek.dts
+index c95cda6..d3531f4 100644
+--- a/arch/arm/boot/dts/at91sam9g25ek.dts
++++ b/arch/arm/boot/dts/at91sam9g25ek.dts
+@@ -24,6 +24,10 @@
+ 			usart3: serial@f8028000 {
+ 				status = "okay";
+ 			};
++
++			rtc@fffffeb0 {
++				status = "okay";
++			};
+ 		};
+ 	};
+ };
+diff --git a/arch/arm/boot/dts/at91sam9x5.dtsi b/arch/arm/boot/dts/at91sam9x5.dtsi
+index 8cd768c..e2c6328 100644
+--- a/arch/arm/boot/dts/at91sam9x5.dtsi
++++ b/arch/arm/boot/dts/at91sam9x5.dtsi
+@@ -639,7 +639,7 @@
+ 			};
+ 
+ 			rtc@fffffeb0 {
+-				compatible = "atmel,at91sam9x5-rtc";
++				compatible = "atmel,at91rm9200-rtc";
+ 				reg = <0xfffffeb0 0x40>;
+ 				interrupts = <1 4 7>;
+ 				status = "disabled";
+diff --git a/drivers/rtc/rtc-at91rm9200.c b/drivers/rtc/rtc-at91rm9200.c
+index 79233d0..bb8ad7f 100644
+--- a/drivers/rtc/rtc-at91rm9200.c
++++ b/drivers/rtc/rtc-at91rm9200.c
+@@ -229,7 +229,7 @@ static irqreturn_t at91_rtc_interrupt(int irq, void *dev_id)
+ 	unsigned int rtsr;
+ 	unsigned long events = 0;
+ 
+-	rtsr = at91_rtc_read(AT91_RTC_SR) & at91_rtc_read(AT91_RTC_IMR);
++	rtsr = at91_rtc_read(AT91_RTC_SR);
+ 	if (rtsr) {		/* this interrupt is shared!  Is it ours? */
+ 		if (rtsr & AT91_RTC_ALARM)
+ 			events |= (RTC_AF | RTC_IRQF);
+-- 
+1.7.9.5
+

@@ -41,30 +41,26 @@
 #            SRC_URI += "file://feature.scc"
 #
 
-LINUX_VERSION ?= "3.6.9"
-LINUX_VERSION_EXTENSION ?= "-custom"
-KBRANCH ?= "linux-3.6.9-at91"
-
 inherit kernel
 require recipes-kernel/linux/linux-yocto.inc
 
-KBRANCH="linux-3.6.9-at91"
+KBRANCH = "linux-3.10-at91"
 
 # Override SRC_URI in a bbappend file to point at a different source
 # tree if you do not want to build from Linus' tree.
-SRC_URI = "git://github.com/linux4sam/linux-at91.git;protocol=git;branch=${KBRANCH};nocheckout=1"
+SRC_URI = "git://github.com/linux4sam/linux-at91.git;branch=${KBRANCH};protocol=git;nocheckout=1"
 SRC_URI += "file://${MACHINE}/${KBRANCH}/defconfig"
 
-
+LINUX_VERSION ?= "3.10.0"
+LINUX_VERSION_EXTENSION ?= "-custom"
 
 # Override SRCREV to point to a different commit in a bbappend file to
 # build a different release of the Linux kernel.
-# HEAD of linux-3.6.9-at91 as of 2013-06-12: 5fe012d4aee98ef82df66e6763882c735902ed0f
-SRCREV="5fe012d4aee98ef82df66e6763882c735902ed0f"
+# latest as of 2013-11-21 6e7c32db645841d4b373074c4c8eacbe517d629d
+SRCREV="6e7c32db645841d4b373074c4c8eacbe517d629d"
 PV = "${LINUX_VERSION}+${SRCREV}"
 
-
-PR = "r1"
+PR = "r0"
 
 # Override COMPATIBLE_MACHINE to include your machine in a bbappend
 # file. Leaving it empty here ensures an early explicit build failure.

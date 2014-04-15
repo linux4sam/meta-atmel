@@ -1,0 +1,58 @@
+From 85b4168833eaddbd67ada25666ce5d9f404e0cb5 Mon Sep 17 00:00:00 2001
+From: Bryan Evenson <bevenson@melinkcorp.com>
+Date: Sun, 23 Jun 2013 22:42:06 -0400
+Subject: [PATCH] Add USART3 to SAM9G25 device tree.
+
+
+Signed-off-by: Bryan Evenson <bevenson@melinkcorp.com>
+---
+ arch/arm/boot/dts/at91sam9g25ek.dts |    4 ++++
+ arch/arm/boot/dts/at91sam9x5.dtsi   |   10 ++++++++++
+ 2 files changed, 14 insertions(+)
+
+diff --git a/arch/arm/boot/dts/at91sam9g25ek.dts b/arch/arm/boot/dts/at91sam9g25ek.dts
+index a1c511f..c95cda6 100644
+--- a/arch/arm/boot/dts/at91sam9g25ek.dts
++++ b/arch/arm/boot/dts/at91sam9g25ek.dts
+@@ -20,6 +20,10 @@
+ 				phy-mode = "rmii";
+ 				status = "okay";
+ 			};
++
++			usart3: serial@f8028000 {
++				status = "okay";
++			};
+ 		};
+ 	};
+ };
+diff --git a/arch/arm/boot/dts/at91sam9x5.dtsi b/arch/arm/boot/dts/at91sam9x5.dtsi
+index 6086b23..c48e848 100644
+--- a/arch/arm/boot/dts/at91sam9x5.dtsi
++++ b/arch/arm/boot/dts/at91sam9x5.dtsi
+@@ -21,6 +21,7 @@
+ 		serial1 = &usart0;
+ 		serial2 = &usart1;
+ 		serial3 = &usart2;
++		serial4 = &usart3;
+ 		gpio0 = &pioA;
+ 		gpio1 = &pioB;
+ 		gpio2 = &pioC;
+@@ -503,6 +504,15 @@
+ 				status = "disabled";
+ 			};
+ 
++			usart3: serial@f8028000 {
++				compatible = "atmel,at91sam9260-usart";
++				reg = <0xf8028000 0x200>;
++				interrupts = <8 4 5>;
++				pinctrl-names = "default";
++				pinctrl-0 = <&pinctrl_usart3>;
++				status = "disabled";
++			};
++
+ 			macb0: ethernet@f802c000 {
+ 				compatible = "cdns,at32ap7000-macb", "cdns,macb";
+ 				reg = <0xf802c000 0x100>;
+-- 
+1.7.9.5
+

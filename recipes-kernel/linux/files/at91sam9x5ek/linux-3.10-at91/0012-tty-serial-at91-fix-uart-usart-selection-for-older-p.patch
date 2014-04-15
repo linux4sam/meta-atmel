@@ -1,0 +1,59 @@
+From 71ee06f4125d781b74aa1a7fd35d4930f430b88b Mon Sep 17 00:00:00 2001
+From: Nicolas Ferre <nicolas.ferre@atmel.com>
+Date: Thu, 17 Oct 2013 17:37:11 +0200
+Subject: [PATCH 12/14] tty/serial: at91: fix uart/usart selection for older
+ products
+
+Since commit 055560b04a8cd063aea916fd083b7aec02c2adb8 (serial: at91:
+distinguish usart and uart) the older products which do not have a
+name field in their register map are unable to use their serial output.
+As the main console output is usually the serial interface (aka DBGU) it
+is pretty unfortunate.
+So, instead of failing during probe() we just silently configure the serial
+peripheral as an uart. It allows us to use these serial outputs.
+The proper solution is proposed in another patch.
+
+Signed-off-by: Nicolas Ferre <nicolas.ferre@atmel.com>
+Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+---
+ drivers/tty/serial/atmel_serial.c |    9 ++-------
+ 1 file changed, 2 insertions(+), 7 deletions(-)
+
+diff --git a/drivers/tty/serial/atmel_serial.c b/drivers/tty/serial/atmel_serial.c
+index d067285..6b0f75e 100644
+--- a/drivers/tty/serial/atmel_serial.c
++++ b/drivers/tty/serial/atmel_serial.c
+@@ -1499,7 +1499,7 @@ static void atmel_set_ops(struct uart_port *port)
+ /*
+  * Get ip name usart or uart
+  */
+-static int atmel_get_ip_name(struct uart_port *port)
++static void atmel_get_ip_name(struct uart_port *port)
+ {
+ 	struct atmel_uart_port *atmel_port = to_atmel_uart_port(port);
+ 	int name = UART_GET_IP_NAME(port);
+@@ -1518,10 +1518,7 @@ static int atmel_get_ip_name(struct uart_port *port)
+ 		atmel_port->is_usart = false;
+ 	} else {
+ 		dev_err(port->dev, "Not supported ip name, set to uart\n");
+-		return -EINVAL;
+ 	}
+-
+-	return 0;
+ }
+ 
+ /*
+@@ -2405,9 +2402,7 @@ static int atmel_serial_probe(struct platform_device *pdev)
+ 	/*
+ 	 * Get port name of usart or uart
+ 	 */
+-	ret = atmel_get_ip_name(&port->uart);
+-	if (ret < 0)
+-		goto err_add_port;
++	atmel_get_ip_name(&port->uart);
+ 
+ 	return 0;
+ 
+-- 
+1.7.9.5
+

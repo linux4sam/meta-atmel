@@ -41,26 +41,24 @@
 #            SRC_URI += "file://feature.scc"
 #
 
-LINUX_VERSION ?= "3.6.9"
-LINUX_VERSION_EXTENSION ?= "-custom"
-KBRANCH ?= "linux-3.6.9-at91"
-
 inherit kernel
 require recipes-kernel/linux/linux-yocto.inc
 
-KBRANCH="linux-3.6.9-at91"
+KBRANCH = "linux-3.9-at91"
 
 # Override SRC_URI in a bbappend file to point at a different source
 # tree if you do not want to build from Linus' tree.
-SRC_URI = "git://github.com/linux4sam/linux-at91.git;protocol=git;branch=${KBRANCH};nocheckout=1"
+SRC_URI = "git://github.com/linux4sam/linux-at91.git;branch=${KBRANCH};protocol=git;nocheckout=1"
 SRC_URI += "file://${MACHINE}/${KBRANCH}/defconfig"
 
-
+LINUX_VERSION ?= "3.9.0"
+LINUX_VERSION_EXTENSION ?= "-custom"
 
 # Override SRCREV to point to a different commit in a bbappend file to
 # build a different release of the Linux kernel.
-# HEAD of linux-3.6.9-at91 as of 2013-06-12: 5fe012d4aee98ef82df66e6763882c735902ed0f
-SRCREV="5fe012d4aee98ef82df66e6763882c735902ed0f"
+# tag: v3.4 76e10d158efb6d4516018846f60c2ab5501900bc
+# tag: 3.9-at91 as of 2013-06-12, dcdf169e24c0cb6d7dc69e0a09d2395934e95075
+SRCREV="dcdf169e24c0cb6d7dc69e0a09d2395934e95075"
 PV = "${LINUX_VERSION}+${SRCREV}"
 
 

@@ -1,0 +1,62 @@
+From 9e43644292708c9c1aca5e24f5f43454349a43c6 Mon Sep 17 00:00:00 2001
+From: Bryan Evenson <bevenson@melinkcorp.com>
+Date: Fri, 22 Nov 2013 10:38:27 -0500
+Subject: [PATCH 2/2] AT91: usart: Add USART3 to AT91SAM9x5 device tree
+
+Some devices in the AT91SAM9x5 family have a fourth USART,
+USART3, available.  This commit adds USART3 to the device tree
+so that those devices can use the USART and enables it for
+the AT91SAM9G25-EK.
+
+Signed-off-by: Bryan Evenson <bevenson@melinkcorp.com>
+---
+ arch/arm/boot/dts/at91sam9x5.dtsi   |   10 ++++++++++
+ arch/arm/boot/dts/at91sam9x5ek.dtsi |    4 ++++
+ 2 files changed, 14 insertions(+)
+
+diff --git a/arch/arm/boot/dts/at91sam9x5.dtsi b/arch/arm/boot/dts/at91sam9x5.dtsi
+index 1c6e2f8..458c7c5 100644
+--- a/arch/arm/boot/dts/at91sam9x5.dtsi
++++ b/arch/arm/boot/dts/at91sam9x5.dtsi
+@@ -25,6 +25,7 @@
+ 		serial1 = &usart0;
+ 		serial2 = &usart1;
+ 		serial3 = &usart2;
++		serial4 = &usart3;
+ 		gpio0 = &pioA;
+ 		gpio1 = &pioB;
+ 		gpio2 = &pioC;
+@@ -607,6 +608,15 @@
+ 				status = "disabled";
+ 			};
+ 
++			usart3: serial@f8028000 {
++				compatible = "atmel,at91sam9260-usart";
++				reg = <0xf8028000 0x200>;
++				interrupts = <8 IRQ_TYPE_LEVEL_HIGH 5>;
++				pinctrl-names = "default";
++				pinctrl-0 = <&pinctrl_usart3>;
++				status ="disabled";
++			};
++
+ 			macb0: ethernet@f802c000 {
+ 				compatible = "cdns,at32ap7000-macb", "cdns,macb";
+ 				reg = <0xf802c000 0x100>;
+diff --git a/arch/arm/boot/dts/at91sam9x5ek.dtsi b/arch/arm/boot/dts/at91sam9x5ek.dtsi
+index 0e7de53..64c2aa6 100644
+--- a/arch/arm/boot/dts/at91sam9x5ek.dtsi
++++ b/arch/arm/boot/dts/at91sam9x5ek.dtsi
+@@ -52,6 +52,10 @@
+ 				status = "okay";
+ 			};
+ 
++			usart3: serial@f8028000 {
++				status = "okay";
++			};
++
+ 			usb2: gadget@f803c000 {
+ 				atmel,vbus-gpio = <&pioB 16 GPIO_ACTIVE_HIGH>;
+ 				status = "okay";
+-- 
+1.7.9.5
+

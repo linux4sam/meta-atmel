@@ -1,0 +1,772 @@
+From e489b75201cb929adab0843946b7107347f93f8c Mon Sep 17 00:00:00 2001
+From: Bryan Evenson <bevenson@melinkcorp.com>
+Date: Fri, 14 Jun 2013 09:50:15 -0400
+Subject: [PATCH] Enable the watchdog in the configuration.
+
+
+Signed-off-by: Bryan Evenson <bevenson@melinkcorp.com>
+---
+ .../at91sam9260ek/at91sam9260ekdf_uboot_defconfig  |    2 +-
+ .../at91sam9260ek/at91sam9260eknf_uboot_defconfig  |    2 +-
+ .../at91sam9261ek/at91sam9261ekdf_linux_defconfig  |    2 +-
+ .../at91sam9261ek/at91sam9261ekdf_uboot_defconfig  |    2 +-
+ .../at91sam9261ek/at91sam9261eknf_linux_defconfig  |    2 +-
+ .../at91sam9261ek/at91sam9261eknf_uboot_defconfig  |    2 +-
+ .../at91sam9263ek/at91sam9263ekdf_linux_defconfig  |    2 +-
+ .../at91sam9263ekdf_linux_dt_defconfig             |    2 +-
+ .../at91sam9263ek/at91sam9263ekdf_uboot_defconfig  |    2 +-
+ .../at91sam9263ek/at91sam9263eknf_linux_defconfig  |    2 +-
+ .../at91sam9263eknf_linux_dt_defconfig             |    2 +-
+ .../at91sam9263ek/at91sam9263eknf_uboot_defconfig  |    2 +-
+ .../at91sam9263ek/at91sam9263eksd_linux_defconfig  |    2 +-
+ .../at91sam9263eksd_linux_dt_defconfig             |    2 +-
+ .../at91sam9263ek/at91sam9263eksd_uboot_defconfig  |    2 +-
+ .../at91sam9g10ek/at91sam9g10ekdf_linux_defconfig  |    2 +-
+ .../at91sam9g10ek/at91sam9g10ekdf_uboot_defconfig  |    2 +-
+ .../at91sam9g10ek/at91sam9g10eknf_linux_defconfig  |    2 +-
+ .../at91sam9g10ek/at91sam9g10eknf_uboot_defconfig  |    2 +-
+ .../at91sam9g10ek/at91sam9g10eksd_linux_defconfig  |    2 +-
+ .../at91sam9g10ek/at91sam9g10eksd_uboot_defconfig  |    2 +-
+ .../at91sam9g20ek/at91sam9g20ekdf_linux_defconfig  |    2 +-
+ .../at91sam9g20ekdf_linux_dt_defconfig             |    2 +-
+ .../at91sam9g20ek/at91sam9g20ekdf_uboot_defconfig  |    2 +-
+ .../at91sam9g20ek/at91sam9g20eknf_linux_defconfig  |    2 +-
+ .../at91sam9g20eknf_linux_dt_defconfig             |    2 +-
+ .../at91sam9g20ek/at91sam9g20eknf_uboot_defconfig  |    2 +-
+ .../at91sam9g20ek/at91sam9g20eksd_linux_defconfig  |    2 +-
+ .../at91sam9g20eksd_linux_dt_defconfig             |    2 +-
+ .../at91sam9g20ek/at91sam9g20eksd_uboot_defconfig  |    2 +-
+ .../at91sam9m10g45ekdf_linux_defconfig             |    2 +-
+ .../at91sam9m10g45ekdf_linux_dt_defconfig          |    2 +-
+ .../at91sam9m10g45ekdf_uboot_defconfig             |    2 +-
+ .../at91sam9m10g45eknf_linux_defconfig             |    2 +-
+ .../at91sam9m10g45eknf_linux_dt_defconfig          |    2 +-
+ .../at91sam9m10g45eknf_uboot_defconfig             |    2 +-
+ .../at91sam9m10g45eksd_linux_defconfig             |    2 +-
+ .../at91sam9m10g45eksd_linux_dt_defconfig          |    2 +-
+ .../at91sam9m10g45eksd_uboot_defconfig             |    2 +-
+ .../at91sam9n12ek/at91sam9n12ekdf_linux_defconfig  |    2 +-
+ .../at91sam9n12ekdf_linux_dt_defconfig             |    2 +-
+ .../at91sam9n12ek/at91sam9n12ekdf_uboot_defconfig  |    2 +-
+ .../at91sam9n12ek/at91sam9n12eknf_linux_defconfig  |    2 +-
+ .../at91sam9n12eknf_linux_dt_defconfig             |    2 +-
+ .../at91sam9n12ek/at91sam9n12eknf_uboot_defconfig  |    2 +-
+ .../at91sam9n12ek/at91sam9n12eksd_linux_defconfig  |    2 +-
+ .../at91sam9n12eksd_linux_dt_defconfig             |    2 +-
+ .../at91sam9n12ek/at91sam9n12eksd_uboot_defconfig  |    2 +-
+ board/at91sam9rlek/at91sam9rlekdf_linux_defconfig  |    2 +-
+ board/at91sam9rlek/at91sam9rlekdf_uboot_defconfig  |    2 +-
+ board/at91sam9rlek/at91sam9rleknf_linux_defconfig  |    2 +-
+ board/at91sam9rlek/at91sam9rleknf_uboot_defconfig  |    2 +-
+ board/at91sam9rlek/at91sam9rleksd_linux_defconfig  |    2 +-
+ board/at91sam9rlek/at91sam9rleksd_uboot_defconfig  |    2 +-
+ board/at91sam9x5ek/at91sam9x5ekdf_linux_defconfig  |    2 +-
+ .../at91sam9x5ek/at91sam9x5ekdf_linux_dt_defconfig |    2 +-
+ board/at91sam9x5ek/at91sam9x5ekdf_uboot_defconfig  |    2 +-
+ board/at91sam9x5ek/at91sam9x5eknf_linux_defconfig  |    2 +-
+ .../at91sam9x5ek/at91sam9x5eknf_linux_dt_defconfig |    2 +-
+ board/at91sam9x5ek/at91sam9x5eknf_uboot_defconfig  |    2 +-
+ board/at91sam9x5ek/at91sam9x5eksd_linux_defconfig  |    2 +-
+ .../at91sam9x5ek/at91sam9x5eksd_linux_dt_defconfig |    2 +-
+ board/at91sam9x5ek/at91sam9x5eksd_uboot_defconfig  |    2 +-
+ .../at91sama5d3xekdf_linux_dt_defconfig            |    2 +-
+ .../at91sama5d3xekdf_uboot_defconfig               |    2 +-
+ .../at91sama5d3xeknf_linux_dt_defconfig            |    2 +-
+ .../at91sama5d3xeknf_uboot_defconfig               |    2 +-
+ .../at91sama5d3xeksd_linux_dt_defconfig            |    2 +-
+ .../at91sama5d3xeksd_uboot_defconfig               |    2 +-
+ 69 files changed, 69 insertions(+), 69 deletions(-)
+
+diff --git a/board/at91sam9260ek/at91sam9260ekdf_uboot_defconfig b/board/at91sam9260ek/at91sam9260ekdf_uboot_defconfig
+index 60876dd..279700f 100644
+--- a/board/at91sam9260ek/at91sam9260ekdf_uboot_defconfig
++++ b/board/at91sam9260ek/at91sam9260ekdf_uboot_defconfig
+@@ -111,4 +111,4 @@ CONFIG_IMAGE_NAME="uboot"
+ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9260ek/at91sam9260eknf_uboot_defconfig b/board/at91sam9260ek/at91sam9260eknf_uboot_defconfig
+index 9a07c22..215051b 100644
+--- a/board/at91sam9260ek/at91sam9260eknf_uboot_defconfig
++++ b/board/at91sam9260ek/at91sam9260eknf_uboot_defconfig
+@@ -100,4 +100,4 @@ CONFIG_IMAGE_NAME="uboot"
+ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9261ek/at91sam9261ekdf_linux_defconfig b/board/at91sam9261ek/at91sam9261ekdf_linux_defconfig
+index f9695db..5afe823 100644
+--- a/board/at91sam9261ek/at91sam9261ekdf_linux_defconfig
++++ b/board/at91sam9261ek/at91sam9261ekdf_linux_defconfig
+@@ -120,4 +120,4 @@ CONFIG_DEBUG_INFO=y
+ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9261ek/at91sam9261ekdf_uboot_defconfig b/board/at91sam9261ek/at91sam9261ekdf_uboot_defconfig
+index 70a41e1..5e982bd 100644
+--- a/board/at91sam9261ek/at91sam9261ekdf_uboot_defconfig
++++ b/board/at91sam9261ek/at91sam9261ekdf_uboot_defconfig
+@@ -115,4 +115,4 @@ CONFIG_DEBUG_INFO=y
+ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9261ek/at91sam9261eknf_linux_defconfig b/board/at91sam9261ek/at91sam9261eknf_linux_defconfig
+index 39ef1b0..4e92f96 100644
+--- a/board/at91sam9261ek/at91sam9261eknf_linux_defconfig
++++ b/board/at91sam9261ek/at91sam9261eknf_linux_defconfig
+@@ -107,4 +107,4 @@ CONFIG_DEBUG_INFO=y
+ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9261ek/at91sam9261eknf_uboot_defconfig b/board/at91sam9261ek/at91sam9261eknf_uboot_defconfig
+index 3f46a1e..8ed038a 100644
+--- a/board/at91sam9261ek/at91sam9261eknf_uboot_defconfig
++++ b/board/at91sam9261ek/at91sam9261eknf_uboot_defconfig
+@@ -102,4 +102,4 @@ CONFIG_DEBUG_INFO=y
+ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9263ek/at91sam9263ekdf_linux_defconfig b/board/at91sam9263ek/at91sam9263ekdf_linux_defconfig
+index b402dc3..9194ebe 100644
+--- a/board/at91sam9263ek/at91sam9263ekdf_linux_defconfig
++++ b/board/at91sam9263ek/at91sam9263ekdf_linux_defconfig
+@@ -123,4 +123,4 @@ CONFIG_DEBUG_INFO=y
+ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9263ek/at91sam9263ekdf_linux_dt_defconfig b/board/at91sam9263ek/at91sam9263ekdf_linux_dt_defconfig
+index 9d39baa..93e8341 100644
+--- a/board/at91sam9263ek/at91sam9263ekdf_linux_dt_defconfig
++++ b/board/at91sam9263ek/at91sam9263ekdf_linux_dt_defconfig
+@@ -126,4 +126,4 @@ CONFIG_DEBUG_INFO=y
+ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9263ek/at91sam9263ekdf_uboot_defconfig b/board/at91sam9263ek/at91sam9263ekdf_uboot_defconfig
+index cd0f67a..64566a3 100644
+--- a/board/at91sam9263ek/at91sam9263ekdf_uboot_defconfig
++++ b/board/at91sam9263ek/at91sam9263ekdf_uboot_defconfig
+@@ -118,4 +118,4 @@ CONFIG_DEBUG_INFO=y
+ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9263ek/at91sam9263eknf_linux_defconfig b/board/at91sam9263ek/at91sam9263eknf_linux_defconfig
+index 0146cb4..8a0e0d7 100644
+--- a/board/at91sam9263ek/at91sam9263eknf_linux_defconfig
++++ b/board/at91sam9263ek/at91sam9263eknf_linux_defconfig
+@@ -110,4 +110,4 @@ CONFIG_DEBUG_INFO=y
+ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9263ek/at91sam9263eknf_linux_dt_defconfig b/board/at91sam9263ek/at91sam9263eknf_linux_dt_defconfig
+index 0b64a85..7c7dc4b 100644
+--- a/board/at91sam9263ek/at91sam9263eknf_linux_dt_defconfig
++++ b/board/at91sam9263ek/at91sam9263eknf_linux_dt_defconfig
+@@ -113,4 +113,4 @@ CONFIG_DEBUG_INFO=y
+ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9263ek/at91sam9263eknf_uboot_defconfig b/board/at91sam9263ek/at91sam9263eknf_uboot_defconfig
+index 35bbe4a..6e975c1 100644
+--- a/board/at91sam9263ek/at91sam9263eknf_uboot_defconfig
++++ b/board/at91sam9263ek/at91sam9263eknf_uboot_defconfig
+@@ -105,4 +105,4 @@ CONFIG_DEBUG_INFO=y
+ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9263ek/at91sam9263eksd_linux_defconfig b/board/at91sam9263ek/at91sam9263eksd_linux_defconfig
+index e1507cb..3011efd 100644
+--- a/board/at91sam9263ek/at91sam9263eksd_linux_defconfig
++++ b/board/at91sam9263ek/at91sam9263eksd_linux_defconfig
+@@ -101,4 +101,4 @@ CONFIG_DEBUG_INFO=y
+ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9263ek/at91sam9263eksd_linux_dt_defconfig b/board/at91sam9263ek/at91sam9263eksd_linux_dt_defconfig
+index ca4e36e..d3cf15d 100644
+--- a/board/at91sam9263ek/at91sam9263eksd_linux_dt_defconfig
++++ b/board/at91sam9263ek/at91sam9263eksd_linux_dt_defconfig
+@@ -103,4 +103,4 @@ CONFIG_DEBUG_INFO=y
+ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9263ek/at91sam9263eksd_uboot_defconfig b/board/at91sam9263ek/at91sam9263eksd_uboot_defconfig
+index ffb2d48..70f0c87 100644
+--- a/board/at91sam9263ek/at91sam9263eksd_uboot_defconfig
++++ b/board/at91sam9263ek/at91sam9263eksd_uboot_defconfig
+@@ -97,4 +97,4 @@ CONFIG_DEBUG_INFO=y
+ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9g10ek/at91sam9g10ekdf_linux_defconfig b/board/at91sam9g10ek/at91sam9g10ekdf_linux_defconfig
+index 74706ad..78dedae 100644
+--- a/board/at91sam9g10ek/at91sam9g10ekdf_linux_defconfig
++++ b/board/at91sam9g10ek/at91sam9g10ekdf_linux_defconfig
+@@ -120,4 +120,4 @@ CONFIG_DEBUG_INFO=y
+ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9g10ek/at91sam9g10ekdf_uboot_defconfig b/board/at91sam9g10ek/at91sam9g10ekdf_uboot_defconfig
+index 5d2aa8f..0fc9e32 100644
+--- a/board/at91sam9g10ek/at91sam9g10ekdf_uboot_defconfig
++++ b/board/at91sam9g10ek/at91sam9g10ekdf_uboot_defconfig
+@@ -115,4 +115,4 @@ CONFIG_DEBUG_INFO=y
+ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9g10ek/at91sam9g10eknf_linux_defconfig b/board/at91sam9g10ek/at91sam9g10eknf_linux_defconfig
+index 3f1d6d2..3ad7b2e 100644
+--- a/board/at91sam9g10ek/at91sam9g10eknf_linux_defconfig
++++ b/board/at91sam9g10ek/at91sam9g10eknf_linux_defconfig
+@@ -107,4 +107,4 @@ CONFIG_DEBUG_INFO=y
+ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9g10ek/at91sam9g10eknf_uboot_defconfig b/board/at91sam9g10ek/at91sam9g10eknf_uboot_defconfig
+index 2984a19..6f70ddd 100644
+--- a/board/at91sam9g10ek/at91sam9g10eknf_uboot_defconfig
++++ b/board/at91sam9g10ek/at91sam9g10eknf_uboot_defconfig
+@@ -102,4 +102,4 @@ CONFIG_DEBUG_INFO=y
+ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9g10ek/at91sam9g10eksd_linux_defconfig b/board/at91sam9g10ek/at91sam9g10eksd_linux_defconfig
+index 11d0e60..41a2590 100644
+--- a/board/at91sam9g10ek/at91sam9g10eksd_linux_defconfig
++++ b/board/at91sam9g10ek/at91sam9g10eksd_linux_defconfig
+@@ -95,4 +95,4 @@ CONFIG_IMAGE_NAME="linux"
+ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9g10ek/at91sam9g10eksd_uboot_defconfig b/board/at91sam9g10ek/at91sam9g10eksd_uboot_defconfig
+index 7115b56..c371c1f 100644
+--- a/board/at91sam9g10ek/at91sam9g10eksd_uboot_defconfig
++++ b/board/at91sam9g10ek/at91sam9g10eksd_uboot_defconfig
+@@ -91,4 +91,4 @@ CONFIG_IMAGE_NAME="uboot"
+ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9g20ek/at91sam9g20ekdf_linux_defconfig b/board/at91sam9g20ek/at91sam9g20ekdf_linux_defconfig
+index b532ff8..d9b87d5 100644
+--- a/board/at91sam9g20ek/at91sam9g20ekdf_linux_defconfig
++++ b/board/at91sam9g20ek/at91sam9g20ekdf_linux_defconfig
+@@ -119,4 +119,4 @@ CONFIG_DEBUG_INFO=y
+ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9g20ek/at91sam9g20ekdf_linux_dt_defconfig b/board/at91sam9g20ek/at91sam9g20ekdf_linux_dt_defconfig
+index 3820b22..03776fe 100644
+--- a/board/at91sam9g20ek/at91sam9g20ekdf_linux_dt_defconfig
++++ b/board/at91sam9g20ek/at91sam9g20ekdf_linux_dt_defconfig
+@@ -122,4 +122,4 @@ CONFIG_DEBUG_INFO=y
+ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9g20ek/at91sam9g20ekdf_uboot_defconfig b/board/at91sam9g20ek/at91sam9g20ekdf_uboot_defconfig
+index 4fa1924..5c8af8c 100644
+--- a/board/at91sam9g20ek/at91sam9g20ekdf_uboot_defconfig
++++ b/board/at91sam9g20ek/at91sam9g20ekdf_uboot_defconfig
+@@ -114,4 +114,4 @@ CONFIG_DEBUG_INFO=y
+ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9g20ek/at91sam9g20eknf_linux_defconfig b/board/at91sam9g20ek/at91sam9g20eknf_linux_defconfig
+index 9e95d1e..1399cb8 100644
+--- a/board/at91sam9g20ek/at91sam9g20eknf_linux_defconfig
++++ b/board/at91sam9g20ek/at91sam9g20eknf_linux_defconfig
+@@ -106,4 +106,4 @@ CONFIG_DEBUG_INFO=y
+ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9g20ek/at91sam9g20eknf_linux_dt_defconfig b/board/at91sam9g20ek/at91sam9g20eknf_linux_dt_defconfig
+index 4e7f64d..77ab697 100644
+--- a/board/at91sam9g20ek/at91sam9g20eknf_linux_dt_defconfig
++++ b/board/at91sam9g20ek/at91sam9g20eknf_linux_dt_defconfig
+@@ -109,4 +109,4 @@ CONFIG_DEBUG_INFO=y
+ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9g20ek/at91sam9g20eknf_uboot_defconfig b/board/at91sam9g20ek/at91sam9g20eknf_uboot_defconfig
+index 715e475..4e093d3 100644
+--- a/board/at91sam9g20ek/at91sam9g20eknf_uboot_defconfig
++++ b/board/at91sam9g20ek/at91sam9g20eknf_uboot_defconfig
+@@ -101,4 +101,4 @@ CONFIG_DEBUG_INFO=y
+ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9g20ek/at91sam9g20eksd_linux_defconfig b/board/at91sam9g20ek/at91sam9g20eksd_linux_defconfig
+index 2a2526a..5f63b16 100644
+--- a/board/at91sam9g20ek/at91sam9g20eksd_linux_defconfig
++++ b/board/at91sam9g20ek/at91sam9g20eksd_linux_defconfig
+@@ -97,4 +97,4 @@ CONFIG_DEBUG_INFO=y
+ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9g20ek/at91sam9g20eksd_linux_dt_defconfig b/board/at91sam9g20ek/at91sam9g20eksd_linux_dt_defconfig
+index d517e84..7f6b71c 100644
+--- a/board/at91sam9g20ek/at91sam9g20eksd_linux_dt_defconfig
++++ b/board/at91sam9g20ek/at91sam9g20eksd_linux_dt_defconfig
+@@ -99,4 +99,4 @@ CONFIG_DEBUG_INFO=y
+ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9g20ek/at91sam9g20eksd_uboot_defconfig b/board/at91sam9g20ek/at91sam9g20eksd_uboot_defconfig
+index 1100e60..124cd96 100644
+--- a/board/at91sam9g20ek/at91sam9g20eksd_uboot_defconfig
++++ b/board/at91sam9g20ek/at91sam9g20eksd_uboot_defconfig
+@@ -93,4 +93,4 @@ CONFIG_DEBUG_INFO=y
+ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9m10g45ek/at91sam9m10g45ekdf_linux_defconfig b/board/at91sam9m10g45ek/at91sam9m10g45ekdf_linux_defconfig
+index e930754..ecdd1a8 100644
+--- a/board/at91sam9m10g45ek/at91sam9m10g45ekdf_linux_defconfig
++++ b/board/at91sam9m10g45ek/at91sam9m10g45ekdf_linux_defconfig
+@@ -120,4 +120,4 @@ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+ CONFIG_SCLK=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9m10g45ek/at91sam9m10g45ekdf_linux_dt_defconfig b/board/at91sam9m10g45ek/at91sam9m10g45ekdf_linux_dt_defconfig
+index 5278bde..99fb9af 100644
+--- a/board/at91sam9m10g45ek/at91sam9m10g45ekdf_linux_dt_defconfig
++++ b/board/at91sam9m10g45ek/at91sam9m10g45ekdf_linux_dt_defconfig
+@@ -123,4 +123,4 @@ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+ CONFIG_SCLK=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9m10g45ek/at91sam9m10g45ekdf_uboot_defconfig b/board/at91sam9m10g45ek/at91sam9m10g45ekdf_uboot_defconfig
+index f98a4ba..c411325 100644
+--- a/board/at91sam9m10g45ek/at91sam9m10g45ekdf_uboot_defconfig
++++ b/board/at91sam9m10g45ek/at91sam9m10g45ekdf_uboot_defconfig
+@@ -115,4 +115,4 @@ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+ CONFIG_SCLK=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9m10g45ek/at91sam9m10g45eknf_linux_defconfig b/board/at91sam9m10g45ek/at91sam9m10g45eknf_linux_defconfig
+index 84fb5d8..b8db46c 100644
+--- a/board/at91sam9m10g45ek/at91sam9m10g45eknf_linux_defconfig
++++ b/board/at91sam9m10g45ek/at91sam9m10g45eknf_linux_defconfig
+@@ -106,4 +106,4 @@ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+ CONFIG_SCLK=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9m10g45ek/at91sam9m10g45eknf_linux_dt_defconfig b/board/at91sam9m10g45ek/at91sam9m10g45eknf_linux_dt_defconfig
+index 45b02bb..f502c45 100644
+--- a/board/at91sam9m10g45ek/at91sam9m10g45eknf_linux_dt_defconfig
++++ b/board/at91sam9m10g45ek/at91sam9m10g45eknf_linux_dt_defconfig
+@@ -109,4 +109,4 @@ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+ CONFIG_SCLK=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9m10g45ek/at91sam9m10g45eknf_uboot_defconfig b/board/at91sam9m10g45ek/at91sam9m10g45eknf_uboot_defconfig
+index f6501df..5242396 100644
+--- a/board/at91sam9m10g45ek/at91sam9m10g45eknf_uboot_defconfig
++++ b/board/at91sam9m10g45ek/at91sam9m10g45eknf_uboot_defconfig
+@@ -101,4 +101,4 @@ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+ CONFIG_SCLK=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9m10g45ek/at91sam9m10g45eksd_linux_defconfig b/board/at91sam9m10g45ek/at91sam9m10g45eksd_linux_defconfig
+index 97f3a45..829fa7a 100644
+--- a/board/at91sam9m10g45ek/at91sam9m10g45eksd_linux_defconfig
++++ b/board/at91sam9m10g45ek/at91sam9m10g45eksd_linux_defconfig
+@@ -97,4 +97,4 @@ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+ CONFIG_SCLK=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9m10g45ek/at91sam9m10g45eksd_linux_dt_defconfig b/board/at91sam9m10g45ek/at91sam9m10g45eksd_linux_dt_defconfig
+index 3fd97a4..21d67e0 100644
+--- a/board/at91sam9m10g45ek/at91sam9m10g45eksd_linux_dt_defconfig
++++ b/board/at91sam9m10g45ek/at91sam9m10g45eksd_linux_dt_defconfig
+@@ -99,4 +99,4 @@ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+ CONFIG_SCLK=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9m10g45ek/at91sam9m10g45eksd_uboot_defconfig b/board/at91sam9m10g45ek/at91sam9m10g45eksd_uboot_defconfig
+index e4268c9..f67d32e 100644
+--- a/board/at91sam9m10g45ek/at91sam9m10g45eksd_uboot_defconfig
++++ b/board/at91sam9m10g45ek/at91sam9m10g45eksd_uboot_defconfig
+@@ -93,4 +93,4 @@ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+ CONFIG_SCLK=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9n12ek/at91sam9n12ekdf_linux_defconfig b/board/at91sam9n12ek/at91sam9n12ekdf_linux_defconfig
+index e17e12a..d38bc07 100644
+--- a/board/at91sam9n12ek/at91sam9n12ekdf_linux_defconfig
++++ b/board/at91sam9n12ek/at91sam9n12ekdf_linux_defconfig
+@@ -121,4 +121,4 @@ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+ CONFIG_SCLK=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9n12ek/at91sam9n12ekdf_linux_dt_defconfig b/board/at91sam9n12ek/at91sam9n12ekdf_linux_dt_defconfig
+index 3fb0bd3..cab6f04 100644
+--- a/board/at91sam9n12ek/at91sam9n12ekdf_linux_dt_defconfig
++++ b/board/at91sam9n12ek/at91sam9n12ekdf_linux_dt_defconfig
+@@ -124,4 +124,4 @@ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+ CONFIG_SCLK=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9n12ek/at91sam9n12ekdf_uboot_defconfig b/board/at91sam9n12ek/at91sam9n12ekdf_uboot_defconfig
+index 9439b5c..4c10aa5 100644
+--- a/board/at91sam9n12ek/at91sam9n12ekdf_uboot_defconfig
++++ b/board/at91sam9n12ek/at91sam9n12ekdf_uboot_defconfig
+@@ -116,4 +116,4 @@ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+ CONFIG_SCLK=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9n12ek/at91sam9n12eknf_linux_defconfig b/board/at91sam9n12ek/at91sam9n12eknf_linux_defconfig
+index b525669..e928cb6 100644
+--- a/board/at91sam9n12ek/at91sam9n12eknf_linux_defconfig
++++ b/board/at91sam9n12ek/at91sam9n12eknf_linux_defconfig
+@@ -107,4 +107,4 @@ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+ CONFIG_SCLK=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9n12ek/at91sam9n12eknf_linux_dt_defconfig b/board/at91sam9n12ek/at91sam9n12eknf_linux_dt_defconfig
+index a9106cc..023cf0a 100644
+--- a/board/at91sam9n12ek/at91sam9n12eknf_linux_dt_defconfig
++++ b/board/at91sam9n12ek/at91sam9n12eknf_linux_dt_defconfig
+@@ -110,4 +110,4 @@ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+ CONFIG_SCLK=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9n12ek/at91sam9n12eknf_uboot_defconfig b/board/at91sam9n12ek/at91sam9n12eknf_uboot_defconfig
+index a026fc4..ece3f76 100644
+--- a/board/at91sam9n12ek/at91sam9n12eknf_uboot_defconfig
++++ b/board/at91sam9n12ek/at91sam9n12eknf_uboot_defconfig
+@@ -102,4 +102,4 @@ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+ CONFIG_SCLK=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9n12ek/at91sam9n12eksd_linux_defconfig b/board/at91sam9n12ek/at91sam9n12eksd_linux_defconfig
+index c8e4cf6..6e0f6f9 100644
+--- a/board/at91sam9n12ek/at91sam9n12eksd_linux_defconfig
++++ b/board/at91sam9n12ek/at91sam9n12eksd_linux_defconfig
+@@ -99,4 +99,4 @@ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+ CONFIG_SCLK=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9n12ek/at91sam9n12eksd_linux_dt_defconfig b/board/at91sam9n12ek/at91sam9n12eksd_linux_dt_defconfig
+index fdb1389..b66c3d4 100644
+--- a/board/at91sam9n12ek/at91sam9n12eksd_linux_dt_defconfig
++++ b/board/at91sam9n12ek/at91sam9n12eksd_linux_dt_defconfig
+@@ -100,4 +100,4 @@ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+ CONFIG_SCLK=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9n12ek/at91sam9n12eksd_uboot_defconfig b/board/at91sam9n12ek/at91sam9n12eksd_uboot_defconfig
+index a256b36..c8b6055 100644
+--- a/board/at91sam9n12ek/at91sam9n12eksd_uboot_defconfig
++++ b/board/at91sam9n12ek/at91sam9n12eksd_uboot_defconfig
+@@ -94,4 +94,4 @@ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+ CONFIG_SCLK=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9rlek/at91sam9rlekdf_linux_defconfig b/board/at91sam9rlek/at91sam9rlekdf_linux_defconfig
+index dff59cd..a8551e4 100644
+--- a/board/at91sam9rlek/at91sam9rlekdf_linux_defconfig
++++ b/board/at91sam9rlek/at91sam9rlekdf_linux_defconfig
+@@ -121,4 +121,4 @@ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+ CONFIG_SCLK=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9rlek/at91sam9rlekdf_uboot_defconfig b/board/at91sam9rlek/at91sam9rlekdf_uboot_defconfig
+index 8f9af25..09cab9c 100644
+--- a/board/at91sam9rlek/at91sam9rlekdf_uboot_defconfig
++++ b/board/at91sam9rlek/at91sam9rlekdf_uboot_defconfig
+@@ -116,4 +116,4 @@ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+ CONFIG_SCLK=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9rlek/at91sam9rleknf_linux_defconfig b/board/at91sam9rlek/at91sam9rleknf_linux_defconfig
+index 10f4471..c52b475 100644
+--- a/board/at91sam9rlek/at91sam9rleknf_linux_defconfig
++++ b/board/at91sam9rlek/at91sam9rleknf_linux_defconfig
+@@ -107,4 +107,4 @@ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+ CONFIG_SCLK=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9rlek/at91sam9rleknf_uboot_defconfig b/board/at91sam9rlek/at91sam9rleknf_uboot_defconfig
+index 5569f5a..d633520 100644
+--- a/board/at91sam9rlek/at91sam9rleknf_uboot_defconfig
++++ b/board/at91sam9rlek/at91sam9rleknf_uboot_defconfig
+@@ -102,4 +102,4 @@ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+ CONFIG_SCLK=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9rlek/at91sam9rleksd_linux_defconfig b/board/at91sam9rlek/at91sam9rleksd_linux_defconfig
+index 0a505f3..155c35f 100644
+--- a/board/at91sam9rlek/at91sam9rleksd_linux_defconfig
++++ b/board/at91sam9rlek/at91sam9rleksd_linux_defconfig
+@@ -98,4 +98,4 @@ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+ CONFIG_SCLK=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9rlek/at91sam9rleksd_uboot_defconfig b/board/at91sam9rlek/at91sam9rleksd_uboot_defconfig
+index 9896e23..908116f 100644
+--- a/board/at91sam9rlek/at91sam9rleksd_uboot_defconfig
++++ b/board/at91sam9rlek/at91sam9rleksd_uboot_defconfig
+@@ -94,4 +94,4 @@ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+ CONFIG_SCLK=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9x5ek/at91sam9x5ekdf_linux_defconfig b/board/at91sam9x5ek/at91sam9x5ekdf_linux_defconfig
+index dbff2a4..8c1deaf 100644
+--- a/board/at91sam9x5ek/at91sam9x5ekdf_linux_defconfig
++++ b/board/at91sam9x5ek/at91sam9x5ekdf_linux_defconfig
+@@ -121,4 +121,4 @@ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+ CONFIG_SCLK=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9x5ek/at91sam9x5ekdf_linux_dt_defconfig b/board/at91sam9x5ek/at91sam9x5ekdf_linux_dt_defconfig
+index 5c43be3..2ffc185 100644
+--- a/board/at91sam9x5ek/at91sam9x5ekdf_linux_dt_defconfig
++++ b/board/at91sam9x5ek/at91sam9x5ekdf_linux_dt_defconfig
+@@ -124,4 +124,4 @@ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+ CONFIG_SCLK=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9x5ek/at91sam9x5ekdf_uboot_defconfig b/board/at91sam9x5ek/at91sam9x5ekdf_uboot_defconfig
+index f597b11..0f1efab 100644
+--- a/board/at91sam9x5ek/at91sam9x5ekdf_uboot_defconfig
++++ b/board/at91sam9x5ek/at91sam9x5ekdf_uboot_defconfig
+@@ -116,4 +116,4 @@ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+ CONFIG_SCLK=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9x5ek/at91sam9x5eknf_linux_defconfig b/board/at91sam9x5ek/at91sam9x5eknf_linux_defconfig
+index 1b93b9f..e4bed86 100644
+--- a/board/at91sam9x5ek/at91sam9x5eknf_linux_defconfig
++++ b/board/at91sam9x5ek/at91sam9x5eknf_linux_defconfig
+@@ -107,4 +107,4 @@ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+ # CONFIG_SCLK is not set
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9x5ek/at91sam9x5eknf_linux_dt_defconfig b/board/at91sam9x5ek/at91sam9x5eknf_linux_dt_defconfig
+index 97474b1..b92d076 100644
+--- a/board/at91sam9x5ek/at91sam9x5eknf_linux_dt_defconfig
++++ b/board/at91sam9x5ek/at91sam9x5eknf_linux_dt_defconfig
+@@ -110,4 +110,4 @@ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+ CONFIG_SCLK=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9x5ek/at91sam9x5eknf_uboot_defconfig b/board/at91sam9x5ek/at91sam9x5eknf_uboot_defconfig
+index 6895bc2..e578502 100644
+--- a/board/at91sam9x5ek/at91sam9x5eknf_uboot_defconfig
++++ b/board/at91sam9x5ek/at91sam9x5eknf_uboot_defconfig
+@@ -102,4 +102,4 @@ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+ CONFIG_SCLK=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9x5ek/at91sam9x5eksd_linux_defconfig b/board/at91sam9x5ek/at91sam9x5eksd_linux_defconfig
+index 48312e3..54cf99f 100644
+--- a/board/at91sam9x5ek/at91sam9x5eksd_linux_defconfig
++++ b/board/at91sam9x5ek/at91sam9x5eksd_linux_defconfig
+@@ -99,4 +99,4 @@ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+ CONFIG_SCLK=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9x5ek/at91sam9x5eksd_linux_dt_defconfig b/board/at91sam9x5ek/at91sam9x5eksd_linux_dt_defconfig
+index 6220f95..7ad5dd5 100644
+--- a/board/at91sam9x5ek/at91sam9x5eksd_linux_dt_defconfig
++++ b/board/at91sam9x5ek/at91sam9x5eksd_linux_dt_defconfig
+@@ -100,4 +100,4 @@ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+ CONFIG_SCLK=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sam9x5ek/at91sam9x5eksd_uboot_defconfig b/board/at91sam9x5ek/at91sam9x5eksd_uboot_defconfig
+index 0b18e9a..894f9aa 100644
+--- a/board/at91sam9x5ek/at91sam9x5eksd_uboot_defconfig
++++ b/board/at91sam9x5ek/at91sam9x5eksd_uboot_defconfig
+@@ -94,4 +94,4 @@ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+ CONFIG_SCLK=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sama5d3xek/at91sama5d3xekdf_linux_dt_defconfig b/board/at91sama5d3xek/at91sama5d3xekdf_linux_dt_defconfig
+index 7a2a769..bbdd575 100644
+--- a/board/at91sama5d3xek/at91sama5d3xekdf_linux_dt_defconfig
++++ b/board/at91sama5d3xek/at91sama5d3xekdf_linux_dt_defconfig
+@@ -123,4 +123,4 @@ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+ CONFIG_SCLK=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sama5d3xek/at91sama5d3xekdf_uboot_defconfig b/board/at91sama5d3xek/at91sama5d3xekdf_uboot_defconfig
+index 96f8ea6..a9f795b 100644
+--- a/board/at91sama5d3xek/at91sama5d3xekdf_uboot_defconfig
++++ b/board/at91sama5d3xek/at91sama5d3xekdf_uboot_defconfig
+@@ -115,4 +115,4 @@ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+ CONFIG_SCLK=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sama5d3xek/at91sama5d3xeknf_linux_dt_defconfig b/board/at91sama5d3xek/at91sama5d3xeknf_linux_dt_defconfig
+index 2ee2493..31f7805 100644
+--- a/board/at91sama5d3xek/at91sama5d3xeknf_linux_dt_defconfig
++++ b/board/at91sama5d3xek/at91sama5d3xeknf_linux_dt_defconfig
+@@ -109,4 +109,4 @@ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+ CONFIG_SCLK=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sama5d3xek/at91sama5d3xeknf_uboot_defconfig b/board/at91sama5d3xek/at91sama5d3xeknf_uboot_defconfig
+index c5056a0..2bd0f71 100644
+--- a/board/at91sama5d3xek/at91sama5d3xeknf_uboot_defconfig
++++ b/board/at91sama5d3xek/at91sama5d3xeknf_uboot_defconfig
+@@ -101,4 +101,4 @@ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+ CONFIG_SCLK=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sama5d3xek/at91sama5d3xeksd_linux_dt_defconfig b/board/at91sama5d3xek/at91sama5d3xeksd_linux_dt_defconfig
+index 63258ae..43d1a5b 100644
+--- a/board/at91sama5d3xek/at91sama5d3xeksd_linux_dt_defconfig
++++ b/board/at91sama5d3xek/at91sama5d3xeksd_linux_dt_defconfig
+@@ -99,4 +99,4 @@ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+ CONFIG_SCLK=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+diff --git a/board/at91sama5d3xek/at91sama5d3xeksd_uboot_defconfig b/board/at91sama5d3xek/at91sama5d3xeksd_uboot_defconfig
+index 5d2df02..4ab83c6 100644
+--- a/board/at91sama5d3xek/at91sama5d3xeksd_uboot_defconfig
++++ b/board/at91sama5d3xek/at91sama5d3xeksd_uboot_defconfig
+@@ -93,4 +93,4 @@ CONFIG_HW_INIT=y
+ # CONFIG_USER_HW_INIT is not set
+ CONFIG_THUMB=y
+ CONFIG_SCLK=y
+-CONFIG_DISABLE_WATCHDOG=y
++# CONFIG_DISABLE_WATCHDOG is not set
+-- 
+1.7.9.5
+
