@@ -5,9 +5,7 @@ LIC_FILES_CHKSUM = "file://main.c;endline=27;md5=42f86d2f6fd17d1221c5c651b487a07
 
 COMPATIBLE_MACHINE = '(sama5d3xek|sama5d3_xplained|at91sam9x5ek|at91sam9rlek)'
 
-# 5415d4e3ff7f4a9a2404d71c8c2e277c7b7c1e67 -> tag v3.6.1
-# e95dd87d49ca124ccb57e62e656c6a23900af8f4 -> tag v6.3.2
-SRCREV="e95dd87d49ca124ccb57e62e656c6a23900af8f4"
+SRCREV="1e8fd41ce7149f7d2063a3b3bcf2c69e77b97732"
 
 PR = "r1"
 
@@ -24,6 +22,9 @@ do_configure() {
 	unset CFLAGS
 	unset CPPFLAGS
 	unset ASFLAGS
+	if [ "${@base_contains('DISTRO_FEATURES', 'ld-is-gold', 'ld-is-gold', '', d)}" = "ld-is-gold" ] ; then
+		sed -i 's/$(CROSS_COMPILE)ld$/$(CROSS_COMPILE)ld.bfd/g' ${S}/Makefile	
+	fi
 	make CROSS_COMPILE=${TARGET_PREFIX} ${AT91BOOTSTRAP_MACHINE}nf_uboot_defconfig
 }
 
