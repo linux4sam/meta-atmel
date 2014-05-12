@@ -15,15 +15,3 @@ IMAGE_INSTALL += "\
     tslib-tests \
     tslib-calibrate \
     "
-
-sama5d3_xplained_rootfs_postprocess() {
-    curdir=$PWD
-    cd ${IMAGE_ROOTFS}
-
-    # autoload needed modules
-    cd etc
-    echo "atmel_usba_udc" >> modules
-    echo "g_serial" >> modules
-
-    cd $curdir
-}
