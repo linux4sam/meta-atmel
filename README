@@ -91,7 +91,7 @@ or
 bitbake atmel-xplained-demo-image
 
 12/ Build bootloaders (optional)
-These two commands allow you to build the bootloaders needed for your AT91
-board:
+Bootloaders are compiled while building an image but if you want them
+independently, just run the following commands:
 bitbake at91bootstrap
 bitbake u-boot
