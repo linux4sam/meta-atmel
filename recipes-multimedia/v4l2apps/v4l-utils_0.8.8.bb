@@ -7,7 +7,7 @@ PR = "r2"
 
 DEPENDS = "jpeg"
 
-inherit autotools gettext
+inherit autotools-brokensep gettext
 
 # libv4l was absorbed into this, let OE know that
 PROVIDES = "libv4l"
