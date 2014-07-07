@@ -16,6 +16,8 @@ S = "${WORKDIR}/git"
 PARALLEL_MAKE = ""
 
 AT91BOOTSTRAP_MACHINE ??= "${MACHINE}"
+AT91BOOTSTRAP_TARGET ??= "${AT91BOOTSTRAP_MACHINE}nf_uboot_defconfig"
+AT91BOOTSTRAP_BINARY ??= "${AT91BOOTSTRAP_MACHINE}-nandflashboot-uboot"
 
 do_configure() {
 	unset LDFLAGS
@@ -25,7 +27,7 @@ do_configure() {
 	if [ "${@base_contains('DISTRO_FEATURES', 'ld-is-gold', 'ld-is-gold', '', d)}" = "ld-is-gold" ] ; then
 		sed -i 's/$(CROSS_COMPILE)ld$/$(CROSS_COMPILE)ld.bfd/g' ${S}/Makefile	
 	fi
-	make CROSS_COMPILE=${TARGET_PREFIX} ${AT91BOOTSTRAP_MACHINE}nf_uboot_defconfig
+	make CROSS_COMPILE=${TARGET_PREFIX} ${AT91BOOTSTRAP_TARGET}
 }
 
 do_compile() {
@@ -42,7 +44,7 @@ addtask deploy before do_package after do_install
 
 do_deploy () {
 	install -d ${DEPLOYDIR}
-	install ${S}/binaries/${AT91BOOTSTRAP_MACHINE}-nandflashboot-uboot-${PV}.bin ${DEPLOYDIR}/
+	install ${S}/binaries/${AT91BOOTSTRAP_BINARY}-${PV}.bin ${DEPLOYDIR}/
 }
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
