@@ -11,8 +11,8 @@ DEPENDS = "qt4-embedded libv4l"
 
 SRC_URI = "ftp://ftp.linux4sam.org/pub/demo/qtdemo/smart-refrigerator-${PV}.tar.gz"
 
-SRC_URI[md5sum] = "ae844f8b37773b2758ae3feb10ada347"
-SRC_URI[sha256sum] = "181d73293d11e15736c86ba185a2c1bde97619db331b885f70a7b943de579894"
+SRC_URI[md5sum] = "6933e667240b287b0b85b6c7a826f87a"
+SRC_URI[sha256sum] = "a96d09a8e650889ec35c89cfea12261082c351889a4b48252e3ba9f3cfe2398f"
 
 S = "${WORKDIR}/smart-refrigerator-${PV}"
 
