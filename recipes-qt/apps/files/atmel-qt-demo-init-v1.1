@@ -19,16 +19,13 @@ start()
   echo "Starting Demo..."
   export QWS_MOUSE_PROTO=Tslib:${TSLIB_TSDEVICE}
 
-  case "$mode" in
-    "800x480-67")
+  resolution=`echo $mode | awk -F "-" '{print $1;}'`
+  case "$resolution" in
+    "800x480")
        ln -sf /etc/pointercal-${mode} /etc/pointercal
        /opt/ApplicationLauncher/ApplicationLauncher.sh
     ;;
-    "800x480-56")
-       ln -sf /etc/pointercal-${mode} /etc/pointercal
-       /opt/ApplicationLauncher/ApplicationLauncher.sh
-    ;;
-    "480x272-58")
+    "480x272")
        ln -sf /etc/pointercal-${mode} /etc/pointercal
       /opt/ApplicationLauncher/ApplicationLauncher-small.sh
     ;;
