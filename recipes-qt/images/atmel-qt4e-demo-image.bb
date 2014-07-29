@@ -74,14 +74,10 @@ IMAGE_INSTALL += "\
 	tslib \
 	tslib-calibrate \
 	tslib-tests \
-	gstreamer \
-        gst-meta-base \
-        gst-meta-video \
-        gst-meta-audio \
-	gst-plugins-good \
-	gst-plugins-good-videofilter \
-	gst-plugins-ugly-mpeg2dec \
-	gst-plugins-bad-fbdevsink \
+	gstreamer1.0 \
+	gstreamer1.0-plugins-bad-meta \
+	gstreamer1.0-plugins-base-meta \
+	gstreamer1.0-plugins-good-meta \
 	homeautomation \
 	smartrefrigerator \
 	applicationlauncher \
@@ -93,8 +89,7 @@ IMAGE_INSTALL += "\
 
 inherit core-image
 
-# we don't need the kernel in the image
-ROOTFS_POSTPROCESS_COMMAND += "rm -f ${IMAGE_ROOTFS}/boot/*Image*; "
+ROOTFS_POSTPROCESS_COMMAND += ""
 
 atmel_qte_rootfs_postprocess() {
     curdir=$PWD
