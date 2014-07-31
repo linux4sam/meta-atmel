@@ -21,6 +21,12 @@ PARALLEL_MAKE = ""
 
 AT91BOOTSTRAP_MACHINE ??= "${MACHINE}"
 
+AT91BOOTSTRAP_CONFIG ??= "${AT91BOOTSTRAP_MACHINE}nf_uboot"
+AT91BOOTSTRAP_CONFIG_sama5d4ek ??= "${AT91BOOTSTRAP_MACHINE}nf_uboot_secure"
+
+AT91BOOTSTRAP_TARGET ??= "${AT91BOOTSTRAP_CONFIG}_defconfig"
+AT91BOOTSTRAP_BINARY ??= "${AT91BOOTSTRAP_MACHINE}-nandflashboot-uboot"
+
 do_configure() {
 	unset LDFLAGS
 	unset CFLAGS
@@ -29,18 +35,7 @@ do_configure() {
 	if [ "${@base_contains('DISTRO_FEATURES', 'ld-is-gold', 'ld-is-gold', '', d)}" = "ld-is-gold" ] ; then
 		sed -i 's/$(CROSS_COMPILE)ld$/$(CROSS_COMPILE)ld.bfd/g' ${S}/Makefile
 	fi
-	make CROSS_COMPILE=${TARGET_PREFIX} ${AT91BOOTSTRAP_MACHINE}
-}
-
-do_configure_sama5d4ek() {
-	unset LDFLAGS
-	unset CFLAGS
-	unset CPPFLAGS
-	unset ASFLAGS
-	if [ "${@base_contains('DISTRO_FEATURES', 'ld-is-gold', 'ld-is-gold', '', d)}" = "ld-is-gold" ] ; then
-		sed -i 's/$(CROSS_COMPILE)ld$/$(CROSS_COMPILE)ld.bfd/g' ${S}/Makefile
-	fi
-	make CROSS_COMPILE=${TARGET_PREFIX} ${AT91BOOTSTRAP_MACHINE}nf_uboot_secure_defconfig
+	make CROSS_COMPILE=${TARGET_PREFIX} ${AT91BOOTSTRAP_TARGET}
 }
 
 do_compile() {
@@ -57,7 +52,7 @@ addtask deploy before do_package after do_install
 
 do_deploy () {
 	install -d ${DEPLOYDIR}
-	install ${S}/binaries/${AT91BOOTSTRAP_MACHINE}-nandflashboot-uboot-${PV}.bin ${DEPLOYDIR}/
+	install ${S}/binaries/${AT91BOOTSTRAP_BINARY}-${PV}.bin ${DEPLOYDIR}/
 }
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
