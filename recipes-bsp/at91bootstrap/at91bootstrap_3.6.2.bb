@@ -9,7 +9,9 @@ SRCREV="1e8fd41ce7149f7d2063a3b3bcf2c69e77b97732"
 
 PR = "r1"
 
-SRC_URI = "git://github.com/linux4sam/at91bootstrap.git;protocol=git"
+SRC_URI = "git://github.com/linux4sam/at91bootstrap.git;protocol=git \
+           file://bfa42af7a2c21bada264214d2dd209edc64eb041.patch \
+          "
 
 S = "${WORKDIR}/git"
 
