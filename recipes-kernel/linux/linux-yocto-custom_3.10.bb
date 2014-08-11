@@ -62,3 +62,7 @@ PV = "${LINUX_VERSION}+git${SRCPV}"
 # Override COMPATIBLE_MACHINE to include your machine in a bbappend
 # file. Leaving it empty here ensures an early explicit build failure.
 COMPATIBLE_MACHINE = "(^$)"
+
+# module_autoload is used by the kernel packaging bbclass
+module_autoload_atmel_usba_udc = "atmel_usba_udc"
+module_autoload_g_serial = "g_serial"
