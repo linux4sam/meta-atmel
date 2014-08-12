@@ -1,21 +1,23 @@
 This Layer depends on :
-- OpenEmbedded-core
-URI: git://git.openembedded.org/openembedded-core
-URI: http://cgit.openembedded.orgopenembedded-core/
-Branch: dora
-
 - meta-openembedded
 URI: git://git.openembedded.org/meta-openembedded
 URI: http://cgit.openembedded.org/meta-openembedded/
-(tested with commit ID: 6572316557e742c2dc93848e4d560242bf0c3995)
+Branch: daisy (tested with commit ID: d85b01997ce8cc354ccc53f97fdffc79cf2277d5)
 
-OpenEmbedded/Yocto layer for Atmel AT91SAM SoC
-For now it supports:
+- metat-qt5
+URI: git://github.com/meta-qt5/meta-qt5.git
+URI: https://github.com/meta-qt5/meta-qt5
+Branch: daisy (tested with commit ID: a06222499ab602e7c67c1433dd0b559d51d3d744)
+
+- meta-atmel
+URI: git@github.com:linux4sam/meta-atmel-timesys.git
+URI: https://github.com/linux4sam/meta-atmel-timesys
+Branch: timesys (tested with commit ID: b2c12896ce55586b6f1034fbb81cdb6b6b7419d3)
+This is the meta layer for Atmel SoCs. For now it supports:
+- SAMA5D4 product family
 - SAMA5D3 product family (http://www.atmel.com/products/microcontrollers/arm/sama5d3.aspx)
 - AT91SAM9x5 product family (AT91SAM9G15, AT91SAM9G25, AT91SAM9X25, AT91SAM9G35 and AT91SAM9X35)
 - AT91SAM9RL
-
-It is hosted on http://github.com/linux4sam/meta-atmel
 
 ---
 Build procedure:
@@ -23,26 +25,41 @@ Build procedure:
 1/ Clone yocto/poky git repository
 git clone git://git.yoctoproject.org/poky
 
-2/ Checkout dora-10.0.1 tag
+2/ Checkout daisy tag
 cd poky
-git checkout dora-10.0.1 -b my_branch
+git checkout daisy-11.0.1 -b my_branch
 
 3/ Clone meta-openembedded git repository
 git clone git://git.openembedded.org/meta-openembedded
 
-4/ Checkout proper meta-openembedded commit ID
+4/ Checkout proper meta-openembedded branch
 cd meta-openembedded
-git checkout 6572316557e742c2dc93848e4d560242bf0c3995 -b my_branch
+git checkout origin/daisy -b my_branch
 # come back to the "poky" directory for next steps
 cd ..
 
-5/ Clone meta-atmel layer
-git clone http://github.com/linux4sam/meta-atmel
+5/ Clone meta-qt5 git repository
+git clone git://github.com/meta-qt5/meta-qt5.git
 
-6/ Initialize build directory
+6/ Checkout proper meta-qt5 branch
+cd meta-qt5
+git checkout origin/daisy -b my_branch
+# come back to the "poky" directory for next steps
+cd ..
+
+7/ Clone meta-atmel layer
+git clone git@github.com:linux4sam/meta-atmel-timesys.git meta-atmel
+
+8/ Checkout proper meta-atmel branch
+cd meta-atmel
+git checkout origin/timesys -b my_branch
+# come back to the "poky" directory for next steps
+cd ..
+
+9/ Initialize build directory
 source oe-init-build-env build-atmel
 
-7/ Add meta-atmel layer patch to bblayer configuration file
+10/ Add meta-atmel layer patch to bblayer configuration file
 vim conf/bblayers.conf
 
 # LAYER_CONF_VERSION is increased each time build/conf/bblayers.conf
@@ -54,16 +71,17 @@ BBFILES ?= ""
 
 BBLAYERS ?= " \
   /home/pvilchez/workspace/github/poky/meta-atmel \
+  /home/pvilchez/workspace/openembedded/poky/meta-qt5 \
   /home/pvilchez/workspace/github/poky/meta \
   /home/pvilchez/workspace/github/poky/meta-yocto \
   /home/pvilchez/workspace/github/poky/meta-yocto-bsp \
   /home/pvilchez/workspace/github/poky/meta-openembedded/meta-oe \
   /home/pvilchez/workspace/github/poky/meta-openembedded/meta-networking \
   "
-8/ Edit local.conf to specify the machine, location of source archived, package type (rpm, deb or ipk)
+11/ Edit local.conf to specify the machine, location of source archived, package type (rpm, deb or ipk)
 vim conf/local.conf
 [...]
-MACHINE ??= "sama5d3xek"
+MACHINE ??= "sama5d4ek"
 [...]
 DL_DIR ?= "your_download_directory_path"
 [...]
@@ -74,24 +92,39 @@ MACHINE ??= "at91sam9rlek"
 MACHINE ??= "at91sam9x5ek"
 MACHINE ??= "sama5d3xek"
 MACHINE ??= "sama5d3_xplained"
+MACHINE ??= "sama5d4ek"
 
-9/ Build core minimal image
+12/ Build core minimal image
 bitbake core-image-minimal
 
-10/ We found that additional local.conf changes are needed for our QT demo
+13/ We found that additional local.conf changes are needed for our QT demo
 image. You can add these two lines at the end of the file:
 vim conf/local.conf
 [...]
 LICENSE_FLAGS_WHITELIST += "commercial"
 SYSVINIT_ENABLED_GETTYS = ""
 
-11/ Build Atmel demo images
-bitbake atmel-qt4e-demo-image
-or
-bitbake atmel-xplained-demo-image
+14/ Build Atmel demo images
+bitbake atmel-qt5-demo-image
 
-12/ Build bootloaders (optional)
-Bootloaders are compiled while building an image but if you want them
-independently, just run the following commands:
-bitbake at91bootstrap
-bitbake u-boot
+---
+Here is a typical bitbake output:
+Build Configuration:
+BB_VERSION        = "1.22.0"
+BUILD_SYS         = "x86_64-linux"
+NATIVELSBSTRING   = "Ubuntu-12.04"
+TARGET_SYS        = "arm-poky-linux-gnueabi"
+MACHINE           = "sama5d4ek"
+DISTRO            = "poky"
+DISTRO_VERSION    = "1.6.1"
+TUNE_FEATURES     = "armv7a vfp thumb neon callconvention-hard cortexa5"
+TARGET_FPU        = "vfp-neon"
+meta-atmel        = "timesys:b2c12896ce55586b6f1034fbb81cdb6b6b7419d3"
+meta-qt5          = "daisy:a06222499ab602e7c67c1433dd0b559d51d3d744"
+meta              
+meta-yocto        
+meta-yocto-bsp    =
+"atmel-daisy-11.0.1:c4f1f0f491f988901bfd6965f7d10f60cb94a76f"
+meta-oe           
+meta-networking   = "daisy:d85b01997ce8cc354ccc53f97fdffc79cf2277d5"
+
