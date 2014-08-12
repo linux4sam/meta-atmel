@@ -40,7 +40,26 @@ IMAGE_INSTALL += "\
 	${CORE_IMAGE_BASE_INSTALL} \
 	\
 	qtbase \
+	qtbase-fonts \
+	qtbase-plugins \
+	qtbase-tools \
 	qtmultimedia \
+	qtmultimedia-plugins \
+	qtmultimedia-qmlplugins \
+	qtsvg \
+	qtsvg-plugins \
+	qtsensors \
+	qtsystems \
+	qtsystems-tools \
+	qtsystems-qmlplugins \
+	qtscript \
+	qtgraphicaleffects-qmlplugins \
+	qtconnectivity-qmlplugins \
+	qtlocation-plugins \
+	qtlocation-qmlplugins \
+	qtdeclarative \
+	qtdeclarative-qmlplugins \
+	qtdeclarative-plugins \
 	\
 	libicui18n \
 	tslib \
@@ -50,13 +69,6 @@ IMAGE_INSTALL += "\
 	gstreamer1.0-plugins-bad-meta \
 	gstreamer1.0-plugins-base-meta \
 	gstreamer1.0-plugins-good-meta \
-	homeautomation \
-	smartrefrigerator \
-	applicationlauncher \
-	qmlbrowser \
-	samegame \
-	minehunt \
-	atmel-qt-demo-init \
 "
 
 inherit core-image
