@@ -13,7 +13,7 @@ SRC_URI = "git://github.com/linux4sam/at91bootstrap.git;protocol=git \
            file://bfa42af7a2c21bada264214d2dd209edc64eb041.patch \
           "
 SRC_URI_sama5d4ek = "git://git@github.com/linux4sam/at91bootstrap-timesys.git;protocol=ssh;branch=sama5d4/at91bootstrap-3.x-sama5d4"
-SRCREV_sama5d4ek = "0d17838db4373ab1141120266d9196689b795a7c"
+SRCREV_sama5d4ek = "b8030fb5be77f2e43d5238abd8c2509f234e4009"
 
 S = "${WORKDIR}/git"
 
