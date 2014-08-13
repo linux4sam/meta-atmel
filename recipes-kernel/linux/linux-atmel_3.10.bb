@@ -13,7 +13,7 @@ KBRANCH = "${KBRANCH_DEFAULT}"
 SRCBRANCH_sama5d4ek = "at91-3.10-trunk/sama5d4_integration"
 SRC_URI_sama5d4ek = "git://git@github.com/linux4sam/linux-at91-timesys.git;protocol=ssh;branch=${SRCBRANCH_sama5d4ek}"
 SRC_URI_sama5d4ek += "file://defconfig"
-SRCREV_sama5d4ek = "4843608072cc3f46ca3ff7055bfc1a6c5e57b223"
+SRCREV_sama5d4ek = "e0f8878dffb73e281cbe08d1d49c92178f56568d"
 
 S = "${WORKDIR}/git"
 
