@@ -74,6 +74,15 @@ IMAGE_INSTALL += "\
 	gstreamer1.0-plugins-bad-meta \
 	gstreamer1.0-plugins-base-meta \
 	gstreamer1.0-plugins-good-meta \
+	libv4l \
+	\
+	homeautomation \
+	smartrefrigerator \
+	applicationlauncher \
+	qmlbrowser \
+	samegame \
+	minehunt \
+	atmel-qt-demo-init \
 "
 
 inherit core-image
