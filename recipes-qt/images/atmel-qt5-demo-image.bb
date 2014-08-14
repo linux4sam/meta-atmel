@@ -60,6 +60,11 @@ IMAGE_INSTALL += "\
 	qtdeclarative \
 	qtdeclarative-qmlplugins \
 	qtdeclarative-plugins \
+	qtquick1 \
+	qtquick1-qmlplugins \
+	qtquick1-plugins \
+	qtwebkit \
+	qtwebkit-qmlplugins \
 	\
 	libicui18n \
 	tslib \
