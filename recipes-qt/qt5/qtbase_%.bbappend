@@ -1,3 +1,3 @@
 # icu is required to build qtwebkit (unicode support)
-PACKAGECONFIG_DEFAULT += "icu tslib linuxfb openssl"
+PACKAGECONFIG_DEFAULT += "no-xcb icu tslib linuxfb openssl"
 
