@@ -7,7 +7,7 @@ PR = "r1"
 
 PACKAGES = "${PN}-dbg ${PN}"
 
-DEPENDS = "qtbase libv4l"
+DEPENDS = "qtbase qtwebkit libv4l"
 require recipes-qt/qt5/qt5.inc
 
 SRC_URI = "ftp://ftp.linux4sam.org/pub/demo/qtdemo/home-automation-${PV}.tar.gz"

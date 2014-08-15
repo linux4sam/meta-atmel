@@ -7,7 +7,7 @@ PR = "r2"
 
 PACKAGES = "${PN}-dbg ${PN}"
 
-DEPENDS = "qtdeclarative libv4l"
+DEPENDS = "qtbase qtwebkit libv4l"
 require recipes-qt/qt5/qt5.inc
 
 SRC_URI = "ftp://ftp.linux4sam.org/pub/demo/qtdemo/smart-refrigerator-${PV}.tar.gz"

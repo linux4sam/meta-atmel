@@ -11,7 +11,7 @@ SRC_URI[sha256sum] = "36e12081707f3fd0aceb0a16a7280897a050196bbf68b9d8378a0fd68e
 
 S = "${WORKDIR}/application-launcher-${PV}"
 
-DEPENDS = "qtdeclarative"
+DEPENDS = "qtbase qtdeclarative qtwebkit"
 #RDEPENDS_${PN} = "qtdeclarative-qmlplugins qtdeclarative-plugins"
 require recipes-qt/qt5/qt5.inc
 
