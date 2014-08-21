@@ -15,6 +15,7 @@ PV = "v2014.04-at91"
 PR = "r1"
 
 COMPATIBLE_MACHINE = "(sama5d4ek)"
+UBOOT_MACHINE_sama5d4ek = "sama5d4ek_nandflash_secure_config"
 
 SRC_URI = "git://git@github.com/linux4sam/u-boot-at91-timesys.git;branch=sama5d4/u-boot-2014.04-sama5d4;protocol=ssh"
 
