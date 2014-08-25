@@ -12,8 +12,8 @@ require recipes-qt/qt5/qt5.inc
 
 SRC_URI = "ftp://ftp.linux4sam.org/pub/demo/qtdemo/smart-refrigerator-${PV}.tar.gz"
 
-SRC_URI[md5sum] = "75441b13a9adf6f1fbf743beeff43400"
-SRC_URI[sha256sum] = "97f3636b888d567b7a8748830275b3ee445054c8c1630254ed5ef09a86ce80d6"
+SRC_URI[md5sum] = "950775286b85f665006be96d32fde4b1"
+SRC_URI[sha256sum] = "2e5f20270bcc8e0524a4c205a303c8091b768d68223d8deace82b37a63cfba48"
 
 S = "${WORKDIR}/smart-refrigerator-${PV}"
 
