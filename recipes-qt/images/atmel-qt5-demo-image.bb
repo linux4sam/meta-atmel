@@ -82,6 +82,7 @@ IMAGE_INSTALL += "\
 	qmlbrowser \
 	samegame \
 	minehunt \
+	ptpdemo \
 	atmel-qt-demo-init \
 "
 
