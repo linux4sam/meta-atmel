@@ -13,7 +13,7 @@ KBRANCH = "${KBRANCH_DEFAULT}"
 SRCBRANCH_sama5d4ek = "linux-3.10-at91"
 SRC_URI_sama5d4ek = "git://github.com/linux4sam/linux-at91.git;protocol=git;branch=${SRCBRANCH}"
 SRC_URI_sama5d4ek += "file://defconfig"
-SRCREV_sama5d4ek = "e0f8878dffb73e281cbe08d1d49c92178f56568d"
+SRCREV_sama5d4ek = "d67968b5ec5725ed91ae31176456dc4b6ebd58e6"
 
 S = "${WORKDIR}/git"
 
