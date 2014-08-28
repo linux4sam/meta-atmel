@@ -6,8 +6,6 @@ SRC_URI = " \
         file://bfa42af7a2c21bada264214d2dd209edc64eb041.patch \
         file://8af6ead234d318af463f6cfdf542bb6d31e73426.patch"
 
-PR = "r1"
-
 PV = "3.6.2+git${SRCPV}"
 
 S = "${WORKDIR}/git"
