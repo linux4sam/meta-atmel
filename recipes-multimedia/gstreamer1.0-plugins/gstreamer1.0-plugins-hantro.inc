@@ -3,11 +3,11 @@ SECTION = "multimedia"
 LICENSE = "LGPLv2.1"
 LICENSE_FLAGS = "commercial"
 HOMEPAGE = "http://www.gstreamer.net/"
-DEPENDS = "gstreamer1.0 gstreamer1.0-plugins-base"
+DEPENDS = "gstreamer1.0 gstreamer1.0-plugins-base g1-binaries"
 
 inherit autotools pkgconfig gettext
 
-acpaths = "-I ${S}/common/m4 -I ${S}/m4"
+//acpaths = "-I ${S}/common/m4 -I ${S}/m4"
 
 PR = "r1"
 
