@@ -12,8 +12,8 @@ require recipes-qt/qt5/qt5.inc
 
 SRC_URI = "ftp://ftp.linux4sam.org/pub/demo/qtdemo/home-automation-${PV}.tar.gz"
 
-SRC_URI[md5sum] = "cf899bc0902353f8860df31a6135841e"
-SRC_URI[sha256sum] = "156b29db8a9ae1617f66ca3907a781ea5446678826dff3b03a822331ddcc09ee"
+SRC_URI[md5sum] = "f659ec70df714b49c8840ae61654fc7a"
+SRC_URI[sha256sum] = "a28cc27db1d83e1342bc9d522c8ca898276502fda4ec8134046a974e0506f977"
 
 S = "${WORKDIR}/home-automation-${PV}"
 
