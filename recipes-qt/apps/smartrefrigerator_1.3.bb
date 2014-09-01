@@ -7,13 +7,13 @@ PR = "r2"
 
 PACKAGES = "${PN}-dbg ${PN}"
 
-DEPENDS = "qtbase qtwebkit libv4l"
+DEPENDS = "qtbase qtwebkit libv4l qtquick1"
 require recipes-qt/qt5/qt5.inc
 
 SRC_URI = "ftp://ftp.linux4sam.org/pub/demo/qtdemo/smart-refrigerator-${PV}.tar.gz"
 
-SRC_URI[md5sum] = "950775286b85f665006be96d32fde4b1"
-SRC_URI[sha256sum] = "2e5f20270bcc8e0524a4c205a303c8091b768d68223d8deace82b37a63cfba48"
+SRC_URI[md5sum] = "c790ebc4169a363d94da4f35dbd2afe8"
+SRC_URI[sha256sum] = "6c6cc2203d91f052edc7026a266f6df130f79e3e1c269a008bbfd40ee163f91a"
 
 S = "${WORKDIR}/smart-refrigerator-${PV}"
 
