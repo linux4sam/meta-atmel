@@ -6,12 +6,12 @@ PR = "r1"
 
 SRC_URI = "ftp://ftp.linux4sam.org/pub/demo/qtdemo/application-launcher-${PV}.tar.gz"
 
-SRC_URI[md5sum] = "e3b4d39f4d47b9ba93c1ef7278808d31"
-SRC_URI[sha256sum] = "0663880cde1cf7a6833e3780c39479616026dafd301db188c063f51eade4ec26"
+SRC_URI[md5sum] = "df427daf50fbc7095ffafd09f30e5a10"
+SRC_URI[sha256sum] = "25913a38cf96d00fe3010fcb985dc655e52dcaac75560f0a8fc8271c62ada9cc"
 
 S = "${WORKDIR}/application-launcher-${PV}"
 
-DEPENDS = "qtbase qtdeclarative qtwebkit"
+DEPENDS = "qtbase qtdeclarative qtwebkit qtquick1"
 #RDEPENDS_${PN} = "qtdeclarative-qmlplugins qtdeclarative-plugins"
 require recipes-qt/qt5/qt5.inc
 
