@@ -3,7 +3,7 @@ LICENSE = "ATMEL_LLA"
 LIC_FILES_CHKSUM = "file://main.cpp;endline=146;md5=fa39b3d717088cee47df5eeb61b548b3"
 
 DEFAULT_PREFERENCE = "12"
-PR = "r1"
+PR = "r2"
 
 PACKAGES = "${PN}-dbg ${PN}"
 
@@ -12,8 +12,8 @@ require recipes-qt/qt5/qt5.inc
 
 SRC_URI = "ftp://ftp.linux4sam.org/pub/demo/qtdemo/home-automation-${PV}.tar.gz"
 
-SRC_URI[md5sum] = "f659ec70df714b49c8840ae61654fc7a"
-SRC_URI[sha256sum] = "a28cc27db1d83e1342bc9d522c8ca898276502fda4ec8134046a974e0506f977"
+SRC_URI[md5sum] = "63018e4f0603a68231527fda89d8765c"
+SRC_URI[sha256sum] = "ba7b4734c742f0d56b5eed9f7917cd111d11b9b2bde84bc69b2ac71fa3210bb9"
 
 S = "${WORKDIR}/home-automation-${PV}"
 
@@ -39,5 +39,5 @@ FILES_${PN} = " \
 
 do_install() {
 	make INSTALL_ROOT=${D} install
-	cp -ar ${B}/HomeAutomation ${D}/opt/HomeAutomation/
+	install -m 0755 ${B}/HomeAutomation ${D}/opt/HomeAutomation/
 }
