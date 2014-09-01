@@ -6,7 +6,7 @@ PACKAGES = "${PN}-dbg ${PN}"
 
 PR = "r1"
 
-DEPENDS = "qtdeclarative"
+DEPENDS = "qtquick1"
 require recipes-qt/qt5/qt5.inc
 
 SRC_URI = "ftp://ftp.linux4sam.org/pub/demo/qtdemo/qml-browser-${PV}.tar.gz"
