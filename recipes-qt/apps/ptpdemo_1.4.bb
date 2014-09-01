@@ -17,10 +17,11 @@ inherit pkgconfig
 
 PACKAGES = "${PN}-dbg ${PN}"
 FILES_${PN}-dbg = " \
-  /usr/* \
   /opt/ptp/.debug \
   /opt/ptp/.debug/phc2sys \
   /opt/ptp/.debug/ptp4l \
+  /usr/src/debug/* \
+  /usr/src/debug \
 "
 
 FILES_${PN} = " \
