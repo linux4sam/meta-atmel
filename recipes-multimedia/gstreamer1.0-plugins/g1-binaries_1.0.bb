@@ -7,8 +7,8 @@ PR = "r1"
 
 SRC_URI = "ftp://ftp.linux4sam.org/pub/demo/qtdemo/g1-binaries-${PV}.tar.gz"
 
-SRC_URI[md5sum] = "5a5a205618d78d6dd9295ab4faa36b19"
-SRC_URI[sha256sum] = "1ffec80f0d388b6bdcb2846424ec3efdf504a9f0c6bbcbea30efa4a0c80577bc"
+SRC_URI[md5sum] = "5f30a3dcadce213448a2815493221812"
+SRC_URI[sha256sum] = "f0288c84fb3e07ab18037c12b2070128176cd9ab7ae54ae2627ff904c28e06b3"
 S = "${WORKDIR}/g1-binaries-${PV}"
 
 do_install() {
@@ -19,5 +19,4 @@ do_install() {
 }
 
 ALLOW_EMPTY_${PN} = "1"
-PACKAGE_ARCH = "${MACHINE_ARCH}"
 INHIBIT_DEFAULT_DEPS = "1"
