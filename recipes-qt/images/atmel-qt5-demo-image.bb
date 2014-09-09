@@ -74,6 +74,8 @@ IMAGE_INSTALL += "\
 	gstreamer1.0-plugins-bad-meta \
 	gstreamer1.0-plugins-base-meta \
 	gstreamer1.0-plugins-good-meta \
+	gstreamer1.0-plugins-ugly-meta \
+	gstreamer1.0-libav \
 	gstreamer1.0-plugins-hantro \
 	g1-binaries-dev \
 	g1-binaries-staticdev \
