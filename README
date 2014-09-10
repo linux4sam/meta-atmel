@@ -14,6 +14,7 @@ For now it supports:
 - SAMA5D3 product family (http://www.atmel.com/products/microcontrollers/arm/sama5d3.aspx)
 - AT91SAM9x5 product family (AT91SAM9G15, AT91SAM9G25, AT91SAM9X25, AT91SAM9G35 and AT91SAM9X35)
 - AT91SAM9RL
+- AT91SAM9G45
 
 It is hosted on http://github.com/linux4sam/meta-atmel
 
