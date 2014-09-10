@@ -26,4 +26,4 @@ do_deploy_append() {
 	fi
 }
 
-COMPATIBLE_MACHINE = "(sama5d3xek|sama5d3_xplained|at91sam9x5ek|at91sam9rlek)"
+COMPATIBLE_MACHINE = "(sama5d3xek|sama5d3_xplained|at91sam9x5ek|at91sam9rlek|at91sam9m10g45ek)"
