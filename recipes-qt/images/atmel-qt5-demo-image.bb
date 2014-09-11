@@ -35,6 +35,7 @@ IMAGE_INSTALL += "\
 	bridge-utils \
 	canutils \
 	gdbserver \
+	obp-utils \
 	usbutils \
 	wget \
 	${CORE_IMAGE_BASE_INSTALL} \
