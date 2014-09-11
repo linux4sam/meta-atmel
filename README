@@ -71,12 +71,13 @@ BBFILES ?= ""
 
 BBLAYERS ?= " \
   /home/pvilchez/workspace/github/poky/meta-atmel \
-  /home/pvilchez/workspace/openembedded/poky/meta-qt5 \
+  /home/pvilchez/workspace/github/poky/meta-qt5 \
   /home/pvilchez/workspace/github/poky/meta \
   /home/pvilchez/workspace/github/poky/meta-yocto \
   /home/pvilchez/workspace/github/poky/meta-yocto-bsp \
   /home/pvilchez/workspace/github/poky/meta-openembedded/meta-oe \
   /home/pvilchez/workspace/github/poky/meta-openembedded/meta-networking \
+  /home/pvilchez/workspace/github/poky/meta-openembedded/meta-ruby \
   "
 11/ Edit local.conf to specify the machine, location of source archived, package type (rpm, deb or ipk)
 vim conf/local.conf
