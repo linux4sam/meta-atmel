@@ -9,7 +9,6 @@ inherit autotools pkgconfig gettext
 
 //acpaths = "-I ${S}/common/m4 -I ${S}/m4"
 
-PR = "r1"
 
 FILES_${PN} += "${libdir}/gstreamer-1.0/*.so"
 FILES_${PN}-dbg += "${libdir}/gstreamer-1.0/.debug"
