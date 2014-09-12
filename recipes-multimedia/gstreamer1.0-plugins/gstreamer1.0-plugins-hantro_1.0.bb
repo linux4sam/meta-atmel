@@ -2,6 +2,7 @@ include gstreamer1.0-plugins-hantro.inc
 
 LIC_FILES_CHKSUM = "file://COPYING;md5=4fe869ee987a340198fb0d54c55c47f1 \
                     "
+PR = "r1"
 
 SRC_URI = "ftp://ftp.linux4sam.org/pub/demo/qtdemo/gst-hantro-g1-${PV}.tar.gz"
 
