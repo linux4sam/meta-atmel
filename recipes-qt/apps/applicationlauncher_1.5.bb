@@ -2,12 +2,12 @@ DESCRIPTION = "Atmel QT5 Application Launcher demo"
 LICENSE = "ATMEL_LLA"
 LIC_FILES_CHKSUM = "file://main.cpp;endline=144;md5=f329c5ddb6ba9266deb58683468d316d"
 
-PR = "r1"
+PR = "r2"
 
 SRC_URI = "ftp://ftp.linux4sam.org/pub/demo/qtdemo/application-launcher-${PV}.tar.gz"
 
-SRC_URI[md5sum] = "df427daf50fbc7095ffafd09f30e5a10"
-SRC_URI[sha256sum] = "25913a38cf96d00fe3010fcb985dc655e52dcaac75560f0a8fc8271c62ada9cc"
+SRC_URI[md5sum] = "1ba89fbe0d2416a2e012581921d8a61a"
+SRC_URI[sha256sum] = "0eece411beb8b01323f105fd8f3a8bf1193c455ea1517a233063c14ebae958ee"
 
 S = "${WORKDIR}/application-launcher-${PV}"
 
@@ -35,7 +35,9 @@ FILES_${PN}-dbg = " \
 FILES_${PN} = " \
   /opt \
   /opt/ApplicationLauncher \
+  /opt/ApplicationLauncher/applications_list.xml \
 "
 do_install() {
 	make INSTALL_ROOT=${D} install
+	cp ${S}/applications_list.xml ${D}/opt/ApplicationLauncher/
 }
