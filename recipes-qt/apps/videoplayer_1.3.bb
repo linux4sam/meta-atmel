@@ -12,8 +12,8 @@ require recipes-qt/qt5/qt5.inc
 
 SRC_URI = "ftp://ftp.linux4sam.org/pub/demo/qtdemo/atmel-video-player-${PV}.tar.gz"
 
-SRC_URI[md5sum] = "890092275cc4e97d333c3f1564b4bf3c"
-SRC_URI[sha256sum] = "bd242552cc8612e1b1609915b0983ec110f5606eaa10e167739776e9dbe68c40"
+SRC_URI[md5sum] = "cd57c0846bb4af9677c891085e50f363"
+SRC_URI[sha256sum] = "0f660bc0bbb6ddefddd52cd95c05096500c94ff36dddaa67d58629392ccbe1a6"
 
 S = "${WORKDIR}/atmel-video-player-${PV}"
 
