@@ -7,16 +7,17 @@ PR = "r2"
 
 PACKAGES = "${PN}-dbg ${PN}"
 
-DEPENDS = "qt4-embedded libv4l"
+DEPENDS = "qtbase qtwebkit libv4l qtquick1"
+require recipes-qt/qt5/qt5.inc
 
 SRC_URI = "ftp://ftp.linux4sam.org/pub/demo/qtdemo/smart-refrigerator-${PV}.tar.gz"
 
-SRC_URI[md5sum] = "6933e667240b287b0b85b6c7a826f87a"
-SRC_URI[sha256sum] = "a96d09a8e650889ec35c89cfea12261082c351889a4b48252e3ba9f3cfe2398f"
+SRC_URI[md5sum] = "c790ebc4169a363d94da4f35dbd2afe8"
+SRC_URI[sha256sum] = "6c6cc2203d91f052edc7026a266f6df130f79e3e1c269a008bbfd40ee163f91a"
 
 S = "${WORKDIR}/smart-refrigerator-${PV}"
 
-inherit qt4e pkgconfig
+inherit pkgconfig
 
 FILES_${PN}-dbg = " \
 	/opt/SmartRefrigerator/bin \
@@ -36,11 +37,10 @@ FILES_${PN} = " \
 
 do_install() {
 	make INSTALL_ROOT=${D} install
-    	cp -ar ${S}/output/SmartRefr* ${D}/opt
+	cp -ar ${B}/output/SmartRefr* ${D}/opt
 	mkdir ${D}/etc
-    	cp ${S}/output/nhttpd.conf ${D}/etc/nhttpd.conf
-    	cp -ar ${S}/output/ApplicationL* ${D}/opt
-
+	cp ${B}/output/nhttpd.conf ${D}/etc/nhttpd.conf
+	cp -ar ${B}/output/ApplicationL* ${D}/opt
 }
 
 pkg_postinst_PACKAGENAME() {
