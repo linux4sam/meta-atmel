@@ -8,9 +8,6 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/files/${MACHINE}:"
 
 SRC_URI = "git://github.com/linux4sam/linux-at91.git;protocol=git;branch=${KBRANCH};nocheckout=1"
 SRC_URI += "file://defconfig"
-SRC_URI_append_sama5d3xek += " file://sama5d3xek.its \
-			file://sama5d3xek_pda4.its \
-			file://sama5d3xek_pda7.its"
 
 do_deploy_append() {
 	if [ ${UBOOT_FIT_IMAGE} = "xyes" ]; then
@@ -18,7 +15,7 @@ do_deploy_append() {
 		if [ ! -e "${DTB_PATH}" ]; then
 			DTB_PATH="${B}/arch/${ARCH}/boot/"
 		fi
-		cp ${WORKDIR}/${MACHINE}*.its ${DTB_PATH}
+
 		cd ${DTB_PATH}
 		mkimage -f ${MACHINE}.its ${MACHINE}.itb
 		install -m 0644 ${MACHINE}.itb ${DEPLOYDIR}/${MACHINE}.itb
