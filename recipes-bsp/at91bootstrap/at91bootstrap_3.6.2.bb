@@ -27,7 +27,7 @@ do_configure() {
 	unset CPPFLAGS
 	unset ASFLAGS
 	if [ "${@base_contains('DISTRO_FEATURES', 'ld-is-gold', 'ld-is-gold', '', d)}" = "ld-is-gold" ] ; then
-		sed -i 's/$(CROSS_COMPILE)ld$/$(CROSS_COMPILE)ld.bfd/g' ${S}/Makefile	
+		sed -i 's/$(CROSS_COMPILE)ld$/$(CROSS_COMPILE)ld.bfd/g' ${S}/Makefile
 	fi
 	make CROSS_COMPILE=${TARGET_PREFIX} ${AT91BOOTSTRAP_TARGET}
 }
