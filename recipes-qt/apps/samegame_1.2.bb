@@ -6,7 +6,7 @@ PACKAGES = "${PN}-dbg ${PN}"
 
 PR = "r2"
 
-DEPENDS = "qtdeclarative"
+DEPENDS = "qtbase qtdeclarative qtquick1"
 require recipes-qt/qt5/qt5.inc
 
 SRC_URI = "ftp://ftp.linux4sam.org/pub/demo/qtdemo/samegame-${PV}.tar.gz"
