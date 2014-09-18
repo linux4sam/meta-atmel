@@ -1,5 +1,5 @@
 DESCRIPTION = "Atmel QT home automation demo"
-LICENSE = "LGPL"
+LICENSE = "LGPLv2.1"
 LIC_FILES_CHKSUM = "file://qml/webbrowser/webbrowser.qml;endline=40;md5=a78c797054f097540ddb57fc9212183d"
 
 PACKAGES = "${PN}-dbg ${PN}"
