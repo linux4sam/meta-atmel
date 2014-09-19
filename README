@@ -10,9 +10,9 @@ URI: https://github.com/meta-qt5/meta-qt5
 Branch: daisy (tested with commit ID: a06222499ab602e7c67c1433dd0b559d51d3d744)
 
 - meta-atmel
-URI: git@github.com:linux4sam/meta-atmel-timesys.git
-URI: https://github.com/linux4sam/meta-atmel-timesys
-Branch: timesys (tested with commit ID: b2c12896ce55586b6f1034fbb81cdb6b6b7419d3)
+URI: git://github.com/linux4sam/meta-atmel.git
+URI: https://github.com/linux4sam/meta-atmel.git
+Branch: master (tested with commit ID: 092992189540516d57583d6f08f647e39570f602)
 This is the meta layer for Atmel SoCs. For now it supports:
 - SAMA5D4 product family
 - SAMA5D3 product family (http://www.atmel.com/products/microcontrollers/arm/sama5d3.aspx)
@@ -49,11 +49,11 @@ git checkout origin/daisy -b my_branch
 cd ..
 
 7/ Clone meta-atmel layer
-git clone git@github.com:linux4sam/meta-atmel-timesys.git meta-atmel
+git clone git://github.com/linux4sam/meta-atmel.git meta-atmel
 
 8/ Checkout proper meta-atmel branch
 cd meta-atmel
-git checkout origin/timesys -b my_branch
+git checkout origin/master -b my_branch
 # come back to the "poky" directory for next steps
 cd ..
 
@@ -121,7 +121,7 @@ DISTRO            = "poky"
 DISTRO_VERSION    = "1.6.1"
 TUNE_FEATURES     = "armv7a vfp thumb neon callconvention-hard cortexa5"
 TARGET_FPU        = "vfp-neon"
-meta-atmel        = "timesys:b2c12896ce55586b6f1034fbb81cdb6b6b7419d3"
+meta-atmel        = "master:092992189540516d57583d6f08f647e39570f602"
 meta-qt5          = "daisy:a06222499ab602e7c67c1433dd0b559d51d3d744"
 meta              
 meta-yocto        
