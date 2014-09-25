@@ -16,6 +16,7 @@ do_deploy_append() {
 			DTB_PATH="${B}/arch/${ARCH}/boot/"
 		fi
 
+		cp ${S}/arch/${ARCH}/boot/dts/${MACHINE}*.its ${DTB_PATH}
 		cd ${DTB_PATH}
 		mkimage -f ${MACHINE}.its ${MACHINE}.itb
 		install -m 0644 ${MACHINE}.itb ${DEPLOYDIR}/${MACHINE}.itb
