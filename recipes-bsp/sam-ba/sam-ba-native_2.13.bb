@@ -1,4 +1,4 @@
-SUMMARY="The SAM Boot Assistant (SAM-BA) software provides a means of easily 
+SUMMARY="The SAM Boot Assistant (SAM-BA) software provides a means of easily \
 programming different Atmel AT91SAM devices. "
 HOMEPAGE="http://www.atmel.com/tools/atmelsam-bain-systemprogrammer.aspx"
 LICENSE="Proprietary"
