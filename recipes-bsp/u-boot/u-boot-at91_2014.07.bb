@@ -14,7 +14,7 @@ SRCREV = "f442357fadb535f4f343dc0593adb945fa03fc0c"
 PV = "v2014.07-at91"
 PR = "r1"
 
-COMPATIBLE_MACHINE = '(sama5d3xek|sama5d3_xplained|at91sam9x5ek|at91sam9rlek|at91sam9m10g45ek|sama5d4ek)'
+COMPATIBLE_MACHINE = '(sama5d3xek|sama5d3-xplained|at91sam9x5ek|at91sam9rlek|at91sam9m10g45ek|sama5d4ek)'
 
 SRC_URI = "git://github.com/linux4sam/u-boot-at91.git;branch=u-boot-2014.07-at91"
 

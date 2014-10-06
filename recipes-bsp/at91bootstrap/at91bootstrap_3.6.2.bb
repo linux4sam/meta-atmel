@@ -3,7 +3,7 @@ SECTION = "bootloaders"
 LICENSE = "ATMEL"
 LIC_FILES_CHKSUM = "file://main.c;endline=27;md5=42f86d2f6fd17d1221c5c651b487a07f"
 
-COMPATIBLE_MACHINE = '(sama5d3xek|sama5d3_xplained|at91sam9x5ek|at91sam9rlek|at91sam9m10g45ek)'
+COMPATIBLE_MACHINE = '(sama5d3xek|sama5d3-xplained|at91sam9x5ek|at91sam9rlek|at91sam9m10g45ek)'
 
 SRCREV="1e8fd41ce7149f7d2063a3b3bcf2c69e77b97732"
 

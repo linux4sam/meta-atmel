@@ -93,7 +93,7 @@ Here are the machines that are supported:
 MACHINE ??= "at91sam9rlek"
 MACHINE ??= "at91sam9x5ek"
 MACHINE ??= "sama5d3xek"
-MACHINE ??= "sama5d3_xplained"
+MACHINE ??= "sama5d3-xplained"
 MACHINE ??= "sama5d4ek"
 
 12/ Build core minimal image
