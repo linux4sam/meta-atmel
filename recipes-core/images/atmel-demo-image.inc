@@ -34,7 +34,11 @@ IMAGE_INSTALL = "\
 inherit core-image
 
 # we don't need the kernel in the image
-ROOTFS_POSTPROCESS_COMMAND += "rm -f ${IMAGE_ROOTFS}/boot/*Image*; "
+remove_kernel_rootfs_postprocess() {
+    rm -f ${IMAGE_ROOTFS}/boot/*Image*
+}
+
+ROOTFS_POSTPROCESS_COMMAND += "remove_kernel_rootfs_postprocess; "
 
 sama5d3_xplained_rootfs_postprocess() {
     curdir=$PWD
