@@ -108,15 +108,3 @@ atmel_qte_rootfs_postprocess() {
 }
 
 ROOTFS_POSTPROCESS_COMMAND += "atmel_qte_rootfs_postprocess;"
-
-sama5d3_xplained_rootfs_postprocess() {
-    curdir=$PWD
-    cd ${IMAGE_ROOTFS}
-
-    # autoload needed modules
-    cd etc
-    echo "atmel_usba_udc" >> modules
-    echo "g_serial" >> modules
-
-    cd $curdir
-}
