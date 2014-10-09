@@ -1,0 +1,30 @@
+From 35f4ab2ed71cd3fc13ccf14525e7de2c27348c61 Mon Sep 17 00:00:00 2001
+From: Mathieu Anquetin <mathieu.anquetin@groupe-cahors.com>
+Date: Fri, 13 Dec 2013 10:20:03 +0100
+Subject: [PATCH 2/2] Creating symlink to binary
+
+Since the name of the flashable image is config-dependant, we create a
+symlink to this file to have a standard name to the last built flashable
+image.
+
+Signed-off-by: Mathieu Anquetin <mathieu.anquetin@groupe-cahors.com>
+Acked-by: Nicolas Ferre <nicolas.ferre@atmel.com>
+---
+ Makefile | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Makefile b/Makefile
+index 0b1cae6..11062f0 100644
+--- a/Makefile
++++ b/Makefile
+@@ -287,6 +287,7 @@ $(AT91BOOTSTRAP): $(OBJS)
+ 	@$(LD) $(LDFLAGS) -n -o $(BINDIR)/$(BOOT_NAME).elf $(OBJS)
+ #	@$(OBJCOPY) --strip-debug --strip-unneeded $(BINDIR)/$(BOOT_NAME).elf -O binary $(BINDIR)/$(BOOT_NAME).bin
+ 	@$(OBJCOPY) --strip-all $(BINDIR)/$(BOOT_NAME).elf -O binary $@
++	@ln -sf $(BOOT_NAME).bin ${BINDIR}/${SYMLINK}
+ 
+ %.o : %.c .config
+ 	@echo "  CC        "$<
+-- 
+1.8.2.2
+

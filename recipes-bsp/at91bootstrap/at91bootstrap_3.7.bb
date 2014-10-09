@@ -10,6 +10,8 @@ SRCREV="794dbe1bd01910ae060943c862dc3f165301f5f8"
 PR = "r3"
 
 SRC_URI = "git://github.com/linux4sam/at91bootstrap.git;protocol=git \
+           file://Remove-standard-includes.patch \
+           file://Creating-symlink-to-binary.patch \
           "
 
 S = "${WORKDIR}/git"

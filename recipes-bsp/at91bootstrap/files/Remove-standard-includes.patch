@@ -1,0 +1,59 @@
+From b1e85d514d24edf45bbb8a6b647238d00194f369 Mon Sep 17 00:00:00 2001
+From: Mathieu Anquetin <mathieu.anquetin@groupe-cahors.com>
+Date: Thu, 12 Dec 2013 11:57:27 +0100
+Subject: [PATCH 1/2] Remove standard includes
+
+These includes are not needed and fail the build when using a custom
+built toolchain from OpenEmbedded.
+
+Signed-off-by: Mathieu Anquetin <mathieu.anquetin@groupe-cahors.com>
+Acked-by: Nicolas Ferre <nicolas.ferre@atmel.com>
+---
+ Makefile       | 4 +++-
+ driver/debug.c | 1 -
+ driver/flash.c | 2 --
+ 3 files changed, 3 insertions(+), 4 deletions(-)
+
+diff --git a/Makefile b/Makefile
+index 03dd9df..0b1cae6 100644
+--- a/Makefile
++++ b/Makefile
+@@ -211,7 +211,9 @@ OBJS:= $(SOBJS-y) $(COBJS-y)
+ INCL=board/$(BOARDNAME)
+ GC_SECTIONS=--gc-sections
+ 
+-CPPFLAGS=-ffunction-sections -g -Os -Wall \
++NOSTDINC_FLAGS=-nostdinc -isystem $(shell $(CC) -print-file-name=include)
++
++CPPFLAGS=$(NOSTDINC_FLAGS) -ffunction-sections -g -Os -Wall \
+ 	-fno-stack-protector -fno-common \
+ 	-I$(INCL) -Iinclude -Ifs/include \
+ 	-DAT91BOOTSTRAP_VERSION=\"$(VERSION)$(REV)$(SCMINFO)\" -DCOMPILE_TIME="\"$(DATE)\""
+diff --git a/driver/debug.c b/driver/debug.c
+index 9f83e4b..352c34f 100644
+--- a/driver/debug.c
++++ b/driver/debug.c
+@@ -27,7 +27,6 @@
+  */
+ #include "usart.h"
+ #include "debug.h"
+-#include <stdio.h>
+ #include <stdarg.h>
+ 
+ #define MAX_BUFFER	128
+diff --git a/driver/flash.c b/driver/flash.c
+index 11615c7..ebc5d5a 100644
+--- a/driver/flash.c
++++ b/driver/flash.c
+@@ -26,8 +26,6 @@
+ #include "../include/part.h"
+ #include "../include/main.h"
+ #include "../include/flash.h"
+-#include <stdlib.h>
+-
+ 
+ int load_norflash(unsigned int img_addr,
+ 		unsigned int img_size,
+-- 
+1.8.2.2
+
