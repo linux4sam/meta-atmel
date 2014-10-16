@@ -89,15 +89,16 @@ IMAGE_INSTALL += "\
 
 inherit core-image
 
-ROOTFS_POSTPROCESS_COMMAND += ""
-
 atmel_qte_rootfs_postprocess() {
     curdir=$PWD
+
+    cd ${IMAGE_ROOTFS}
     # remove qtopia extra files
     rm -rf usr/bin/qtopia/demos
     rm -rf usr/bin/qtopia/examples
     rm -rf usr/share/doc
     rm -rf usr/share/qtopia/mkspecs
+
     cd $curdir
 }
 
