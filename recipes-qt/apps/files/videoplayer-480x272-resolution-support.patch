@@ -1,0 +1,53 @@
+From 2d7fe2062a52c9e837548059978d92b39b8e9b74 Mon Sep 17 00:00:00 2001
+From: Josh Wu <josh.wu@atmel.com>
+Date: Fri, 17 Oct 2014 15:10:02 +0800
+Subject: [PATCH] videoplayer: change the resolution to 480x272
+
+For pda4 screen, we need change to resolution 480x272.
+
+Signed-off-by: Josh Wu <josh.wu@atmel.com>
+---
+ main.cpp        | 4 ++--
+ videoplayer.cpp | 4 ++--
+ 2 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/main.cpp b/main.cpp
+index 5799eb8..f0fc5d4 100644
+--- a/main.cpp
++++ b/main.cpp
+@@ -32,8 +32,8 @@
+ #include <QApplication>
+ #include <QThread>
+ 
+-#define LCD_WIDTH   800
+-#define LCD_HEIGHT  480
++#define LCD_WIDTH   480
++#define LCD_HEIGHT  272
+ #define LAYER       1
+ 
+ class GMainLoopThread : public QThread
+diff --git a/videoplayer.cpp b/videoplayer.cpp
+index 7ed91ad..58aed5a 100644
+--- a/videoplayer.cpp
++++ b/videoplayer.cpp
+@@ -39,7 +39,7 @@
+ #if defined PLANA || defined PLANC
+ #define PIPE "uridecodebin expose-all-streams=false name=" SRC_NAME " \
+ caps=video/x-h264;audio/x-raw " SRC_NAME ". ! queue ! h264parse ! \
+-queue ! g1h264dec ! video/x-raw,width=800,height=480 ! \
++queue ! g1h264dec ! video/x-raw,width=480,height=272 ! \
+ progressreport silent=true do-query=true update-freq=1 format=time \
+ name=" PROGRESS_NAME " ! perf name=" PERF_NAME " ! \
+ g1fbdevsink zero-memcpy=true max-lateness=-1 async=false \
+@@ -49,7 +49,7 @@ alsasink async=false enable-last-sample=false"
+ #else
+ #define PIPE "uridecodebin expose-all-streams=false name=" SRC_NAME " \
+ caps=video/x-h264;audio/x-raw " SRC_NAME ". ! queue ! h264parse ! \
+-queue ! g1h264dec ! video/x-raw,width=800,height=480 ! \
++queue ! g1h264dec ! video/x-raw,width=480,height=272 ! \
+ progressreport silent=true do-query=true update-freq=1 format=time \
+ name=" PROGRESS_NAME " ! perf name=" PERF_NAME " ! \
+ g1fbdevsink zero-memcpy=true max-lateness=-1 async=false \
+-- 
+1.9.1
+
