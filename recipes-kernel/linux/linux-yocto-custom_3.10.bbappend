@@ -9,6 +9,8 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/files/${MACHINE}:"
 SRC_URI = "git://github.com/linux4sam/linux-at91.git;protocol=git;branch=${KBRANCH};nocheckout=1"
 SRC_URI += "file://defconfig"
 
+SRCREV_sama5d4-xplained = "91d6c4db1f3685d6965986bfe9e8fb8a600a77f8"
+
 do_deploy_append() {
 	if [ ${UBOOT_FIT_IMAGE} = "xyes" ]; then
 		DTB_PATH="${B}/arch/${ARCH}/boot/dts/"
@@ -24,4 +26,4 @@ do_deploy_append() {
 	fi
 }
 
-COMPATIBLE_MACHINE = "(sama5d4ek|sama5d3xek|sama5d3-xplained|at91sam9x5ek|at91sam9rlek|at91sam9m10g45ek)"
+COMPATIBLE_MACHINE = "(sama5d4ek|sama5d4-xplained|sama5d3xek|sama5d3-xplained|at91sam9x5ek|at91sam9rlek|at91sam9m10g45ek)"
