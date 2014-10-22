@@ -1,0 +1,26 @@
+From a1d5a77dbeee1692ea457ed7525189d25e040478 Mon Sep 17 00:00:00 2001
+From: Josh Wu <josh.wu@atmel.com>
+Date: Wed, 22 Oct 2014 10:25:02 +0800
+Subject: [PATCH] use PLAN_B version
+
+Signed-off-by: Josh Wu <josh.wu@atmel.com>
+---
+ player.pro | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/player.pro b/player.pro
+index f407ebf..dd25b84 100644
+--- a/player.pro
++++ b/player.pro
+@@ -11,7 +11,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+ TARGET = player
+ TEMPLATE = app
+ 
+-DEFINES += PLANC
++DEFINES += PLANB
+ 
+ SOURCES += main.cpp\
+         player.cpp \
+-- 
+1.9.1
+

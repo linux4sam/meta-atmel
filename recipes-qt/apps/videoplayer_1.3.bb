@@ -15,6 +15,7 @@ SRC_URI = "ftp://ftp.linux4sam.org/pub/demo/qtdemo/atmel-video-player-${PV}.tar.
 SRC_URI_sama5d4-xplained = " \
            ftp://ftp.linux4sam.org/pub/demo/qtdemo/atmel-video-player-${PV}.tar.gz \
            file://videoplayer-480x272-resolution-support.patch \
+           file://videoplayer-change-to-PLAN_B-version.patch \
           "
 
 SRC_URI[md5sum] = "cd57c0846bb4af9677c891085e50f363"
