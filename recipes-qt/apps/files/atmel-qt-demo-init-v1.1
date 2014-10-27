@@ -4,29 +4,17 @@ set -e
 
 start()
 {
-  if [ -f /etc/profile.d/tslib.sh ]; then
-     source /etc/profile.d/tslib.sh
-  fi
-
   mode=`fbset | grep mode | awk -F "\"" '{print $2;}'`
   echo $mode
-  if [ ! -f /etc/pointercal-${mode} ]; then
-     rm -f /etc/pointercal
-     /usr/bin/ts_calibrate
-     mv /etc/pointercal /etc/pointercal-${mode}
-  fi
 
   echo "Starting Demo..."
-  export QWS_MOUSE_PROTO=Tslib:${TSLIB_TSDEVICE}
 
   resolution=`echo $mode | awk -F "-" '{print $1;}'`
   case "$resolution" in
     "800x480")
-       ln -sf /etc/pointercal-${mode} /etc/pointercal
        /opt/ApplicationLauncher/ApplicationLauncher.sh
     ;;
     "480x272")
-       ln -sf /etc/pointercal-${mode} /etc/pointercal
       /opt/ApplicationLauncher/ApplicationLauncher-small.sh
     ;;
     *)
