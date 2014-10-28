@@ -68,9 +68,6 @@ IMAGE_INSTALL += "\
 	qtwebkit-qmlplugins \
 	\
 	libicui18n \
-	tslib \
-	tslib-calibrate \
-	tslib-tests \
 	gstreamer1.0 \
 	gstreamer1.0-plugins-bad-meta \
 	gstreamer1.0-plugins-base-meta \
