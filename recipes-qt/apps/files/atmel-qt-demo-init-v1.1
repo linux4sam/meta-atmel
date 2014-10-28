@@ -8,6 +8,9 @@ start()
   echo $mode
 
   echo "Starting Demo..."
+  # add qt5 parameters
+  export QT_QPA_PLATFORM=linuxfb
+  export QT_QPA_GENERIC_PLUGINS=evdevtouch:/dev/input/touchscreen0,evdevkeyboard:/dev/input/event0
 
   resolution=`echo $mode | awk -F "-" '{print $1;}'`
   case "$resolution" in
