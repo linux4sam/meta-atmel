@@ -10,7 +10,7 @@ LICENSE = "GPLv2+"
 LIC_FILES_CHKSUM = "file://README;beginline=1;endline=22;md5=2687c5ebfd9cb284491c3204b726ea29"
 
 SRCREV = "f442357fadb535f4f343dc0593adb945fa03fc0c"
-SRCREV_sama5d4-xplained = "a51dea0bb469529a27f329b9ccebe57c02c295f1"
+SRCREV_sama5d4-xplained = "87076e82e26688f43d3b64939ba2b6034743f59e"
 
 PV = "v2014.07-at91"
 PR = "r1"

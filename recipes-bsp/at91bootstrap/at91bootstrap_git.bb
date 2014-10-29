@@ -6,7 +6,7 @@ SRCREV = "35f4ab2ed71cd3fc13ccf14525e7de2c27348c61"
 SRC_URI = "git://github.com/linux4sam/at91bootstrap.git;protocol=git \
           "
 
-SRCREV_sama5d4-xplained = "be375331a7971d23f13e6810690c100923e1cc9f"
+SRCREV_sama5d4-xplained = "6ea9b26e3fa4bec009871de89f4f8c2bcaaa65be"
 
 S = "${WORKDIR}/git"
 
