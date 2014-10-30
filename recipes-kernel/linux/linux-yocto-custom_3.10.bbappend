@@ -9,7 +9,7 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/files/${MACHINE}:"
 SRC_URI = "git://github.com/linux4sam/linux-at91.git;protocol=git;branch=${KBRANCH};nocheckout=1"
 SRC_URI += "file://defconfig"
 
-SRCREV_sama5d4-xplained = "3e7430bac3ef2fdde4ed94bc88f5866bbb347980"
+SRCREV_sama5d4-xplained = "46f4253693b0ee8d25214e7ca0dde52e788ffe95"
 
 do_deploy_append() {
 	if [ ${UBOOT_FIT_IMAGE} = "xyes" ]; then
