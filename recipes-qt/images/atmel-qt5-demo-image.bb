@@ -92,4 +92,19 @@ IMAGE_INSTALL += "\
 
 inherit core-image
 
-ROOTFS_POSTPROCESS_COMMAND += ""
+
+atmel_qt5_rootfs_postprocess() {
+    curdir=$PWD
+
+    cd ${IMAGE_ROOTFS}
+    cd opt/
+
+    # As we don't use tslib right now, we need remove its plugin in shell
+    # scripts that will call the qt5 application.
+    # So we'll find all shell scripts and remove the parameter:
+    #    -plugin tslib:/dev/input/event1
+    find . -name *.sh | xargs -n 1 sed -i 's%-plugin tslib:/dev/input/event1%%'
+    cd $curdir
+}
+
+ROOTFS_POSTPROCESS_COMMAND += "atmel_qt5_rootfs_postprocess;"
