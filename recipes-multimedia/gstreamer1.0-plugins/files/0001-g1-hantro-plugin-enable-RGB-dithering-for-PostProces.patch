@@ -1,0 +1,25 @@
+From 584445c789d447e8d0a9d336f7ba32adc69fd2b6 Mon Sep 17 00:00:00 2001
+From: Josh Wu <josh.wu@atmel.com>
+Date: Tue, 11 Nov 2014 13:50:24 +0800
+Subject: [PATCH] g1-hantro-plugin: enable RGB dithering for PostProcessor
+
+Signed-off-by: Bo Shen <voice.shen@atmel.com>
+---
+ ext/g1/gstg1basedec.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/ext/g1/gstg1basedec.c b/ext/g1/gstg1basedec.c
+index c306240..93fe36a 100644
+--- a/ext/g1/gstg1basedec.c
++++ b/ext/g1/gstg1basedec.c
+@@ -596,6 +596,7 @@ gst_g1_base_dec_allocate_output (GstG1BaseDec * dec, GstVideoCodecFrame * frame)
+   dec->ppconfig.ppOutImg.pixFormat = gst_g1_format_gst_to_pp (finfo);
+   dec->ppconfig.ppOutImg.width = GST_VIDEO_INFO_WIDTH (vinfo);
+   dec->ppconfig.ppOutImg.height = GST_VIDEO_INFO_HEIGHT (vinfo);
++  dec->ppconfig.ppOutRgb.ditheringEnable = 1;
+ 
+   dec->ppconfig.ppOutFrmBuffer.enable = 0;
+   dec->ppconfig.ppOutFrmBuffer.writeOriginX = 200;
+-- 
+1.9.1
+
