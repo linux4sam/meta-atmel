@@ -32,7 +32,7 @@ URI: git://git.openembedded.org/meta-openembedded
 URI: http://cgit.openembedded.org/meta-openembedded/
 Branch: daisy (tested with commit ID: d85b01997ce8cc354ccc53f97fdffc79cf2277d5)
 
-- metat-qt5
+- meta-qt5
 URI: git://github.com/meta-qt5/meta-qt5.git
 URI: https://github.com/meta-qt5/meta-qt5
 Branch: daisy (tested with commit ID: a06222499ab602e7c67c1433dd0b559d51d3d744)
