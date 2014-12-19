@@ -23,7 +23,7 @@ IMAGE_INSTALL = "\
     python-smbus \
     python-ctypes \
     python-pip \
-    python-setuptools \
+    python-distribute \
     python-pycurl \
     gdbserver \
     usbutils \
