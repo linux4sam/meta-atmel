@@ -4,7 +4,7 @@ HOMEPAGE = "https://github.com/atmel-maxtouch/obp-utils"
 LICENSE = "ATMEL_LLA"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=8b6acde4490765c7b838377ac61e2d2d"
 
-DEPENDS = ""
+DEPENDS = "libusb1"
 
 PR = "r0"
 
