@@ -11,6 +11,7 @@ PR = "r0"
 inherit autotools
 
 SRCREV="6c0bd1941fbe66a13ff066cac8ec5d1b5f8931a7"
-SRC_URI = "git://github.com/atmel-maxtouch/obp-utils.git;protocol=git"
+SRC_URI = "git://github.com/atmel-maxtouch/obp-utils.git;protocol=git \
+           file://0001-Allow-building-out-of-tree.patch"
 
 S = "${WORKDIR}/git"
