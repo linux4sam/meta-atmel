@@ -21,7 +21,7 @@ Sources
 - meta-atmel
 URI: git://github.com/linux4sam/meta-atmel.git
 URI: https://github.com/linux4sam/meta-atmel.git
-Branch: master (tested with commit ID: 092992189540516d57583d6f08f647e39570f602)
+Branch: dizzy
 
 
 Dependencies
@@ -30,12 +30,13 @@ This Layer depends on :
 - meta-openembedded
 URI: git://git.openembedded.org/meta-openembedded
 URI: http://cgit.openembedded.org/meta-openembedded/
-Branch: daisy (tested with commit ID: d85b01997ce8cc354ccc53f97fdffc79cf2277d5)
+Branch: dizzy (tested with commit ID: 6413cdb66acf43059f94d0076ec9b8ad6a475b35)
 
+Optionally:
 - meta-qt5
 URI: git://github.com/meta-qt5/meta-qt5.git
 URI: https://github.com/meta-qt5/meta-qt5
-Branch: daisy (tested with commit ID: a06222499ab602e7c67c1433dd0b559d51d3d744)
+Branch: master (tested with commit ID: 7a65ba6089560efdd840a9590684c24fbcdb7818)
 
 
 Build procedure
@@ -44,16 +45,16 @@ Build procedure
 1/ Clone yocto/poky git repository
 git clone git://git.yoctoproject.org/poky
 
-2/ Checkout daisy tag
+2/ Checkout dizzy tag
 cd poky
-git checkout daisy-11.0.1 -b my_branch
+git checkout dizzy-12.0.1 -b my_branch
 
 3/ Clone meta-openembedded git repository
 git clone git://git.openembedded.org/meta-openembedded
 
 4/ Checkout proper meta-openembedded branch
 cd meta-openembedded
-git checkout origin/daisy -b my_branch
+git checkout origin/dizzy -b my_branch
 # come back to the "poky" directory for next steps
 cd ..
 
@@ -62,7 +63,7 @@ git clone git://github.com/meta-qt5/meta-qt5.git
 
 6/ Checkout proper meta-qt5 branch
 cd meta-qt5
-git checkout origin/daisy -b my_branch
+git checkout origin/master -b my_branch
 # come back to the "poky" directory for next steps
 cd ..
 
@@ -71,7 +72,7 @@ git clone git://github.com/linux4sam/meta-atmel.git meta-atmel
 
 8/ Checkout proper meta-atmel branch
 cd meta-atmel
-git checkout origin/master -b my_branch
+git checkout origin/dizzy -b my_branch
 # come back to the "poky" directory for next steps
 cd ..
 
@@ -88,15 +89,18 @@ LCONF_VERSION = "6"
 BBPATH = "${TOPDIR}"
 BBFILES ?= ""
 
+BSPDIR := "${@os.path.abspath(os.path.dirname(d.getVar('FILE', True)) + '/../..')}"
+
 BBLAYERS ?= " \
-  /home/pvilchez/workspace/github/poky/meta-atmel \
-  /home/pvilchez/workspace/github/poky/meta-qt5 \
-  /home/pvilchez/workspace/github/poky/meta \
-  /home/pvilchez/workspace/github/poky/meta-yocto \
-  /home/pvilchez/workspace/github/poky/meta-yocto-bsp \
-  /home/pvilchez/workspace/github/poky/meta-openembedded/meta-oe \
-  /home/pvilchez/workspace/github/poky/meta-openembedded/meta-networking \
-  /home/pvilchez/workspace/github/poky/meta-openembedded/meta-ruby \
+  ${BSPDIR}/meta-atmel \
+  ${BSPDIR}/meta-qt5 \
+  ${BSPDIR}/meta \
+  ${BSPDIR}/meta-yocto \
+  ${BSPDIR}/meta-yocto-bsp \
+  ${BSPDIR}/meta-openembedded/meta-oe \
+  ${BSPDIR}/meta-openembedded/meta-networking \
+  ${BSPDIR}/meta-openembedded/meta-python \
+  ${BSPDIR}/meta-openembedded/meta-ruby \
   "
 11/ Edit local.conf to specify the machine, location of source archived, package type (rpm, deb or ipk)
 vim conf/local.conf
@@ -108,6 +112,7 @@ DL_DIR ?= "your_download_directory_path"
 PACKAGE_CLASSES ?= "package_ipk"
 
 Here are the machines that are supported:
+MACHINE ??= "at91sam9m10g45ek"
 MACHINE ??= "at91sam9rlek"
 MACHINE ??= "at91sam9x5ek"
 MACHINE ??= "sama5d3xek"
@@ -125,6 +130,11 @@ vim conf/local.conf
 LICENSE_FLAGS_WHITELIST += "commercial"
 SYSVINIT_ENABLED_GETTYS = ""
 
+To get better performance, use the poky-atmel distribution by also adding that
+line:
+DISTRO = "poky-atmel"
+
+
 14/ Build Atmel demo images
 bitbake atmel-qt5-demo-image
 
@@ -132,23 +142,24 @@ bitbake atmel-qt5-demo-image
 Typical bitbake output
 ======================
 Build Configuration:
-BB_VERSION        = "1.22.0"
+BB_VERSION        = "1.24.0"
 BUILD_SYS         = "x86_64-linux"
-NATIVELSBSTRING   = "Ubuntu-12.04"
+NATIVELSBSTRING   = "Ubuntu-14.04"
 TARGET_SYS        = "arm-poky-linux-gnueabi"
-MACHINE           = "sama5d4ek"
+MACHINE           = "at91sam9x5ek"
 DISTRO            = "poky"
-DISTRO_VERSION    = "1.6.1"
-TUNE_FEATURES     = "armv7a vfp thumb neon callconvention-hard cortexa5"
-TARGET_FPU        = "vfp-neon"
-meta-atmel        = "master:092992189540516d57583d6f08f647e39570f602"
-meta-qt5          = "daisy:a06222499ab602e7c67c1433dd0b559d51d3d744"
-meta              
-meta-yocto        
-meta-yocto-bsp    = "atmel-daisy-11.0.1:c4f1f0f491f988901bfd6965f7d10f60cb94a76f"
-meta-oe           
-meta-networking   = "daisy:d85b01997ce8cc354ccc53f97fdffc79cf2277d5"
-
+DISTRO_VERSION    = "1.7.1"
+TUNE_FEATURES     = "arm armv5 thumb dsp"
+TARGET_FPU        = "soft"
+meta
+meta-yocto
+meta-yocto-bsp    = "dizzy:53b33d85de334a96e4f6f7edc2ad72d103627e3b"
+meta-networking
+meta-python
+meta-ruby
+meta-oe           = "dizzy:6413cdb66acf43059f94d0076ec9b8ad6a475b35"
+meta-qt5          = "master:7a65ba6089560efdd840a9590684c24fbcdb7818"
+meta-atmel        = "master:da231950fcccfd5a534331f8505327e82ad7b3fc"
 
 Contributing
 ============
