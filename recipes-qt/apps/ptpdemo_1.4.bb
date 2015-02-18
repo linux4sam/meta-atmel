@@ -11,7 +11,7 @@ SRC_URI[sha256sum] = "58580bf355cdca4e521cc1387896998d77e36a87b0017ec440de34fa42
 S = "${WORKDIR}/PTPDemo-${PV}"
 
 DEPENDS = "qtbase"
-require recipes-qt/qt5/qt5.inc
+inherit qmake5
 
 inherit pkgconfig
 

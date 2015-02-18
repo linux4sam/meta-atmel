@@ -14,7 +14,7 @@ S = "${WORKDIR}/application-launcher-${PV}"
 
 DEPENDS = "qtbase qtdeclarative qtwebkit qtquick1"
 #RDEPENDS_${PN} = "qtdeclarative-qmlplugins qtdeclarative-plugins"
-require recipes-qt/qt5/qt5.inc
+inherit qmake5
 
 inherit pkgconfig
 
