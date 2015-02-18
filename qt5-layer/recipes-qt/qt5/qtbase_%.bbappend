@@ -6,3 +6,9 @@ QT_CONFIG_FLAGS_append_at91sam9 = "${@base_contains('DISTRO_FEATURES', 'x11', \
                             ' -no-eglfs', ' -no-opengl -linuxfb -no-eglfs', d)}"
 QT_CONFIG_FLAGS_append_sama5 = "${@base_contains('DISTRO_FEATURES', 'x11', \
                             ' -no-eglfs', ' -no-opengl -linuxfb -no-eglfs', d)}"
+
+# qtwebkit will fail later in the build if icu is not enabled. As Poky does not
+# enable it, do it here. This should be removed when the reverse dependency is
+# added.
+QT_CONFIG_FLAGS_append_at91sam9 = " -icu"
+QT_CONFIG_FLAGS_append_sama5 = " -icu"
