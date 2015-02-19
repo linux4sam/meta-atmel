@@ -4,7 +4,7 @@ LICENSE = "LGPLv3"
 HOMEPAGE = "http://www.gstreamer.net/"
 DEPENDS = "gstreamer1.0 gstreamer1.0-plugins-base g1-binaries"
 
-inherit autotools pkgconfig gettext
+inherit autotools-brokensep pkgconfig gettext
 
 //acpaths = "-I ${S}/common/m4 -I ${S}/m4"
 

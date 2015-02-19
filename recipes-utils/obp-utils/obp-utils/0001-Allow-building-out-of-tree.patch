@@ -1,0 +1,67 @@
+From f19617f87bc369599732861aa1962f3bf2153f0a Mon Sep 17 00:00:00 2001
+From: Alexandre Belloni <alexandre.belloni@free-electrons.com>
+Date: Wed, 11 Feb 2015 18:02:48 +0100
+Subject: [PATCH] Allow building out of tree
+
+The current Makefile assume an in tree build. Some build systems are
+compiling out of tree. Fix the relative paths to allow out of tree
+builds.
+
+Signed-off-by: Alexandre Belloni <alexandre.belloni@free-electrons.com>
+---
+ Makefile.am          | 5 +++--
+ build-aux/version.sh | 8 +++++---
+ 2 files changed, 8 insertions(+), 5 deletions(-)
+
+diff --git a/Makefile.am b/Makefile.am
+index c4971a0..bdedcc0 100644
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -1,6 +1,6 @@
+ EXTRA_DIST = autogen.sh
+ 
+-GIT_VERSION := $(shell build-aux/version.sh)
++GIT_VERSION := $(shell $(top_srcdir)/build-aux/version.sh)
+ 
+ .PHONY: force
+ git-version: force
+@@ -69,11 +69,12 @@ mxt_app_SOURCES =\
+ man1_MANS = man1/mxt-app.1
+ 
+ man1/mxt-app.1: README.md
++	@$(MKDIR_P) man1/
+ 	-pandoc -s -t man \
+ 	-V title="MXT-APP" \
+ 	-V section="1" \
+ 	-V description="\"mxt-app $(GIT_VERSION)\"" \
+-	README.md -o man1/mxt-app.1
++	$(top_srcdir)/README.md -o man1/mxt-app.1
+ 
+ clean-local:
+ 	-rm man1/mxt-app.1
+diff --git a/build-aux/version.sh b/build-aux/version.sh
+index 1c82b49..62c0b59 100755
+--- a/build-aux/version.sh
++++ b/build-aux/version.sh
+@@ -1,13 +1,15 @@
+ #!/bin/sh
+ 
+-if [ -d ".git" ]
++TOPDIR=$(dirname $0)/..
++
++if [ -d "$TOPDIR/.git" ]
+ then
+-  VERSION=`git describe --abbrev=4 --dirty=-mod --always | sed s/^v//`
++  VERSION=`cd $TOPDIR; git describe --abbrev=4 --dirty=-mod --always | sed s/^v//`
+ fi
+ 
+ if [ -z $VERSION ]
+ then
+-  VERSION=`tr -d '\n' < VERSION`
++  VERSION=`tr -d '\n' < $TOPDIR/VERSION`
+ fi
+ 
+ echo $VERSION
+-- 
+1.9.1
+

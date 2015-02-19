@@ -7,7 +7,7 @@ PACKAGES = "${PN}-dbg ${PN}"
 PR = "r2"
 
 DEPENDS = "qtbase qtquick1"
-require recipes-qt/qt5/qt5.inc
+inherit qmake5
 
 SRC_URI = "ftp://ftp.linux4sam.org/pub/demo/qtdemo/minehunt-${PV}.tar.gz"
 
