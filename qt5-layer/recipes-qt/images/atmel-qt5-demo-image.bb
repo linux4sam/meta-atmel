@@ -74,9 +74,6 @@ IMAGE_INSTALL += "\
 	gstreamer1.0-plugins-good \
 	gstreamer1.0-plugins-ugly \
 	gstreamer1.0-libav \
-	gstreamer1.0-plugins-hantro \
-	g1-binaries-dev \
-	g1-binaries-staticdev \
 	libv4l \
 	\
 	homeautomation \
@@ -90,6 +87,11 @@ IMAGE_INSTALL += "\
 	atmel-qt-demo-init \
 "
 
+IMAGE_INSTALL_append_sama5d4 = " \
+	gstreamer1.0-plugins-hantro \
+	g1-binaries-dev \
+	g1-binaries-staticdev \
+	"
 inherit core-image
 
 
