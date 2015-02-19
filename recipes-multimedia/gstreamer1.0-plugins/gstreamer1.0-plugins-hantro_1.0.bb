@@ -13,3 +13,4 @@ SRC_URI[sha256sum] = "c2ac7fe6df1ce9bdf9f570bf17d656bbf755b50d4b5f19833e1cf6894e
 
 S = "${WORKDIR}/gst-hantro-g1-${PV}"
 
+COMPATIBLE_MACHINE = "sama5d4"
