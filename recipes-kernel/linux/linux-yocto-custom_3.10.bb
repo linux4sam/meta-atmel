@@ -48,6 +48,8 @@ SRC_URI = "git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git;prot
 LINUX_VERSION ?= "3.10"
 LINUX_VERSION_EXTENSION ?= "-custom"
 
+KCONFIG_MODE="--alldefconfig"
+
 inherit kernel
 require recipes-kernel/linux/linux-yocto.inc
 

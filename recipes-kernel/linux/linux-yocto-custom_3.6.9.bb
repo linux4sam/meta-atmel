@@ -45,6 +45,8 @@ LINUX_VERSION ?= "3.6.9"
 LINUX_VERSION_EXTENSION ?= "-custom"
 KBRANCH ?= "linux-3.6.9-at91"
 
+KCONFIG_MODE="--alldefconfig"
+
 inherit kernel
 require recipes-kernel/linux/linux-yocto.inc
 
