@@ -7,7 +7,6 @@ require atmel-demo-image.inc
 IMAGE_FEATURES += "splash"
 
 IMAGE_INSTALL += "\
-    packagegroup-base-3g \
     packagegroup-base-usbhost \
     fb-test \
     tslib \
