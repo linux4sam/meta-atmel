@@ -12,6 +12,8 @@ SRC_URI = "git://github.com/linux4sam/linux-at91.git;protocol=git;branch=${KBRAN
 SRC_URI += "file://defconfig"
 
 SRCREV_machine_sama5d4-xplained = "46f4253693b0ee8d25214e7ca0dde52e788ffe95"
+SRCREV_machine_sama5d3xek = "25ce4e2fcdffcf271e1f92788dee1340285dc251"
+SRCREV_machine_sama5d3-xplained = "25ce4e2fcdffcf271e1f92788dee1340285dc251"
 
 do_deploy_append() {
 	if [ ${UBOOT_FIT_IMAGE} = "xyes" ]; then
