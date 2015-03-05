@@ -1,5 +1,5 @@
 KBRANCH = "linux-3.10-at91"
-SRCREV = "35158dd80a94df2b71484b9ffa6e642378209156"
+SRCREV_machine = "${AUTOREV}"
 PV = "${LINUX_VERSION}+${SRCPV}"
 
 DEPENDS += "dtc-native"
