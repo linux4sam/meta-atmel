@@ -16,7 +16,7 @@ SRCREV_machine_sama5d3xek = "25ce4e2fcdffcf271e1f92788dee1340285dc251"
 SRCREV_machine_sama5d3-xplained = "25ce4e2fcdffcf271e1f92788dee1340285dc251"
 
 do_deploy_append() {
-	if [ ${UBOOT_FIT_IMAGE} = "xyes" ]; then
+	if [ "${UBOOT_FIT_IMAGE}" = "xyes" ]; then
 		DTB_PATH="${B}/arch/${ARCH}/boot/dts/"
 		if [ ! -e "${DTB_PATH}" ]; then
 			DTB_PATH="${B}/arch/${ARCH}/boot/"
