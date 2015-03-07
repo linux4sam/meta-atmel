@@ -12,7 +12,7 @@ SRC_URI += "file://defconfig"
 SRCREV_sama5d4-xplained = "46f4253693b0ee8d25214e7ca0dde52e788ffe95"
 
 do_deploy_append() {
-	if [ ${UBOOT_FIT_IMAGE} = "xyes" ]; then
+	if [ "${UBOOT_FIT_IMAGE}" = "xyes" ]; then
 		DTB_PATH="${B}/arch/${ARCH}/boot/dts/"
 		if [ ! -e "${DTB_PATH}" ]; then
 			DTB_PATH="${B}/arch/${ARCH}/boot/"
