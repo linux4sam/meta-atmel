@@ -4,13 +4,13 @@ All rights reserved.
 LIMITED License Agreement
 
 IT IS IMPORTANT THAT YOU READ THIS AGREEMENT CAREFULLY AND COMPLETELY.
-This Limited License Agreement (“Agreement”) is a legally binding agreement between,
+This Limited License Agreement ("Agreement") is a legally binding agreement between,
 on one hand, either your employer (if you are acting on behalf of your employer)
-or you (if you are acting on your own behalf) (“Licensee”), and on the other hand,
-Atmel Corporation (“Atmel”).
+or you (if you are acting on your own behalf) ("Licensee"), and on the other hand,
+Atmel Corporation ("Atmel").
 
 By installing or using any of the software downloaded or provided with these
-terms (“Licensed Software”), you are indicating that you are binding Licensee
+terms ("Licensed Software"), you are indicating that you are binding Licensee
 to the terms of this Agreement, and that you are duly authorized by Licensee to do so.
 If you are not authorized to bind Licensee to the terms of this Agreement,
 or if Licensee does not agree to be bound by all of the terms of this Agreement,
@@ -20,7 +20,7 @@ do not install or use any such software.
 1.	Grant of License.  Subject to the terms and conditions of this Agreement,
 Atmel grants Licensee a non-exclusive, non-transferable, non-sublicensable,
 limited license to use the Licensed Software solely in connection with Atmel products
-from SAM9 and SAMA5 families (“Atmel Product”).
+from SAM9 and SAMA5 families ("Atmel Product").
 
 2.	Restrictions.  Except as expressly set forth in Section 1, Licensee will not,
 and will have no right to, (a) use, copy or reproduce any Licensed Software except,
@@ -40,8 +40,8 @@ Licensee any rights to patents, copyrights, trade secrets, trade names, trademar
 (whether registered or unregistered), or any other rights, franchises, or licenses
 in respect of the Licensed Software.
 
-5.	Disclaimer of Warranty and No Support.  ALL LICENSED SOFTWARE IS PROVIDED “AS IS”,
-“WITH ALL FAULTS”, AND WITH NO WARRANTY WHATSOEVER.  ATMEL EXPRESSLY DISCLAIMS ALL
+5.	Disclaimer of Warranty and No Support.  ALL LICENSED SOFTWARE IS PROVIDED "AS IS",
+"WITH ALL FAULTS", AND WITH NO WARRANTY WHATSOEVER.  ATMEL EXPRESSLY DISCLAIMS ALL
 WARRANTIES OF ANY KIND (WHEHTER EXPRESS, IMPLIED, STATUTORY OR OTHERWISE) IN CONNECTION
 WITH THE LICENSED SOFTWARE OR ANY OTHER ASPECT OF THIS AGREEMENT, INCLUDING, WITHOUT
 LIMITATION ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE,
@@ -84,7 +84,7 @@ LOSS OR INTERRUPTION OF BUSINESS, OR LOSS OF DATA, ARISING OUT OF OR RELATING TO
 THE LICENSED SOFTWARE OR ANY OTHER ASPECT OF THIS AGREEMENT, EVEN IF ATMEL has been advised
 of or should have known of the possibility of such damages.
 
-IN NO EVENT WILL ATMEL’S TOTAL LIABILITY ARISING OUT OF OR RELATED TO THE LICENSED SOFTWARE
+IN NO EVENT WILL ATMEL'S TOTAL LIABILITY ARISING OUT OF OR RELATED TO THE LICENSED SOFTWARE
 OR ANY OTHER ASPECT OF THIS AGREEMENT (WHETHER UNDER CONTRACT, NEGLIGENCE, STRICT LIABILITY,
 CONTRIBUTION, BREACH OF WARRANTY, OR OTHER LEGAL OR EQUITABLE THEORY) EXCEED THE GREATER OF
 (A) THE AGGREGATE OF ALL LICENSE FEES PAID BY LICENSEE TO ATMEL FOR THE LICENSED SOFTWARE, OR
