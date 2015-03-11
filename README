@@ -45,9 +45,9 @@ Build procedure
 1/ Clone yocto/poky git repository
 git clone git://git.yoctoproject.org/poky
 
-2/ Checkout dizzy tag
+2/ Checkout dizzy branch
 cd poky
-git checkout dizzy-12.0.1 -b my_branch
+git checkout dizzy -b my_branch
 
 3/ Clone meta-openembedded git repository
 git clone git://git.openembedded.org/meta-openembedded
