@@ -144,22 +144,24 @@ Typical bitbake output
 Build Configuration:
 BB_VERSION        = "1.24.0"
 BUILD_SYS         = "x86_64-linux"
-NATIVELSBSTRING   = "Ubuntu-14.04"
+NATIVELSBSTRING   = "Ubuntu-12.04"
 TARGET_SYS        = "arm-poky-linux-gnueabi"
-MACHINE           = "at91sam9x5ek"
-DISTRO            = "poky"
+MACHINE           = "sama5d4-xplained"
+DISTRO            = "poky-atmel"
 DISTRO_VERSION    = "1.7.1"
-TUNE_FEATURES     = "arm armv5 thumb dsp"
-TARGET_FPU        = "soft"
+TUNE_FEATURES     = "arm armv7a vfp thumb neon callconvention-hard cortexa5"
+TARGET_FPU        = "vfp-neon"
+meta-atmel        = "master:c4f3f1a33c008d26d1a7cd58a025be4ec2af14a1"
+meta-qt5          = "master:7a65ba6089560efdd840a9590684c24fbcdb7818"
 meta
 meta-yocto
-meta-yocto-bsp    = "dizzy:53b33d85de334a96e4f6f7edc2ad72d103627e3b"
+meta-yocto-bsp    = "dizzy:6e9632e9798d78587c9317554c5547ab3b53837c"
+meta-oe
 meta-networking
 meta-python
 meta-ruby
-meta-oe           = "dizzy:6413cdb66acf43059f94d0076ec9b8ad6a475b35"
-meta-qt5          = "master:7a65ba6089560efdd840a9590684c24fbcdb7818"
-meta-atmel        = "master:da231950fcccfd5a534331f8505327e82ad7b3fc"
+meta-multimedia   = "dizzy:6413cdb66acf43059f94d0076ec9b8ad6a475b35"
+
 
 Contributing
 ============
