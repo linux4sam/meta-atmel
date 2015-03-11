@@ -7,7 +7,8 @@ DEFAULT_PREFERENCE = "12"
 PACKAGES = "${PN}-dbg ${PN}"
 
 DEPENDS = "qtbase libv4l"
-require recipes-qt/qt5/qt5.inc
+RDEPENDS_${PN} = "gstreamer1.0"
+inherit qmake5
 
 SRC_URI = "ftp://ftp.linux4sam.org/pub/demo/qtdemo/atmel-video-player-${PV}.tar.gz"
 

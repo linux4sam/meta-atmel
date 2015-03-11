@@ -20,3 +20,4 @@ do_install() {
 
 ALLOW_EMPTY_${PN} = "1"
 INHIBIT_DEFAULT_DEPS = "1"
+COMPATIBLE_MACHINE = "sama5d4"

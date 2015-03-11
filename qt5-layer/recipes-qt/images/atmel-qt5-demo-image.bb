@@ -9,7 +9,7 @@ IMAGE_FEATURES += "ssh-server-openssh package-management"
 
 IMAGE_INSTALL += "\
 	packagegroup-core-boot \
-	packagegroup-core-basic \
+	packagegroup-core-full-cmdline \
 	packagegroup-base-wifi \
 	packagegroup-base-bluetooth \
 	packagegroup-base-usbgadget \
@@ -69,14 +69,11 @@ IMAGE_INSTALL += "\
 	\
 	libicui18n \
 	gstreamer1.0 \
-	gstreamer1.0-plugins-bad-meta \
-	gstreamer1.0-plugins-base-meta \
-	gstreamer1.0-plugins-good-meta \
-	gstreamer1.0-plugins-ugly-meta \
+	gstreamer1.0-plugins-bad \
+	gstreamer1.0-plugins-base \
+	gstreamer1.0-plugins-good \
+	gstreamer1.0-plugins-ugly \
 	gstreamer1.0-libav \
-	gstreamer1.0-plugins-hantro \
-	g1-binaries-dev \
-	g1-binaries-staticdev \
 	libv4l \
 	\
 	homeautomation \
@@ -90,6 +87,11 @@ IMAGE_INSTALL += "\
 	atmel-qt-demo-init \
 "
 
+IMAGE_INSTALL_append_sama5d4 = " \
+	gstreamer1.0-plugins-hantro \
+	g1-binaries-dev \
+	g1-binaries-staticdev \
+	"
 inherit core-image
 
 

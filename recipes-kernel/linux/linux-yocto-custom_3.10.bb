@@ -1,68 +1,39 @@
-# linux-yocto-custom.bb:
-#
-#   An example kernel recipe that uses the linux-yocto and oe-core
-#   kernel classes to apply a subset of yocto kernel management to git
-#   managed kernel repositories.
-#
-#   To use linux-yocto-custom in your layer, create a
-#   linux-yocto-custom.bbappend file containing at least the following
-#   lines:
-#
-#     FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-#     COMPATIBLE_MACHINE_yourmachine = "yourmachine"
-#
-#   You must also provide a Linux kernel configuration. The most direct
-#   method is to copy your .config to files/defconfig in your layer,
-#   in the same directory as the bbappend and add file://defconfig to
-#   your SRC_URI.
-#
-#   To use the yocto kernel tooling to generate a BSP configuration
-#   using modular configuration fragments, see the yocto-bsp and
-#   yocto-kernel tools documentation.
-#
-# Warning:
-#
-#   Building this example without providing a defconfig or BSP
-#   configuration will result in build or boot errors. This is not a
-#   bug.
-#
-#
-# Notes:
-#
-#   patches: patches can be merged into to the source git tree itself,
-#            added via the SRC_URI, or controlled via a BSP
-#            configuration.
-#   
-#   example configuration addition:
-#            SRC_URI += "file://smp.cfg"
-#   example patch addition (for kernel v3.4 only):
-#            SRC_URI += "file://0001-linux-version-tweak.patch
-#   example feature addition (for kernel v3.4 only):
-#            SRC_URI += "file://feature.scc"
-#
-
-# Override SRC_URI in a bbappend file to point at a different source
-# tree if you do not want to build from Linus' tree.
-SRC_URI = "git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git;protocol=git;nocheckout=1"
+# See poky/meta-skeleton/recipes-kernel/linux/linux-yocto-custom.bb for
+# documentation
 
 LINUX_VERSION ?= "3.10"
 LINUX_VERSION_EXTENSION ?= "-custom"
 
+KCONFIG_MODE="--alldefconfig"
+
 inherit kernel
 require recipes-kernel/linux/linux-yocto.inc
-
-# Override SRCREV to point to a different commit in a bbappend file to
-# build a different release of the Linux kernel.
-# tag: v3.10 8bb495e3f02401ee6f76d1b1d77f3ac9f079e376"
-SRCREV = "8bb495e3f02401ee6f76d1b1d77f3ac9f079e376"
 
 PR = "r1"
 PV = "${LINUX_VERSION}+git${SRCPV}"
 
-# Override COMPATIBLE_MACHINE to include your machine in a bbappend
-# file. Leaving it empty here ensures an early explicit build failure.
-COMPATIBLE_MACHINE = "(^$)"
+SRCREV = "35158dd80a94df2b71484b9ffa6e642378209156"
+SRCREV_sama5d4-xplained = "46f4253693b0ee8d25214e7ca0dde52e788ffe95"
 
-# module_autoload is used by the kernel packaging bbclass
-module_autoload_atmel_usba_udc = "atmel_usba_udc"
-module_autoload_g_serial = "g_serial"
+KBRANCH = "linux-3.10-at91"
+SRC_URI = "git://github.com/linux4sam/linux-at91.git;protocol=git;branch=${KBRANCH};nocheckout=1"
+SRC_URI += "file://defconfig"
+
+do_deploy_append() {
+	if [ ${UBOOT_FIT_IMAGE} = "xyes" ]; then
+		DTB_PATH="${B}/arch/${ARCH}/boot/dts/"
+		if [ ! -e "${DTB_PATH}" ]; then
+			DTB_PATH="${B}/arch/${ARCH}/boot/"
+		fi
+
+		cp ${S}/arch/${ARCH}/boot/dts/${MACHINE}*.its ${DTB_PATH}
+		cd ${DTB_PATH}
+		mkimage -f ${MACHINE}.its ${MACHINE}.itb
+		install -m 0644 ${MACHINE}.itb ${DEPLOYDIR}/${MACHINE}.itb
+		cd -
+	fi
+}
+
+KERNEL_MODULE_AUTOLOAD += "atmel_usba_udc g_serial"
+
+COMPATIBLE_MACHINE = "(sama5d4ek|sama5d4-xplained|sama5d3xek|sama5d3-xplained|at91sam9x5ek|at91sam9rlek|at91sam9m10g45ek)"

@@ -2,7 +2,7 @@ IMAGE_FEATURES += "ssh-server-openssh package-management"
 
 IMAGE_INSTALL = "\
     packagegroup-core-boot \
-    packagegroup-core-basic \
+    packagegroup-core-full-cmdline \
     packagegroup-base-wifi \
     packagegroup-base-bluetooth \
     packagegroup-base-usbgadget \
@@ -23,7 +23,7 @@ IMAGE_INSTALL = "\
     python-smbus \
     python-ctypes \
     python-pip \
-    python-setuptools \
+    python-distribute \
     python-pycurl \
     gdbserver \
     usbutils \
