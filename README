@@ -102,6 +102,7 @@ BBLAYERS ?= " \
   ${BSPDIR}/meta-openembedded/meta-python \
   ${BSPDIR}/meta-openembedded/meta-ruby \
   "
+
 11/ Edit local.conf to specify the machine, location of source archived, package type (rpm, deb or ipk)
 vim conf/local.conf
 [...]
@@ -112,13 +113,17 @@ DL_DIR ?= "your_download_directory_path"
 PACKAGE_CLASSES ?= "package_ipk"
 
 Here are the machines that are supported:
-MACHINE ??= "at91sam9m10g45ek"
 MACHINE ??= "at91sam9rlek"
+MACHINE ??= "at91sam9m10g45ek"
 MACHINE ??= "at91sam9x5ek"
 MACHINE ??= "sama5d3xek"
 MACHINE ??= "sama5d3-xplained"
 MACHINE ??= "sama5d4ek"
 MACHINE ??= "sama5d4-xplained"
+
+To get better performance, use the poky-atmel distribution by also adding that
+line:
+DISTRO = "poky-atmel"
 
 12/ Build core minimal image
 bitbake core-image-minimal
@@ -129,11 +134,6 @@ vim conf/local.conf
 [...]
 LICENSE_FLAGS_WHITELIST += "commercial"
 SYSVINIT_ENABLED_GETTYS = ""
-
-To get better performance, use the poky-atmel distribution by also adding that
-line:
-DISTRO = "poky-atmel"
-
 
 14/ Build Atmel demo images
 bitbake atmel-qt5-demo-image
