@@ -1,18 +1,13 @@
 DESCRIPTION = "Atmel QT video player demo"
 LICENSE = "ATMEL_LLA"
-LIC_FILES_CHKSUM = "file://main.cpp;endline=146;md5=c21991d62fce185ae358ca00c8846c64"
-
-PR = "r1"
+LIC_FILES_CHKSUM = "file://COPYING;md5=78a72a436c89c3863a5650347f34a3b3"
 
 PACKAGES = "${PN}-dbg ${PN}"
 
-DEPENDS = "qtbase libv4l"
+DEPENDS = "qtbase gstreamer1.0"
 inherit qmake5
 
-SRC_URI = "ftp://ftp.linux4sam.org/pub/demo/qtdemo/atmel-video-player-${PV}.tar.gz"
-
-SRC_URI[md5sum] = "ee1ddb820b10c6bc6e49ed0e75ecdca2"
-SRC_URI[sha256sum] = "03cc17f5aa67e35fc8dc0c9d7e3ffaff71b3faf788e98f5ed5fc8fe512e03beb"
+SRC_URI = "https://github.com/linux4sam/atmel-video-player/archive/v${PV}.tar.gz"
 
 S = "${WORKDIR}/atmel-video-player-${PV}"
 

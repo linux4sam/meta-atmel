@@ -2,7 +2,6 @@ DESCRIPTION = "Atmel QT smart refrigerator demo"
 LICENSE = "ATMEL_LLA"
 LIC_FILES_CHKSUM = "file://main.cpp;endline=146;md5=e461c6aa7c87631950f0a71c1552f706"
 
-DEFAULT_PREFERENCE = "11"
 PR = "r2"
 
 PACKAGES = "${PN}-dbg ${PN}"

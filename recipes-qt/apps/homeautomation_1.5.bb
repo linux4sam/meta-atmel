@@ -2,7 +2,6 @@ DESCRIPTION = "Atmel QT home automation demo"
 LICENSE = "ATMEL_LLA"
 LIC_FILES_CHKSUM = "file://main.cpp;endline=146;md5=1fcdee2511227a06256bca182ee2ad2c"
 
-DEFAULT_PREFERENCE = "12"
 PR = "r1"
 
 PACKAGES = "${PN}-dbg ${PN}"
