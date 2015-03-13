@@ -2,7 +2,6 @@ DESCRIPTION = "Atmel QT video player demo"
 LICENSE = "ATMEL_LLA"
 LIC_FILES_CHKSUM = "file://main.cpp;endline=28;md5=d037302fccdccd4ce1cd367746c5a3bd"
 
-DEFAULT_PREFERENCE = "12"
 PR = "r1"
 
 PACKAGES = "${PN}-dbg ${PN}"
