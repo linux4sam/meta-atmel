@@ -15,6 +15,7 @@ IMAGE_INSTALL = "\
     alsa-utils \
     i2c-tools \
     dosfstools \
+    libdrm-tests \
     mtd-utils \
     iproute2 \
     iptables \
