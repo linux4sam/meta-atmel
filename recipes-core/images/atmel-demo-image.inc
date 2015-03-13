@@ -12,6 +12,7 @@ IMAGE_INSTALL = "\
     opkg \
     iperf \
     linux-firmware \
+    alsa-utils \
     i2c-tools \
     dosfstools \
     mtd-utils \
