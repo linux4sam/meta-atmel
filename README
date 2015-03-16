@@ -36,7 +36,7 @@ Optionally:
 - meta-qt5
 URI: git://github.com/meta-qt5/meta-qt5.git
 URI: https://github.com/meta-qt5/meta-qt5
-Branch: master (tested with commit ID: 7a65ba6089560efdd840a9590684c24fbcdb7818)
+Branch: master (tested with commit ID: 22c431e7a1fa525c75bf1fa48c82d01955001350)
 
 
 Build procedure
