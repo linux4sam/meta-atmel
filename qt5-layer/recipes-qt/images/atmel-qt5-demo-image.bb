@@ -94,8 +94,7 @@ IMAGE_INSTALL_append_sama5d4 = " \
 	g1-binaries-dev \
 	g1-binaries-staticdev \
 	"
-inherit core-image
-
+inherit core-image populate_sdk_qt5
 
 atmel_qt5_rootfs_postprocess() {
     curdir=$PWD
