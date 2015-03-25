@@ -47,7 +47,7 @@ git clone git://git.yoctoproject.org/poky
 
 2/ Checkout dizzy branch
 cd poky
-git checkout dizzy -b my_branch
+git checkout origin/dizzy -b my_branch
 
 3/ Clone meta-openembedded git repository
 git clone git://git.openembedded.org/meta-openembedded
