@@ -14,6 +14,7 @@ PV = "${LINUX_VERSION}+git${SRCPV}"
 
 SRCREV = "35158dd80a94df2b71484b9ffa6e642378209156"
 SRCREV_sama5d4-xplained = "46f4253693b0ee8d25214e7ca0dde52e788ffe95"
+KERNEL_DEVICETREE_sama5d4ek = "sama5d4ek.dtb"
 
 KBRANCH = "linux-3.10-at91"
 SRC_URI = "git://github.com/linux4sam/linux-at91.git;protocol=git;branch=${KBRANCH};nocheckout=1"
