@@ -2,7 +2,7 @@
 # documentation
 
 LINUX_VERSION ?= "3.6.9"
-LINUX_VERSION_EXTENSION ?= "-custom"
+LINUX_VERSION_EXTENSION ?= "-at91"
 KBRANCH ?= "linux-3.6.9-at91"
 
 KCONFIG_MODE="--alldefconfig"
