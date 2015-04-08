@@ -7,6 +7,8 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7"
 inherit kernel
 require recipes-kernel/linux/linux-dtb.inc
 
+FILESEXTRAPATHS_prepend := "${THISDIR}/${P}:"
+
 PV = "3.18+git${SRCPV}"
 
 S = "${WORKDIR}/git"
