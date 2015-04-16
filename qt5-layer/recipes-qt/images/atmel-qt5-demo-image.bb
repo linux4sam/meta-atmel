@@ -37,6 +37,12 @@ IMAGE_INSTALL += "\
 	iptables \
 	bridge-utils \
 	canutils \
+	python-pyserial \
+	python-smbus \
+	python-ctypes \
+	python-pip \
+	python-distribute \
+	python-pycurl \
 	gdbserver \
 	obp-utils \
 	usbutils \
