@@ -7,6 +7,10 @@ start()
   mode=`fbset | grep mode | awk -F "\"" '{print $2;}'`
   echo $mode
 
+  if [ -e /sys/class/graphics/fb0/modes ]; then
+    head -1 /sys/class/graphics/fb0/modes > /sys/class/graphics/fb0/mode
+  fi
+
   echo "Starting Demo..."
   # add qt5 parameters
   export QT_QPA_PLATFORM=linuxfb
