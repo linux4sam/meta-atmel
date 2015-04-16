@@ -14,6 +14,7 @@ IMAGE_INSTALL = "\
     linux-firmware \
     alsa-utils \
     i2c-tools \
+    devmem2 \
     dosfstools \
     libdrm-tests \
     mtd-utils \
