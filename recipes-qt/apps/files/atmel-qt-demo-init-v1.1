@@ -4,6 +4,9 @@ set -e
 
 start()
 {
+  if [ -c /dev/fb0 ]; then
+    return 0
+  fi
   mode=`fbset | grep mode | awk -F "\"" '{print $2;}'`
   echo $mode
 
@@ -32,6 +35,9 @@ start()
 
 stop()
 {
+  if [ -c /dev/fb0 ]; then
+    return 0
+  fi
   echo "Killing Application Launcher..."
   killall ApplicationLauncher
 }
