@@ -18,8 +18,8 @@ index 425e5287b107..ae261f039b78 100644
  	int drop_master = 0;
  	int test_vsync = 0;
  	int test_cursor = 0;
--	const char *modules[] = { "i915", "radeon", "nouveau", "vmwgfx", "omapdrm", "exynos", "tilcdc", "msm" };
-+	const char *modules[] = { "i915", "radeon", "nouveau", "vmwgfx", "omapdrm", "exynos", "tilcdc", "msm", "atmel-hlcdc" };
+-	const char *modules[] = { "i915", "radeon", "nouveau", "vmwgfx", "omapdrm", "exynos", "tilcdc", "msm", "sti", "tegra" };
++	const char *modules[] = { "i915", "radeon", "nouveau", "vmwgfx", "omapdrm", "exynos", "tilcdc", "msm", "sti", "tegra", "atmel-hlcdc" };
  	char *device = NULL;
  	char *module = NULL;
  	unsigned int i;
