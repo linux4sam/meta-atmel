@@ -11,6 +11,10 @@ IMAGE_INSTALL = "\
     setserial \
     opkg \
     iperf \
+    \
+    nbench-byte \
+    lmbench \
+    \
     linux-firmware \
     alsa-utils \
     i2c-tools \
