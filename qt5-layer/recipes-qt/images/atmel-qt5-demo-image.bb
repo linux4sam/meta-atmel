@@ -44,6 +44,7 @@ IMAGE_INSTALL += "\
 	python-distribute \
 	python-pycurl \
 	gdbserver \
+	evtest \
 	obp-utils \
 	usbutils \
 	wget \

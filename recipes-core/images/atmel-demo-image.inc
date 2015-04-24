@@ -26,6 +26,7 @@ IMAGE_INSTALL = "\
     iptables \
     bridge-utils \
     canutils \
+    evtest \
     python-pyserial \
     python-smbus \
     python-ctypes \
