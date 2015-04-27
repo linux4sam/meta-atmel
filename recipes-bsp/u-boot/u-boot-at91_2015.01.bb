@@ -13,4 +13,19 @@ SRC_URI = "git://github.com/linux4sam/u-boot-at91.git;branch=u-boot-2015.01-at91
 
 S = "${WORKDIR}/git"
 
+do_compile () {
+	if [ "${@base_contains('DISTRO_FEATURES', 'ld-is-gold', 'ld-is-gold', '', d)}" = "ld-is-gold" ] ; then
+		sed -i 's/$(CROSS_COMPILE)ld$/$(CROSS_COMPILE)ld.bfd/g' config.mk
+	fi
+
+	unset LDFLAGS
+	unset CFLAGS
+	unset CPPFLAGS
+
+	cd ${S}; git status; cd -
+
+	oe_runmake ${UBOOT_MACHINE}
+	oe_runmake ${UBOOT_MAKE_TARGET}
+}
+
 PACKAGE_ARCH = "${MACHINE_ARCH}"
