@@ -1,0 +1,58 @@
+diff --git a/applications_list.xml b/applications_list.xml
+--- a/applications_list.xml
++++ b/applications_list.xml
+@@ -23,6 +23,18 @@
+     <link rel="enclosure" type="image/png" href="../../applications/resources/home-automation.png" />
+ </entry>
+ <entry>
++    <title>Video Player</title>
++    <link rel="alternate" type="text/html" href="../../applications/resources/atmel-video-player.png" />
++    <id>tag:atmel.com,2005:/app/8144940683</id>
++    <published>2012-11-01T15:45:05Z</published>
++    <updated>2012-11-01T15:45:05Z</updated>
++    <author>Unknown</author>
++    <path exec="/opt/ApplicationLauncher/launch.sh" />
++    <arg>/opt/VideoPlayer/Atmel-Video-Player.sh</arg>
++    <description>Test Description</description>
++    <link rel="enclosure" type="image/png" href="../../applications/resources/atmel-video-player.png" />
++</entry>
++<entry>
+     <title>Smart Refrigerator</title>
+     <link rel="alternate" type="text/html" href="../../applications/resources/smart-refrigerator.png"/>
+     <id>tag:atmel.com,2005:/app/8144940683</id>
+@@ -70,18 +82,6 @@
+     <description>Test Description</description>
+     <link rel="enclosure" type="image/png" href="../../applications/resources/ptp.png" />
+ </entry>
+-<entry>
+-    <title>Web Browser</title>
+-    <link rel="alternate" type="text/html" href="../../applications/resources/web-browser.png"/>
+-    <id>tag:atmel.com,2005:/app/8144940683</id>
+-    <published>2012-11-01T15:45:05Z</published>
+-    <updated>2012-11-01T15:45:05Z</updated>
+-    <author>Unknown</author>
+-    <path exec="/opt/ApplicationLauncher/launch.sh" />
+-    <arg>/opt/browser/resources/browser.sh</arg>
+-    <description>Test Description</description>
+-    <link rel="enclosure" type="image/png" href="../../applications/resources/web-browser.png" />
+-</entry>
+ </screen><screen id="Screen 2">
+ <entry>
+     <title>About Atmel</title>
+@@ -107,4 +107,16 @@
+     <description>Test Description</description>
+     <link rel="enclosure" type="image/png" href="../../applications/resources/about-timesys.png" />
+ </entry>
++<entry>
++    <title>Web Browser</title>
++    <link rel="alternate" type="text/html" href="../../applications/resources/web-browser.png"/>
++    <id>tag:atmel.com,2005:/app/8144940683</id>
++    <published>2012-11-01T15:45:05Z</published>
++    <updated>2012-11-01T15:45:05Z</updated>
++    <author>Unknown</author>
++    <path exec="/opt/ApplicationLauncher/launch.sh" />
++    <arg>/opt/browser/resources/browser.sh</arg>
++    <description>Test Description</description>
++    <link rel="enclosure" type="image/png" href="../../applications/resources/web-browser.png" />
++</entry>
+ </screen></feed>
