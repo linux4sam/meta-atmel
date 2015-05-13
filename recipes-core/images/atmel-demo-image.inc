@@ -16,6 +16,7 @@ IMAGE_INSTALL = "\
     lmbench \
     \
     linux-firmware \
+    atmel-wireless-firmware \
     alsa-utils \
     i2c-tools \
     devmem2 \
