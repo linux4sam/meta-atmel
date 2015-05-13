@@ -12,7 +12,7 @@ diff --git a/Atmel-Video-Player.sh b/Atmel-Video-Player.sh
 index f8c9213..602adb9 100755
 --- a/Atmel-Video-Player.sh
 +++ b/Atmel-Video-Player.sh
-@@ -1,9 +1,14 @@
+@@ -1,9 +1,19 @@
  #!/bin/sh
  
 -sleep 2
@@ -30,7 +30,12 @@ index f8c9213..602adb9 100755
 -dd if=/dev/zero of=/dev/fb1
 +	dd if=/dev/zero of=/dev/fb1
 +else
-+	gst-launch-1.0 uridecodebin uri=file:///opt/VideoPlayer/media/Tech_on_Tour-Atmel_Visits_Washington_DC.mp4 expose-all-streams=false name=srcVideo caps="video/x-h264\;audio/x-raw" srcVideo. ! h264parse ! queue ! g1h264dec ! video/x-raw,width=800,height=480 ! progressreport silent=true do-query=true update-freq=1 format=time name=progress ! perf name=perf ! g1fbdevsink zero-memcpy=true max-lateness=-1 async=false enable-last-sample=false srcVideo. ! queue ! audioconvert ! audio/x-raw,format=S16LE ! volume volume=0.3 name=volume ! alsasink async=false enable-last-sample=false
++	if [ -d /proc/asound/card0 ]
++	then
++		gst-launch-1.0 uridecodebin uri=file:///opt/VideoPlayer/media/Tech_on_Tour-Atmel_Visits_Washington_DC.mp4 expose-all-streams=false name=srcVideo caps="video/x-h264\;audio/x-raw" srcVideo. ! h264parse ! queue ! g1h264dec ! video/x-raw,width=800,height=480 ! progressreport silent=true do-query=true update-freq=1 format=time name=progress ! perf name=perf ! g1fbdevsink zero-memcpy=true max-lateness=-1 async=false enable-last-sample=false srcVideo. ! queue ! audioconvert ! audio/x-raw,format=S16LE ! volume volume=0.3 name=volume ! alsasink async=false enable-last-sample=false
++	else
++		gst-launch-1.0 uridecodebin uri=file:///opt/VideoPlayer/media/Tech_on_Tour-Atmel_Visits_Washington_DC.mp4 expose-all-streams=false name=srcVideo caps="video/x-h264" srcVideo. ! h264parse ! queue ! g1h264dec ! video/x-raw,width=800,height=480 ! progressreport silent=true do-query=true update-freq=1 format=time name=progress ! perf name=perf ! g1fbdevsink zero-memcpy=true max-lateness=-1 async=false enable-last-sample=false
++	fi
 +fi
 -- 
 1.9.1
