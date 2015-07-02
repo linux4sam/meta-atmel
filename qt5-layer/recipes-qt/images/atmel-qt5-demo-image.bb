@@ -61,6 +61,7 @@ IMAGE_INSTALL += "\
 	qtsvg \
 	qtsvg-plugins \
 	qtsensors \
+	qtserialport \
 	qtsystems \
 	qtsystems-tools \
 	qtsystems-qmlplugins \
