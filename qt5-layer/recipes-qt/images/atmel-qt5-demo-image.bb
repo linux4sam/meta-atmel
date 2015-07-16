@@ -99,6 +99,9 @@ IMAGE_INSTALL += "\
 	atmel-qt-demo-init \
 "
 
+IMAGE_INSTALL_append_at91sam9 = " \
+	tslib tslib-conf tslib-tests tslib-calibrate "
+
 IMAGE_INSTALL_append_sama5d4 = " \
 	gstreamer1.0-plugins-hantro \
 	g1-binaries-dev \
@@ -122,4 +125,4 @@ atmel_qt5_rootfs_postprocess() {
     cd $curdir
 }
 
-ROOTFS_POSTPROCESS_COMMAND += "atmel_qt5_rootfs_postprocess;"
+ROOTFS_POSTPROCESS_COMMAND_append_sama5 += "atmel_qt5_rootfs_postprocess;"
