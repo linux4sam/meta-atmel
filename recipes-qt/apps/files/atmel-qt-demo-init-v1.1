@@ -10,14 +10,24 @@ start()
   mode=`fbset | grep mode | awk -F "\"" '{print $2;}'`
   echo $mode
 
+  export QT_QPA_PLATFORM=linuxfb
   if [ -e /sys/class/graphics/fb0/modes ]; then
     head -1 /sys/class/graphics/fb0/modes > /sys/class/graphics/fb0/mode
   fi
 
+  if [ -x /usr/bin/ts_calibrate ]; then
+    rm -f /etc/pointercal
+    if [ ! -f /etc/pointercal-${mode} ]; then
+       TSLIB_TSDEVICE=/dev/input/touchscreen0 /usr/bin/ts_calibrate
+       mv /etc/pointercal /etc/pointercal-${mode}
+    fi
+    ln -sf /etc/pointercal-${mode} /etc/pointercal
+    export QT_QPA_GENERIC_PLUGINS=tslib:/dev/input/touchscreen0
+  else
+    export QT_QPA_GENERIC_PLUGINS=evdevmouse,evdevtouch:/dev/input/touchscreen0,evdevkeyboard:/dev/input/event0
+  fi
+
   echo "Starting Demo..."
-  # add qt5 parameters
-  export QT_QPA_PLATFORM=linuxfb
-  export QT_QPA_GENERIC_PLUGINS=evdevmouse,evdevtouch:/dev/input/touchscreen0,evdevkeyboard:/dev/input/event0
 
   resolution=`echo $mode | awk -F "-" '{print $1;}'`
   case "$resolution" in
