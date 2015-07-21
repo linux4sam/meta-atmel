@@ -110,19 +110,3 @@ IMAGE_INSTALL_append_sama5d4 = " \
 inherit core-image populate_sdk_qt5
 
 TOOLCHAIN_HOST_TASK += "nativesdk-sam-ba"
-
-atmel_qt5_rootfs_postprocess() {
-    curdir=$PWD
-
-    cd ${IMAGE_ROOTFS}
-    cd opt/
-
-    # As we don't use tslib right now, we need remove its plugin in shell
-    # scripts that will call the qt5 application.
-    # So we'll find all shell scripts and remove the parameter:
-    #    -plugin tslib:/dev/input/event1
-    find . -name *.sh | xargs -n 1 sed -i 's%-plugin tslib:/dev/input/event1%%'
-    cd $curdir
-}
-
-ROOTFS_POSTPROCESS_COMMAND_append_sama5 += "atmel_qt5_rootfs_postprocess;"
