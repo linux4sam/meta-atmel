@@ -48,17 +48,3 @@ remove_kernel_rootfs_postprocess() {
 }
 
 ROOTFS_POSTPROCESS_COMMAND += "remove_kernel_rootfs_postprocess; "
-
-sama5d3_xplained_rootfs_postprocess() {
-    curdir=$PWD
-    cd ${IMAGE_ROOTFS}
-
-    # autoload needed modules
-    cd etc
-    echo "atmel_usba_udc" >> modules
-    echo "g_serial" >> modules
-
-    cd $curdir
-}
-
-ROOTFS_POSTPROCESS_COMMAND += "sama5d3_xplained_rootfs_postprocess; "
