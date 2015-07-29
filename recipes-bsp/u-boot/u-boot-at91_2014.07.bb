@@ -1,4 +1,4 @@
-require u-boot.inc
+require u-boot-atmel.inc
 
 # To build u-boot for your machine, provide the following lines in your machine
 # config, replacing the assignments as appropriate for your machine.
