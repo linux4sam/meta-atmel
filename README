@@ -21,7 +21,7 @@ Sources
 - meta-atmel
 URI: git://github.com/linux4sam/meta-atmel.git
 URI: https://github.com/linux4sam/meta-atmel.git
-Branch: dizzy
+Branch: fido
 
 
 Dependencies
@@ -30,13 +30,13 @@ This Layer depends on :
 - meta-openembedded
 URI: git://git.openembedded.org/meta-openembedded
 URI: http://cgit.openembedded.org/meta-openembedded/
-Branch: dizzy (tested with commit ID: 6413cdb66acf43059f94d0076ec9b8ad6a475b35)
+Branch: fido (tested with commit ID: 3082e30da58df0711182cf114c71a8c6a093aeae)
 
 Optionally:
 - meta-qt5
 URI: git://github.com/meta-qt5/meta-qt5.git
 URI: https://github.com/meta-qt5/meta-qt5
-Branch: master (tested with commit ID: 22c431e7a1fa525c75bf1fa48c82d01955001350)
+Branch: fido (tested with commit ID: 137ff099c8b9f380dc10ffdc8847eec30746ca8d)
 
 
 Build procedure
@@ -142,26 +142,24 @@ bitbake atmel-qt5-demo-image
 Typical bitbake output
 ======================
 Build Configuration:
-BB_VERSION        = "1.24.0"
+BB_VERSION        = "1.26.0"
 BUILD_SYS         = "x86_64-linux"
-NATIVELSBSTRING   = "Ubuntu-12.04"
+NATIVELSBSTRING   = "Ubuntu-14.04"
 TARGET_SYS        = "arm-poky-linux-gnueabi"
-MACHINE           = "sama5d4-xplained"
+MACHINE           = "sama5d3-xplained"
 DISTRO            = "poky-atmel"
-DISTRO_VERSION    = "1.7.1"
-TUNE_FEATURES     = "arm armv7a vfp thumb neon callconvention-hard cortexa5"
-TARGET_FPU        = "vfp-neon"
-meta-atmel        = "master:c4f3f1a33c008d26d1a7cd58a025be4ec2af14a1"
-meta-qt5          = "master:7a65ba6089560efdd840a9590684c24fbcdb7818"
+DISTRO_VERSION    = "1.8"
+TUNE_FEATURES     = "arm armv7a vfp thumb callconvention-hard cortexa5"
+TARGET_FPU        = "vfp"
 meta
 meta-yocto
-meta-yocto-bsp    = "dizzy:6e9632e9798d78587c9317554c5547ab3b53837c"
-meta-oe
+meta-yocto-bsp    = "fido:70832d863fb88e852a8f86fe8018160d94e1fa9d"
+meta-atmel        = "fido:a4f9de94e50f70885da1da005aa16a29423de46d"
 meta-networking
 meta-python
 meta-ruby
-meta-multimedia   = "dizzy:6413cdb66acf43059f94d0076ec9b8ad6a475b35"
-
+meta-oe           = "fido:3082e30da58df0711182cf114c71a8c6a093aeae"
+meta-qt5          = "fido:137ff099c8b9f380dc10ffdc8847eec30746ca8d"
 
 Contributing
 ============
