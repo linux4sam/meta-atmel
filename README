@@ -45,16 +45,16 @@ Build procedure
 1/ Clone yocto/poky git repository
 git clone git://git.yoctoproject.org/poky
 
-2/ Checkout dizzy branch
+2/ Checkout the proper branch
 cd poky
-git checkout origin/dizzy -b my_branch
+git checkout origin/fido -b my_branch
 
 3/ Clone meta-openembedded git repository
 git clone git://git.openembedded.org/meta-openembedded
 
 4/ Checkout proper meta-openembedded branch
 cd meta-openembedded
-git checkout origin/dizzy -b my_branch
+git checkout origin/fido -b my_branch
 # come back to the "poky" directory for next steps
 cd ..
 
@@ -72,7 +72,7 @@ git clone git://github.com/linux4sam/meta-atmel.git meta-atmel
 
 8/ Checkout proper meta-atmel branch
 cd meta-atmel
-git checkout origin/dizzy -b my_branch
+git checkout origin/fido -b my_branch
 # come back to the "poky" directory for next steps
 cd ..
 
