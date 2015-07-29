@@ -1,4 +1,4 @@
-require u-boot.inc
+require u-boot-atmel.inc
 
 DESCRIPTION = "u-boot bootloader for ARM MPU devices"
 LICENSE = "GPLv2+"
