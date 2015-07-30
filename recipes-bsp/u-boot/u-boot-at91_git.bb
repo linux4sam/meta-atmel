@@ -1,4 +1,4 @@
-require u-boot.inc
+require u-boot-atmel.inc
 
 DEFAULT_PREFERENCE = "-1"
 
