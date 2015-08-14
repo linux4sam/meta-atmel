@@ -1,3 +1,2 @@
-PACKAGECONFIG_append = "gallium"
-PACKAGECONFIG_append =" gallium-egl  "
-PACKAGECONFIG_append =" gallium-gbm  "
+PACKAGECONFIG_append_at91sam9 = " gallium "
+PACKAGECONFIG_append_sama5 = " gallium "
