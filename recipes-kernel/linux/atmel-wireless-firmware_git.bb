@@ -27,6 +27,6 @@ do_install() {
 
 
 FILES_${PN} = " \
-  /lib/firmware/atmel/wilc1000_*.bin \
+  /lib/firmware/atmel/wilc100*_*.bin \
 "
 # TODO: use ALTERNATIVE like in "linux-firmware" package
