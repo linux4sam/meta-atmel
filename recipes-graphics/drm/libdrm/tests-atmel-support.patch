@@ -1,0 +1,25 @@
+diff --git a/tests/kmstest/main.c b/tests/kmstest/main.c
+index 2c87b1c1b1c0..7028cb25b711 100644
+--- a/tests/kmstest/main.c
++++ b/tests/kmstest/main.c
+@@ -62,6 +62,7 @@ char *drivers[] = {
+ 	"nouveau",
+ 	"vmwgfx",
+ 	"exynos",
++	"atmel-hlcdc",
+ 	NULL
+ };
+ 
+diff --git a/tests/modetest/modetest.c b/tests/modetest/modetest.c
+index 425e5287b107..ae261f039b78 100644
+--- a/tests/modetest/modetest.c
++++ b/tests/modetest/modetest.c
+@@ -1453,7 +1453,7 @@ int main(int argc, char **argv)
+ 	int drop_master = 0;
+ 	int test_vsync = 0;
+ 	int test_cursor = 0;
+-	const char *modules[] = { "i915", "radeon", "nouveau", "vmwgfx", "omapdrm", "exynos", "tilcdc", "msm", "sti", "tegra" };
++	const char *modules[] = { "i915", "radeon", "nouveau", "vmwgfx", "omapdrm", "exynos", "tilcdc", "msm", "sti", "tegra", "atmel-hlcdc" };
+ 	char *device = NULL;
+ 	char *module = NULL;
+ 	unsigned int i;
