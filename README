@@ -22,7 +22,7 @@ Sources
 - meta-atmel
 URI: git://github.com/linux4sam/meta-atmel.git
 URI: https://github.com/linux4sam/meta-atmel.git
-Branch: fido
+Branch: master
 
 
 Dependencies
@@ -31,13 +31,13 @@ This Layer depends on :
 - meta-openembedded
 URI: git://git.openembedded.org/meta-openembedded
 URI: http://cgit.openembedded.org/meta-openembedded/
-Branch: fido (tested with commit ID: 3082e30da58df0711182cf114c71a8c6a093aeae)
+Branch: master
 
 Optionally:
 - meta-qt5
 URI: git://github.com/meta-qt5/meta-qt5.git
 URI: https://github.com/meta-qt5/meta-qt5
-Branch: fido (tested with commit ID: 137ff099c8b9f380dc10ffdc8847eec30746ca8d)
+Branch: master
 
 
 Build procedure
@@ -48,14 +48,14 @@ git clone git://git.yoctoproject.org/poky
 
 2/ Checkout the proper branch
 cd poky
-git checkout origin/fido -b my_branch
+git checkout origin/master -b my_branch
 
 3/ Clone meta-openembedded git repository
 git clone git://git.openembedded.org/meta-openembedded
 
 4/ Checkout proper meta-openembedded branch
 cd meta-openembedded
-git checkout origin/fido -b my_branch
+git checkout origin/master -b my_branch
 # come back to the "poky" directory for next steps
 cd ..
 
@@ -73,7 +73,7 @@ git clone git://github.com/linux4sam/meta-atmel.git meta-atmel
 
 8/ Checkout proper meta-atmel branch
 cd meta-atmel
-git checkout origin/fido -b my_branch
+git checkout origin/master -b my_branch
 # come back to the "poky" directory for next steps
 cd ..
 
