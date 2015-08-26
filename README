@@ -64,7 +64,7 @@ git clone git://github.com/meta-qt5/meta-qt5.git
 
 6/ Checkout proper meta-qt5 branch
 cd meta-qt5
-git checkout origin/master -b my_branch
+git checkout origin/fido -b my_branch
 # come back to the "poky" directory for next steps
 cd ..
 
