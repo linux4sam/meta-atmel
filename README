@@ -121,6 +121,7 @@ MACHINE ??= "sama5d3xek"
 MACHINE ??= "sama5d3-xplained"
 MACHINE ??= "sama5d4ek"
 MACHINE ??= "sama5d4-xplained"
+MACHINE ??= "sama5d2-xplained"
 
 To get better performance, use the poky-atmel distribution by also adding that
 line:
