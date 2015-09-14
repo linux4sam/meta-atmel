@@ -69,7 +69,7 @@ git checkout origin/master -b my_branch
 cd ..
 
 7/ Clone meta-atmel layer
-git clone git://github.com/linux4sam/meta-atmel.git meta-atmel
+git clone git://github.com/linux4sam/meta-atmel.git
 
 8/ Checkout proper meta-atmel branch
 cd meta-atmel
