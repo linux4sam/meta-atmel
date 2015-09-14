@@ -102,6 +102,7 @@ BBLAYERS ?= " \
   ${BSPDIR}/meta-openembedded/meta-networking \
   ${BSPDIR}/meta-openembedded/meta-python \
   ${BSPDIR}/meta-openembedded/meta-ruby \
+  ${BSPDIR}/meta-openembedded/meta-multimedia \
   "
 
 11/ Edit local.conf to specify the machine, location of source archived, package type (rpm, deb or ipk)
