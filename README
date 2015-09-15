@@ -164,6 +164,7 @@ meta-ruby
 meta-oe           = "fido:3082e30da58df0711182cf114c71a8c6a093aeae"
 meta-qt5          = "fido:137ff099c8b9f380dc10ffdc8847eec30746ca8d"
 
+
 Contributing
 ============
 To contribute to this layer you should submit the patches for review to:
