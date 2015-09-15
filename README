@@ -31,13 +31,13 @@ This Layer depends on :
 - meta-openembedded
 URI: git://git.openembedded.org/meta-openembedded
 URI: http://cgit.openembedded.org/meta-openembedded/
-Branch: fido (tested with commit ID: 3082e30da58df0711182cf114c71a8c6a093aeae)
+Branch: fido
 
 Optionally:
 - meta-qt5
 URI: git://github.com/meta-qt5/meta-qt5.git
 URI: https://github.com/meta-qt5/meta-qt5
-Branch: fido (tested with commit ID: 137ff099c8b9f380dc10ffdc8847eec30746ca8d)
+Branch: fido
 
 
 Build procedure
@@ -147,22 +147,23 @@ Typical bitbake output
 Build Configuration:
 BB_VERSION        = "1.26.0"
 BUILD_SYS         = "x86_64-linux"
-NATIVELSBSTRING   = "Ubuntu-14.04"
+NATIVELSBSTRING   = "Ubuntu-12.04"
 TARGET_SYS        = "arm-poky-linux-gnueabi"
-MACHINE           = "sama5d3-xplained"
+MACHINE           = "sama5d2-xplained"
 DISTRO            = "poky-atmel"
 DISTRO_VERSION    = "1.8"
-TUNE_FEATURES     = "arm armv7a vfp thumb callconvention-hard cortexa5"
-TARGET_FPU        = "vfp"
+TUNE_FEATURES     = "arm armv7a vfp thumb neon callconvention-hard cortexa5"
+TARGET_FPU        = "vfp-neon"
+meta-atmel        = "fido:213fdb6062af37ff3ba72d6c20ca18f5f8a6d600"
+meta-qt5          = "fido:90919b9d86988e7da01fa2c0a07246b5b5600a5d"
 meta
 meta-yocto
-meta-yocto-bsp    = "fido:70832d863fb88e852a8f86fe8018160d94e1fa9d"
-meta-atmel        = "fido:a4f9de94e50f70885da1da005aa16a29423de46d"
+meta-yocto-bsp    = "fido:b50596d8f6e858e2e733f2d9913a19c6f3cd5863"
+meta-oe
 meta-networking
 meta-python
 meta-ruby
-meta-oe           = "fido:3082e30da58df0711182cf114c71a8c6a093aeae"
-meta-qt5          = "fido:137ff099c8b9f380dc10ffdc8847eec30746ca8d"
+meta-multimedia   = "fido:10d3c8f85280a0bf867a8e4f84bcda81c290d28e"
 
 
 Contributing
