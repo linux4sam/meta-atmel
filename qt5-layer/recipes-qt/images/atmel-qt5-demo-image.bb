@@ -46,7 +46,7 @@ IMAGE_INSTALL += "\
 	python-pycurl \
 	gdbserver \
 	evtest \
-	obp-utils \
+	mxt-app \
 	usbutils \
 	wget \
 	${CORE_IMAGE_BASE_INSTALL} \
