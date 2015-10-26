@@ -1,0 +1,43 @@
+From 1f90341236b8689d861b2ec28f0b770cf2ab857d Mon Sep 17 00:00:00 2001
+From: Boris Brezillon <boris.brezillon@free-electrons.com>
+Date: Mon, 11 May 2015 14:05:48 +0200
+Subject: [PATCH] manually launch gstreamer if /dev/fb1 is missing
+
+Signed-off-by: Boris Brezillon <boris.brezillon@free-electrons.com>
+---
+ Atmel-Video-Player.sh | 15 ++++++++++-----
+ 1 file changed, 10 insertions(+), 5 deletions(-)
+
+diff --git a/Atmel-Video-Player.sh b/Atmel-Video-Player.sh
+index f8c9213..602adb9 100755
+--- a/Atmel-Video-Player.sh
++++ b/Atmel-Video-Player.sh
+@@ -1,9 +1,21 @@
+ #!/bin/sh
+ 
+-sleep 2
+-dd if=/dev/zero of=/dev/fb0
++if [ -e /dev/fb1 ]
++then
++	sleep 2
++	dd if=/dev/zero of=/dev/fb0
+ 
+-cd "$(dirname "$0")"
+-./player -platform linuxfb:fb=/dev/fb1 -plugin tslib:/dev/input/event1 -plugin evdevkeyboard:/dev/input/event0 $1
++	cd "$(dirname "$0")"
++	./player -platform linuxfb:fb=/dev/fb1 -plugin tslib:/dev/input/event1 -plugin evdevkeyboard:/dev/input/event0 $1
+ 
+-dd if=/dev/zero of=/dev/fb1
++	dd if=/dev/zero of=/dev/fb1
++else
++	# Hack to prevent the pipeline from being stuck
++	(sleep 25 && killall gst-launch-1.0)&
++	if [ -d /proc/asound/card0 ]
++	then
++		gst-launch-1.0 uridecodebin uri=file:///opt/VideoPlayer/media/Tech_on_Tour-Atmel_Visits_Washington_DC.mp4 expose-all-streams=false name=srcVideo caps="video/x-h264\;audio/x-raw" srcVideo. ! h264parse ! queue ! g1h264dec ! video/x-raw,width=800,height=480 ! g1fbdevsink zero-memcpy=true max-lateness=-1 async=false enable-last-sample=false srcVideo. ! queue ! audioconvert ! audio/x-raw,format=S16LE ! alsasink async=false enable-last-sample=false
++	else
++		gst-launch-1.0 uridecodebin uri=file:///opt/VideoPlayer/media/Tech_on_Tour-Atmel_Visits_Washington_DC.mp4 expose-all-streams=false name=srcVideo caps="video/x-h264" srcVideo. ! h264parse ! queue ! g1h264dec ! video/x-raw,width=800,height=480 ! g1fbdevsink zero-memcpy=true max-lateness=-1 async=false enable-last-sample=false
++	fi
++fi
+-- 
+1.9.1
