@@ -34,6 +34,8 @@ IMAGE_INSTALL += "\
 	dosfstools \
 	libdrm-tests \
 	mtd-utils \
+	dtc \
+	dtc-misc \
 	iproute2 \
 	iptables \
 	bridge-utils \
