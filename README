@@ -130,24 +130,25 @@ bitbake atmel-qt5-demo-image
 Typical bitbake output
 ======================
 Build Configuration:
-BB_VERSION        = "1.26.0"
+BB_VERSION        = "1.28.0"
 BUILD_SYS         = "x86_64-linux"
-NATIVELSBSTRING   = "Ubuntu-14.04"
+NATIVELSBSTRING   = "Ubuntu-12.04"
 TARGET_SYS        = "arm-poky-linux-gnueabi"
-MACHINE           = "sama5d3-xplained"
+MACHINE           = "sama5d2-xplained"
 DISTRO            = "poky-atmel"
-DISTRO_VERSION    = "1.8"
-TUNE_FEATURES     = "arm armv7a vfp thumb callconvention-hard cortexa5"
-TARGET_FPU        = "vfp"
+DISTRO_VERSION    = "2.0"
+TUNE_FEATURES     = "arm armv7a vfp thumb neon callconvention-hard cortexa5"
+TARGET_FPU        = "vfp-neon"
+meta-atmel        = "jethro:7232715d0fcb72c34d9fc2d4bf8edf6feaa29d45"
+meta-qt5          = "jethro:0454fb083c38f2155a8be3b61930ad1ddf995695"
 meta
 meta-yocto
-meta-yocto-bsp    = "fido:70832d863fb88e852a8f86fe8018160d94e1fa9d"
-meta-atmel        = "fido:a4f9de94e50f70885da1da005aa16a29423de46d"
+meta-yocto-bsp    = "jethro:fc45deac89ef63ca1c44e763c38ced7dfd72cbe1"
+meta-oe
 meta-networking
 meta-python
 meta-ruby
-meta-oe           = "fido:3082e30da58df0711182cf114c71a8c6a093aeae"
-meta-qt5          = "fido:137ff099c8b9f380dc10ffdc8847eec30746ca8d"
+meta-multimedia   = "jethro:7341805a5f47949172878ca806f596f6d223a150"
 
 
 Contributing
