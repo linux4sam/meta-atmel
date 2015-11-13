@@ -90,6 +90,11 @@ BBLAYERS ?= " \
   ${BSPDIR}/meta-openembedded/meta-multimedia \
   "
 
+BBLAYERS_NON_REMOVABLE ?= " \
+  ${BSPDIR}/poky/meta \
+  ${BSPDIR}/poky/meta-yocto \
+  "
+
 8/ Edit local.conf to specify the machine, location of source archived, package type (rpm, deb or ipk)
 Pick one MACHINE name from the "Supported SoCs / MACHINE names" chapter above
 and edit the "local.conf" file. Here is an example:
@@ -101,6 +106,8 @@ MACHINE ??= "sama5d3-xplained"
 DL_DIR ?= "your_download_directory_path"
 [...]
 PACKAGE_CLASSES ?= "package_ipk"
+[...]
+USER_CLASSES ?= "buildstats image-mklibs"
 
 To get better performance, use the "poky-atmel" distribution by also adding that
 line:
