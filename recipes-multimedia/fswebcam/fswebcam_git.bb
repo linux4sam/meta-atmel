@@ -10,7 +10,7 @@ PR = "r0"
 
 inherit autotools
 
-SRCREV="a0a35da8cf0a5d6a257191fffb11c25311d948e9"
+SRCREV="85b173f5f2578ef2abf6274595f256e32a78405d"
 SRC_URI = "git://github.com/fsphil/fswebcam.git;protocol=git"
 
 S = "${WORKDIR}/git"
