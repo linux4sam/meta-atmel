@@ -86,6 +86,7 @@ BBLAYERS ?= " \
   ${BSPDIR}/meta-openembedded/meta-oe \
   ${BSPDIR}/meta-openembedded/meta-networking \
   ${BSPDIR}/meta-openembedded/meta-python \
+  ${BSPDIR}/meta-openembedded/meta-ruby \
   ${BSPDIR}/meta-openembedded/meta-multimedia \
   "
 
@@ -146,6 +147,7 @@ meta-yocto-bsp    = "jethro:fc45deac89ef63ca1c44e763c38ced7dfd72cbe1"
 meta-oe
 meta-networking
 meta-python
+meta-ruby
 meta-multimedia   = "jethro:7341805a5f47949172878ca806f596f6d223a150"
 
 
