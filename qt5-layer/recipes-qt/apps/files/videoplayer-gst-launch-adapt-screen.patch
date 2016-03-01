@@ -12,7 +12,7 @@
 +
  	# Hack to prevent the pipeline from being stuck
 -	(sleep 25 && killall gst-launch-1.0)&
-+	(sleep 26 && killall gst-launch-1.0 > /dev/null 2>&1)&
++	(sleep 26 && killall -9 gst-launch-1.0 > /dev/null 2>&1)&
  	if [ -d /proc/asound/card0 ]
  	then
 -		gst-launch-1.0 uridecodebin uri=file:///opt/VideoPlayer/media/Tech_on_Tour-Atmel_Visits_Washington_DC.mp4 expose-all-streams=false name=srcVideo caps="video/x-h264\;audio/x-raw" srcVideo. ! h264parse ! queue ! g1h264dec ! video/x-raw,width=800,height=480 ! g1fbdevsink zero-memcpy=true max-lateness=-1 async=false enable-last-sample=false srcVideo. ! queue ! audioconvert ! audio/x-raw,format=S16LE ! alsasink async=false enable-last-sample=false
