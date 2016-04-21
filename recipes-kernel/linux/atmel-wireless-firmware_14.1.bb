@@ -6,7 +6,7 @@ LICENSE = "CLOSED"
 SRCREV = "${AUTOREV}"
 PV = "v11"
 
-SRC_URI = "git://github.com/linux4sc/wireless-firmware.git;protocol=git;branch=v11 \
+SRC_URI = "git://github.com/linux4sc/wireless-firmware.git;protocol=git;branch=v14.1 \
           "
 S = "${WORKDIR}/git"
 
@@ -27,6 +27,6 @@ do_install() {
 
 
 FILES_${PN} = " \
-  /lib/firmware/atmel/wilc1000_*.bin \
+  /lib/firmware/atmel/wilc1003_firmware.bin \
 "
 # TODO: use ALTERNATIVE like in "linux-firmware" package
