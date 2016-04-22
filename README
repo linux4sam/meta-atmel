@@ -70,7 +70,7 @@ vim conf/bblayers.conf
 
 # LAYER_CONF_VERSION is increased each time build/conf/bblayers.conf
 # changes incompatibly
-LCONF_VERSION = "6"
+POKY_BBLAYERS_CONF_VERSION = "2"
 
 BBPATH = "${TOPDIR}"
 BBFILES ?= ""
@@ -78,16 +78,21 @@ BBFILES ?= ""
 BSPDIR := "${@os.path.abspath(os.path.dirname(d.getVar('FILE', True)) + '/../../..')}"
 
 BBLAYERS ?= " \
-  ${BSPDIR}/meta-atmel \
-  ${BSPDIR}/meta-qt5 \
   ${BSPDIR}/poky/meta \
-  ${BSPDIR}/poky/meta-yocto \
+  ${BSPDIR}/poky/meta-poky \
   ${BSPDIR}/poky/meta-yocto-bsp \
+  ${BSPDIR}/meta-atmel \
   ${BSPDIR}/meta-openembedded/meta-oe \
   ${BSPDIR}/meta-openembedded/meta-networking \
   ${BSPDIR}/meta-openembedded/meta-python \
   ${BSPDIR}/meta-openembedded/meta-ruby \
   ${BSPDIR}/meta-openembedded/meta-multimedia \
+  ${BSPDIR}/sources/meta-qt5 \
+  "
+
+BLAYERS_NON_REMOVABLE ?= " \
+  ${BSPDIR}/poky/meta \
+  ${BSPDIR}/poky/meta-poky \
   "
 
 8/ Edit local.conf to specify the machine, location of source archived, package type (rpm, deb or ipk)
@@ -101,6 +106,8 @@ MACHINE ??= "sama5d3-xplained"
 DL_DIR ?= "your_download_directory_path"
 [...]
 PACKAGE_CLASSES ?= "package_ipk"
+[...]
+USER_CLASSES ?= "buildstats image-mklibs"
 
 To get better performance, use the "poky-atmel" distribution by also adding that
 line:
@@ -123,24 +130,25 @@ bitbake atmel-qt5-demo-image
 Typical bitbake output
 ======================
 Build Configuration:
-BB_VERSION        = "1.26.0"
+BB_VERSION        = "1.30.0"
 BUILD_SYS         = "x86_64-linux"
-NATIVELSBSTRING   = "Ubuntu-14.04"
+NATIVELSBSTRING   = "universal"
 TARGET_SYS        = "arm-poky-linux-gnueabi"
-MACHINE           = "sama5d3-xplained"
+MACHINE           = "sama5d2-xplained"
 DISTRO            = "poky-atmel"
-DISTRO_VERSION    = "1.8"
-TUNE_FEATURES     = "arm armv7a vfp thumb callconvention-hard cortexa5"
-TARGET_FPU        = "vfp"
-meta
-meta-yocto
-meta-yocto-bsp    = "fido:70832d863fb88e852a8f86fe8018160d94e1fa9d"
-meta-atmel        = "fido:a4f9de94e50f70885da1da005aa16a29423de46d"
-meta-networking
-meta-python
-meta-ruby
-meta-oe           = "fido:3082e30da58df0711182cf114c71a8c6a093aeae"
-meta-qt5          = "fido:137ff099c8b9f380dc10ffdc8847eec30746ca8d"
+DISTRO_VERSION    = "2.1"
+TUNE_FEATURES     = "arm armv7a vfp thumb neon       callconvention-hard       cortexa5"
+TARGET_FPU        = "hard"
+meta              
+meta-poky         
+meta-yocto-bsp    = "krogoth:6c1c01392d91f512e2949ad1d57a75a8077478ba"
+meta-atmel        = "master:28c4b5d70f3f7df6f8b108a01f621ca0cf23c1a4"
+meta-multimedia   
+meta-networking   
+meta-python       
+meta-ruby         
+meta-oe           = "krogoth:abd1795729501a13608da67054b9cbf185404be3"
+meta-qt5          = "krogoth:4ec27e218d725677279d265ac1fc256443d665f7"
 
 
 Contributing
