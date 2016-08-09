@@ -22,7 +22,7 @@ Sources
 - meta-atmel
 URI: git://github.com/linux4sam/meta-atmel.git
 URI: https://github.com/linux4sam/meta-atmel.git
-Branch: krogoth
+Branch: master
 
 
 Dependencies
@@ -31,13 +31,13 @@ This Layer depends on :
 - meta-openembedded
 URI: git://git.openembedded.org/meta-openembedded
 URI: http://cgit.openembedded.org/meta-openembedded/
-Branch: krogoth
+Branch: master
 
 Optionally:
 - meta-qt5
 URI: git://github.com/meta-qt5/meta-qt5.git
 URI: https://github.com/meta-qt5/meta-qt5
-Branch: krogoth
+Branch: master
 
 
 Build procedure
@@ -142,7 +142,7 @@ TARGET_FPU        = "hard"
 meta              
 meta-poky         
 meta-yocto-bsp    = "krogoth:6c1c01392d91f512e2949ad1d57a75a8077478ba"
-meta-atmel        = "krogoth:28c4b5d70f3f7df6f8b108a01f621ca0cf23c1a4"
+meta-atmel        = "master:28c4b5d70f3f7df6f8b108a01f621ca0cf23c1a4"
 meta-multimedia   
 meta-networking   
 meta-python       
