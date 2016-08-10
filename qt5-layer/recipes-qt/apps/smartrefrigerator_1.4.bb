@@ -36,10 +36,13 @@ FILES_${PN} = " \
 
 do_install() {
 	make INSTALL_ROOT=${D} install
-	cp -ar ${B}/output/SmartRefr* ${D}/opt
-	mkdir ${D}/etc
-	cp ${B}/output/nhttpd.conf ${D}/etc/nhttpd.conf
-	cp -ar ${B}/output/ApplicationL* ${D}/opt
+	cd ${B}/output/
+	for file in $(find SmartRefrigerator ApplicationLauncher -type f); do
+		echo install -m 644 -D ${file} ${D}/opt/${file}
+		install -m 644 -D ${file} ${D}/opt/${file}
+	done
+	install -d ${D}/etc
+	install -m 644 nhttpd.conf ${D}/etc/nhttpd.conf
 }
 
 pkg_postinst_PACKAGENAME() {
