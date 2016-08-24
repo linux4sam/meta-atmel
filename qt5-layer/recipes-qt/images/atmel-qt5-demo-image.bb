@@ -54,7 +54,6 @@ IMAGE_INSTALL += "\
 	${CORE_IMAGE_BASE_INSTALL} \
 	\
 	qtbase \
-	qtbase-fonts \
 	qtbase-plugins \
 	qtbase-tools \
 	qtmultimedia \
