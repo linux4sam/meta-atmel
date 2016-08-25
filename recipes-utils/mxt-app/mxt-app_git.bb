@@ -7,10 +7,12 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=8b6acde4490765c7b838377ac61e2d2d"
 DEPENDS = "libusb1"
 
 PR = "r0"
+PV = "1.27+git${SRCPV}"
 
 inherit autotools
 
-SRCREV="f0da763cc8ea78dc12915d59bc5fab20cd1cec06"
-SRC_URI = "git://github.com/atmel-maxtouch/mxt-app.git"
+SRCREV="84665a7b7013285b9f3ee799ee1d9ca7bc6f0e55"
+SRC_URI = "git://github.com/atmel-maxtouch/mxt-app.git \
+	file://0001-fix-ret-type-in-read_boolean_file.patch"
 
 S = "${WORKDIR}/git"
