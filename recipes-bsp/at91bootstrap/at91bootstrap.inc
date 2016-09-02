@@ -18,6 +18,7 @@ inherit cml1 deploy
 AT91BOOTSTRAP_MACHINE ??= "${MACHINE}"
 
 AT91BOOTSTRAP_CONFIG ??= "${AT91BOOTSTRAP_MACHINE}nf_uboot"
+AT91BOOTSTRAP_CONFIG_at91sam9x5ek-sd ??= "${AT91BOOTSTRAP_MACHINE}sd_uboot"
 AT91BOOTSTRAP_CONFIG_sama5d3-xplained-sd ??= "${AT91BOOTSTRAP_MACHINE}sd_uboot"
 AT91BOOTSTRAP_CONFIG_sama5d4ek ??= "${AT91BOOTSTRAP_MACHINE}nf_uboot_secure"
 AT91BOOTSTRAP_CONFIG_sama5d4-xplained ??= "${AT91BOOTSTRAP_MACHINE}nf_uboot_secure"
@@ -27,6 +28,7 @@ AT91BOOTSTRAP_CONFIG_sama5d2-xplained-sd ??= "${AT91BOOTSTRAP_MACHINE}sd_uboot"
 
 AT91BOOTSTRAP_TARGET ??= "${AT91BOOTSTRAP_CONFIG}_defconfig"
 AT91BOOTSTRAP_LOAD ??= "nandflashboot-uboot"
+AT91BOOTSTRAP_LOAD_at91sam9x5ek-sd ??= "sdboot-uboot"
 AT91BOOTSTRAP_LOAD_sama5d2-xplained ??= "dataflashboot-uboot"
 AT91BOOTSTRAP_LOAD_sama5d2-xplained-sd ??= "sdboot-uboot"
 AT91BOOTSTRAP_LOAD_sama5d3-xplained-sd ??= "sdboot-uboot"
