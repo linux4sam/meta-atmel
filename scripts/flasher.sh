@@ -147,15 +147,15 @@ fi
 
 case $LCD in
 	pda4)
-		video_mode="video=LVDS-1:480x272-16"
+		video_mode="video=Unknown-1:480x272-16"
 		D="$D_$LCD"
 		;;
 	pda7)
-		video_mode="video=LVDS-1:800x480-16"
+		video_mode="video=Unknown-1:800x480-16"
 		D="${D}_${LCD}"
 		;;
 	*)
-		video_mode="video=LVDS-1:800x480-16"
+		video_mode="video=Unknown-1:800x480-16"
 		;;
 esac
 
