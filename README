@@ -90,7 +90,7 @@ BBLAYERS ?= " \
   ${BSPDIR}/sources/meta-qt5 \
   "
 
-BLAYERS_NON_REMOVABLE ?= " \
+BBLAYERS_NON_REMOVABLE ?= " \
   ${BSPDIR}/poky/meta \
   ${BSPDIR}/poky/meta-poky \
   "
