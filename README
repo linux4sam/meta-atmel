@@ -87,7 +87,7 @@ BBLAYERS ?= " \
   ${BSPDIR}/meta-openembedded/meta-python \
   ${BSPDIR}/meta-openembedded/meta-ruby \
   ${BSPDIR}/meta-openembedded/meta-multimedia \
-  ${BSPDIR}/sources/meta-qt5 \
+  ${BSPDIR}/meta-qt5 \
   "
 
 BBLAYERS_NON_REMOVABLE ?= " \
