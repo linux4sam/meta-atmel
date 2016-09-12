@@ -68,7 +68,7 @@ source oe-init-build-env build-atmel
 7/ Add meta-atmel layer to bblayer configuration file
 vim conf/bblayers.conf
 
-# LAYER_CONF_VERSION is increased each time build/conf/bblayers.conf
+# POKY_BBLAYERS_CONF_VERSION is increased each time build/conf/bblayers.conf
 # changes incompatibly
 POKY_BBLAYERS_CONF_VERSION = "2"
 
