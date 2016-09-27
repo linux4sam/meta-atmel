@@ -3,7 +3,9 @@ SECTION = "kernel"
 
 LICENSE = "CLOSED"
 
-SRC_URI = "git://github.com/linux4sc/wireless-firmware.git;protocol=git;tag=v14.1_Firmware "
+SRCREV = "${AUTOREV}"
+
+SRC_URI = "git://github.com/linux4sc/wireless-firmware.git;protocol=git;branch=v14 "
 S = "${WORKDIR}/git"
 
 inherit allarch
