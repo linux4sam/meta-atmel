@@ -136,19 +136,19 @@ NATIVELSBSTRING   = "universal"
 TARGET_SYS        = "arm-poky-linux-gnueabi"
 MACHINE           = "sama5d2-xplained"
 DISTRO            = "poky-atmel"
-DISTRO_VERSION    = "2.1"
+DISTRO_VERSION    = "2.1.1"
 TUNE_FEATURES     = "arm armv7a vfp thumb neon       callconvention-hard       cortexa5"
 TARGET_FPU        = "hard"
-meta              
-meta-poky         
-meta-yocto-bsp    = "krogoth:6c1c01392d91f512e2949ad1d57a75a8077478ba"
-meta-atmel        = "krogoth:28c4b5d70f3f7df6f8b108a01f621ca0cf23c1a4"
-meta-multimedia   
-meta-networking   
-meta-python       
-meta-ruby         
-meta-oe           = "krogoth:abd1795729501a13608da67054b9cbf185404be3"
-meta-qt5          = "krogoth:4ec27e218d725677279d265ac1fc256443d665f7"
+meta
+meta-poky
+meta-yocto-bsp    = "krogoth:e93596fe74927e2e2f4dd7f671994ccb9744cff8"
+meta-atmel        = "krogoth:b6f66eb91524124a529ec6a157d8755c7a51d53a"
+meta-oe
+meta-networking
+meta-python
+meta-ruby
+meta-multimedia   = "krogoth:851a064b53dca3b14dd33eaaaca9573b1a36bf0e"
+meta-qt5          = "krogoth:1ec776771f5f09c97917d3839d8140f9a7668c4a"
 
 
 Contributing
