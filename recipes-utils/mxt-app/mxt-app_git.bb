@@ -10,7 +10,7 @@ PV = "1.27+git${SRCPV}"
 
 inherit autotools
 
-SRCREV="84665a7b7013285b9f3ee799ee1d9ca7bc6f0e55"
+SRCREV="baa2ab851272f78bf05883861e8098008213a2c2"
 SRC_URI = "git://github.com/atmel-maxtouch/mxt-app.git"
 
 S = "${WORKDIR}/git"
