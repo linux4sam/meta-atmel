@@ -10,7 +10,7 @@ PR = "r0"
 
 inherit autotools
 
-SRCREV="f0da763cc8ea78dc12915d59bc5fab20cd1cec06"
+SRCREV="baa2ab851272f78bf05883861e8098008213a2c2"
 SRC_URI = "git://github.com/atmel-maxtouch/mxt-app.git"
 
 S = "${WORKDIR}/git"
