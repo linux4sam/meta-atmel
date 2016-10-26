@@ -38,8 +38,13 @@ do_install() {
 	make INSTALL_ROOT=${D} install
 	cd ${B}/output/
 	for file in $(find SmartRefrigerator ApplicationLauncher -type f); do
-		echo install -m 644 -D ${file} ${D}/opt/${file}
-		install -m 644 -D ${file} ${D}/opt/${file}
+		if [ -x ${file} ]; then
+			PERM="755"
+		else
+			PERM="644"
+		fi
+		echo install -m ${PERM} -D ${file} ${D}/opt/${file}
+		install -m ${PERM} -D ${file} ${D}/opt/${file}
 	done
 	install -d ${D}/etc
 	install -m 644 nhttpd.conf ${D}/etc/nhttpd.conf
