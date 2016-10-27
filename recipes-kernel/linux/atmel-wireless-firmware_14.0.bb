@@ -4,10 +4,8 @@ SECTION = "kernel"
 LICENSE = "CLOSED"
 
 SRCREV = "${AUTOREV}"
-PV = "v11"
 
-SRC_URI = "git://github.com/linux4sc/wireless-firmware.git;protocol=git;branch=v14.1 \
-          "
+SRC_URI = "git://github.com/linux4sc/wireless-firmware.git;protocol=git;branch=v14 "
 S = "${WORKDIR}/git"
 
 inherit allarch
@@ -22,11 +20,12 @@ do_install() {
 
 	# remove unneeded file
 	rm -f ${D}/lib/firmware/atmel/README.md
+	rm -rf ${D}/lib/firmware/atmel/tools
 	chmod -x ${D}/lib/firmware/atmel/*
 }
 
 
 FILES_${PN} = " \
-  /lib/firmware/atmel/wilc1003_firmware.bin \
+  /lib/firmware/atmel/wilc100*_*.bin \
 "
 # TODO: use ALTERNATIVE like in "linux-firmware" package
