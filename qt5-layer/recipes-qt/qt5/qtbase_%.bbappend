@@ -1,5 +1,4 @@
 FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
-SRC_URI += "file://0001-Fix-building-without-OpenGL-support.patch"
 SRC_URI += "file://atmel-color-format-force.patch"
 
 # No egl on SAM9 or SAMA5
