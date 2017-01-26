@@ -22,7 +22,7 @@ Sources
 - meta-atmel
 URI: git://github.com/linux4sam/meta-atmel.git
 URI: https://github.com/linux4sam/meta-atmel.git
-Branch: master
+Branch: morty
 
 
 Dependencies
@@ -31,13 +31,13 @@ This Layer depends on :
 - meta-openembedded
 URI: git://git.openembedded.org/meta-openembedded
 URI: http://cgit.openembedded.org/meta-openembedded/
-Branch: master
+Branch: morty
 
 Optionally:
 - meta-qt5
 URI: git://github.com/meta-qt5/meta-qt5.git
 URI: https://github.com/meta-qt5/meta-qt5
-Branch: master
+Branch: morty
 
 
 Build procedure
@@ -48,16 +48,16 @@ mkdir my_dir
 cd my_dir
 
 1/ Clone yocto/poky git repository with the proper branch ready
-git clone git://git.yoctoproject.org/poky
+git clone git://git.yoctoproject.org/poky -b morty
 
 2/ Clone meta-openembedded git repository with the proper branch ready
-git clone git://git.openembedded.org/meta-openembedded
+git clone git://git.openembedded.org/meta-openembedded -b morty
 
 3/ Clone meta-qt5 git repository with the proper branch ready
-git clone git://github.com/meta-qt5/meta-qt5.git
+git clone git://github.com/meta-qt5/meta-qt5.git -b morty
 
 4/ Clone meta-atmel layer with the proper branch ready
-git clone git://github.com/linux4sam/meta-atmel.git
+git clone git://github.com/linux4sam/meta-atmel.git -b morty
 
 5/ Enter the poky directory to configure the build system and start the build process
 cd poky
