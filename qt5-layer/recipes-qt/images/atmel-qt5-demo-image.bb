@@ -27,6 +27,7 @@ IMAGE_INSTALL += "\
 	atmel-wireless-firmware \
 	\
 	alsa-utils \
+	mpg123 \
 	i2c-tools \
 	devmem2 \
 	dosfstools \
