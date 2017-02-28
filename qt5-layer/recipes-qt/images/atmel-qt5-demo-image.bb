@@ -9,6 +9,7 @@ IMAGE_INSTALL += "\
 	packagegroup-core-full-cmdline \
 	packagegroup-base-wifi \
 	packagegroup-base-bluetooth \
+	packagegroup-base-usbhost \
 	packagegroup-base-usbgadget \
 	openssh-sftp \
 	openssh-sftp-server \
