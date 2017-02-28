@@ -95,7 +95,6 @@ IMAGE_INSTALL += "\
 	samegame \
 	minehunt \
 	videoplayer \
-	ptpdemo \
 	atmel-qt-demo-init \
 "
 
