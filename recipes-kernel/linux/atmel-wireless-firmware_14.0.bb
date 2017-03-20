@@ -3,7 +3,7 @@ SECTION = "kernel"
 
 LICENSE = "CLOSED"
 
-SRCREV = "${AUTOREV}"
+SRCREV = "ed5660c043d3fdcc1221e5d23da9915101c6b2ea"
 
 SRC_URI = "git://github.com/linux4sc/wireless-firmware.git;protocol=git;branch=v14 "
 S = "${WORKDIR}/git"
