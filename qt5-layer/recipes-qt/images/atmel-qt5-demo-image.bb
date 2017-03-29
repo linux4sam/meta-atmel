@@ -33,6 +33,7 @@ IMAGE_INSTALL += "\
 	dosfstools \
 	libdrm-tests \
 	mtd-utils \
+	mtd-utils-ubifs \
 	dtc \
 	dtc-misc \
 	iproute2 \
