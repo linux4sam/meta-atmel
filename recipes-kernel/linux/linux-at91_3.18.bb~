@@ -10,7 +10,7 @@ require recipes-kernel/linux/linux-dtb.inc
 RDEPENDS_kernel-base=""
 FILESEXTRAPATHS_prepend := "${THISDIR}/${P}:"
 
-PV = "3.18+git${SRCPV}"
+PV = "3.18"
 
 S = "${WORKDIR}/git"
 
