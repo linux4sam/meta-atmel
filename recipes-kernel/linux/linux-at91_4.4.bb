@@ -22,12 +22,12 @@ SRC_URI = "git://github.com/linux4sam/linux-at91.git;protocol=git;branch=${KBRAN
 SRC_URI += "file://defconfig"
 
 python __anonymous () {
-	if d.getVar('UBOOT_FIT_IMAGE', True) == 'xyes':
+	if d.getVar('UBOOT_FIT_IMAGE', True) == 'yes':
 		d.appendVar('DEPENDS', ' u-boot-mkimage-native dtc-native')
 }
 
 do_deploy_append() {
-	if [ "${UBOOT_FIT_IMAGE}" = "xyes" ]; then
+	if [ "${UBOOT_FIT_IMAGE}" = "yes" ]; then
 		DTB_PATH="${B}/arch/${ARCH}/boot/dts/"
 		if [ ! -e "${DTB_PATH}" ]; then
 			DTB_PATH="${B}/arch/${ARCH}/boot/"
