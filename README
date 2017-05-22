@@ -1,9 +1,9 @@
-This layer provides support for Atmel | SMART microprocessors (aka AT91)
-========================================================================
+This layer provides support for Microchip microprocessors (aka AT91)
+====================================================================
 
-For more information about the Atmel | SMART product line see:
-http://www.atmel.com/products/microcontrollers/arm/
-Linux & Open Source on Atmel | SMART:
+For more information about the Microchip MPU product line see:
+http://www.microchip.com/design-centers/32-bit-mpus
+Linux & Open Source on Microchip microprocessors:
 http://www.linux4sam.org
 
 
@@ -164,8 +164,8 @@ for some useful guidelines to be followed when submitting patches:
 http://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded
 
 Maintainers:
-Nicolas Ferre <nicolas.ferre@atmel.com>
-Patrice Vilchez <patrice.vilchez@atmel.com>
+Nicolas Ferre <nicolas.ferre@microchip.com>
+Patrice Vilchez <patrice.vilchez@microchip.com>
 
 When creating patches insert the [meta-atmel] tag in the subject, for example
 use something like:
