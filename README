@@ -35,9 +35,9 @@ Branch: morty
 
 Optionally:
 - meta-qt5
-URI: git://github.com/meta-qt5/meta-qt5.git
-URI: https://github.com/meta-qt5/meta-qt5
-Branch: morty
+URI: git://code.qt.io/yocto/meta-qt5.git
+URI: http://code.qt.io/cgit/yocto/meta-qt5.git/
+Tag: v5.8.0
 
 
 Build procedure
@@ -54,7 +54,10 @@ git clone git://git.yoctoproject.org/poky -b morty
 git clone git://git.openembedded.org/meta-openembedded -b morty
 
 3/ Clone meta-qt5 git repository with the proper branch ready
-git clone git://github.com/meta-qt5/meta-qt5.git -b morty
+git clone git://code.qt.io/yocto/meta-qt5.git
+cd meta-qt5
+git checkout v5.8.0
+cd ..
 
 4/ Clone meta-atmel layer with the proper branch ready
 git clone git://github.com/linux4sam/meta-atmel.git -b morty
