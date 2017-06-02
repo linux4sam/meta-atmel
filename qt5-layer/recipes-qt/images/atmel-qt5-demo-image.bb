@@ -73,10 +73,13 @@ IMAGE_INSTALL += "\
 	qtlocation-qmlplugins \
 	qtdeclarative \
 	qtdeclarative-qmlplugins \
-	qtdeclarative-plugins \
 	qtquick1 \
 	qtquick1-qmlplugins \
 	qtquick1-plugins \
+	qtquickcontrols \
+	qtquickcontrols-qmlplugins \
+	qtquickcontrols2 \
+	qtquickcontrols2-qmlplugins \
 	qtwebkit \
 	qtwebkit-qmlplugins \
 	\

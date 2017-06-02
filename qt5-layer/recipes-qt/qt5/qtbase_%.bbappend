@@ -12,3 +12,4 @@ QT_CONFIG_FLAGS_append_sama5 = "${@bb.utils.contains('DISTRO_FEATURES', 'x11', \
 # added.
 PACKAGECONFIG_append_at91sam9 = " icu"
 PACKAGECONFIG_append_sama5 = " icu"
+PACKAGECONFIG_append_sama5 = " accessibility"
