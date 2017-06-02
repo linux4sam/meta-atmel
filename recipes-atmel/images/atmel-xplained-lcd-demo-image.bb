@@ -1,13 +1,12 @@
-DESCRIPTION = "An image for SAMA5D3 Xplained with screen."
+DESCRIPTION = "An image for boards with screen and resistive touchscreen."
 LICENSE = "MIT"
 PR = "r1"
 
 require atmel-demo-image.inc
 
-IMAGE_FEATURES += "splash"
-
 IMAGE_INSTALL += "\
     packagegroup-base-usbhost \
+    mpg123 \
     fb-test \
     tslib \
     tslib-conf \
