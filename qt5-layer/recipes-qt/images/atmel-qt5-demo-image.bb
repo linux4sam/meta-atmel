@@ -93,6 +93,7 @@ IMAGE_INSTALL += "\
 	libv4l \
 	v4l-utils \
 	fswebcam \
+	ffmpeg \
 	\
 	liberation-fonts \
 	homeautomation \
