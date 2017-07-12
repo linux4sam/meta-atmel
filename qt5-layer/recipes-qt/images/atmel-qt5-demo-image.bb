@@ -92,6 +92,7 @@ IMAGE_INSTALL += "\
 	gstreamer1.0-libav \
 	libv4l \
 	v4l-utils \
+	fswebcam \
 	\
 	liberation-fonts \
 	homeautomation \
