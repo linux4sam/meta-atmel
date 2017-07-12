@@ -91,6 +91,7 @@ IMAGE_INSTALL += "\
 	gstreamer1.0-plugins-ugly-meta \
 	gstreamer1.0-libav \
 	libv4l \
+	v4l-utils \
 	\
 	liberation-fonts \
 	homeautomation \
