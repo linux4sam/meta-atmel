@@ -8,9 +8,9 @@ DEPENDS = "gd"
 
 PR = "r0"
 
-inherit autotools
+inherit autotools-brokensep
 
-SRCREV="85b173f5f2578ef2abf6274595f256e32a78405d"
+SRCREV="c417cd8588f93f3f6c4fc687c2cb8f0f9d70b9b0"
 SRC_URI = "git://github.com/fsphil/fswebcam.git;protocol=git"
 
 S = "${WORKDIR}/git"
