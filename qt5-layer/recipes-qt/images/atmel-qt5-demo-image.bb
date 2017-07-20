@@ -85,6 +85,7 @@ IMAGE_INSTALL += "\
 	qtquickcontrols2-qmlplugins \
 	qtwebkit \
 	qtwebkit-qmlplugins \
+	qtwayland \
 	\
 	libicui18n \
 	gstreamer1.0 \
