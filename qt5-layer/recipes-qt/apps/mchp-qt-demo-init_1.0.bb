@@ -1,11 +1,17 @@
 DESCRIPTION = "Init script for qtdemo"
 LICENSE = "MIT"
-SRC_URI = "file://fs-overlay/etc/mchp_qtdemo"
+SRC_URI = "file://fs-overlay/etc/mchp_qtdemo \
+		  file://fs-overlay/etc/qtprofile.sh"
 
 PR = "r2"
 
 LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d690 \
                     file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
+
+do_install_append() {
+    install -d ${D}${sysconfdir}/profile.d/
+    install -m 0755 ${WORKDIR}/fs-overlay/etc/qtprofile.sh ${D}${sysconfdir}/profile.d/
+}
 
 do_install() {
 	install -d ${D}${sysconfdir}/init.d/
