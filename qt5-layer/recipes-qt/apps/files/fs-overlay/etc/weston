@@ -1,0 +1,6 @@
+#
+# Default for /etc/init.d/weston
+#
+# As weston can be called with arguments, we use the following variable
+OPTARGS="--tty=3 -B drm-backend.so -c /etc/weston.ini --idle-time=0 --use-pixman"
+

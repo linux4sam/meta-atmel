@@ -107,6 +107,7 @@ IMAGE_INSTALL += "\
 	minehunt \
 	videoplayer \
 	atmel-qt-demo-init \
+	mchp-weston-init \
 "
 
 IMAGE_INSTALL_append_at91sam9 = " \
