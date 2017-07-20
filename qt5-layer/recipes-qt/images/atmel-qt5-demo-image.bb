@@ -107,7 +107,7 @@ IMAGE_INSTALL += "\
 	samegame \
 	minehunt \
 	videoplayer \
-	atmel-qt-demo-init \
+	mchp-qt-demo-init \
 	mchp-weston-init \
 "
 

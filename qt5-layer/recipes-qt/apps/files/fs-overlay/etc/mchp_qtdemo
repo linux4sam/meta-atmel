@@ -1,0 +1,56 @@
+#!/bin/sh
+
+start()
+{
+  res=$(cat /sys/class/drm/card0/*/modes | tr -d '\n')
+  echo $res
+
+  if [ -x /usr/bin/ts_calibrate ]; then
+
+    if [ -e /sys/class/graphics/fb0/modes ]; then
+       head -1 /sys/class/graphics/fb0/modes > /sys/class/graphics/fb0/mode
+    fi
+
+    rm -f /etc/pointercal
+    if [ ! -f /etc/pointercal-${res} ]; then
+       TSLIB_TSDEVICE=/dev/input/touchscreen0 /usr/bin/ts_calibrate
+       mv /etc/pointercal /etc/pointercal-${res}
+    fi
+    ln -sf /etc/pointercal-${res} /etc/pointercal
+    # do not use these devices when using wayland
+    #export QT_QPA_GENERIC_PLUGINS=tslib:/dev/input/touchscreen0
+  else
+      # do not use these devices when using wayland
+      export QT_QPA_GENERIC_PLUGINS=evdevmouse,evdevtouch:/dev/input/touchscreen0,evdevkeyboard:/dev/input/event0
+  fi
+
+  echo "Starting Demo..."
+
+  . /etc/profile
+  case "$res" in
+     "480x272")
+         /opt/ApplicationLauncher/ApplicationLauncher-small.sh
+         ;;
+     *)
+         /opt/ApplicationLauncher/ApplicationLauncher.sh
+         ;;
+  esac
+}
+
+stop()
+{
+  echo "Killing Application Launcher..."
+  killall ApplicationLauncher
+}
+
+
+case "$1" in
+  start)
+    start
+  ;;
+  stop)
+    stop
+  ;;
+  *)
+  ;;
+esac
