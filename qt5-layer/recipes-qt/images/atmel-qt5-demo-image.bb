@@ -53,6 +53,9 @@ IMAGE_INSTALL += "\
 	wget \
 	${CORE_IMAGE_BASE_INSTALL} \
 	\
+	weston \
+	weston-init \
+	\
 	qtbase \
 	qtbase-plugins \
 	qtbase-tools \
