@@ -20,8 +20,7 @@ start()
     # do not use these devices when using wayland
     #export QT_QPA_GENERIC_PLUGINS=tslib:/dev/input/touchscreen0
   else
-      # do not use these devices when using wayland
-      export QT_QPA_GENERIC_PLUGINS=evdevmouse,evdevtouch:/dev/input/touchscreen0,evdevkeyboard:/dev/input/event0
+      export QT_QPA_GENERIC_PLUGINS=evdevkeyboard:/dev/input/event0
   fi
 
   echo "Starting Demo..."
