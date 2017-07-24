@@ -9,10 +9,10 @@ PACKAGES = "${PN}-dbg ${PN}"
 DEPENDS = "qtbase qtwebkit libv4l qtquick1"
 inherit qmake5
 
-SRC_URI = "https://github.com/linux4sam/smart-refrigerator/archive/v1.5.zip"
+SRC_URI = "https://github.com/linux4sam/smart-refrigerator/archive/v1.5.tar.gz;downloadfilename=smart-refrigerator-${PV}.tar.gz"
 
-SRC_URI[md5sum] = "9105b8c4780d15fe0331609823e74aaa"
-SRC_URI[sha256sum] = "a5948d46f0db53aa42a5cc442ea6739ce8f0c28c70af5c4f86cea374c443f276"
+SRC_URI[md5sum] = "6497c4c511bacaacab5637047136c152"
+SRC_URI[sha256sum] = "54bdb56a7c45c9193ebf27989414096d0f4df3eddeff9d410c17bcb15ea3af56"
 
 S = "${WORKDIR}/smart-refrigerator-${PV}"
 

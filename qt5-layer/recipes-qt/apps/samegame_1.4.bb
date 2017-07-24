@@ -9,12 +9,12 @@ PR = "r2"
 DEPENDS = "qtbase qtdeclarative qtquick1"
 inherit qmake5
 
-SRC_URI = "https://github.com/linux4sam/samegame/archive/v${PV}.zip"
+SRC_URI = "https://github.com/linux4sam/samegame/archive/v${PV}.tar.gz;downloadfilename=${PN}-${PV}.tar.gz"
 
-SRC_URI[md5sum] = "59f377b85ab633f43d8918a558a6d3ed"
-SRC_URI[sha256sum] = "694b66ec02388f4b41b83647b4109c9c5a72663764cb6153b4d1939921d4ba9b"
+SRC_URI[md5sum] = "522e163e0fe6e827b9d9e4e26cb7152a"
+SRC_URI[sha256sum] = "8954241cd286c38d08dd49492fc8e98be0d42fa9e62559f42061f68a3bbf45f8"
 
-S = "${WORKDIR}/samegame-${PV}"
+S = "${WORKDIR}/${PN}-${PV}"
 
 inherit pkgconfig
 

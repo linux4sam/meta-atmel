@@ -9,12 +9,12 @@ PACKAGES = "${PN}-dbg ${PN}"
 DEPENDS = "qtbase qtwebkit libv4l qtquick1"
 inherit qmake5
 
-SRC_URI = "https://github.com/linux4sam/home-automation/archive/v${PV}.zip" 
+SRC_URI = "https://github.com/linux4sam/home-automation/archive/v${PV}.tar.gz;downloadfilename=home-automation-${PV}.tar.gz"
 
-SRC_URI[md5sum] = "abba4683c1f764dfbfc9d80a2479727a"
-SRC_URI[sha256sum] = "9adff8ecbe1530ac94f97eefc75758de199cb4fb3edc2f9a9a7a2b791acde79d"
+SRC_URI[md5sum] = "55b11f945e7d7650ec5242bbcaa71bfe"
+SRC_URI[sha256sum] = "27bfb32fb0deddcc65e761aa129c210f1d0484149d59ccc043ef659c47cc4289"
 
-S = "${WORKDIR}/${PN}-${PV}"
+S = "${WORKDIR}/home-automation-${PV}"
 
 inherit pkgconfig
 
