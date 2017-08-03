@@ -7,14 +7,14 @@ PACKAGES = "${PN}-dbg ${PN}"
 DEPENDS = "qtbase qtdeclarative qtwebkit qtquick1"
 inherit qmake5
 
-SRC_URI = "https://github.com/linux4sam/application-launcher/archive/qt59.zip"
+SRC_URI = "https://github.com/linux4sam/application-launcher/archive/master.tar.gz;downloadfilename=application-launcher-master.tar.gz"
 
 SRC_URI_append_sama5d4 += "file://applicationlauncher_videoplayer.patch"
 
-SRC_URI[md5sum] = "ea78315aa048ff122aa2cabf6a453f92"
-SRC_URI[sha256sum] = "95d2ade50ea00d0ec65f9103bfcf6ecaf522f785af582a560049817f76bf08d2"
+SRC_URI[md5sum] = "e907ecd8b023386ed594bd9ee3bc8905"
+SRC_URI[sha256sum] = "187291bb650c6fc65552715dfa71595312750abeb404fec9b911b1510a581d42"
 
-S = "${WORKDIR}/application-launcher-qt59"
+S = "${WORKDIR}/application-launcher-master"
 
 inherit pkgconfig
 
