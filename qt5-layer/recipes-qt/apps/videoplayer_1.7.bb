@@ -9,8 +9,8 @@ inherit qmake5
 
 SRC_URI = "https://github.com/linux4sam/atmel-video-player/archive/master.tar.gz;downloadfilename=atmel-video-player-master.tar.gz"
 
-SRC_URI[md5sum] = "1311d124ef695a384434576c6c173e92"
-SRC_URI[sha256sum] = "60a142e71305ccf96f1de67ed55a65efbe397e89f2b81723a051143c33414ee6"
+SRC_URI[md5sum] = "37b0f6bc5cacf7d11c8d7a72c52a5f6f"
+SRC_URI[sha256sum] = "8d15198f3176bc171ceac83dd28f737e500f742e9fcfe40234d7a3f13be20c7c"
 
 S = "${WORKDIR}/atmel-video-player-master"
 
