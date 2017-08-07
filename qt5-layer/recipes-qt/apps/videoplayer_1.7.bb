@@ -7,12 +7,12 @@ PACKAGES = "${PN}-dbg ${PN}"
 DEPENDS = "qtbase gstreamer1.0"
 inherit qmake5
 
-SRC_URI = "https://github.com/linux4sam/atmel-video-player/archive/v${PV}.tar.gz;downloadfilename=atmel-video-player-${PV}.tar.gz"
+SRC_URI = "https://github.com/linux4sam/atmel-video-player/archive/master.tar.gz;downloadfilename=atmel-video-player-master.tar.gz"
 
-SRC_URI[md5sum] = "038a1ef804ec3179b0bcabde8a455c5a"
-SRC_URI[sha256sum] = "0756bd558a7cf20207594995897869e8f0b5b812b7b1ff0d4519107294c697a5"
+SRC_URI[md5sum] = "1311d124ef695a384434576c6c173e92"
+SRC_URI[sha256sum] = "60a142e71305ccf96f1de67ed55a65efbe397e89f2b81723a051143c33414ee6"
 
-S = "${WORKDIR}/atmel-video-player-${PV}"
+S = "${WORKDIR}/atmel-video-player-master"
 
 inherit pkgconfig
 

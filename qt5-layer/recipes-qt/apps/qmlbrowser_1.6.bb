@@ -9,12 +9,12 @@ PR = "r1"
 DEPENDS = "qtquick1"
 inherit qmake5
 
-SRC_URI = "https://github.com/linux4sam/qml-browser/archive/v${PV}.zip"
+SRC_URI = "https://github.com/linux4sam/qml-browser/archive/master.tar.gz;downloadfilename=qml-browser-master.tar.gz"
 
-SRC_URI[md5sum] = "5ae371e56282966975a727b723df273b"
-SRC_URI[sha256sum] = "3a4f9974c8c53dc3b3eed90de421650cd93dd2cd295c7ecd88844af250e3019d"
+SRC_URI[md5sum] = "899d34ceed7797360fe122253fd6d12d"
+SRC_URI[sha256sum] = "cd6b3cee307ef2154e188ade2013b5e33bd1107faa508cd40aa7bff20fd61d54"
 
-S = "${WORKDIR}/qml-browser-${PV}"
+S = "${WORKDIR}/qml-browser-master"
 
 inherit pkgconfig
 

@@ -9,12 +9,12 @@ PR = "r2"
 DEPENDS = "qtbase qtquick1"
 inherit qmake5
 
-SRC_URI = "https://github.com/linux4sam/minehunt/archive/v${PV}.tar.gz;downloadfilename=${PN}-${PV}.tar.gz"
+SRC_URI = "https://github.com/linux4sam/minehunt/archive/master.tar.gz;downloadfilename=${PN}-master.tar.gz"
 
-SRC_URI[md5sum] = "72462ebd7fbd3075b8dbe5df0e834978"
-SRC_URI[sha256sum] = "dadcef22231c0c3cc65f47edfdace8e7ed5a1cf1ada64cd49f517f543b76571a"
+SRC_URI[md5sum] = "0396e7e008940fbd11e38935eaa3809b"
+SRC_URI[sha256sum] = "e51c9b08d0e5bcb836642189e194fecf26f651729d7a81a8b2de1a900c77e820"
 
-S = "${WORKDIR}/${PN}-${PV}"
+S = "${WORKDIR}/${PN}-master"
 
 inherit pkgconfig
 
