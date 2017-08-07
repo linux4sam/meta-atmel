@@ -1,7 +1,9 @@
 DESCRIPTION = "Init script for weston"
 LICENSE = "MIT"
 SRC_URI = "file://fs-overlay/etc/weston \
-		  file://fs-overlay/etc/weston.ini "
+		  file://fs-overlay/etc/weston.ini \
+		  file://fs-overlay/etc/weston-wqvga.ini \
+		  "
 PR = "r2"
 
 LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d690 \
@@ -9,7 +11,8 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d
 
 do_install() {
 	install -d ${D}${sysconfdir}/default
-	install -m 0755 ${WORKDIR}/fs-overlay/etc/weston		${D}${sysconfdir}/default/weston
-	install -m 0755 ${WORKDIR}/fs-overlay/etc/weston.ini 	${D}${sysconfdir}/weston.ini
+	install -m 0755 ${WORKDIR}/fs-overlay/etc/weston		    ${D}${sysconfdir}/default/weston
+	install -m 0755 ${WORKDIR}/fs-overlay/etc/weston.ini 	    ${D}${sysconfdir}/weston.ini
+	install -m 0755 ${WORKDIR}/fs-overlay/etc/weston-wqvga.ini  ${D}${sysconfdir}/weston-wqvga.ini
 }
 
