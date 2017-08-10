@@ -25,12 +25,16 @@ AT91BOOTSTRAP_CONFIG_sama5d4-xplained ??= "${AT91BOOTSTRAP_MACHINE}nf_uboot_secu
 AT91BOOTSTRAP_CONFIG_sama5d4-xplained-sd ??= "${AT91BOOTSTRAP_MACHINE}sd_uboot_secure"
 AT91BOOTSTRAP_CONFIG_sama5d2-xplained ??= "${AT91BOOTSTRAP_MACHINE}df_uboot"
 AT91BOOTSTRAP_CONFIG_sama5d2-xplained-sd ??= "${AT91BOOTSTRAP_MACHINE}sd_uboot"
+AT91BOOTSTRAP_CONFIG_sama5d27-som1-ek ??= "${AT91BOOTSTRAP_MACHINE}qspi_uboot"
+AT91BOOTSTRAP_CONFIG_sama5d27-som1-ek-sd ??= "${AT91BOOTSTRAP_MACHINE}sd_uboot"
 
 AT91BOOTSTRAP_TARGET ??= "${AT91BOOTSTRAP_CONFIG}_defconfig"
 AT91BOOTSTRAP_LOAD ??= "nandflashboot-uboot"
 AT91BOOTSTRAP_LOAD_at91sam9x5ek-sd ??= "sdboot-uboot"
 AT91BOOTSTRAP_LOAD_sama5d2-xplained ??= "dataflashboot-uboot"
 AT91BOOTSTRAP_LOAD_sama5d2-xplained-sd ??= "sdboot-uboot"
+AT91BOOTSTRAP_LOAD_sama5d27-som1-ek ??= "qspiboot-uboot"
+AT91BOOTSTRAP_LOAD_sama5d27-som1-ek-sd ??= "sdboot-uboot"
 AT91BOOTSTRAP_LOAD_sama5d3-xplained-sd ??= "sdboot-uboot"
 AT91BOOTSTRAP_LOAD_sama5d4-xplained-sd ??= "sdboot-uboot"
 
