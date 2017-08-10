@@ -56,6 +56,7 @@ git clone git://git.openembedded.org/meta-openembedded -b morty
 3/ Clone meta-qt5 git repository with the proper branch ready
 git clone git://code.qt.io/yocto/meta-qt5.git
 cd meta-qt5
+git checkout v5.9.1
 git checkout v5.8.0
 cd ..
 
