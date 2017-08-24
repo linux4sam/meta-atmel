@@ -11,8 +11,8 @@ SRC_URI = "https://github.com/linux4sam/application-launcher/archive/master.tar.
 
 SRC_URI_append_sama5d4 += "file://applicationlauncher_videoplayer.patch"
 
-SRC_URI[md5sum] = "e907ecd8b023386ed594bd9ee3bc8905"
-SRC_URI[sha256sum] = "187291bb650c6fc65552715dfa71595312750abeb404fec9b911b1510a581d42"
+SRC_URI[md5sum] = "af4895850156d3f33114992ba33781a0"
+SRC_URI[sha256sum] = "208450e1a4ce5179ff952002bd888c89c559877c24bf0e49c13fc860bba762ca"
 
 S = "${WORKDIR}/application-launcher-master"
 
