@@ -1,4 +1,4 @@
-DESCRIPTION = "Atmel QT5 Application Launcher demo"
+DESCRIPTION = "Microchip QT5 Application Launcher demo"
 LICENSE = "ATMEL_LLA"
 LIC_FILES_CHKSUM = "file://COPYING;md5=78a72a436c89c3863a5650347f34a3b3"
 
