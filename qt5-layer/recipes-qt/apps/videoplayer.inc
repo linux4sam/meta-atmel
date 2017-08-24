@@ -1,4 +1,4 @@
-DESCRIPTION = "Atmel QT video player demo"
+DESCRIPTION = "Microchip QT video player demo"
 LICENSE = "ATMEL_LLA"
 LIC_FILES_CHKSUM = "file://COPYING;md5=78a72a436c89c3863a5650347f34a3b3"
 
@@ -21,7 +21,8 @@ FILES_${PN}-dbg = " \
 
 FILES_${PN} = " \
 	/opt/VideoPlayer/player \
-	/opt/VideoPlayer/Atmel-Video-Player.sh \
+	/opt/VideoPlayer/Video-Player.sh \
+	/opt/VideoPlayer/Player.sh \
 	/opt/VideoPlayer/media/* \
 	/opt/ApplicationL* \
 	"
@@ -30,4 +31,6 @@ do_install() {
 	make INSTALL_ROOT=${D} install
 	cp ${B}/player ${D}/opt/VideoPlayer/
 	cp -rf ${S}/med* ${D}/opt/VideoPlayer/
+	cp ${S}/Video-Player.sh ${D}/opt/VideoPlayer/
+	cp ${S}/Player.sh ${D}/opt/VideoPlayer/
 }
