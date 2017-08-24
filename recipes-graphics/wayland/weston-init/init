@@ -1,5 +1,7 @@
 #!/bin/sh
 
+. /etc/init.d/functions
+
 start()
 {
     . /etc/profile
