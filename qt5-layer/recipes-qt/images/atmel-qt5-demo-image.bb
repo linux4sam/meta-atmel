@@ -46,6 +46,7 @@ IMAGE_INSTALL += "\
 	python-pip \
 	python-distribute \
 	python-pycurl \
+	gdbserver \
 	evtest \
 	mxt-app \
 	usbutils \
