@@ -25,8 +25,6 @@ AT91BOOTSTRAP_CONFIG_sama5d4-xplained ??= "${AT91BOOTSTRAP_MACHINE}nf_uboot_secu
 AT91BOOTSTRAP_CONFIG_sama5d4-xplained-sd ??= "${AT91BOOTSTRAP_MACHINE}sd_uboot_secure"
 AT91BOOTSTRAP_CONFIG_sama5d2-xplained ??= "${AT91BOOTSTRAP_MACHINE}-bsrdf_uboot"
 AT91BOOTSTRAP_CONFIG_sama5d2-xplained-sd ??= "${AT91BOOTSTRAP_MACHINE}-bsrsd_uboot"
-AT91BOOTSTRAP_CONFIG_sama5d2-xplained-bsr ??= "${AT91BOOTSTRAP_MACHINE}-bsrdf_uboot"
-AT91BOOTSTRAP_CONFIG_sama5d2-xplained-bsr-sd ??= "${AT91BOOTSTRAP_MACHINE}-bsrsd_uboot"
 AT91BOOTSTRAP_CONFIG_sama5d27-som1-ek ??= "${AT91BOOTSTRAP_MACHINE}qspi_uboot"
 AT91BOOTSTRAP_CONFIG_sama5d27-som1-ek-sd ??= "${AT91BOOTSTRAP_MACHINE}sd_uboot"
 
