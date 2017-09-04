@@ -7,5 +7,5 @@ COMPATIBLE_MACHINE = '(sama5d3xek|sama5d3-xplained|sama5d3-xplained-sd|at91sam9x
 SRC_URI = "https://github.com/linux4sam/at91bootstrap/archive/v${PV}.tar.gz;name=tarball \
 "
 
-SRC_URI[tarball.md5sum] = "0d253c51f708f8721f44e9104c821018"
-SRC_URI[tarball.sha256sum] = "14ac1b07f986e1aa491d727f9a7101e3f8174ffe30179ee617afc11e890f09e9"
+SRC_URI[tarball.md5sum] = "a42ee00e76d99cec89e174f670a48dbd"
+SRC_URI[tarball.sha256sum] = "23a6ea378cc62b292475893903a3a5cefad552bc11c3b57f1f8d5e6c9704fbb3"
