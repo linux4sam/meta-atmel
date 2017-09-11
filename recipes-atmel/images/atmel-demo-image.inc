@@ -29,7 +29,7 @@ IMAGE_INSTALL = "\
     iproute2 \
     iptables \
     bridge-utils \
-    canutils \
+    can-utils \
     evtest \
     python-pyserial \
     python-smbus \

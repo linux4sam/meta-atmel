@@ -39,7 +39,7 @@ IMAGE_INSTALL += "\
 	iproute2 \
 	iptables \
 	bridge-utils \
-	canutils \
+	can-utils \
 	python-pyserial \
 	python-smbus \
 	python-ctypes \
