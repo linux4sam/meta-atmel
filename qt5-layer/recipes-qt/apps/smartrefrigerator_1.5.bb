@@ -11,8 +11,8 @@ inherit qmake5
 
 SRC_URI = "https://github.com/linux4sam/smart-refrigerator/archive/v1.5.tar.gz;downloadfilename=smart-refrigerator-${PV}.tar.gz"
 
-SRC_URI[md5sum] = "6497c4c511bacaacab5637047136c152"
-SRC_URI[sha256sum] = "54bdb56a7c45c9193ebf27989414096d0f4df3eddeff9d410c17bcb15ea3af56"
+SRC_URI[md5sum] = "9522231f738721803a975cf9e364166a"
+SRC_URI[sha256sum] = "a3160cb0673d4610e081a5dac9aa68fc354ba9b9e139eacb3d5c955be779e28b"
 
 S = "${WORKDIR}/smart-refrigerator-${PV}"
 
