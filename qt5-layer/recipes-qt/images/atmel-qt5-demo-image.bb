@@ -24,7 +24,6 @@ IMAGE_INSTALL += "\
 	\
 	linux-firmware-ralink \
 	linux-firmware-ath6k \
-	atmel-wireless-firmware \
 	\
 	alsa-utils \
 	mpg123 \
