@@ -10,7 +10,7 @@ IMAGE_INSTALL = "\
     lrzsz \
     setserial \
     opkg \
-    iperf \
+    iperf3 \
     \
     nbench-byte \
     lmbench \
