@@ -15,6 +15,8 @@ LIC_FILES_CHKSUM = "file://main.c;endline=27;md5=42f86d2f6fd17d1221c5c651b487a07
 
 inherit cml1 deploy
 
+DEPENDS += "bc-native"
+
 AT91BOOTSTRAP_MACHINE ??= "${MACHINE}"
 
 AT91BOOTSTRAP_CONFIG ??= "${AT91BOOTSTRAP_MACHINE}nf_uboot"
