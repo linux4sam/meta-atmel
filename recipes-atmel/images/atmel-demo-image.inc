@@ -35,7 +35,6 @@ IMAGE_INSTALL = "\
     python-ctypes \
     python-pip \
     python-distribute \
-    python-pycurl \
     gdbserver \
     usbutils \
     wget \
