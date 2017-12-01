@@ -1,0 +1,24 @@
+From fb47cd7e5fddf8b924d92ede1da61d416e7ef81c Mon Sep 17 00:00:00 2001
+From: Niko Mauno <niko.mauno@vaisala.com>
+Date: Wed, 1 Nov 2017 18:37:07 +0200
+Subject: [PATCH] Add -fno-builtin to CPPFLAGS for gcc7
+
+Disable set of ISO C90 functions since otherwise at91bootstrap built
+with gcc7 will silently fail to boot
+---
+ Makefile | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Makefile b/Makefile
+index b55ef2dd..e89cb779 100644
+--- a/Makefile
++++ b/Makefile
+@@ -227,7 +227,7 @@ NOSTDINC_FLAGS=-nostdinc -isystem $(shell $(CC) -print-file-name=include)
+ 
+ CPPFLAGS=$(NOSTDINC_FLAGS) -ffunction-sections -g -Os -Wall \
+ 	-mno-unaligned-access \
+-	-fno-stack-protector -fno-common \
++	-fno-stack-protector -fno-common -fno-builtin \
+ 	-I$(INCL) -Icontrib/include -Iinclude -Ifs/include \
+ 	-I$(TOPDIR)/config/at91bootstrap-config \
+ 	-DAT91BOOTSTRAP_VERSION=\"$(VERSION)$(REV)$(SCMINFO)\" -DCOMPILE_TIME="\"$(DATE)\""
