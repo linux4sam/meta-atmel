@@ -8,6 +8,8 @@ inherit autotools-brokensep pkgconfig gettext
 
 LIC_FILES_CHKSUM = "file://COPYING.LESSER;md5=4fbd65380cdd255951079008b364516c"
 
+DEPENDS += "libdrm"
+
 S = "${WORKDIR}/git"
 SRC_URI = "gitsm://github.com/linux4sam/gst1-hantro-g1;branch=master"
 
