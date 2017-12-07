@@ -8,6 +8,7 @@ QT_CONFIG_FLAGS_append_sama5 = "${@bb.utils.contains('DISTRO_FEATURES', 'x11', \
                             ' -no-eglfs', ' -opengl -linuxfb -qpa wayland -eglfs', d)}"
 
 PACKAGECONFIG_append = " xkbcommon-evdev"
+PACKAGECONFIG_remove = " tests"
 
 # qtwebkit will fail later in the build if icu is not enabled. As Poky does not
 # enable it, do it here. This should be removed when the reverse dependency is
