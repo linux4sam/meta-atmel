@@ -22,7 +22,7 @@ Sources
 - meta-atmel
 URI: git://github.com/linux4sam/meta-atmel.git
 URI: https://github.com/linux4sam/meta-atmel.git
-Branch: morty
+Branch: rocko
 
 
 Dependencies
@@ -31,13 +31,13 @@ This Layer depends on :
 - meta-openembedded
 URI: git://git.openembedded.org/meta-openembedded
 URI: http://cgit.openembedded.org/meta-openembedded/
-Branch: morty
+Branch: rocko
 
 Optionally:
 - meta-qt5
 URI: git://code.qt.io/yocto/meta-qt5.git
 URI: http://code.qt.io/cgit/yocto/meta-qt5.git/
-Tag: v5.9.1
+Tag: v5.9.2
 
 
 Build procedure
@@ -48,19 +48,19 @@ mkdir my_dir
 cd my_dir
 
 1/ Clone yocto/poky git repository with the proper branch ready
-git clone git://git.yoctoproject.org/poky -b morty
+git clone git://git.yoctoproject.org/poky -b rocko
 
 2/ Clone meta-openembedded git repository with the proper branch ready
-git clone git://git.openembedded.org/meta-openembedded -b morty
+git clone git://git.openembedded.org/meta-openembedded -b rocko
 
 3/ Clone meta-qt5 git repository with the proper branch ready
 git clone git://code.qt.io/yocto/meta-qt5.git
 cd meta-qt5
-git checkout v5.9.1
+git checkout v5.9.2
 cd ..
 
 4/ Clone meta-atmel layer with the proper branch ready
-git clone git://github.com/linux4sam/meta-atmel.git -b morty
+git clone git://github.com/linux4sam/meta-atmel.git -b rocko
 
 5/ Enter the poky directory to configure the build system and start the build process
 cd poky
@@ -88,7 +88,6 @@ BBLAYERS ?= " \
   ${BSPDIR}/meta-openembedded/meta-oe \
   ${BSPDIR}/meta-openembedded/meta-networking \
   ${BSPDIR}/meta-openembedded/meta-python \
-  ${BSPDIR}/meta-openembedded/meta-ruby \
   ${BSPDIR}/meta-openembedded/meta-multimedia \
   ${BSPDIR}/meta-qt5 \
   "
@@ -133,26 +132,24 @@ bitbake atmel-qt5-demo-image
 Typical bitbake output
 ======================
 Build Configuration:
-BB_VERSION        = "1.32.0"
+BB_VERSION        = "1.36.0"
 BUILD_SYS         = "x86_64-linux"
 NATIVELSBSTRING   = "universal"
 TARGET_SYS        = "arm-poky-linux-gnueabi"
 MACHINE           = "sama5d2-xplained"
 DISTRO            = "poky-atmel"
-DISTRO_VERSION    = "2.2.2"
-TUNE_FEATURES     = "arm armv7a vfp thumb neon       callconvention-hard       cortexa5"
+DISTRO_VERSION    = "2.4"
+TUNE_FEATURES     = "arm armv7a vfp thumb neon callconvention-hard cortexa5"
 TARGET_FPU        = "hard"
-meta              
-meta-poky         
-meta-yocto-bsp    = "morty:7d5822bf4cb2089687c3c9a908cf4a4ef4e9a53a"
-meta-atmel        = "morty:13c6c4f63a2c7a3c24f1d59152689193700c3d6b"
-meta-oe           
-meta-networking   
-meta-python       
-meta-ruby         
-meta-multimedia   = "morty:fe5c83312de11e80b85680ef237f8acb04b4b26e"
-meta-qt5          = "HEAD:5df9d273194e89498ea7fa93ac4ec987007253d2"
-
+meta
+meta-poky
+meta-yocto-bsp    = "rocko:f7b90ab3eaf832bd81f3efc1dab4dcf6863ac284"
+meta-atmel        = "rocko:f390f37930412c7445f422c647569725dfc861b8"
+meta-oe
+meta-networking
+meta-python
+meta-multimedia   = "rocko:6e3fc5b8d904d06e3aa77e9ec9968ab37a798188"
+meta-qt5          = "HEAD:88a25de90d720d824b8a4e932ff2ff8faa2b6615"
 
 Contributing
 ============
