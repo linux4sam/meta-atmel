@@ -47,5 +47,6 @@ kernel_do_configure_append() {
 }
 
 KERNEL_MODULE_AUTOLOAD += "atmel_usba_udc g_serial"
+KERNEL_MODULE_PACKAGE_SUFFIX=""
 
 COMPATIBLE_MACHINE = "(sama5d2-xplained|sama5d2-xplained-sd|sama5d4-xplained|sama5d4-xplained-sd|sama5d4ek|sama5d3-xplained|sama5d3-xplained-sd|sama5d3xek|at91sam9x5ek|at91sam9m10g45ek|at91sam9rlek)"
