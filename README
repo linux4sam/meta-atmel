@@ -9,6 +9,8 @@ http://www.linux4sam.org
 
 Supported SoCs / MACHINE names
 ==============================
+Note that most of the machine names below, have a SD Card variant that can be
+built by adding an "-sd" suffix to the machine name.
 - SAMA5D2 product family / sama5d2-xplained, sama5d27-som1-ek-sd
 - SAMA5D4 product family / sama5d4ek, sama5d4-xplained
 - SAMA5D3 product family / sama5d3xek, sama5d3-xplained
