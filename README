@@ -58,7 +58,7 @@ git clone git://git.openembedded.org/meta-openembedded -b rocko
 3/ Clone meta-qt5 git repository with the proper branch ready
 git clone git://code.qt.io/yocto/meta-qt5.git
 cd meta-qt5
-git checkout v5.9.2
+git checkout v5.9.3
 cd ..
 
 4/ Clone meta-atmel layer with the proper branch ready
