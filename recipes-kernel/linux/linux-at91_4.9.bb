@@ -13,7 +13,7 @@ PV = "4.9+git${SRCPV}"
 
 S = "${WORKDIR}/git"
 
-SRCREV = "973820d8c61f3b858c0cf46e69dcf7c5fdb2a661"
+SRCREV = "e2e01ba252f1a8c9f411c3589b80abf65945a013"
 
 KBRANCH = "linux-4.9-at91"
 SRC_URI = "git://github.com/linux4sam/linux-at91.git;protocol=git;branch=${KBRANCH}"
