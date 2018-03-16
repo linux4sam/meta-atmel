@@ -2,17 +2,17 @@ DESCRIPTION = "Microchip libplanes library for sama5 lcd controller"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://COPYING;endline=20;md5=b884a464579c410fd1dace93db8e97b3"
 
-PACKAGES = "${PN}-dbg ${PN}"
+PACKAGES = "${PN}-dbg ${PN} ${PN}-python"
 
 PR = "r1"
 
-DEPENDS = "libdrm cairo cjson lua"
+DEPENDS = "libdrm cairo cjson lua swig-native python"
 
 RDEPENDS_${PN} = "python"
 
 SRC_URI = "git://github.com/linux4sam/libplanes.git;branch=master;protocol=http"
 
-SRCREV = "08f7dc12436572c1c36a457e36e5d6ea453f66ac"
+SRCREV = "60e557b483fec67bc252b67d6e2b368c3ed2fb02"
 
 S = "${WORKDIR}/git"
 
@@ -27,8 +27,6 @@ do_configure_prepend() {
 
 INSANE_SKIP_${PN} = "dev-so"
 
-FILES_${PN}-dbg += "${bindir}/.debug"
-
 FILES_${PN} += " \
   /opt/planes/planes-loop.sh \
   /opt/ApplicationL* \
@@ -37,6 +35,7 @@ FILES_${PN} += " \
   ${bindir}/* \
   /usr/share/planes/* \
 "
+FILES_${PN}-python = "${libdir}/python${PYTHON_BASEVERSION}/site-packages/*"
 
 #need to delete _planes.a to avoid QA package errors
 do_install_append() {
