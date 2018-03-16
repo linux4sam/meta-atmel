@@ -1,5 +1,0 @@
-PACKAGECONFIG_append_sama5 = " kms"
-PACKAGECONFIG_append_sama5 = " fbdev"
-PACKAGECONFIG_append_sama5 = " launch"
-PACKAGECONFIG_append_sama5 = " clients"
-PACKAGECONFIG_append_sama5 = " systemd"

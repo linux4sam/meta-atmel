@@ -52,9 +52,6 @@ IMAGE_INSTALL += "\
 	wget \
 	${CORE_IMAGE_BASE_INSTALL} \
 	\
-	weston \
-	weston-init \
-	\
 	libplanes \
 	\
 	qtbase \
@@ -86,7 +83,6 @@ IMAGE_INSTALL += "\
 	qtquickcontrols2-qmlplugins \
 	qtwebkit \
 	qtwebkit-qmlplugins \
-	qtwayland \
 	\
 	libicui18n \
 	gstreamer1.0 \
@@ -108,7 +104,6 @@ IMAGE_INSTALL += "\
 	samegame \
 	minehunt \
 	mchp-qt-demo-init \
-	mchp-weston-init \
 "
 
 IMAGE_INSTALL_append_at91sam9 = " \
