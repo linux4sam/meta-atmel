@@ -17,8 +17,7 @@ start()
        mv /etc/pointercal /etc/pointercal-${res}
     fi
     ln -sf /etc/pointercal-${res} /etc/pointercal
-    # do not use these devices when using wayland
-    #export QT_QPA_GENERIC_PLUGINS=tslib:/dev/input/touchscreen0
+    export QT_QPA_GENERIC_PLUGINS=tslib:/dev/input/touchscreen0
   else
       export QT_QPA_GENERIC_PLUGINS=evdevkeyboard:/dev/input/event0
   fi
@@ -26,14 +25,21 @@ start()
   echo "Starting Demo..."
 
   . /etc/profile
+
+  LAUNCHER_ARGS="-multifile"
+
+  cd /opt/ApplicationLauncher/
+
   case "$res" in
-     "480x272")
-         /opt/ApplicationLauncher/ApplicationLauncher-small.sh
-         ;;
-     *)
-         /opt/ApplicationLauncher/ApplicationLauncher.sh
-         ;;
-  esac
+	*"480x272"*)
+        (bin/ApplicationLauncher -- -WQVGA $LAUNCHER_ARGS;) &
+        ;;
+    *)
+        (bin/ApplicationLauncher -- $LAUNCHER_ARGS;) &
+        ;;
+
+    esac
+    [ $? = 0 ] && echo "OK" || echo "FAIL"
 }
 
 stop()
@@ -41,7 +47,6 @@ stop()
   echo "Killing Application Launcher..."
   killall ApplicationLauncher
 }
-
 
 case "$1" in
   start)
