@@ -7,4 +7,5 @@ require atmel-demo-image.inc
 IMAGE_INSTALL += "\
     packagegroup-base-usbhost \
     mpg123 \
+    ptc-examples \
     "
