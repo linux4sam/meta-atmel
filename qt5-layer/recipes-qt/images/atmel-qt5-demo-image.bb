@@ -44,6 +44,7 @@ IMAGE_INSTALL += "\
 	python-ctypes \
 	python-pip \
 	python-distribute \
+	mpio \
 	gdbserver \
 	evtest \
 	mxt-app \
@@ -53,6 +54,8 @@ IMAGE_INSTALL += "\
 	\
 	weston \
 	weston-init \
+	\
+	libplanes \
 	\
 	qtbase \
 	qtbase-plugins \
