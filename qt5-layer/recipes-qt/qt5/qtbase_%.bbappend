@@ -1,5 +1,9 @@
 FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
-SRC_URI += "file://atmel-color-format-force.patch"
+SRC_URI += "file://atmel-color-format-force.patch \
+            file://0001-make-QGraphicsItem-update-virtual.patch \
+            file://0003-Add-support-for-specifying-DRM-dumb-buffer-pixel-for.patch \
+            file://0004-Provide-access-to-linuxfb-dri-fd-through-platform.patch \
+            file://0005-Support-DRM-KMS-planes-in-linuxfb-DRM-backend.patch "
 
 # No egl on SAM9 or SAMA5
 QT_CONFIG_FLAGS_append_at91sam9 = "${@bb.utils.contains('DISTRO_FEATURES', 'x11', \

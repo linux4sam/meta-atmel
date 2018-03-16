@@ -1,0 +1,27 @@
+From 487f558bb2867fd62e92762cf8d6b58dba7cbd08 Mon Sep 17 00:00:00 2001
+From: Joshua Henderson <joshua.henderson@microchip.com>
+Date: Tue, 23 Jan 2018 15:39:31 -0700
+Subject: [PATCH] make QGraphicsItem::update virtual
+
+This is used to prevent update() calls from happening on some QGraphicsItem
+objects.
+---
+ src/widgets/graphicsview/qgraphicsitem.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/widgets/graphicsview/qgraphicsitem.h b/src/widgets/graphicsview/qgraphicsitem.h
+index 36f8aac..00846e3 100644
+--- a/src/widgets/graphicsview/qgraphicsitem.h
++++ b/src/widgets/graphicsview/qgraphicsitem.h
+@@ -343,7 +343,7 @@ public:
+ 
+     // Drawing
+     virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = Q_NULLPTR) = 0;
+-    void update(const QRectF &rect = QRectF());
++    virtual void update(const QRectF &rect = QRectF());
+     inline void update(qreal x, qreal y, qreal width, qreal height);
+     void scroll(qreal dx, qreal dy, const QRectF &rect = QRectF());
+ 
+-- 
+2.7.4
+

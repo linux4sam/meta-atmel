@@ -1,0 +1,76 @@
+From 1135ae7b4cb8727c722a5ca45c7f89a4c1c6ec6d Mon Sep 17 00:00:00 2001
+From: Joshua Henderson <joshua.henderson@microchip.com>
+Date: Mon, 16 Oct 2017 08:31:39 -0700
+Subject: [PATCH] Support DRM/KMS planes in linuxfb DRM backend
+
+This has two distinct ramifications:
+- QT_QPA_EGLFS_KMS_PLANE_INDEX and QT_QPA_EGLFS_KMS_CONNECTOR_INDEX will now
+  take effect when the linuxfb DRM backend is used and drmModeSetPlane() will
+  be called.
+- This does not support double buffering so it is disabled.
+---
+ .../platforms/linuxfb/qlinuxfbdrmscreen.cpp        | 27 ++++++++++++++++++++--
+ 1 file changed, 25 insertions(+), 2 deletions(-)
+
+diff --git a/src/plugins/platforms/linuxfb/qlinuxfbdrmscreen.cpp b/src/plugins/platforms/linuxfb/qlinuxfbdrmscreen.cpp
+index ce8dc6d..5c5d6dd 100644
+--- a/src/plugins/platforms/linuxfb/qlinuxfbdrmscreen.cpp
++++ b/src/plugins/platforms/linuxfb/qlinuxfbdrmscreen.cpp
+@@ -59,7 +59,7 @@ QT_BEGIN_NAMESPACE
+ 
+ Q_LOGGING_CATEGORY(qLcFbDrm, "qt.qpa.fb")
+ 
+-static const int BUFFER_COUNT = 2;
++static const int BUFFER_COUNT = 1;
+ 
+ class QLinuxFbDevice : public QKmsDevice
+ {
+@@ -133,6 +133,11 @@ bool QLinuxFbDevice::open()
+         return false;
+     }
+ 
++    if (drmSetClientCap(fd, DRM_CLIENT_CAP_UNIVERSAL_PLANES, 1) < 0) {
++        qErrnoWarning("Could not set universal planes cap");
++        return false;
++    }
++
+     uint64_t hasDumbBuf = 0;
+     if (drmGetCap(fd, DRM_CAP_DUMB_BUFFER, &hasDumbBuf) == -1 || !hasDumbBuf) {
+         qWarning("Dumb buffers not supported");
+@@ -217,6 +222,24 @@ bool QLinuxFbDevice::createFramebuffer(QLinuxFbDevice::Output *output, int buffe
+         return false;
+     }
+ 
++    QKmsOutput &op(output->kmsOutput);
++    if (op.wants_plane) {
++	    if (!op.plane_set) {
++		    op.plane_set = true;
++		    qCDebug(qLcFbDrm, "plane_set");
++		    if (op.wants_plane) {
++			    qCDebug(qLcFbDrm, "drmModeSetPlane");
++
++			    int ret = drmModeSetPlane(fd(), op.plane_id, op.crtc_id,
++						      fb.fb, 0,
++						      0, 0, w, h,
++						      0 << 16, 0 << 16, w << 16, h << 16);
++			    if (ret == -1)
++				    qErrnoWarning(errno, "drmModeSetPlane failed");
++		    }
++	    }
++    }
++
+     drm_mode_map_dumb mreq = {
+         fb.handle,
+         0, 0
+@@ -399,7 +422,7 @@ QRegion QLinuxFbDrmScreen::doRedraw()
+ 
+     output->dirty[output->backFb] = QRegion();
+ 
+-    m_device->swapBuffers(output);
++    //m_device->swapBuffers(output);
+ 
+     return dirty;
+ }
+-- 
+2.7.4
+

@@ -1,0 +1,105 @@
+From aafa4d1550699ce154d517a8d7f55cc376d3383b Mon Sep 17 00:00:00 2001
+From: Joshua Henderson <joshua.henderson@microchip.com>
+Date: Thu, 21 Sep 2017 12:39:44 -0700
+Subject: [PATCH 1/1] Provide access to linuxfb dri fd through platform
+
+---
+ src/platformsupport/fbconvenience/qfbscreen_p.h       |  2 ++
+ src/plugins/platforms/linuxfb/qlinuxfbdrmscreen.cpp   |  5 +++++
+ src/plugins/platforms/linuxfb/qlinuxfbdrmscreen.h     |  1 +
+ src/plugins/platforms/linuxfb/qlinuxfbintegration.cpp | 19 ++++++++++++++++++-
+ src/plugins/platforms/linuxfb/qlinuxfbscreen.h        |  3 ++-
+ 5 files changed, 28 insertions(+), 2 deletions(-)
+
+diff --git a/src/platformsupport/fbconvenience/qfbscreen_p.h b/src/platformsupport/fbconvenience/qfbscreen_p.h
+index 1c27a94..bced88e 100644
+--- a/src/platformsupport/fbconvenience/qfbscreen_p.h
++++ b/src/platformsupport/fbconvenience/qfbscreen_p.h
+@@ -76,6 +76,8 @@ public:
+     QFbScreen();
+     ~QFbScreen();
+ 
++    virtual int fd() const { return -1; }
++
+     virtual bool initialize();
+ 
+     QRect geometry() const Q_DECL_OVERRIDE { return mGeometry; }
+diff --git a/src/plugins/platforms/linuxfb/qlinuxfbdrmscreen.cpp b/src/plugins/platforms/linuxfb/qlinuxfbdrmscreen.cpp
+index c9fbb82..985f7fa 100644
+--- a/src/plugins/platforms/linuxfb/qlinuxfbdrmscreen.cpp
++++ b/src/plugins/platforms/linuxfb/qlinuxfbdrmscreen.cpp
+@@ -409,4 +409,9 @@ QPixmap QLinuxFbDrmScreen::grabWindow(WId wid, int x, int y, int width, int heig
+     return QPixmap();
+ }
+ 
++int QLinuxFbDrmScreen::fd() const
++{
++    return m_device->fd();
++}
++
+ QT_END_NAMESPACE
+diff --git a/src/plugins/platforms/linuxfb/qlinuxfbdrmscreen.h b/src/plugins/platforms/linuxfb/qlinuxfbdrmscreen.h
+index 50a9576..dc26c8f 100644
+--- a/src/plugins/platforms/linuxfb/qlinuxfbdrmscreen.h
++++ b/src/plugins/platforms/linuxfb/qlinuxfbdrmscreen.h
+@@ -57,6 +57,7 @@ public:
+     bool initialize() override;
+     QRegion doRedraw() override;
+     QPixmap grabWindow(WId wid, int x, int y, int width, int height) const override;
++    int fd() const;
+ 
+ private:
+     QKmsScreenConfig *m_screenConfig;
+diff --git a/src/plugins/platforms/linuxfb/qlinuxfbintegration.cpp b/src/plugins/platforms/linuxfb/qlinuxfbintegration.cpp
+index 6f79cd9..ccb757c 100644
+--- a/src/plugins/platforms/linuxfb/qlinuxfbintegration.cpp
++++ b/src/plugins/platforms/linuxfb/qlinuxfbintegration.cpp
+@@ -172,9 +172,26 @@ void QLinuxFbIntegration::createInputHandlers()
+ #endif
+ }
+ 
++class FbPlatformInterface : public QPlatformNativeInterface
++{
++public:
++	FbPlatformInterface(QFbScreen *primaryScreen)
++		: m_primaryScreen(primaryScreen)
++	{}
++
++	void *nativeResourceForIntegration(const QByteArray &resource)
++	{
++		if (resource == QByteArrayLiteral("dri_fd"))
++			return (void *) (qintptr)m_primaryScreen->fd();
++		return nullptr;
++	}
++
++	QFbScreen *m_primaryScreen;
++};
++
+ QPlatformNativeInterface *QLinuxFbIntegration::nativeInterface() const
+ {
+-    return m_nativeInterface.data();
++	return new FbPlatformInterface(m_primaryScreen);
+ }
+ 
+ QT_END_NAMESPACE
+diff --git a/src/plugins/platforms/linuxfb/qlinuxfbscreen.h b/src/plugins/platforms/linuxfb/qlinuxfbscreen.h
+index c7ce455e..547741f 100644
+--- a/src/plugins/platforms/linuxfb/qlinuxfbscreen.h
++++ b/src/plugins/platforms/linuxfb/qlinuxfbscreen.h
+@@ -60,6 +60,8 @@ public:
+ 
+     QRegion doRedraw() override;
+ 
++    int fd() const { return mFbFd; }
++
+ private:
+     QStringList mArgs;
+     int mFbFd;
+@@ -80,4 +82,3 @@ private:
+ QT_END_NAMESPACE
+ 
+ #endif // QLINUXFBSCREEN_H
+-
+-- 
+2.7.4
+
