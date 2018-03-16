@@ -11,6 +11,9 @@ QT_CONFIG_FLAGS_append_at91sam9 = "${@bb.utils.contains('DISTRO_FEATURES', 'x11'
 QT_CONFIG_FLAGS_append_sama5 = "${@bb.utils.contains('DISTRO_FEATURES', 'x11', \
                             ' -no-eglfs', ' -no-opengl -linuxfb -qpa linuxfb -no-eglfs', d)}"
 
+PACKAGECONFIG[kms] = "-kms,-no-kms,drm libdrm"
+PACKAGECONFIG += "kms"
+
 PACKAGECONFIG_append = " xkbcommon-evdev"
 PACKAGECONFIG_remove = " tests"
 
