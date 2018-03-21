@@ -11,8 +11,8 @@ inherit qmake5
 
 SRC_URI = "https://github.com/linux4sam/qml-browser/archive/master.tar.gz;downloadfilename=qml-browser-master.tar.gz"
 
-SRC_URI[md5sum] = "899d34ceed7797360fe122253fd6d12d"
-SRC_URI[sha256sum] = "cd6b3cee307ef2154e188ade2013b5e33bd1107faa508cd40aa7bff20fd61d54"
+SRC_URI[md5sum] = "6842f59bbee379866a1706523592afeb"
+SRC_URI[sha256sum] = "e551459f7dabba30cb476bb6c46eaad451a96f65476ef32dabbf05102cdc0b23"
 
 S = "${WORKDIR}/qml-browser-master"
 
