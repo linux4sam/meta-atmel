@@ -39,7 +39,7 @@ Optionally:
 - meta-qt5
 URI: git://code.qt.io/yocto/meta-qt5.git
 URI: http://code.qt.io/cgit/yocto/meta-qt5.git/
-Tag: v5.9.3
+Tag: v5.9.4
 
 
 Build procedure
