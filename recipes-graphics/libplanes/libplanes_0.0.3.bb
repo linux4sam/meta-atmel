@@ -29,6 +29,7 @@ INSANE_SKIP_${PN} = "dev-so"
 
 FILES_${PN} += " \
   /opt/planes/planes-loop.sh \
+  /opt/planes/planes-loop.py \
   /opt/ApplicationL* \
   ${libdir}/* \
   ${includedir}/* \
@@ -42,6 +43,7 @@ do_install_append() {
     install -Dm 0644 ${S}/scripts/planes.png  ${D}/opt/ApplicationLauncher/applications/resources/planes.png
     install -Dm 0644 ${S}/scripts/09-planes.xml  ${D}/opt/ApplicationLauncher/applications/xml/09-planes.xml
     install -Dm 0755 ${S}/scripts/planes-loop.sh ${D}/opt/planes/planes-loop.sh
+    install -Dm 0755 ${S}/scripts/planes-loop.py ${D}/opt/planes/planes-loop.py
     install -Dm 0755 ${S}/python/examples/splash.py ${D}/usr/share/planes/splash.py
     rm -f ${D}/usr/lib/python2.7/site-packages/planes/_planes.a
     rm -f ${D}/usr/lib/libplanes.a
