@@ -13,8 +13,8 @@ RDEPENDS_${PN} = "python"
 
 SRC_URI = "https://github.com/linux4sam/iocontrol/archive/v${PV}.tar.gz;downloadfilename=iocontrol-${PV}.tar.gz"
 
-SRC_URI[md5sum] = "2d7215c27024085d4e4239e35917f8fb"
-SRC_URI[sha256sum] = "95bbb358922361b48b7a3553e253fec4de3799f3e9c5f99919d3109188002216"
+SRC_URI[md5sum] = "aa500d922a14cdd92d0ef1bf28e9cc92"
+SRC_URI[sha256sum] = "e5b5d74af7a1c3594ea951edd1fc1a457854393b6a72c79aeaa8ebd4f6141a26"
 
 S = "${WORKDIR}/iocontrol-${PV}"
 

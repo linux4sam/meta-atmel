@@ -12,7 +12,7 @@ RDEPENDS_${PN} = "python"
 
 SRC_URI = "git://github.com/linux4sam/libplanes.git;branch=master;protocol=http"
 
-SRCREV = "60e557b483fec67bc252b67d6e2b368c3ed2fb02"
+SRCREV = "0950b1f2b3ee832b44fe3054fad7039aa05ffbe4"
 
 S = "${WORKDIR}/git"
 

@@ -11,10 +11,10 @@ LIC_FILES_CHKSUM = "file://src/COPYING;md5=e23fadd6ceef8c618fc1c65191d846fa \
 NO_GENERIC_LICENSE[PTC_firmware] = "fw/LICENCE.ptc_fw"
 NO_GENERIC_LICENSE[PTC_config] = "cfg/LICENCE.ptc_cfg"
 DEPENDS = "libevdev libgpiod"
-PV = "1.0+git${SRCPV}"
+PV = "1.1+git${SRCPV}"
 
 SRC_URI = "git://github.com/linux4sam/ptc_examples.git;protocol=git"
-SRCREV = "f10ea64d66c03b4e77fecc256bf73497bad4033a"
+SRCREV = "0fd352e19659ac9fd48749951457ca801b39bf39"
 
 S = "${WORKDIR}/git"
 
