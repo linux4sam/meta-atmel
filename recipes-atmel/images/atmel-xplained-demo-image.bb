@@ -8,5 +8,7 @@ IMAGE_INSTALL += "\
     packagegroup-base-usbhost \
     mpg123 \
     mpio \
-    ptc-examples \
     "
+
+IMAGE_INSTALL_append_sama5d2-ptc-ek = " ptc-examples"
+IMAGE_INSTALL_append_sama5d2-ptc-ek-sd = " ptc-examples"
