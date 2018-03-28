@@ -44,6 +44,7 @@ IMAGE_INSTALL += "\
 	python-ctypes \
 	python-pip \
 	python-distribute \
+	python-pyqt5 \
 	mpio \
 	gdbserver \
 	evtest \
@@ -52,6 +53,7 @@ IMAGE_INSTALL += "\
 	wget \
 	${CORE_IMAGE_BASE_INSTALL} \
 	\
+	cjson \
 	libplanes \
 	\
 	qtbase \
@@ -103,6 +105,7 @@ IMAGE_INSTALL += "\
 	qmlbrowser \
 	samegame \
 	minehunt \
+	iocontrol \
 	mchp-qt-demo-init \
 "
 
