@@ -140,18 +140,19 @@ NATIVELSBSTRING   = "universal"
 TARGET_SYS        = "arm-poky-linux-gnueabi"
 MACHINE           = "sama5d2-xplained"
 DISTRO            = "poky-atmel"
-DISTRO_VERSION    = "2.4"
+DISTRO_VERSION    = "2.4.2"
 TUNE_FEATURES     = "arm armv7a vfp thumb neon callconvention-hard cortexa5"
 TARGET_FPU        = "hard"
 meta
 meta-poky
-meta-yocto-bsp    = "rocko:f7b90ab3eaf832bd81f3efc1dab4dcf6863ac284"
-meta-atmel        = "rocko:f390f37930412c7445f422c647569725dfc861b8"
+meta-yocto-bsp    = "rocko:cca8bde9d700d68c5f36d7d4c47c048526aedfc0"
+meta-atmel        = "rocko:0353a4afb1f404aa0830b19dcde4f057070a4ce3"
 meta-oe
 meta-networking
 meta-python
-meta-multimedia   = "rocko:6e3fc5b8d904d06e3aa77e9ec9968ab37a798188"
-meta-qt5          = "HEAD:88a25de90d720d824b8a4e932ff2ff8faa2b6615"
+meta-multimedia   = "rocko:dacfa2b1920e285531bec55cd2f08743390aaf57"
+meta-qt5          = "HEAD:e721e84659869e4a04838d95d7cdbab9d48f5c3d"
+
 
 Contributing
 ============
