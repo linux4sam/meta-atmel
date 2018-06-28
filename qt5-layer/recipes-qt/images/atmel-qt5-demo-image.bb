@@ -114,7 +114,7 @@ IMAGE_INSTALL_append_at91sam9 = " \
 
 IMAGE_INSTALL_append_sama5d4 = " \
 	gstreamer1.0-plugins-hantro \
-	g1-binaries-dev \
+	g1-decoder \
 	videoplayer \
 	"
 
