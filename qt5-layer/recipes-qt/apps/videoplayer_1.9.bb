@@ -4,7 +4,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=78a72a436c89c3863a5650347f34a3b3"
 
 PACKAGES = "${PN} ${PN}-dbg"
 
-DEPENDS = "qtbase gstreamer1.0 gstreamer1.0-plugins-hantro g1-binaries libplanes"
+DEPENDS = "qtbase gstreamer1.0 gstreamer1.0-plugins-hantro g1-decoder libplanes"
 
 RDEPENDS_${PN} = "libplanes"
 
