@@ -285,7 +285,7 @@ if {! [file exists $rootfsFile]} {
 ## NandFlash Mapping
 set bootStrapAddr	0x00000000
 set ubootAddr		0x00040000
-set ubootEnvAddr	0x000c0000
+set ubootEnvAddr	0x00140000
 set dtbAddr		0x00180000
 set kernelAddr		0x00200000
 set rootfsAddr		0x00800000
@@ -306,7 +306,7 @@ lappend u_boot_variables \
     "stdin=serial" \
     "stdout=serial" \
     "stderr=serial" \
-    "bootargs=console=ttyS0,115200 mtdparts=atmel_nand:256k(bootstrap)ro,512k(uboot)ro,256k(env),256k(env_redundant),256k(spare),512k(dtb),6M(kernel)ro,-(rootfs) rootfstype=ubifs ubi.mtd=7 root=ubi0:rootfs rw $videoMode" \
+    "bootargs=console=ttyS0,115200 mtdparts=atmel_nand:256k(bootstrap)ro,512k(uboot)ro,256k(spare),256k(env_redundant),256k(env),512k(dtb),6M(kernel)ro,-(rootfs) rootfstype=ubifs ubi.mtd=7 root=ubi0:rootfs rw $videoMode" \
     "$bootCmd"
 
 ## Additional files to load
