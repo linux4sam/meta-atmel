@@ -105,7 +105,7 @@ and edit the "local.conf" file. Here is an example:
 
 vim conf/local.conf
 [...]
-MACHINE ??= "sama5d3-xplained"
+MACHINE ??= "sama5d2-xplained"
 [...]
 DL_DIR ?= "your_download_directory_path"
 [...]
