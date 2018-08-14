@@ -24,7 +24,7 @@ Sources
 - meta-atmel
 URI: git://github.com/linux4sam/meta-atmel.git
 URI: https://github.com/linux4sam/meta-atmel.git
-Branch: rocko
+Branch: sumo
 
 
 Dependencies
@@ -33,13 +33,13 @@ This Layer depends on :
 - meta-openembedded
 URI: git://git.openembedded.org/meta-openembedded
 URI: http://cgit.openembedded.org/meta-openembedded/
-Branch: rocko
+Branch: sumo
 
 Optionally:
 - meta-qt5
 URI: git://code.qt.io/yocto/meta-qt5.git
 URI: http://code.qt.io/cgit/yocto/meta-qt5.git/
-Tag: v5.9.4
+Tag: v5.9.6
 
 
 Build procedure
@@ -50,19 +50,19 @@ mkdir my_dir
 cd my_dir
 
 1/ Clone yocto/poky git repository with the proper branch ready
-git clone git://git.yoctoproject.org/poky -b rocko
+git clone git://git.yoctoproject.org/poky -b sumo
 
 2/ Clone meta-openembedded git repository with the proper branch ready
-git clone git://git.openembedded.org/meta-openembedded -b rocko
+git clone git://git.openembedded.org/meta-openembedded -b sumo
 
 3/ Clone meta-qt5 git repository with the proper branch ready
 git clone git://code.qt.io/yocto/meta-qt5.git
 cd meta-qt5
-git checkout v5.9.4
+git checkout v5.9.6
 cd ..
 
 4/ Clone meta-atmel layer with the proper branch ready
-git clone git://github.com/linux4sam/meta-atmel.git -b rocko
+git clone git://github.com/linux4sam/meta-atmel.git -b sumo
 
 5/ Enter the poky directory to configure the build system and start the build process
 cd poky
@@ -105,7 +105,7 @@ and edit the "local.conf" file. Here is an example:
 
 vim conf/local.conf
 [...]
-MACHINE ??= "sama5d3-xplained"
+MACHINE ??= "sama5d2-xplained"
 [...]
 DL_DIR ?= "your_download_directory_path"
 [...]
@@ -134,24 +134,24 @@ bitbake atmel-qt5-demo-image
 Typical bitbake output
 ======================
 Build Configuration:
-BB_VERSION        = "1.36.0"
+BB_VERSION        = "1.38.0"
 BUILD_SYS         = "x86_64-linux"
 NATIVELSBSTRING   = "universal"
 TARGET_SYS        = "arm-poky-linux-gnueabi"
 MACHINE           = "sama5d2-xplained"
 DISTRO            = "poky-atmel"
-DISTRO_VERSION    = "2.4.2"
+DISTRO_VERSION    = "2.5.1"
 TUNE_FEATURES     = "arm armv7a vfp thumb neon callconvention-hard cortexa5"
 TARGET_FPU        = "hard"
 meta
 meta-poky
-meta-yocto-bsp    = "rocko:cca8bde9d700d68c5f36d7d4c47c048526aedfc0"
-meta-atmel        = "rocko:0353a4afb1f404aa0830b19dcde4f057070a4ce3"
+meta-yocto-bsp    = "sumo:24a833f40d837407baa4e8192f372d998a776b6c"
+meta-atmel        = "sumo:de88471ebdc7060e55e81491b8a0650ad0911862"
 meta-oe
 meta-networking
 meta-python
-meta-multimedia   = "rocko:dacfa2b1920e285531bec55cd2f08743390aaf57"
-meta-qt5          = "HEAD:e721e84659869e4a04838d95d7cdbab9d48f5c3d"
+meta-multimedia   = "sumo:b0950aeff5b630256bb5e25ca15f4d59c115e7c1"
+meta-qt5          = "HEAD:49e9d9a73b5c6e3d6eab88dc0005305e85b1a62d"
 
 
 Contributing
