@@ -107,6 +107,7 @@ IMAGE_INSTALL += "\
 	minehunt \
 	iocontrol \
 	mchp-qt-demo-init \
+	dt-overlay-at91 \
 "
 
 IMAGE_INSTALL_append_at91sam9 = " \
