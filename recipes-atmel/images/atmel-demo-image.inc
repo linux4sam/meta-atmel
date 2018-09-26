@@ -54,6 +54,7 @@ IMAGE_INSTALL = "\
     usbutils \
     wget \
     ${CORE_IMAGE_EXTRA_INSTALL} \
+    dt-overlay-at91 \
     "
 
 inherit core-image
