@@ -27,9 +27,6 @@ do_compile () {
 		echo "No DTBOs to compile"
 	fi
 
-	echo "****************"
-	ls -l ${DEPLOY_DIR_IMAGE}
-	echo "****************"
 	# Over-ride itb target in Makefile
 	if [ -e ${AT91BOOTSTRAP_MACHINE}.its ]; then
 		echo "Creating the FIT image"
