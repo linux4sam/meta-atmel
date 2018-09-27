@@ -20,16 +20,24 @@ S = "${WORKDIR}/git"
 do_compile[depends] += "virtual/kernel:do_deploy"
 
 do_compile () {
-	echo "Compiling DTBOs"
-	oe_runmake DTC=dtc KERNEL_DIR=${STAGING_KERNEL_DIR} KERNEL_BUILD_DIR=${KERNEL_PATH} ${AT91BOOTSTRAP_MACHINE}_dtbos
+	if [ -e ${AT91BOOTSTRAP_MACHINE}/${AT91BOOTSTRAP_MACHINE}*.dtso ]; then
+		echo "Compiling DTBOs"
+		oe_runmake DTC=dtc KERNEL_DIR=${STAGING_KERNEL_DIR} KERNEL_BUILD_DIR=${KERNEL_PATH} ${AT91BOOTSTRAP_MACHINE}_dtbos
+	else
+		echo "No DTBOs to compile"
+	fi
 
 	echo "****************"
 	ls -l ${DEPLOY_DIR_IMAGE}
 	echo "****************"
 	# Over-ride itb target in Makefile
-	echo "Creating the FIT image"
-	DTC_OPTIONS="-Wno-unit_address_vs_reg -Wno-graph_child_address -Wno-pwms_property"
-	mkimage -D "-i${DEPLOY_DIR_IMAGE} -p 1000 ${DTC_OPTIONS}" -f ${AT91BOOTSTRAP_MACHINE}.its ${AT91BOOTSTRAP_MACHINE}.itb
+	if [ -e ${AT91BOOTSTRAP_MACHINE}.its ]; then
+		echo "Creating the FIT image"
+		DTC_OPTIONS="-Wno-unit_address_vs_reg -Wno-graph_child_address -Wno-pwms_property"
+		mkimage -D "-i${DEPLOY_DIR_IMAGE} -p 1000 ${DTC_OPTIONS}" -f ${AT91BOOTSTRAP_MACHINE}.its ${AT91BOOTSTRAP_MACHINE}.itb
+	else
+		echo "No its file to create FIT images"
+	fi
 }
 
 FILES_${PN} = "/boot/*.*"
