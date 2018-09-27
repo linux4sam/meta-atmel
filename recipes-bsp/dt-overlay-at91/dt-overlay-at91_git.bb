@@ -20,7 +20,7 @@ S = "${WORKDIR}/git"
 # Ensure that the machine is properly set
 AT91BOOTSTRAP_MACHINE ??= "${MACHINE}"
 
-do_compile[depends] += "virtual/kernel:do_deploy"
+do_compile[depends] += "virtual/kernel:do_deploy virtual/kernel:do_shared_workdir"
 
 do_compile () {
 	# Check to properly identify the board
