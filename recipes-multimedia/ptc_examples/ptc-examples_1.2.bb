@@ -14,7 +14,7 @@ DEPENDS = "libevdev libgpiod"
 PV = "1.1+git${SRCPV}"
 
 SRC_URI = "git://github.com/linux4sam/ptc_examples.git;protocol=git"
-SRCREV = "0fd352e19659ac9fd48749951457ca801b39bf39"
+SRCREV = "f24e90c4272d21c1b75f258a5dad73b72e77eff6"
 
 S = "${WORKDIR}/git"
 
