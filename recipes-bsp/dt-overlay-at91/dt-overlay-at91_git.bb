@@ -26,7 +26,7 @@ do_compile () {
 		exit 1
 	fi
 
-	if [ -e ${AT91BOOTSTRAP_MACHINE}/${AT91BOOTSTRAP_MACHINE}*.dtso ]; then
+	if [ -d "${AT91BOOTSTRAP_MACHINE}" ]; then
 		echo "Compiling DTBOs"
 		oe_runmake DTC=dtc KERNEL_DIR=${STAGING_KERNEL_DIR} KERNEL_BUILD_DIR=${KERNEL_PATH} ${AT91BOOTSTRAP_MACHINE}_dtbos
 	else
@@ -34,7 +34,7 @@ do_compile () {
 	fi
 
 	# Over-ride itb target in Makefile
-	if [ -e ${AT91BOOTSTRAP_MACHINE}.its ]; then
+	if [ -e "${AT91BOOTSTRAP_MACHINE}.its" ]; then
 		echo "Creating the FIT image"
 		DTC_OPTIONS="-Wno-unit_address_vs_reg -Wno-graph_child_address -Wno-pwms_property"
 		mkimage -D "-i${DEPLOY_DIR_IMAGE} -p 1000 ${DTC_OPTIONS}" -f ${AT91BOOTSTRAP_MACHINE}.its ${AT91BOOTSTRAP_MACHINE}.itb
@@ -49,7 +49,7 @@ addtask install after do_compile
 
 do_install () {
 	# Copy files to /boot
-	if [ -e ${AT91BOOTSTRAP_MACHINE}/${AT91BOOTSTRAP_MACHINE}*.dtbo ]; then
+	if [ -e ${AT91BOOTSTRAP_MACHINE} ]; then
 		install -d ${D}/boot
 		install ${AT91BOOTSTRAP_MACHINE}/${AT91BOOTSTRAP_MACHINE}*.dtbo ${D}/boot
 	fi;
