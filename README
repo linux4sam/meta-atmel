@@ -145,12 +145,12 @@ TUNE_FEATURES     = "arm armv7a vfp thumb neon callconvention-hard cortexa5"
 TARGET_FPU        = "hard"
 meta
 meta-poky
-meta-yocto-bsp    = "sumo:24a833f40d837407baa4e8192f372d998a776b6c"
+meta-yocto-bsp    = "sumo:51872d3f99e38f9d883ab0a8782ceecb41822fd0"
 meta-atmel        = "sumo:de88471ebdc7060e55e81491b8a0650ad0911862"
 meta-oe
 meta-networking
 meta-python
-meta-multimedia   = "sumo:b0950aeff5b630256bb5e25ca15f4d59c115e7c1"
+meta-multimedia   = "sumo:be79b8b111a968efdbe5e1482d0c246d0b24763e"
 meta-qt5          = "HEAD:49e9d9a73b5c6e3d6eab88dc0005305e85b1a62d"
 
 
