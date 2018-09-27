@@ -59,23 +59,16 @@ do_install () {
 
 	if [ -e ${AT91BOOTSTRAP_MACHINE}.itb ]; then
 		install -d ${D}/boot
-		fit_image_basename="fitImage-${MACHINE}"
-		install ${AT91BOOTSTRAP_MACHINE}.itb ${D}/boot/${fit_image_basename}.itb
-		install ${AT91BOOTSTRAP_MACHINE}.its ${D}/boot/${fit_image_basename}.its
+		install ${AT91BOOTSTRAP_MACHINE}.itb ${D}/boot/
+		install ${AT91BOOTSTRAP_MACHINE}.its ${D}/boot/
 	fi;
 }
 
 addtask deploy after do_install
 
 do_deploy () {
-	fit_image_basename="fitImage-${MACHINE}"
-
 	#echo "Copying ${fit_image_basename}.itb and source file to ${DEPLOYDIR}..."
-	install ${AT91BOOTSTRAP_MACHINE}.itb ${DEPLOYDIR}/${fit_image_basename}.itb
-	install ${AT91BOOTSTRAP_MACHINE}.its ${DEPLOYDIR}/${fit_image_basename}.its
-
-	cd ${DEPLOYDIR}
-        ln -sf ${fit_image_basename}.itb ${MACHINE}.itb
-        ln -sf ${fit_image_basename}.its ${MACHINE}.its
+	install ${AT91BOOTSTRAP_MACHINE}.itb ${DEPLOYDIR}/
+	install ${AT91BOOTSTRAP_MACHINE}.its ${DEPLOYDIR}/
 }
 
