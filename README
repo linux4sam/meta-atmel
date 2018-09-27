@@ -68,7 +68,7 @@ git clone git://github.com/linux4sam/meta-atmel.git -b sumo
 cd poky
 
 6/ Initialize build directory
-source oe-init-build-env build-atmel
+source oe-init-build-env build-microchip
 
 7/ Add meta-atmel layer to bblayer configuration file
 vim conf/bblayers.conf
@@ -127,7 +127,7 @@ vim conf/local.conf
 LICENSE_FLAGS_WHITELIST += "commercial"
 SYSVINIT_ENABLED_GETTYS = ""
 
-11/ Build Atmel demo images
+11/ Build demo images
 bitbake atmel-qt5-demo-image
 
 
