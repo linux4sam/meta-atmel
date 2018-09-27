@@ -20,6 +20,12 @@ S = "${WORKDIR}/git"
 do_compile[depends] += "virtual/kernel:do_deploy"
 
 do_compile () {
+	# Check to properly identify the board
+	if [ -z "${AT91BOOTSTRAP_MACHINE}" ]; then
+		echo "No AT91BOOTSTRAP_MACHINE set for ${MACHINE}"
+		exit 1
+	fi
+
 	if [ -e ${AT91BOOTSTRAP_MACHINE}/${AT91BOOTSTRAP_MACHINE}*.dtso ]; then
 		echo "Compiling DTBOs"
 		oe_runmake DTC=dtc KERNEL_DIR=${STAGING_KERNEL_DIR} KERNEL_BUILD_DIR=${KERNEL_PATH} ${AT91BOOTSTRAP_MACHINE}_dtbos
