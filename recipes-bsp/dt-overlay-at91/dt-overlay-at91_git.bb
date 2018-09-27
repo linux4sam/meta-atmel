@@ -17,6 +17,9 @@ DEPENDS = "virtual/kernel u-boot-mkimage-native dtc-native"
 
 S = "${WORKDIR}/git"
 
+# Ensure that the machine is properly set
+AT91BOOTSTRAP_MACHINE ??= "${MACHINE}"
+
 do_compile[depends] += "virtual/kernel:do_deploy"
 
 do_compile () {
