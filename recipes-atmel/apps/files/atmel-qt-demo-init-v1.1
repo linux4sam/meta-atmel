@@ -24,7 +24,7 @@ start()
     ln -sf /etc/pointercal-${mode} /etc/pointercal
     export QT_QPA_GENERIC_PLUGINS=tslib:/dev/input/touchscreen0
   else
-    export QT_QPA_GENERIC_PLUGINS=evdevmouse,evdevtouch:/dev/input/touchscreen0,evdevkeyboard:/dev/input/event0
+    export QT_QPA_GENERIC_PLUGINS=evdevmouse,evdevtouch:/dev/input/touchscreen0,evdevkeyboard:/dev/input/keyboard0
   fi
 
   echo "Starting Demo..."
