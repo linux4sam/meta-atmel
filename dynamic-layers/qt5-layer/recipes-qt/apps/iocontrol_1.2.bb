@@ -5,18 +5,15 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=1ebbd3e34237af26da5dc08a4e440464 \
 
 PACKAGES = "${PN}-dbg ${PN}"
 
-PR = "r1"
-
 DEPENDS = "mpio qtbase"
 
 RDEPENDS_${PN} = "python"
 
-SRC_URI = "https://github.com/linux4sam/iocontrol/archive/v${PV}.tar.gz;downloadfilename=iocontrol-${PV}.tar.gz"
+SRC_URI = "git://github.com/linux4sam/iocontrol.git;protocol=https"
+PV = "1.2+git${SRCPV}"
+SRCREV = "125947445d537fd940cb7bfdb38de3a6a5a26c05"
 
-SRC_URI[md5sum] = "aa500d922a14cdd92d0ef1bf28e9cc92"
-SRC_URI[sha256sum] = "e5b5d74af7a1c3594ea951edd1fc1a457854393b6a72c79aeaa8ebd4f6141a26"
-
-S = "${WORKDIR}/iocontrol-${PV}"
+S = "${WORKDIR}/git"
 
 inherit setuptools
 
