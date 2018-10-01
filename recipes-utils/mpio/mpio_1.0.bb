@@ -7,7 +7,8 @@ PACKAGES = "${PN}-dbg ${PN}"
 
 RDEPENDS_${PN} = "python"
 
-SRC_URI = "git://github.com/linux4sam/mpio.git;branch=master;protocol=http"
+SRC_URI = "git://github.com/linux4sam/mpio.git;branch=master;protocol=https"
+PV = "1.0+git${SRCPV}"
 
 SRCREV = "c691030e2897cb285f7a3453f4db49c41921ab26"
 
