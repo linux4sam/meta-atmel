@@ -8,7 +8,7 @@ PR = "r1"
 
 DEPENDS = "libdrm cairo cjson lua swig-native python"
 
-RDEPENDS_${PN} = "python"
+RDEPENDS_${PN} = "python udev-rules-at91"
 
 SRC_URI = "git://github.com/linux4sam/libplanes.git;protocol=https"
 PV = "0.0.3+git${SRCPV}"
