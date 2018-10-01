@@ -10,9 +10,10 @@ DEPENDS = "libdrm cairo cjson lua swig-native python"
 
 RDEPENDS_${PN} = "python"
 
-SRC_URI = "git://github.com/linux4sam/libplanes.git;branch=master;protocol=http"
+SRC_URI = "git://github.com/linux4sam/libplanes.git;protocol=https"
+PV = "0.0.3+git${SRCPV}"
 
-SRCREV = "0950b1f2b3ee832b44fe3054fad7039aa05ffbe4"
+SRCREV = "1e211af162a4a3802258a50fd8f43933d3c16f3b"
 
 S = "${WORKDIR}/git"
 
