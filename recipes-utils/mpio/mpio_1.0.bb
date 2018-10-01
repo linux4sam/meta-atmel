@@ -9,7 +9,7 @@ RDEPENDS_${PN} = "python"
 
 SRC_URI = "git://github.com/linux4sam/mpio.git;branch=master;protocol=http"
 
-SRCREV = "d329ac453cc75d1483e516f7bfab6e8727675dc4"
+SRCREV = "c691030e2897cb285f7a3453f4db49c41921ab26"
 
 S = "${WORKDIR}/git"
 
