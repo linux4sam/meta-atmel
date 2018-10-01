@@ -1,0 +1,2 @@
+# Create a symlink for the panel keyboard input which is has an I2C parent
+SUBSYSTEM=="input", SUBSYSTEMS=="i2c", KERNEL=="event[0-9]*", ENV{ID_INPUT_KEY}=="1", SYMLINK+="input/keyboard0"
