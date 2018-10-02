@@ -107,6 +107,7 @@ IMAGE_INSTALL += "\
 	minehunt \
 	iocontrol \
 	mchp-qt-demo-init \
+	whiteboard \
 	dt-overlay-at91 \
 "
 
