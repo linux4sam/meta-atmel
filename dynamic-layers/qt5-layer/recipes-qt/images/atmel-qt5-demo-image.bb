@@ -103,6 +103,7 @@ IMAGE_INSTALL += "\
 	applicationlauncher \
 	samegame \
 	iocontrol \
+	qtviewplanes \
 	mchp-qt-demo-init \
 	whiteboard \
 	wildwest \
