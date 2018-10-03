@@ -108,6 +108,7 @@ IMAGE_INSTALL += "\
 	iocontrol \
 	mchp-qt-demo-init \
 	whiteboard \
+	wildwest \
 	dt-overlay-at91 \
 "
 
