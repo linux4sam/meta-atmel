@@ -100,11 +100,8 @@ IMAGE_INSTALL += "\
 	\
 	liberation-fonts \
 	homeautomation \
-	smartrefrigerator \
 	applicationlauncher \
-	qmlbrowser \
 	samegame \
-	minehunt \
 	iocontrol \
 	mchp-qt-demo-init \
 	whiteboard \

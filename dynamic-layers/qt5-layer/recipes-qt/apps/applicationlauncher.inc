@@ -20,10 +20,8 @@ FILES_${PN}-dbg = " \
   /usr/src/debug/* \
   /opt/ApplicationLauncher/applications/resources/same-game.png \
   /opt/ApplicationLauncher/applications/resources/about-atmel.png \
-  /opt/ApplicationLauncher/applications/resources/web-browser.png \
   /opt/ApplicationLauncher/applications/resources/picture-viewer.png \
   /opt/ApplicationLauncher/applications/resources/home-automation.png \
-  /opt/ApplicationLauncher/applications/resources/minehunter-game.png \
   /opt/ApplicationLauncher/applications/resources/medical-app.png \
   /opt/ApplicationLauncher/applications/resources/about-timesys.png \
 "
