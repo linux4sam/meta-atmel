@@ -146,7 +146,7 @@ TARGET_FPU        = "hard"
 meta
 meta-poky
 meta-yocto-bsp    = "sumo:51872d3f99e38f9d883ab0a8782ceecb41822fd0"
-meta-atmel        = "sumo:50f164650306d6089e4e2c3295ae5dcfcaa78789"
+meta-atmel        = "sumo:6880f31be5bbe50594613617fcdfb5ce9c16e292"
 meta-oe
 meta-networking
 meta-python
