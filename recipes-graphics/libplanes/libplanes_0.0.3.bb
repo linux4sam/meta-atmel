@@ -13,7 +13,7 @@ RDEPENDS_${PN} = "python udev-rules-at91"
 SRC_URI = "git://github.com/linux4sam/libplanes.git;protocol=https"
 PV = "0.0.3+git${SRCPV}"
 
-SRCREV = "fc8bd617d11ec4d5c89a4ff4c5693372a443a750"
+SRCREV = "7d702630bc00461f72a1ce109739ee4e34903b4c"
 
 S = "${WORKDIR}/git"
 
