@@ -3,7 +3,7 @@ require u-boot-atmel.inc
 LICENSE = "GPLv2+"
 LIC_FILES_CHKSUM = "file://README;beginline=1;endline=22;md5=9915e8cb100eb5dbb366010a0f10296c"
 
-SRCREV = "d5c8fed7367dbd96bfac673a6cb94e31581b4fea"
+SRCREV = "1e7d2e5973c1fb780e55e28a801c6c574158ac14"
 
 PV = "v2018.07-at91+git${SRCPV}"
 
