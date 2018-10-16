@@ -8,6 +8,7 @@ IMAGE_INSTALL += "\
     packagegroup-base-usbhost \
     mpg123 \
     mpio \
+    lua-staticdev \
     libplanes \
     fb-test \
     tslib \

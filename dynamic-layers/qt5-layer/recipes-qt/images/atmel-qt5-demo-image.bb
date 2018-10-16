@@ -54,6 +54,7 @@ IMAGE_INSTALL += "\
 	${CORE_IMAGE_BASE_INSTALL} \
 	\
 	cjson \
+	lua-staticdev \
 	libplanes \
 	\
 	qtbase \
