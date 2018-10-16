@@ -125,3 +125,4 @@ IMAGE_INSTALL_append_sama5d4 = " \
 inherit core-image populate_sdk_qt5
 
 #TOOLCHAIN_HOST_TASK += "nativesdk-sam-ba"
+TOOLCHAIN_HOST_TASK += "nativesdk-swig"
