@@ -1,7 +1,7 @@
 DESCRIPTION = "U-Boot - the Universal Boot Loader"
 HOMEPAGE = "http://www.denx.de/wiki/U-Boot/WebHome"
 SECTION = "bootloaders"
-PROVIDES = "virtual/bootloader"
+PROVIDES = "u-boot virtual/bootloader"
 
 inherit uboot-config deploy
 
