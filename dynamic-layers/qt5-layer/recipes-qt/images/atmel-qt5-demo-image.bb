@@ -108,7 +108,6 @@ IMAGE_INSTALL += "\
 	mchp-qt-demo-init \
 	whiteboard \
 	wildwest \
-	dt-overlay-at91 \
 "
 
 IMAGE_INSTALL_append_at91sam9 = " \
@@ -119,7 +118,6 @@ IMAGE_INSTALL_append_sama5d4 = " \
 	g1-decoder \
 	videoplayer \
 	spacetouch \
-	dt-overlay-at91 \
 	"
 
 inherit core-image populate_sdk_qt5
