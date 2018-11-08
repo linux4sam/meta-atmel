@@ -46,7 +46,7 @@ IMAGE_INSTALL += "\
 	python-distribute \
 	python-pyqt5 \
 	mpio \
-	gdbserver \
+	gdb \
 	evtest \
 	mxt-app \
 	usbutils \

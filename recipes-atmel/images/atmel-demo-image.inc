@@ -50,7 +50,7 @@ IMAGE_INSTALL = "\
     python-ctypes \
     python-pip \
     python-distribute \
-    gdbserver \
+    gdb \
     usbutils \
     wget \
     ${CORE_IMAGE_EXTRA_INSTALL} \
