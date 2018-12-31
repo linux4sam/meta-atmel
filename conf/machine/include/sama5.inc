@@ -13,3 +13,4 @@ PREFERRED_PROVIDER_jpeg ?= "jpeg"
 PREFERRED_PROVIDER_jpeg-native ?= "jpeg-native"
 
 SERIAL_CONSOLES ?= "115200;ttyS0"
+WIC_CREATE_EXTRA_ARGS ?= "--no-fstab-update"
