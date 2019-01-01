@@ -9,19 +9,14 @@ objects.
  src/widgets/graphicsview/qgraphicsitem.h | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/src/widgets/graphicsview/qgraphicsitem.h b/src/widgets/graphicsview/qgraphicsitem.h
-index 36f8aac..00846e3 100644
 --- a/src/widgets/graphicsview/qgraphicsitem.h
 +++ b/src/widgets/graphicsview/qgraphicsitem.h
-@@ -343,7 +343,7 @@ public:
+@@ -342,7 +342,7 @@ public:
  
      // Drawing
-     virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = Q_NULLPTR) = 0;
+     virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr) = 0;
 -    void update(const QRectF &rect = QRectF());
 +    virtual void update(const QRectF &rect = QRectF());
      inline void update(qreal x, qreal y, qreal width, qreal height);
      void scroll(qreal dx, qreal dy, const QRectF &rect = QRectF());
  
--- 
-2.7.4
-
