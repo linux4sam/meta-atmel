@@ -6,7 +6,6 @@ PACKAGES = "${PN}-dbg ${PN}"
 
 PR = "r1"
 
-DEPENDS = "qtquick1"
 inherit qmake5
 
 SRC_URI = "https://github.com/linux4sam/qml-browser/archive/v${PV}.tar.gz;downloadfilename=qml-browser-${PV}.tar.gz"

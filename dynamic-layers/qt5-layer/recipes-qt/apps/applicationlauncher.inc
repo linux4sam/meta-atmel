@@ -4,7 +4,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=78a72a436c89c3863a5650347f34a3b3"
 
 PACKAGES = "${PN}-dbg ${PN}"
 
-DEPENDS = "qtbase qtdeclarative qtwebkit qtquick1"
+DEPENDS = "qtbase qtdeclarative qtwebkit"
 inherit qmake5
 
 SRC_URI = "https://github.com/linux4sam/application-launcher/archive/v${PV}.tar.gz;downloadfilename=application-launcher-${PV}.tar.gz"
