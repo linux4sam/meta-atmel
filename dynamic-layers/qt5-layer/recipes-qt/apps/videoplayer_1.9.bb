@@ -39,3 +39,6 @@ do_install() {
 	cp -rf ${S}/med* ${D}/opt/VideoPlayer/
 	cp ${S}/Player.sh ${D}/opt/VideoPlayer/
 }
+
+COMPATIBLE_MACHINE = "sama5d4"
+
