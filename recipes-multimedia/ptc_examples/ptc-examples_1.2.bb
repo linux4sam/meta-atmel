@@ -38,3 +38,4 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
 FILES_${PN} += "${base_libdir}/firmware/microchip \
                 /home/root/start_ptc_qt* \
                 "
+COMPATIBLE_MACHINE = "(at91sam9|sama5)"
