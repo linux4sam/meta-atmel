@@ -4,7 +4,7 @@ LIC_FILES_CHKSUM = "file://main.cpp;endline=40;md5=ade79b42cecba4adb92be7b0e83ba
 
 PACKAGES = "${PN}-dbg ${PN}"
 
-DEPENDS = "qtbase qtquick1"
+DEPENDS = "qtbase"
 inherit qmake5
 
 SRC_URI = "https://github.com/linux4sam/minehunt/archive/v${PV}.tar.gz;downloadfilename=${PN}-${PV}.tar.gz"

@@ -33,7 +33,7 @@ IMAGE_INSTALL += "\
 	iptables \
 	bridge-utils \
 	canutils \
-	gdbserver \
+	gdb \
 	usbutils \
 	wget \
 	${CORE_IMAGE_BASE_INSTALL} \

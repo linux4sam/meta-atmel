@@ -12,7 +12,12 @@ S = "${WORKDIR}/sam-ba_cdc_linux"
 
 do_install () {
     install -d ${D}${bindir}/sam-ba_cdc_linux
-    cp -pPrf ${S}/* ${D}${bindir}/sam-ba_cdc_linux
+    cp -R --no-dereference --preserve=mode,links ${S}/* ${D}${bindir}/sam-ba_cdc_linux
+}
+
+do_install_append_class-target() {
+    rm -rf ${D}${bindir}/sam-ba_cdc_linux/sam-ba_64
+    rm -rf ${D}${bindir}/sam-ba_cdc_linux/sam-ba
 }
 
 INSANE_SKIP_${PN} += "already-stripped"

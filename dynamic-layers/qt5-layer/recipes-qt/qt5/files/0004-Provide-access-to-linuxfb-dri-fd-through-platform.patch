@@ -11,8 +11,6 @@ Subject: [PATCH 1/1] Provide access to linuxfb dri fd through platform
  src/plugins/platforms/linuxfb/qlinuxfbscreen.h        |  3 ++-
  5 files changed, 28 insertions(+), 2 deletions(-)
 
-diff --git a/src/platformsupport/fbconvenience/qfbscreen_p.h b/src/platformsupport/fbconvenience/qfbscreen_p.h
-index 1c27a94..bced88e 100644
 --- a/src/platformsupport/fbconvenience/qfbscreen_p.h
 +++ b/src/platformsupport/fbconvenience/qfbscreen_p.h
 @@ -76,6 +76,8 @@ public:
@@ -23,12 +21,10 @@ index 1c27a94..bced88e 100644
 +
      virtual bool initialize();
  
-     QRect geometry() const Q_DECL_OVERRIDE { return mGeometry; }
-diff --git a/src/plugins/platforms/linuxfb/qlinuxfbdrmscreen.cpp b/src/plugins/platforms/linuxfb/qlinuxfbdrmscreen.cpp
-index c9fbb82..985f7fa 100644
+     QRect geometry() const override { return mGeometry; }
 --- a/src/plugins/platforms/linuxfb/qlinuxfbdrmscreen.cpp
 +++ b/src/plugins/platforms/linuxfb/qlinuxfbdrmscreen.cpp
-@@ -409,4 +409,9 @@ QPixmap QLinuxFbDrmScreen::grabWindow(WId wid, int x, int y, int width, int heig
+@@ -465,4 +465,9 @@ QPixmap QLinuxFbDrmScreen::grabWindow(WI
      return QPixmap();
  }
  
@@ -38,8 +34,6 @@ index c9fbb82..985f7fa 100644
 +}
 +
  QT_END_NAMESPACE
-diff --git a/src/plugins/platforms/linuxfb/qlinuxfbdrmscreen.h b/src/plugins/platforms/linuxfb/qlinuxfbdrmscreen.h
-index 50a9576..dc26c8f 100644
 --- a/src/plugins/platforms/linuxfb/qlinuxfbdrmscreen.h
 +++ b/src/plugins/platforms/linuxfb/qlinuxfbdrmscreen.h
 @@ -57,6 +57,7 @@ public:
@@ -50,11 +44,9 @@ index 50a9576..dc26c8f 100644
  
  private:
      QKmsScreenConfig *m_screenConfig;
-diff --git a/src/plugins/platforms/linuxfb/qlinuxfbintegration.cpp b/src/plugins/platforms/linuxfb/qlinuxfbintegration.cpp
-index 6f79cd9..ccb757c 100644
 --- a/src/plugins/platforms/linuxfb/qlinuxfbintegration.cpp
 +++ b/src/plugins/platforms/linuxfb/qlinuxfbintegration.cpp
-@@ -172,9 +172,26 @@ void QLinuxFbIntegration::createInputHandlers()
+@@ -172,9 +172,26 @@ void QLinuxFbIntegration::createInputHan
  #endif
  }
  
@@ -82,8 +74,6 @@ index 6f79cd9..ccb757c 100644
  }
  
  QT_END_NAMESPACE
-diff --git a/src/plugins/platforms/linuxfb/qlinuxfbscreen.h b/src/plugins/platforms/linuxfb/qlinuxfbscreen.h
-index c7ce455e..547741f 100644
 --- a/src/plugins/platforms/linuxfb/qlinuxfbscreen.h
 +++ b/src/plugins/platforms/linuxfb/qlinuxfbscreen.h
 @@ -60,6 +60,8 @@ public:
@@ -100,6 +90,3 @@ index c7ce455e..547741f 100644
  
  #endif // QLINUXFBSCREEN_H
 -
--- 
-2.7.4
-

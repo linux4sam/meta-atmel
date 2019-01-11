@@ -4,7 +4,7 @@ LIC_FILES_CHKSUM = "file://main.cpp;endline=39;md5=8f2a7549bdcd8bed89187e21d29be
 
 PACKAGES = "${PN}-dbg ${PN}"
 
-DEPENDS = "qtbase qtdeclarative qtquick1"
+DEPENDS = "qtbase qtdeclarative"
 inherit qmake5
 
 SRC_URI = "https://github.com/linux4sam/samegame/archive/v${PV}.tar.gz;downloadfilename=${PN}-${PV}.tar.gz"

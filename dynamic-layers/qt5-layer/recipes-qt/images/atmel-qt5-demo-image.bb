@@ -46,7 +46,7 @@ IMAGE_INSTALL += "\
 	python-distribute \
 	python-pyqt5 \
 	mpio \
-	gdbserver \
+	gdb \
 	evtest \
 	mxt-app \
 	usbutils \
@@ -77,9 +77,6 @@ IMAGE_INSTALL += "\
 	qtlocation-qmlplugins \
 	qtdeclarative \
 	qtdeclarative-qmlplugins \
-	qtquick1 \
-	qtquick1-qmlplugins \
-	qtquick1-plugins \
 	qtquickcontrols \
 	qtquickcontrols-qmlplugins \
 	qtquickcontrols2 \

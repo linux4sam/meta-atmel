@@ -38,3 +38,5 @@ do_install() {
 	make INSTALL_ROOT=${D} install
 	cp ${B}/PTPDemo ${D}/opt/ptp/
 }
+
+COMPATIBLE_MACHINE = "(at91sam9|sama5)"
