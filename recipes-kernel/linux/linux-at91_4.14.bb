@@ -18,6 +18,7 @@ S = "${WORKDIR}/git"
 KBRANCH = "linux-4.14-at91"
 SRC_URI = "git://github.com/linux4sam/linux-at91.git;protocol=git;branch=${KBRANCH}"
 SRC_URI += "file://defconfig"
+SRC_URI += "file://0001-Drop-using-_-in-version.patch"
 
 python __anonymous () {
 	if d.getVar('UBOOT_FIT_IMAGE', True) == 'xyes':
