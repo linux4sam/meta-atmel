@@ -8,11 +8,20 @@ SRC_URI = "https://github.com/atmelcorp/${BPN}/releases/download/v${PV}/${BPN}_$
 SRC_URI[md5sum] = "11746fcc1f97e054fa6a8c9c57c12a20"
 SRC_URI[sha256sum] = "3ecd53dab9a60debe5a861e272e095da008300c860ce7494102ad987eea7c8e9"
 
+inherit deploy
+
 S = "${WORKDIR}/${BPN}_${PV}"
 
 do_install () {
     install -d ${D}${bindir}/sam-ba_cdc_linux
     cp -R --no-dereference --preserve=mode,links ${S}/* ${D}${bindir}/sam-ba_cdc_linux
+}
+
+addtask deploy after do_install
+
+do_deploy () {
+        install -d ${DEPLOYDIR}/sam-ba
+        cp -R --no-dereference --preserve=mode,links ${D}${bindir}/sam-ba_cdc_linux/* ${DEPLOYDIR}/sam-ba
 }
 
 INSANE_SKIP_${PN} += "already-stripped"
