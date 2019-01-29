@@ -1,0 +1,17 @@
+From f7a9e286f80e8f68c0800279367e63d41de87de2 Mon Sep 17 00:00:00 2001
+From: Khem Raj <raj.khem@gmail.com>
+Date: Fri, 18 Jan 2019 14:22:13 -0800
+Subject: [PATCH 2/2] Enable image download via sam-ba
+
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+---
+ board/sama5d27_som1_ek/sama5d27_som1_eksd_uboot_defconfig | 1 +
+ 1 file changed, 1 insertion(+)
+
+--- a/board/sama5d27_som1_ek/sama5d27_som1_eksd_uboot_defconfig
++++ b/board/sama5d27_som1_ek/sama5d27_som1_eksd_uboot_defconfig
+@@ -4,3 +4,4 @@ CONFIG_SDCARD=y
+ CONFIG_JUMP_ADDR="0x23f00000"
+ CONFIG_DEBUG=y
+ # CONFIG_ENTER_NWD is not set
++CONFIG_USE_SAM_BA=y

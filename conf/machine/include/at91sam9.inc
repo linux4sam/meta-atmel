@@ -10,3 +10,5 @@ PREFERRED_PROVIDER_virtual/bootloader_at91sam9 ?= "u-boot-at91"
 PREFERRED_PROVIDER_u-boot_at91sam9 ?= "u-boot-at91"
 
 SERIAL_CONSOLES ?= "115200;ttyS0"
+
+EXTRA_IMAGEDEPENDS += "sam-ba-native"

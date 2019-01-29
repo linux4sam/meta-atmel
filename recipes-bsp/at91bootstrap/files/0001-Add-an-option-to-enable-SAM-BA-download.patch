@@ -1,0 +1,52 @@
+From 4a21fade07cea5ede4575cde444bab3055790fd6 Mon Sep 17 00:00:00 2001
+From: Khem Raj <raj.khem@gmail.com>
+Date: Fri, 18 Jan 2019 14:21:57 -0800
+Subject: [PATCH 1/2] Add an option to enable SAM-BA download
+
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+---
+ Config.in | 8 +++++++-
+ main.c    | 2 +-
+ 2 files changed, 8 insertions(+), 2 deletions(-)
+
+--- a/Config.in
++++ b/Config.in
+@@ -71,6 +71,13 @@ config CONFIG_LINUX_IMAGE
+ 	help
+ 	  Select to load linux uImage or zImage to boot
+ 
++config CONFIG_USE_SAM_BA
++	bool "load image via sam-ba tool after bootstrap run"
++	help
++	  Do not not load any image after bootstrap run.
++	  Bootstrap will pass control to ram address and expect
++	  external app(sam-ba) to load next executable eg. u-boot.
++
+ #
+ # Kernel Image Storage Setup
+ #
+--- a/main.c
++++ b/main.c
+@@ -98,7 +98,7 @@ int main(void)
+ 	act8945a_suspend_charger();
+ #endif
+ 
+-#if !defined(CONFIG_LOAD_NONE)
++#if !defined(CONFIG_LOAD_NONE) && !defined(CONFIG_USE_SAM_BA)
+ 	init_load_image(&image);
+ 
+ #if defined(CONFIG_SECURE)
+--- a/board/board_cpp.mk
++++ b/board/board_cpp.mk
+@@ -192,6 +192,11 @@ CPPFLAGS += -DCONFIG_LOAD_NONE
+ ASFLAGS += -DCONFIG_LOAD_NONE
+ endif
+ 
++ifeq ($(CONFIG_USE_SAM_BA), y)
++CPPFLAGS += -DCONFIG_USE_SAM_BA
++ASFLAGS += -DCONFIG_USE_SAM_BA
++endif
++
+ ifeq ($(CONFIG_REDIRECT_ALL_INTS_AIC), y)
+ CPPFLAGS += -DCONFIG_REDIRECT_ALL_INTS_AIC
+ endif
