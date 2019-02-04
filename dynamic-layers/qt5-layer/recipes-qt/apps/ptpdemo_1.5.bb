@@ -4,7 +4,9 @@ LIC_FILES_CHKSUM = "file://main.cpp;endline=144;md5=3fd6e13d87198f728613ada22356
 
 PR = "r1"
 
-SRC_URI = "ftp://ftp.linux4sam.org/pub/demo/qtdemo/PTPDemo-${PV}.tar.gz"
+SRC_URI = "ftp://ftp.linux4sam.org/pub/demo/qtdemo/PTPDemo-${PV}.tar.gz \
+           file://header.patch \
+          "
 
 SRC_URI[md5sum] = "86f6af07b6e36734f60be8865906b545"
 SRC_URI[sha256sum] = "4219d29279a9ac980a2429e525858173f6acdb3a0501fda0df8fc40f8f9de298"
