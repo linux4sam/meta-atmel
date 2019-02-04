@@ -1,0 +1,22 @@
+Do not include linux/if_ether.h header it is not needed
+moreover it causes build failures with musl
+
+netinet/if_ether.h:111:8: error: redefinition of 'ethhdr'
+struct ethhdr {
+       ^
+TOPDIR/build/tmp/work/cortexa5t2hf-neon-vfpv4-yoe-linux-musleabi/ptpdemo/1.5-r1/recipe-sysroot/usr/include/linux/if_ether.h:167:8: note: previous definition is here
+struct ethhdr {
+       ^
+
+Upstream-Status: Pending
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+--- a/linuxptp-1.3/raw.c
++++ b/linuxptp-1.3/raw.c
+@@ -19,7 +19,6 @@
+ #include <errno.h>
+ #include <fcntl.h>
+ #include <linux/filter.h>
+-#include <linux/if_ether.h>
+ #include <net/ethernet.h>
+ #include <net/if.h>
+ #include <netinet/in.h>
