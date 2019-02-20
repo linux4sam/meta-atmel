@@ -82,8 +82,6 @@ IMAGE_INSTALL += "\
 	qtquickcontrols-qmlplugins \
 	qtquickcontrols2 \
 	qtquickcontrols2-qmlplugins \
-	qtwebkit \
-	qtwebkit-qmlplugins \
 	\
 	libicui18n \
 	gstreamer1.0 \
@@ -98,9 +96,7 @@ IMAGE_INSTALL += "\
 	ffmpeg \
 	\
 	liberation-fonts \
-	homeautomation \
 	applicationlauncher \
-	samegame \
 	iocontrol \
 	qtviewplanes \
 	mchp-qt-demo-init \
