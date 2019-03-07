@@ -23,8 +23,8 @@ PACKAGECONFIG_append_sama5 = " kms"
 DEPENDS_remove_at91sam9 = "virtual/egl"
 DEPENDS_remove_sama5 = "virtual/egl"
 
-PACKAGECONFIG_append_at91sam9 = " xkbcommon-evdev"
-PACKAGECONFIG_append_sama5 = " xkbcommon-evdev"
+PACKAGECONFIG_append_at91sam9 = " xkbcommon"
+PACKAGECONFIG_append_sama5 = " xkbcommon"
 PACKAGECONFIG_remove_at91sam9 = " tests"
 PACKAGECONFIG_remove_sama5 = " tests"
 
