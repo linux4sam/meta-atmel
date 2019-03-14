@@ -11,7 +11,7 @@ Supported SoCs / MACHINE names
 ==============================
 Note that most of the machine names below, have a SD Card variant that can be
 built by adding an "-sd" suffix to the machine name.
-- SAMA5D2 product family / sama5d2-xplained, sama5d2-xplained-emmc, sama5d27-som1-ek-sd, sama5d2-ptc-ek
+- SAMA5D2 product family / sama5d2-xplained, sama5d2-xplained-emmc, sama5d27-som1-ek-sd, sama5d2-ptc-ek, sama5d2-icp
 - SAMA5D4 product family / sama5d4ek, sama5d4-xplained
 - SAMA5D3 product family / sama5d3xek, sama5d3-xplained
 - AT91SAM9x5 product family (AT91SAM9G15, AT91SAM9G25, AT91SAM9X25, AT91SAM9G35 and AT91SAM9X35) / at91sam9x5ek
