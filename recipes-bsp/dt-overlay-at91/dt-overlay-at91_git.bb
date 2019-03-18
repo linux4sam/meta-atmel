@@ -68,7 +68,9 @@ addtask deploy after do_install
 
 do_deploy () {
     #echo "Copying ${fit_image_basename}.itb and source file to ${DEPLOYDIR}..."
-    install ${AT91BOOTSTRAP_MACHINE}.itb ${DEPLOYDIR}/
-    install ${AT91BOOTSTRAP_MACHINE}.its ${DEPLOYDIR}/
+    if [ -e ${AT91BOOTSTRAP_MACHINE}.itb ]; then
+        install ${AT91BOOTSTRAP_MACHINE}.itb ${DEPLOYDIR}/
+        install ${AT91BOOTSTRAP_MACHINE}.its ${DEPLOYDIR}/
+    fi;
 }
 
