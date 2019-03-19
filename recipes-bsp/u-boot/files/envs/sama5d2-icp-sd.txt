@@ -1,0 +1,8 @@
+bootcmd=run bootcmd_boot;
+bootargs=console=ttyS0,115200 root=/dev/mmcblk0p2 rw rootfstype=ext4 rootwait atmel.pm_modes=standby,ulp1 rng_core.default_quality=700
+bootcmd_boot=fatload mmc 0:1 0x21000000 sama5d2_icp.itb; bootm 0x21000000#kernel_dtb
+bootdelay=1
+ethact=gmac0
+stderr=serial
+stdin=serial
+stdout=serial
