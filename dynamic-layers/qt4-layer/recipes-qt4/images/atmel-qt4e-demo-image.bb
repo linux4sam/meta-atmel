@@ -23,6 +23,7 @@ IMAGE_INSTALL += "\
 	\
 	linux-firmware-ralink \
 	linux-firmware-ath6k \
+	mchp-wireless-firmware \
 	\
 	alsa-utils \
 	i2c-tools \

@@ -30,6 +30,7 @@ IMAGE_INSTALL = "\
     linux-firmware-rtl8192ce \
     linux-firmware-rtl8192su \
     linux-firmware-rtl8723 \
+    mchp-wireless-firmware \
     \
     alsa-utils \
     i2c-tools \
