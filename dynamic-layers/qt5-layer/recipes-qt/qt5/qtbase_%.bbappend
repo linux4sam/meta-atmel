@@ -21,6 +21,8 @@ PACKAGECONFIG_remove = " tests"
 # enable it, do it here. This should be removed when the reverse dependency is
 # added.
 PACKAGECONFIG_append_at91sam9 = " icu"
+PACKAGECONFIG_append_sam9x60 = " accessibility"
+PACKAGECONFIG_append_sam9x60 = " libinput"
 PACKAGECONFIG_append_sama5 = " icu"
 PACKAGECONFIG_append_sama5 = " accessibility"
 PACKAGECONFIG_append_sama5 = " libinput"
