@@ -96,6 +96,9 @@ IMAGE_INSTALL_append_at91sam9x5 = "\
 	tslib tslib-calibrate tslib-tests \
 	qt4-embedded-plugin-mousedriver-tslib \"
 
+IMAGE_INSTALL_append_sam9x60 = " \
+	hostapd "
+
 inherit core-image
 
 atmel_qte_rootfs_postprocess() {
