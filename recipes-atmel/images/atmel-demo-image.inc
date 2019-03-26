@@ -58,4 +58,7 @@ IMAGE_INSTALL = "\
     dt-overlay-at91 \
     "
 
+IMAGE_INSTALL_append_sam9x60 = " \
+    hostapd "
+
 inherit core-image
