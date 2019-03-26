@@ -65,15 +65,11 @@ IMAGE_INSTALL += "\
 	qt4-embedded-plugin-imageformat-mng \
 	qt4-embedded-plugin-imageformat-svg \
 	qt4-embedded-plugin-imageformat-tiff \
-	qt4-embedded-plugin-mousedriver-tslib \
 	qt4-embedded-plugin-phonon-backend-gstreamer \
 	qt4-embedded-plugin-script-dbus \
 	qt4-embedded-plugin-sqldriver-sqlite \
 	\
 	libicui18n \
-	tslib \
-	tslib-calibrate \
-	tslib-tests \
 	gstreamer1.0 \
 	gstreamer1.0-plugins-bad-meta \
 	gstreamer1.0-plugins-base-meta \
@@ -86,6 +82,18 @@ IMAGE_INSTALL += "\
 	minehunt \
 	atmel-qt-demo-init \
 "
+
+IMAGE_INSTALL_append_at91sam9m10g45 = "\
+	tslib tslib-calibrate tslib-tests \
+	qt4-embedded-plugin-mousedriver-tslib \"
+
+IMAGE_INSTALL_append_at91sam9rl = "\
+	tslib tslib-calibrate tslib-tests \
+	qt4-embedded-plugin-mousedriver-tslib \"
+
+IMAGE_INSTALL_append_at91sam9x5 = "\
+	tslib tslib-calibrate tslib-tests \
+	qt4-embedded-plugin-mousedriver-tslib \"
 
 inherit core-image
 
