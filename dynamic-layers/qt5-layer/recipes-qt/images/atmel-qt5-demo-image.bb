@@ -120,7 +120,13 @@ IMAGE_INSTALL += "\
 	dhcp-server-config \
 "
 
-IMAGE_INSTALL_append_at91sam9 = " \
+IMAGE_INSTALL_append_at91sam9m10g45 = " \
+	tslib tslib-conf tslib-tests tslib-calibrate "
+
+IMAGE_INSTALL_append_at91sam9rl = " \
+	tslib tslib-conf tslib-tests tslib-calibrate "
+
+IMAGE_INSTALL_append_at91sam9x5 = " \
 	tslib tslib-conf tslib-tests tslib-calibrate "
 
 IMAGE_INSTALL_append_sama5d4 = " \
