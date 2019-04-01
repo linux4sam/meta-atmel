@@ -15,7 +15,7 @@ PV = "4.19+git${SRCPV}"
 
 S = "${WORKDIR}/git"
 
-KBRANCH = "linux-4.19-at91"
+KBRANCH = "sam9x60_iar"
 SRC_URI = "git://bitbucket.microchip.com/scm/linux4sam/linux-at91.git;protocol=https;branch=${KBRANCH}"
 SRC_URI += "file://defconfig"
 
