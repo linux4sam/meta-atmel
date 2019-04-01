@@ -13,6 +13,7 @@ Connect the board:
  o sama5d3 Xplained: DBGU: J23, USB sam-ba: J6
  o sama5d4ek: DBGU: J22 or J24, USB sam-ba: J1
  o sama5d4 Xplained: DBGU: J1, USB sam-ba: J11
+ o sam9x60: DBGU: J24, USB sam-ba: J8
 
 Start the board in RomBOOT:
  o at91sam9g45m10ek:
@@ -57,6 +58,11 @@ Start the board in RomBOOT:
    1. close JP7 (BOOT_DIS)
    2. start the board
    3. open JP7
+
+ o sam9x60ek:
+   1. close J14
+   2. start the board
+   3. open J14
 
 "RomBOOT" should appear on your console (this should be ttyUSBx or ttyACMx)
 
