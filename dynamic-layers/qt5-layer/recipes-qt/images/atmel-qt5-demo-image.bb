@@ -136,7 +136,8 @@ IMAGE_INSTALL_append_at91sam9x5 = " \
 	tslib tslib-conf tslib-tests tslib-calibrate "
 
 IMAGE_INSTALL_append_sam9x60 = " \
-	hostapd "
+	hostapd \
+	bonnie++ "
 
 IMAGE_INSTALL_append_sama5d4 = " \
 	gstreamer1.0-plugins-hantro \
