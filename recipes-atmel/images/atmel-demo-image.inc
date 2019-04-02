@@ -59,6 +59,7 @@ IMAGE_INSTALL = "\
     "
 
 IMAGE_INSTALL_append_sam9x60 = " \
-    hostapd "
+    hostapd \
+    bonnie++ "
 
 inherit core-image
