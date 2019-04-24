@@ -106,6 +106,7 @@ IMAGE_INSTALL += "\
 	mchp-qt-demo-init \
 	whiteboard \
 	wildwest \
+	hostapd \
 "
 
 IMAGE_INSTALL_append_at91sam9 = " \
