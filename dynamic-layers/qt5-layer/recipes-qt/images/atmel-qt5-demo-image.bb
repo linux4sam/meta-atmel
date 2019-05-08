@@ -82,6 +82,7 @@ IMAGE_INSTALL += "\
 	qtquickcontrols-qmlplugins \
 	qtquickcontrols2 \
 	qtquickcontrols2-qmlplugins \
+	qtxmlpatterns \
 	\
 	libicui18n \
 	gstreamer1.0 \
