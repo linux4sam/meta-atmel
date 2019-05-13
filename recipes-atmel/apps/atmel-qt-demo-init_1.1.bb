@@ -6,8 +6,7 @@ PR = "r2"
 DEPENDS = "fbset"
 RDEPENDS_${PN} = "udev-rules-at91"
 
-LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=b97a012949927931feb7793eee5ed924 \
-                    file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
+LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
 
 do_install() {
 	install -d ${D}${sysconfdir}/init.d/
