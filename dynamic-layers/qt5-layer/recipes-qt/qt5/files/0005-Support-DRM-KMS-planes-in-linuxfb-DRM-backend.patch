@@ -12,8 +12,6 @@ This has two distinct ramifications:
  .../platforms/linuxfb/qlinuxfbdrmscreen.cpp        | 27 ++++++++++++++++++++--
  1 file changed, 25 insertions(+), 2 deletions(-)
 
-diff --git a/src/plugins/platforms/linuxfb/qlinuxfbdrmscreen.cpp b/src/plugins/platforms/linuxfb/qlinuxfbdrmscreen.cpp
-index ce8dc6d..5c5d6dd 100644
 --- a/src/plugins/platforms/linuxfb/qlinuxfbdrmscreen.cpp
 +++ b/src/plugins/platforms/linuxfb/qlinuxfbdrmscreen.cpp
 @@ -59,7 +59,7 @@ QT_BEGIN_NAMESPACE
@@ -25,7 +23,7 @@ index ce8dc6d..5c5d6dd 100644
  
  class QLinuxFbDevice : public QKmsDevice
  {
-@@ -133,6 +133,11 @@ bool QLinuxFbDevice::open()
+@@ -131,6 +131,11 @@ bool QLinuxFbDevice::open()
          return false;
      }
  
@@ -37,7 +35,7 @@ index ce8dc6d..5c5d6dd 100644
      uint64_t hasDumbBuf = 0;
      if (drmGetCap(fd, DRM_CAP_DUMB_BUFFER, &hasDumbBuf) == -1 || !hasDumbBuf) {
          qWarning("Dumb buffers not supported");
-@@ -217,6 +222,24 @@ bool QLinuxFbDevice::createFramebuffer(QLinuxFbDevice::Output *output, int buffe
+@@ -271,6 +276,24 @@ bool QLinuxFbDevice::createFramebuffer(Q
          return false;
      }
  
@@ -62,7 +60,7 @@ index ce8dc6d..5c5d6dd 100644
      drm_mode_map_dumb mreq = {
          fb.handle,
          0, 0
-@@ -399,7 +422,7 @@ QRegion QLinuxFbDrmScreen::doRedraw()
+@@ -449,7 +472,7 @@ QRegion QLinuxFbDrmScreen::doRedraw()
  
      output->dirty[output->backFb] = QRegion();
  
@@ -71,6 +69,3 @@ index ce8dc6d..5c5d6dd 100644
  
      return dirty;
  }
--- 
-2.7.4
-
