@@ -41,9 +41,9 @@ This has two distinct ramifications:
  
 +    QKmsOutput &op(output->kmsOutput);
 +    if (op.wants_forced_plane) {
-+	    if (!op.plane_set) {
-+		    op.plane_set = true;
-+		    qCDebug(qLcFbDrm, "plane_set");
++	    if (!op.forced_plane_set) {
++		    op.forced_plane_set = true;
++		    qCDebug(qLcFbDrm, "forced_plane_set");
 +		    if (op.wants_forced_plane) {
 +			    qCDebug(qLcFbDrm, "drmModeSetPlane");
 +
