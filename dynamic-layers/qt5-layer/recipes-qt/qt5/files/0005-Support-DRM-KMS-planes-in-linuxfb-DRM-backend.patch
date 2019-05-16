@@ -47,7 +47,7 @@ This has two distinct ramifications:
 +		    if (op.wants_plane) {
 +			    qCDebug(qLcFbDrm, "drmModeSetPlane");
 +
-+			    int ret = drmModeSetPlane(fd(), op.plane_id, op.crtc_id,
++			    int ret = drmModeSetPlane(fd(), op.forced_plane_id, op.crtc_id,
 +						      fb.fb, 0,
 +						      0, 0, w, h,
 +						      0 << 16, 0 << 16, w << 16, h << 16);
