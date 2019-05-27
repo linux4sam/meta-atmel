@@ -1,5 +1,9 @@
 require applicationlauncher.inc
 
+SRC_URI = "https://github.com/linux4sam/application-launcher/archive/v${PV}.tar.gz;downloadfilename=application-launcher-${PV}.tar.gz"
+
+S = "${WORKDIR}/application-launcher-${PV}"
+
 SRC_URI[md5sum] = "0d4a646f93df9b394e9a5b0f3c241ed2"
 SRC_URI[sha256sum] = "781818ea6ba6e9c90caa7edddff51366e79ec4970ade44160569b49df7fa35ab"
 

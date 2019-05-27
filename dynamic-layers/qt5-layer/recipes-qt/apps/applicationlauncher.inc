@@ -7,10 +7,6 @@ PACKAGES = "${PN}-dbg ${PN}"
 DEPENDS = "qtbase qtdeclarative qtxmlpatterns"
 inherit qmake5
 
-SRC_URI = "https://github.com/linux4sam/application-launcher/archive/v${PV}.tar.gz;downloadfilename=application-launcher-${PV}.tar.gz"
-
-S = "${WORKDIR}/application-launcher-${PV}"
-
 inherit pkgconfig
 
 PACKAGES = "${PN}-dbg ${PN}"
