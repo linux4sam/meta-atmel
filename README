@@ -39,7 +39,7 @@ Optionally:
 - meta-qt5
 URI: git://code.qt.io/yocto/meta-qt5.git
 URI: http://code.qt.io/cgit/yocto/meta-qt5.git/
-Branch: upstream/thud
+Branch: 5.12 (9ac66bf Merge remote-tracking branch 'qtyocto/upstream/warrior' into 5.12)
 
 
 Build procedure
@@ -139,19 +139,18 @@ NATIVELSBSTRING      = "universal"
 TARGET_SYS           = "arm-poky-linux-gnueabi"
 MACHINE              = "sama5d2-xplained-sd"
 DISTRO               = "poky-atmel"
-DISTRO_VERSION       = "2.6"
+DISTRO_VERSION       = "2.6.2"
 TUNE_FEATURES        = "arm armv7a vfp thumb neon callconvention-hard cortexa5"
 TARGET_FPU           = "hard"
-meta                 
-meta-poky            
-meta-yocto-bsp       = "thud:074cd4f22c8084a9aa8d60af5746ec22120c3155"
-meta-atmel           = "thud:49b883d42e8f4e36c05cc948fda2c0178f6cad7a"
-meta-oe              
-meta-networking      
-meta-python          
-meta-multimedia      = "thud:a15d7f6ebcb0ed76c83c28f854d55e3f9d5b3677"
-meta-qt5             = "upstream/thud:010a29e0ab5eb2a7efde98ee0a4f78884281bc09"
-
+meta
+meta-poky
+meta-yocto-bsp       = "thud:cdd4a52578f4f1b79b3fc2c92aa4434b99efd91c"
+meta-atmel           = "thud:6e038a3561e6cc76ff9fb13a789578202b425b62"
+meta-oe
+meta-networking
+meta-python
+meta-multimedia      = "thud:4cd3a39f22a2712bfa8fc657d09fe2c7765a4005"
+meta-qt5             = "HEAD:89ac66bf3969b48eb771ef4c06a0b8df00fd178a"
 
 Contributing
 ============
@@ -175,5 +174,4 @@ git format-patch -s --subject-prefix='meta-atmel][PATCH' <origin>
 
 Known issues
 ============
-This thud branch is under development. QT5 support is not completly updated, so
-'atmel-qt5-demo-image' will not build.
+This thud branch is under development.
