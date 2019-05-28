@@ -6,7 +6,10 @@ SRC_URI = " file://keyboard.rules"
 
 S = "${WORKDIR}"
 
+SRC_URI_append_sama5d2-ptc-ek = " file://ptc.rules"
+SRC_URI_append_sama5d2-ptc-ek-sd = " file://ptc.rules"
+
 do_install () {
 	install -d ${D}${sysconfdir}/udev/rules.d
-	install -m 0644 ${WORKDIR}/keyboard.rules ${D}${sysconfdir}/udev/rules.d/
+	install -m 0644 ${WORKDIR}/*.rules ${D}${sysconfdir}/udev/rules.d/
 }
