@@ -2,6 +2,8 @@ require at91bootstrap_${PV}.bb
 
 SRC_URI += "file://0002-Enable-image-download-via-sam-ba.patch"
 
+S = "${WORKDIR}/at91bootstrap-${PV}"
+
 AT91BOOTSTRAP_IMAGE .= "-sam-ba"
 AT91BOOTSTRAP_SYMLINK .= "-sam-ba"
 
