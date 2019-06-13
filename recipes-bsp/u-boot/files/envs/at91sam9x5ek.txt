@@ -6,7 +6,7 @@ at91sam9g35_test=test -n $cpu && test $cpu = AT91SAM9G35 && setenv board_name sa
 bootcmd=run at91_test_cpu; run bootcmd_boot;
 at91_test_cpu=run at91sam9g15_test; run at91sam9g25_test; run at91sam9g35_test; run at91sam9x25_test; run at91sam9x35_test; setenv at91_dtb_config '#'${board_name};
 at91sam9g15_test=test -n $cpu && test $cpu = AT91SAM9G15 && setenv board_name sam9g15
-bootargs=console=ttyS0,115200 mtdparts=atmel_nand:256k(bootstrap)ro,768k(uboot)ro,256k(env_redundant),256k(env),6656k(itb)ro,-(rootfs) rootfstype=ubifs ubi.mtd=5 root=ubi0:rootfs rw rng_core.default_quality=700
+bootargs=console=ttyS0,115200 mtdparts=atmel_nand:256k(bootstrap)ro,768k(uboot)ro,256k(env_redundant),256k(env),6656k(itb)ro,-(rootfs) rootfstype=ubifs ubi.mtd=5 root=ubi0:rootfs rw
 bootcmd_boot=nand read 0x24000000 0x00180000 0x3ec384; bootm 0x24000000${at91_dtb_config}
 bootdelay=1
 stderr=serial

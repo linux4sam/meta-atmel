@@ -1,5 +1,5 @@
 baudrate=115200
-bootargs=console=ttyS0,115200 mtdparts=atmel_nand:256k(bootstrap)ro,768k(uboot)ro,256k(env_redundant),256k(env),6656k(itb)ro,-(rootfs) rootfstype=ubifs ubi.mtd=5 root=ubi0:rootfs rw atmel.pm_modes=standby,ulp1 rng_core.default_quality=700
+bootargs=console=ttyS0,115200 mtdparts=atmel_nand:256k(bootstrap)ro,768k(uboot)ro,256k(env_redundant),256k(env),6656k(itb)ro,-(rootfs) rootfstype=ubifs ubi.mtd=5 root=ubi0:rootfs rw atmel.pm_modes=standby,ulp1
 bootcmd=nand read 0x24000000 0x00180000 0x3b4f68; bootm 0x24000000#kernel_dtb
 bootdelay=1
 stderr=serial
