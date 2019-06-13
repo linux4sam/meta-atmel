@@ -13,7 +13,7 @@ pda7000test=test -n $display && test $display = 7000 && setenv display_var 'pda7
 at91_prepare_overlays_config=test -n $display_var && setenv at91_overlays_config '#'${display_var}
 bootcmd=run at91_set_display; run at91_pda_detect; run at91_prepare_video_bootargs; run at91_prepare_bootargs; run at91_prepare_overlays_config; run bootcmd_boot;
 pda5000test=test -n $display && test $display = 5000 && setenv display_var 'pda5' && setenv video_mode ${video_mode_pda5}
-bootargs=console=ttyS0,115200 root=/dev/mmcblk0p1 rw rootfstype=ext4 rootwait atmel.pm_modes=standby,ulp1 rng_core.default_quality=700
+bootargs=console=ttyS0,115200 root=/dev/mmcblk0p1 rw rootfstype=ext4 rootwait atmel.pm_modes=standby,ulp1
 bootcmd_boot=ext4load mmc 0 0x24000000 boot/sama5d2_xplained.itb; bootm 0x24000000#kernel_dtb${at91_overlays_config}
 bootdelay=1
 stderr=serial
