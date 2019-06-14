@@ -105,6 +105,7 @@ IMAGE_INSTALL += "\
 	wildwest \
 	hostapd \
 	9bit \
+	rng-tools \
 "
 
 IMAGE_INSTALL_append_at91sam9 = " \
