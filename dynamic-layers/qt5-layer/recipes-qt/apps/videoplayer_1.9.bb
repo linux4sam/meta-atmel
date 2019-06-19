@@ -8,7 +8,9 @@ DEPENDS = "qtbase gstreamer1.0 gstreamer1.0-plugins-hantro g1-decoder libplanes"
 
 RDEPENDS_${PN} = "libplanes"
 
-SRC_URI = "https://github.com/linux4sam/atmel-video-player/archive/v${PV}.tar.gz;downloadfilename=atmel-video-player-${PV}.tar.gz"
+SRC_URI = "https://github.com/linux4sam/atmel-video-player/archive/v${PV}.tar.gz;downloadfilename=atmel-video-player-${PV}.tar.gz \
+           file://0001-fix-PIPE-semicolon.patch \
+          "
 
 
 SRC_URI[md5sum] = "e27d1ed7343cae6f20536de7b0277d3b"
