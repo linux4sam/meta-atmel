@@ -1,10 +1,10 @@
 diff --git a/applications_list.xml b/applications_list.xml
-index c88a786..9a901a9 100644
+index 5f97dd0..ed48892 100644
 --- a/applications_list.xml
 +++ b/applications_list.xml
-@@ -70,6 +70,18 @@
+@@ -58,6 +58,18 @@
      <description>Test Description</description>
-     <link rel="enclosure" type="image/png" href="../../applications/resources/web-browser.png" />
+     <link rel="enclosure" type="image/png" href="../../applications/resources/same-game.png" />
  </entry>
 +<entry>
 +<title>Video Player</title>
