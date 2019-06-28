@@ -113,6 +113,8 @@ IMAGE_INSTALL += "\
 	nftables \
 	phytool \
 	tcpdump \
+	dhcp-server \
+	dhcp-server-config \
 "
 
 IMAGE_INSTALL_append_at91sam9 = " \
