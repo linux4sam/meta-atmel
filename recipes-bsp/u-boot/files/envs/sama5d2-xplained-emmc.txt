@@ -3,10 +3,12 @@ video_mode_pda4=Unknown-1:480x272-16
 video_mode_pda5=Unknown-1:800x480-16
 video_mode_pda7=Unknown-1:800x480-16
 video_mode_pda7b=Unknown-1:800x480-16
-at91_pda_detect=run pda4300test; run pda7000test; run pda7000btest; run pda5000test;
+at91_pda_detect=run pda4300test; run pda7000test; run pda7000btest; run pda5000test; run pda4301test; run pda4301btest;
 pda7000btest=test -n $display && test $display = 7000B && setenv display_var 'pda7b' && setenv video_mode ${video_mode_pda7b}
 at91_set_display=test -n $pda && setenv display $pda
 pda4300test=test -n $display && test $display = 4300 && setenv display_var 'pda4' && setenv video_mode ${video_mode_pda4}
+pda4301test=test -n $display && test $display = 4301 && setenv display_var 'pda4' && setenv video_mode ${video_mode_pda4}
+pda4301btest=test -n $display && test $display = 4301B && setenv display_var 'pda4' && setenv video_mode ${video_mode_pda4}
 at91_prepare_bootargs=test -n $display_var && setenv bootargs ${bootargs} ${at91_video_bootargs}
 at91_prepare_video_bootargs=test -n $display_var && setenv at91_video_bootargs video=${video_mode}
 pda7000test=test -n $display && test $display = 7000 && setenv display_var 'pda7' && setenv video_mode ${video_mode_pda7}
