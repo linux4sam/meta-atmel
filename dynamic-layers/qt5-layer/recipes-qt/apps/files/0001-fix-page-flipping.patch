@@ -1,0 +1,29 @@
+From 1267317b6a41e772678b17f4d2919d117a1f3c7f Mon Sep 17 00:00:00 2001
+From: Razvan Stefanescu <razvan.stefanescu@microchip.com>
+Date: Wed, 26 Jun 2019 17:29:01 +0300
+Subject: [PATCH] fix page flipping
+
+This hides the display issues when flipping pages in application launcher,
+where buttons on the next page appear before the new page slides across the
+screen.
+
+Signed-off-by: Razvan Stefanescu <razvan.stefanescu@microchip.com>
+---
+ qml/ApplicationLauncher/main.qml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/qml/ApplicationLauncher/main.qml b/qml/ApplicationLauncher/main.qml
+index 534a0a5c832f..d0f0fa585092 100644
+--- a/qml/ApplicationLauncher/main.qml
++++ b/qml/ApplicationLauncher/main.qml
+@@ -24,6 +24,7 @@ Rectangle {
+         keyNavigationWraps: false
+         boundsBehavior: Flickable.DragAndOvershootBounds
+         flickableDirection: Flickable.HorizontalFlick
++        highlightMoveVelocity: -1
+         interactive: false
+         smooth: false
+         anchors.fill: parent
+-- 
+2.20.1
+
