@@ -106,6 +106,12 @@ IMAGE_INSTALL += "\
 	hostapd \
 	9bit \
 	rng-tools \
+	bluez5 \
+	crda \
+	net-tools \
+	nftables \
+	phytool \
+	tcpdump \
 "
 
 IMAGE_INSTALL_append_at91sam9 = " \

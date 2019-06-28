@@ -57,6 +57,12 @@ IMAGE_INSTALL = "\
     hostapd \
     9bit \
     rng-tools \
+    bluez5 \
+    crda \
+    net-tools \
+    nftables \
+    phytool \
+    tcpdump \
     ${CORE_IMAGE_EXTRA_INSTALL} \
     "
 
