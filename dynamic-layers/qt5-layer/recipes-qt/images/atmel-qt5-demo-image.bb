@@ -108,6 +108,7 @@ IMAGE_INSTALL += "\
 	rng-tools \
 	bluez5 \
 	crda \
+	libdrm \
 	net-tools \
 	nftables \
 	phytool \
