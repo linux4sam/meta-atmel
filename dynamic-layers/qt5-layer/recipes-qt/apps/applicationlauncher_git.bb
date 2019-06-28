@@ -5,6 +5,7 @@ SRCREV = "38fe8b5476a331b8ddc4aff6872afcbaff8942e2"
 PV = "1.11+git${SRCPV}"
 
 SRC_URI += " file://fs-overlay/opt/ApplicationLauncher/demo.config \
+             file://0001-fix-page-flipping.patch \
            "
 S = "${WORKDIR}/git"
 
