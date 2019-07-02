@@ -9,7 +9,7 @@ RDEPENDS_${PN} = "libplanes"
 
 SRC_URI = "git://github.com/linux4sam/spacetouch.git;protocol=https"
 PV = "1.0+git${SRCPV}"
-SRCREV = "bcf28dda724e8ea6031826dd46c917b917531eb8"
+SRCREV = "545a7644a06d86ac1d19ebb70db0fb079e6b8524"
 
 S = "${WORKDIR}/git"
 
