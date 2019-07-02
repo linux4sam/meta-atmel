@@ -9,7 +9,7 @@ RDEPENDS_${PN} = "libplanes"
 
 SRC_URI = "git://github.com/linux4sam/qtviewplanes.git;protocol=https"
 PV = "1.0+git${SRCPV}"
-SRCREV = "77e2b99a34636822eb85d848a461a0e5b1733b4e"
+SRCREV = "9c2bdb62018f38f1e5a0d12018c89a2634ae4e3a"
 
 S = "${WORKDIR}/git"
 
