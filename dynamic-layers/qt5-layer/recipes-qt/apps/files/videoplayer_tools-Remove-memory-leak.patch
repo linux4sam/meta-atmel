@@ -1,0 +1,83 @@
+From 684d7be167a07d2597e0fe85eae4d2749f035eed Mon Sep 17 00:00:00 2001
+From: Codrin Ciubotariu <codrin.ciubotariu@microchip.com>
+Date: Fri, 28 Jun 2019 13:53:50 +0300
+Subject: [PATCH] tools: Remove memory leak
+
+Fix memory leak caused by:
+line_buffer = new char[line.size() + 1];
+
+Signed-off-by: Codrin Ciubotariu <codrin.ciubotariu@microchip.com>
+---
+ tools.cpp | 42 +++++++++++++++---------------------------
+ 1 file changed, 15 insertions(+), 27 deletions(-)
+
+diff --git a/tools.cpp b/tools.cpp
+index 30b2841..b7f490f 100644
+--- a/tools.cpp
++++ b/tools.cpp
+@@ -13,6 +13,8 @@
+ #include <fstream>
+ #include <cstring>
+ 
++using namespace std;
++
+ Tools::Tools()
+ {
+ }
+@@ -25,40 +27,26 @@ Tools::~Tools()
+ void Tools::updateCpuUsage()
+ {
+     std::ifstream fp("/proc/stat");
+-    char cpu_id[5]; // CPU to search
+-    char* line_buffer;
+-    int i = 0;      // CPU counter
+-    int times[7];
+-
+-    // Time variables
+-    int total_time;
+-    int work_time;
+ 
+-    std::string line;
+     if (fp.is_open())
+     {
++        int i = 0;      // CPU counter
++        std::string line;
+         while ( std::getline (fp,line) && i<1 ) // End of file or 4 cpus founded
+         {
+-            sprintf(cpu_id, "cpu%d", i);  // Get CPU ID
++            istringstream ss(line);
++            string field0;
++            char cpu_id[5]; // CPU to search
++            ss >> field0;
+ 
+-            if(line.find(cpu_id) != std::string::npos){
+-
+-                // Pass line to line buffer
+-                line_buffer = new char[line.size() + 1];
+-                strcpy (line_buffer, line.c_str());
++            sprintf(cpu_id, "cpu%d", i);  // Get CPU ID
+ 
+-                // Split data and get total and work time
+-                strtok(line_buffer, " ");
+-                // Get all 7 values
+-                times[0] = atoi(strtok(NULL, " "));
+-                times[1] = atoi(strtok(NULL, " "));
+-                times[2] = atoi(strtok(NULL, " "));
+-                times[3] = atoi(strtok(NULL, " "));
+-                times[4] = atoi(strtok(NULL, " "));
+-                times[5] = atoi(strtok(NULL, " "));
+-                times[6] = atoi(strtok(NULL, " "));
+-                work_time = times[0] + times[1] + times[2];
+-                total_time = work_time + times[3] + times[4] + times[5] + times[6];
++            if (field0.find(cpu_id) != std::string::npos){
++                int times[7];
++                for (auto &x : times)
++                    ss >> x;
++                int work_time = times[0] + times[1] + times[2];
++                int total_time = work_time + times[3] + times[4] + times[5] + times[6];
+ 
+                 // Update CPU Usage
+                 cpu_usage[i] = ((float)work_time - work_cpu_last_time[i]) / ((float)total_time -total_cpu_last_time[i]) * 100;
+-- 
+2.17.1
+

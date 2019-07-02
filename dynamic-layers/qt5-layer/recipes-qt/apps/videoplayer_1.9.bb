@@ -12,6 +12,7 @@ SRC_URI = "https://github.com/linux4sam/atmel-video-player/archive/v${PV}.tar.gz
            file://0001-fix-PIPE-semicolon.patch \
            file://0001-Fwd-PATCH-fix-warnings.patch \
            file://0001-workaround-to-have-video-player-work-with-QT-5.12.patch \
+	   file://videoplayer_tools-Remove-memory-leak.patch \
           "
 
 
