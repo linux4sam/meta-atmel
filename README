@@ -30,6 +30,11 @@ Branch: thud
 Dependencies
 ============
 This Layer depends on :
+- poky
+URI: git://git.yoctoproject.org/poky
+Branch: thud
+Tag: yocto-2.6.2
+
 - meta-openembedded
 URI: git://git.openembedded.org/meta-openembedded
 URI: http://cgit.openembedded.org/meta-openembedded/
@@ -39,8 +44,8 @@ Optionally:
 - meta-qt5
 URI: git://code.qt.io/yocto/meta-qt5.git
 URI: http://code.qt.io/cgit/yocto/meta-qt5.git/
-Branch: 5.12 (9ac66bf Merge remote-tracking branch 'qtyocto/upstream/warrior' into 5.12)
-
+Branch: 5.12
+Tag: v5.12.3
 
 Build procedure
 ===============
@@ -144,13 +149,13 @@ TUNE_FEATURES        = "arm armv7a vfp thumb neon callconvention-hard cortexa5"
 TARGET_FPU           = "hard"
 meta
 meta-poky
-meta-yocto-bsp       = "thud:cdd4a52578f4f1b79b3fc2c92aa4434b99efd91c"
-meta-atmel           = "thud:6e038a3561e6cc76ff9fb13a789578202b425b62"
+meta-yocto-bsp       = "HEAD:e7f0177ef3b6e06b8bc1722fca0241fef08a1530"
+meta-atmel           = "thud:7c2453e9ec44871c3776a80c3e2c16a55af10cb7"
 meta-oe
 meta-networking
 meta-python
-meta-multimedia      = "thud:4cd3a39f22a2712bfa8fc657d09fe2c7765a4005"
-meta-qt5             = "HEAD:89ac66bf3969b48eb771ef4c06a0b8df00fd178a"
+meta-multimedia      = "thud:9b3b907f30b0d5b92d58c7e68289184fda733d3e"
+meta-qt5             = "HEAD:3c86e3c28f00129fd408f9ad8daddd034bb19161"
 
 Contributing
 ============
@@ -171,7 +176,3 @@ Patrice Vilchez <patrice.vilchez@microchip.com>
 When creating patches insert the [meta-atmel] tag in the subject, for example
 use something like:
 git format-patch -s --subject-prefix='meta-atmel][PATCH' <origin>
-
-Known issues
-============
-This thud branch is under development.
