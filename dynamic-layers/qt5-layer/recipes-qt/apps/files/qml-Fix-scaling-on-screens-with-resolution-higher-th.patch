@@ -1,0 +1,29 @@
+From db6b021978b52da707a668edbf065f6697c35891 Mon Sep 17 00:00:00 2001
+From: Codrin Ciubotariu <codrin.ciubotariu@microchip.com>
+Date: Tue, 2 Jul 2019 11:12:08 +0300
+Subject: [PATCH] qml: Fix scaling on screens with resolution higher than
+ 800x480
+
+On bigger screens, the background image is not appearing on the whole
+screen. This is fixed by setting the anchors to the parrent.
+
+Signed-off-by: Codrin Ciubotariu <codrin.ciubotariu@microchip.com>
+---
+ qml/ApplicationLauncher/Page.qml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/qml/ApplicationLauncher/Page.qml b/qml/ApplicationLauncher/Page.qml
+index 7d9e6167cf83..668d7f9891f5 100644
+--- a/qml/ApplicationLauncher/Page.qml
++++ b/qml/ApplicationLauncher/Page.qml
+@@ -21,6 +21,7 @@ Component {
+         height: ListView.view.height
+ 
+         Image {
++            anchors.fill: wqvga ? undefined : parent
+             smooth: false
+             source: wqvga ? "../../resources/background-wqvga.jpg" : "../../resources/background.jpg"
+             clip: true
+-- 
+2.20.1
+

@@ -6,6 +6,7 @@ PV = "1.11+git${SRCPV}"
 
 SRC_URI += " file://fs-overlay/opt/ApplicationLauncher/demo.config \
              file://0001-fix-page-flipping.patch \
+             file://qml-Fix-scaling-on-screens-with-resolution-higher-th.patch \
            "
 S = "${WORKDIR}/git"
 
