@@ -108,8 +108,7 @@ IMAGE_INSTALL += "\
 	9bit \
 	rng-tools \
 	bluez5 \
-	crda \
-	wireless-regdb \
+	wireless-regdb-static \
 	libdrm \
 	net-tools \
 	nftables \
