@@ -99,6 +99,7 @@ IMAGE_INSTALL += "\
 	liberation-fonts \
 	applicationlauncher \
 	iocontrol \
+	python-enum34 \
 	qtviewplanes \
 	mchp-qt-demo-init \
 	whiteboard \
