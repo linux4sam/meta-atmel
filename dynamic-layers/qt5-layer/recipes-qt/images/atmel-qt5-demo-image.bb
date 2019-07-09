@@ -97,6 +97,7 @@ IMAGE_INSTALL += "\
 	ffmpeg \
 	\
 	liberation-fonts \
+	homeautomation \
 	applicationlauncher \
 	iocontrol \
 	python-enum34 \
