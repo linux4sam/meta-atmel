@@ -1,0 +1,29 @@
+From 36d5d69ac10ff3e768d21167a817f3a38e49dec4 Mon Sep 17 00:00:00 2001
+From: Sandeep Sheriker M <sandeep.sheriker@microchip.com>
+Date: Wed, 24 Jul 2019 08:48:16 -0700
+Subject: [PATCH] fix the builf error of Cannot use CP_USE_DOUBLES on 32 bit
+ ARM
+
+Signed-off-by: Sandeep Sheriker M <sandeep.sheriker@microchip.com>
+---
+ external/Makefile.am | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/external/Makefile.am b/external/Makefile.am
+index 61319c9..e6eec10 100644
+--- a/external/Makefile.am
++++ b/external/Makefile.am
+@@ -105,9 +105,9 @@ noinst_LTLIBRARIES += libchipmunk2d.la
+ libchipmunk2d_la_CFLAGS = \
+	-std=c99 \
+	-I$(top_srcdir)/external/Chipmunk2D/include \
+-	$(AM_CFLAGS)
++	$(AM_CFLAGS) \
++	-DCP_USE_DOUBLES=0
+
+-#-DCP_USE_DOUBLES=0
+ #-DCP_USE_CGTYPES=0
+ #-mfloat-abi=hard
+ #-mcpu=cortex-a5
+--
+2.7.4

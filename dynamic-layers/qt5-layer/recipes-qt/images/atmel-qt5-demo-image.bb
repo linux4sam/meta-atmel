@@ -102,8 +102,8 @@ IMAGE_INSTALL += "\
 	applicationlauncher \
 	iocontrol \
 	python-enum34 \
+	mchp-egt-demo-init \
 	qtviewplanes \
-	mchp-qt-demo-init \
 	whiteboard \
 	wildwest \
 	hostapd \
@@ -118,6 +118,10 @@ IMAGE_INSTALL += "\
 	tcpdump \
 	dhcp-server \
 	dhcp-server-config \
+	libegt \
+	egt-launcher \
+	egt-samples \
+	egt-media \
 "
 
 IMAGE_INSTALL_append_at91sam9m10g45 = " \
