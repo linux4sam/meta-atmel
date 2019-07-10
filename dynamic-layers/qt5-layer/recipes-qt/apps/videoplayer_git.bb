@@ -8,18 +8,11 @@ DEPENDS = "qtbase gstreamer1.0 gstreamer1.0-plugins-hantro g1-decoder libplanes"
 
 RDEPENDS_${PN} = "libplanes"
 
-SRC_URI = "https://github.com/linux4sam/atmel-video-player/archive/v${PV}.tar.gz;downloadfilename=atmel-video-player-${PV}.tar.gz \
-           file://0001-fix-PIPE-semicolon.patch \
-           file://0001-Fwd-PATCH-fix-warnings.patch \
-           file://0001-workaround-to-have-video-player-work-with-QT-5.12.patch \
-	   file://videoplayer_tools-Remove-memory-leak.patch \
-          "
+SRC_URI = "git://github.com/linux4sam/atmel-video-player.git;protcol=https;branch=fixes-qt5.12"
+PV = "1.9+git${SRCPV}"
+SRCREV = "b3f08f60e57479b290f3de599857ace9012163aa"
 
-
-SRC_URI[md5sum] = "e27d1ed7343cae6f20536de7b0277d3b"
-SRC_URI[sha256sum] = "ae216ea4ad8f3af8611844d5da9505afd129ad16eb09c0c2ae76d95f8bf6324f"
-
-S = "${WORKDIR}/atmel-video-player-${PV}"
+S = "${WORKDIR}/git"
 
 inherit qmake5 pkgconfig
 
