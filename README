@@ -24,7 +24,7 @@ Sources
 - meta-atmel
 URI: git://github.com/linux4sam/meta-atmel.git
 URI: https://github.com/linux4sam/meta-atmel.git
-Branch: thud
+Branch: warrior
 
 
 Dependencies
@@ -32,20 +32,21 @@ Dependencies
 This Layer depends on :
 - poky
 URI: git://git.yoctoproject.org/poky
-Branch: thud
-Tag: yocto-2.6.2
+Branch: warrior
+Tag: 51223035e66c5b27799b15a0f8ebe75d24d3971b
 
 - meta-openembedded
 URI: git://git.openembedded.org/meta-openembedded
 URI: http://cgit.openembedded.org/meta-openembedded/
-Branch: thud
+Branch: warrior
+Tag: 8d5dcd6522e9d15e68637b6d7dda0401f9bb91d0
 
 Optionally:
 - meta-qt5
 URI: git://code.qt.io/yocto/meta-qt5.git
 URI: http://code.qt.io/cgit/yocto/meta-qt5.git/
-Branch: 5.12
-Tag: v5.12.3
+Branch: jansa/warrior (5.12)
+Tag: 2a5f9415e48a38f6f4eb0cf375737a2d8438e2fe
 
 Build procedure
 ===============
@@ -138,24 +139,25 @@ bitbake atmel-demo-image
 
 Typical bitbake output
 ======================
-BB_VERSION           = "1.40.0"
+Build Configuration:
+BB_VERSION           = "1.42.0"
 BUILD_SYS            = "x86_64-linux"
 NATIVELSBSTRING      = "universal"
 TARGET_SYS           = "arm-poky-linux-gnueabi"
 MACHINE              = "sama5d2-xplained-sd"
 DISTRO               = "poky-atmel"
-DISTRO_VERSION       = "2.6.2"
-TUNE_FEATURES        = "arm armv7a vfp thumb neon callconvention-hard cortexa5"
+DISTRO_VERSION       = "2.7.1"
+TUNE_FEATURES        = "arm vfp cortexa5 neon vfpv4 thumb callconvention-hard"
 TARGET_FPU           = "hard"
 meta
 meta-poky
-meta-yocto-bsp       = "HEAD:e7f0177ef3b6e06b8bc1722fca0241fef08a1530"
-meta-atmel           = "thud:7c2453e9ec44871c3776a80c3e2c16a55af10cb7"
+meta-yocto-bsp       = "warrior:51223035e66c5b27799b15a0f8ebe75d24d3971b"
+meta-atmel           = "warrior:350560d5a211610e00d6002fe9994e4acb9d109e"
 meta-oe
 meta-networking
 meta-python
-meta-multimedia      = "thud:9b3b907f30b0d5b92d58c7e68289184fda733d3e"
-meta-qt5             = "HEAD:3c86e3c28f00129fd408f9ad8daddd034bb19161"
+meta-multimedia      = "warrior:8d5dcd6522e9d15e68637b6d7dda0401f9bb91d0"
+meta-qt5             = "warrior:2a5f9415e48a38f6f4eb0cf375737a2d8438e2fe"
 
 Contributing
 ============
@@ -176,3 +178,11 @@ Patrice Vilchez <patrice.vilchez@microchip.com>
 When creating patches insert the [meta-atmel] tag in the subject, for example
 use something like:
 git format-patch -s --subject-prefix='meta-atmel][PATCH' <origin>
+
+Known issues
+============
+This branch is under development and not fully tested. Some features may not work.
+
+QTWebEngine build fails with error:
+"khronos development headers appear to be missing (mesa/libegl1-mesa-dev)
+QtWebEngine will not be built."
