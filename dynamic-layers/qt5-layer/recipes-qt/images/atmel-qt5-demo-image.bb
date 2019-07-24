@@ -123,6 +123,7 @@ IMAGE_INSTALL += "\
 	egt-launcher \
 	egt-samples \
 	egt-media \
+	noto-fonts \
 "
 
 IMAGE_INSTALL_append_at91sam9m10g45 = " \
