@@ -45,7 +45,7 @@ start()
 stop()
 {
   echo "Killing Application Launcher..."
-  killall ApplicationLauncher
+  pkill -f "ApplicationLauncher"
 }
 
 case "$1" in
