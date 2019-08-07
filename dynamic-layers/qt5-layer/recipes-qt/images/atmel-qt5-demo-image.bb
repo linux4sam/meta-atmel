@@ -129,6 +129,12 @@ IMAGE_INSTALL_append_at91sam9rl = " \
 IMAGE_INSTALL_append_at91sam9x5 = " \
 	tslib tslib-conf tslib-tests tslib-calibrate "
 
+IMAGE_INSTALL_append_at91sam9rl = " \
+	tslib tslib-conf tslib-tests tslib-calibrate "
+
+IMAGE_INSTALL_append_at91sam9x5 = " \
+	tslib tslib-conf tslib-tests tslib-calibrate "
+
 IMAGE_INSTALL_append_sam9x60 = " \
 	hostapd "
 
