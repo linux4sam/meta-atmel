@@ -61,6 +61,7 @@ IMAGE_INSTALL += "\
 	qtbase \
 	qtbase-plugins \
 	qtbase-tools \
+	qtmqtt \
 	qtmultimedia \
 	qtmultimedia-plugins \
 	qtmultimedia-qmlplugins \
