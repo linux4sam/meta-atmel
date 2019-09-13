@@ -16,3 +16,4 @@ IMAGE_INSTALL_append_sama5d4 = " nodejs nodejs-npm"
 
 IMAGE_INSTALL_append_sama5d2-ptc-ek = " ptc-examples"
 IMAGE_INSTALL_append_sama5d2-ptc-ek-sd = " ptc-examples"
+IMAGE_INSTALL_append_sama5d27-wlsom1-ek-sd = " ptc-examples"
