@@ -150,6 +150,8 @@ IMAGE_INSTALL_append_sama5d4 = " \
 IMAGE_INSTALL_append_sama5d2-ptc-ek = " ptc-examples"
 IMAGE_INSTALL_append_sama5d2-ptc-ek-sd = " ptc-examples"
 
+IMAGE_INSTALL_append_sama5d27-wlsom1-ek-sd = " ptc-examples"
+
 inherit core-image populate_sdk_qt5
 
 #TOOLCHAIN_HOST_TASK += "nativesdk-sam-ba"
