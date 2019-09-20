@@ -4,15 +4,14 @@ LIC_FILES_CHKSUM = "file://main.cpp;endline=40;md5=ade79b42cecba4adb92be7b0e83ba
 
 PACKAGES = "${PN}-dbg ${PN}"
 
-DEPENDS = "qtbase"
+DEPENDS = "qtbase qtdeclarative"
 inherit qmake5
 
-SRC_URI = "https://github.com/linux4sam/minehunt/archive/v${PV}.tar.gz;downloadfilename=${PN}-${PV}.tar.gz"
+SRC_URI = "git://github.com/linux4sam/minehunt.git;protocol=https"
+PV = "1.7+git${SRCPV}"
+SRCREV = "0bc4b8273dc828827d0e591053a84213c999434c"
 
-SRC_URI[md5sum] = "c7bff519050bdd1daddc8f3a8eb92f5d"
-SRC_URI[sha256sum] = "17d7f0141bfb038819ee5b0e3706422865dad146776bbb641633c7fc8c937954"
-
-S = "${WORKDIR}/${PN}-${PV}"
+S = "${WORKDIR}/git"
 
 inherit pkgconfig
 

@@ -7,10 +7,9 @@ PACKAGES = "${PN}-dbg ${PN}"
 DEPENDS = "qtbase qtdeclarative"
 inherit qmake5
 
-SRC_URI = "https://github.com/linux4sam/samegame/archive/v${PV}.tar.gz;downloadfilename=${PN}-${PV}.tar.gz"
-
-SRC_URI[md5sum] = "39709b52871275bf575cad21ffaf134a"
-SRC_URI[sha256sum] = "1488fd156f2c69e6ef4b6d5c0ef3f16526a91769ca7bbbf433f4975c64ea8ba8"
+SRC_URI = "git://github.com/linux4sam/samegame.git;protocol=https"
+PV = "1.6+git${SRCPV}"
+SRCREV = "795cbd545a13ce49d1cde3887a5b7e2d91c46866"
 
 S = "${WORKDIR}/${PN}-${PV}"
 
