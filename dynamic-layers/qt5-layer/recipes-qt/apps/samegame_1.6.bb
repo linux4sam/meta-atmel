@@ -11,7 +11,7 @@ SRC_URI = "git://github.com/linux4sam/samegame.git;protocol=https"
 PV = "1.6+git${SRCPV}"
 SRCREV = "795cbd545a13ce49d1cde3887a5b7e2d91c46866"
 
-S = "${WORKDIR}/${PN}-${PV}"
+S = "${WORKDIR}/git"
 
 inherit pkgconfig
 

@@ -8,8 +8,6 @@ PR = "r1"
 
 inherit qmake5
 
-DEPENDS += "qtbase qtdeclarative qtwebkit"
-
 SRC_URI = "git://github.com/linux4sam/qml-browser.git;protocol=https"
 PV = "1.7+git${SRCPV}"
 SRCREV = "0626a3e087940bca6ced55ceee0df0074c0e9fee"

@@ -13,7 +13,7 @@ SRC_URI = "git://github.com/linux4sam/smart-refrigerator.git;protocol=https"
 PV = "1.6+git${SRCPV}"
 SRCREV = "5c7bbb38ec639313d6b0e0d8e6919856eff8fc0a"
 
-S = "${WORKDIR}/smart-refrigerator-${PV}"
+S = "${WORKDIR}/git"
 
 inherit pkgconfig
 
