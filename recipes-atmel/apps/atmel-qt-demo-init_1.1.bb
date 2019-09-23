@@ -3,8 +3,7 @@ LICENSE = "MIT"
 SRC_URI = "file://atmel-qt-demo-init-v${PV}"
 PR = "r2"
 
-DEPENDS = "fbset"
-RDEPENDS_${PN} = "udev-rules-at91"
+RDEPENDS_${PN} = "udev-rules-at91 fbset"
 
 LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
 
