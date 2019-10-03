@@ -1,0 +1,23 @@
+video_mode_pda4=Unknown-1:480x272-16
+video_mode_pda5=Unknown-1:800x480-16
+video_mode_pda7=Unknown-1:800x480-16
+video_mode_pda7b=Unknown-1:800x480-16
+at91_pda_detect=run pda4300test; run pda7000test; run pda7000btest; run pda5000test; run pda4301test; run pda4301btest;
+pda7000btest=test -n $display && test $display = 7000B && setenv display_var 'pda7b' && setenv video_mode ${video_mode_pda7b}
+at91_set_display=test -n $pda && setenv display $pda
+pda4300test=test -n $display && test $display = 4300 && setenv display_var 'pda4' && setenv video_mode ${video_mode_pda4}
+pda4301test=test -n $display && test $display = 4301 && setenv display_var 'pda4' && setenv video_mode ${video_mode_pda4}
+pda4301btest=test -n $display && test $display = 4301B && setenv display_var 'pda4' && setenv video_mode ${video_mode_pda4}
+at91_prepare_bootargs=test -n $display_var && setenv bootargs ${bootargs} ${at91_video_bootargs}
+at91_prepare_video_bootargs=test -n $display_var && setenv at91_video_bootargs video=${video_mode}
+pda7000test=test -n $display && test $display = 7000 && setenv display_var 'pda7' && setenv video_mode ${video_mode_pda7}
+at91_prepare_overlays_config=test -n $display_var && setenv at91_overlays_config '#'${display_var}
+bootcmd=run at91_set_display; run at91_pda_detect; run at91_prepare_video_bootargs; run at91_prepare_bootargs; run at91_prepare_overlays_config; run bootcmd_boot;
+pda5000test=test -n $display && test $display = 5000 && setenv display_var 'pda5' && setenv video_mode ${video_mode_pda5}
+bootargs=console=ttyS0,115200 root=/dev/mmcblk0p2 rw rootfstype=ext4 rootwait atmel.pm_modes=standby,ulp0
+bootcmd_boot=fatload mmc 0:1 0x24000000 sam9x60ek.itb; bootm 0x24000000#kernel_dtb${at91_overlays_config}
+bootdelay=1
+ethact=gmac0
+stderr=serial
+stdin=serial
+stdout=serial
