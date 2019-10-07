@@ -9,7 +9,7 @@ RDEPENDS_${PN} = "libplanes"
 
 SRC_URI = "git://github.com/linux4sam/wildwest.git;protocol=https"
 PV = "1.0+git${SRCPV}"
-SRCREV = "69114abeb72380cdec8b7f7e80b94ac0dd77036e"
+SRCREV = "0b1b22e3eb5c819983f3d14696214ebaabf28223"
 
 S = "${WORKDIR}/git"
 
