@@ -8,7 +8,7 @@ DEPENDS = "qtbase qtmultimedia qtsvg libv4l"
 
 SRC_URI = "git://github.com/linux4sam/home-automation.git;protocol=https;branch=ha-simple"
 PV = "2.0+git${SRCPV}"
-SRCREV = "6125801ac993091afe17c81f50685d4e31d4b2f8"
+SRCREV = "7e3f384de01fb2ad3a7b8b6a05acb0d8d68e9508"
 
 S = "${WORKDIR}/git"
 
