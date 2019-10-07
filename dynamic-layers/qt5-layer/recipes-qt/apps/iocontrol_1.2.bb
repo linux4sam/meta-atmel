@@ -11,7 +11,7 @@ RDEPENDS_${PN} = "python"
 
 SRC_URI = "git://github.com/linux4sam/iocontrol.git;protocol=https"
 PV = "1.2+git${SRCPV}"
-SRCREV = "125947445d537fd940cb7bfdb38de3a6a5a26c05"
+SRCREV = "8a0018a838296d4cbf8fd71952de28a5b35bf977"
 
 S = "${WORKDIR}/git"
 
