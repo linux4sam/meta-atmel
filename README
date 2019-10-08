@@ -135,7 +135,7 @@ LICENSE_FLAGS_WHITELIST += "commercial"
 SYSVINIT_ENABLED_GETTYS = ""
 
 11/ Build images
-bitbake atmel-demo-image
+bitbake microchip-headless-image
 
 
 Typical bitbake output
