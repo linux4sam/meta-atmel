@@ -56,7 +56,7 @@ IMAGE_INSTALL += "\
 	${CORE_IMAGE_BASE_INSTALL} \
 	\
 	cjson \
-	lua-staticdev \
+	lua \
 	libplanes \
 	\
 	qtbase \
@@ -104,8 +104,6 @@ IMAGE_INSTALL += "\
 	iocontrol \
 	python-enum34 \
 	mchp-egt-demo-init \
-	qtviewplanes \
-	whiteboard \
 	wildwest \
 	hostapd \
 	9bit \
@@ -149,8 +147,6 @@ IMAGE_INSTALL_append_sam9x60 = " \
 IMAGE_INSTALL_append_sama5d4 = " \
 	gstreamer1.0-plugins-hantro \
 	g1-decoder \
-	videoplayer \
-	spacetouch \
 	"
 
 IMAGE_INSTALL_append_sama5d2-ptc-ek = " ptc-examples"
