@@ -5,7 +5,7 @@ PR = "r1"
 
 SRC_URI = "ftp://www.at91.com/pub/demo/media/egt-media-${PV}.tar.gz"
 
-SRC_URI[md5sum] = "1cf0df233a15b120be582f4472be00bb"
+SRC_URI[md5sum] = "e194eda3b85b54770268dff97e03a2d4"
 
 S = "${WORKDIR}/examples"
 
