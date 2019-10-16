@@ -27,7 +27,7 @@ DEPENDS_append_at91sam9 = " tslib"
 
 SRC_URI = "gitsm://bitbucket.microchip.com/scm/linux4sam/egt.git;protocol=https"
 
-SRCREV = "f0e98cc45ecbdcf20c65e65bd3128366087f8715"
+SRCREV = "82471976defad608c2a47363403a5eb3e8f60045"
 
 S = "${WORKDIR}/git"
 
