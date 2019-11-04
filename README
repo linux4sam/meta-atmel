@@ -57,19 +57,19 @@ mkdir my_dir
 cd my_dir
 
 1/ Clone yocto/poky git repository with the proper branch ready
-git clone git://git.yoctoproject.org/poky -b thud
+git clone git://git.yoctoproject.org/poky -b warrior
 
 2/ Clone meta-openembedded git repository with the proper branch ready
-git clone git://git.openembedded.org/meta-openembedded -b thud
+git clone git://git.openembedded.org/meta-openembedded -b warrior
 
 3/ Clone meta-qt5 git repository with the proper branch ready
 git clone git://code.qt.io/yocto/meta-qt5.git
 cd meta-qt5
-git checkout upstream/thud
+git checkout upstream/warrior
 cd ..
 
 4/ Clone meta-atmel layer with the proper branch ready
-git clone git://github.com/linux4sam/meta-atmel.git -b thud
+git clone git://github.com/linux4sam/meta-atmel.git -b warrior
 
 5/ Enter the poky directory to configure the build system and start the build process
 cd poky
@@ -152,13 +152,13 @@ TUNE_FEATURES        = "arm vfp cortexa5 neon vfpv4 thumb callconvention-hard"
 TARGET_FPU           = "hard"
 meta
 meta-poky
-meta-yocto-bsp       = "warrior:51223035e66c5b27799b15a0f8ebe75d24d3971b"
-meta-atmel           = "warrior:350560d5a211610e00d6002fe9994e4acb9d109e"
+meta-yocto-bsp       = "warrior:1153a954e652304b6b5d287437817b7da891d491"
+meta-atmel           = "warrior:f883dcdcb4e55ec0e073c497221e7fe7466b7acb"
 meta-oe
 meta-networking
 meta-python
-meta-multimedia      = "warrior:8d5dcd6522e9d15e68637b6d7dda0401f9bb91d0"
-meta-qt5             = "warrior:2a5f9415e48a38f6f4eb0cf375737a2d8438e2fe"
+meta-multimedia      = "warrior:3bdbf72e3a4bf18a4a2c7afbde4f7ab773aeded9"
+meta-qt5             = "warrior:dc2dedef9961950b88f4245ba7499538ec4244ab"
 
 Contributing
 ============
