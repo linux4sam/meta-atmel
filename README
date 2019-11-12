@@ -34,20 +34,20 @@ This Layer depends on :
 - poky
 URI: git://git.yoctoproject.org/poky
 Branch: warrior
-Tag: 51223035e66c5b27799b15a0f8ebe75d24d3971b
+Tag: 1153a954e652304b6b5d287437817b7da891d491
 
 - meta-openembedded
 URI: git://git.openembedded.org/meta-openembedded
 URI: http://cgit.openembedded.org/meta-openembedded/
 Branch: warrior
-Tag: 8d5dcd6522e9d15e68637b6d7dda0401f9bb91d0
+Tag: 3bdbf72e3a4bf18a4a2c7afbde4f7ab773aeded9
 
 Optionally:
 - meta-qt5
 URI: git://code.qt.io/yocto/meta-qt5.git
 URI: http://code.qt.io/cgit/yocto/meta-qt5.git/
 Branch: jansa/warrior (5.12)
-Tag: 2a5f9415e48a38f6f4eb0cf375737a2d8438e2fe
+Tag: dc2dedef9961950b88f4245ba7499538ec4244ab
 
 Build procedure
 ===============
