@@ -9,7 +9,7 @@ PACKAGES = "\
 "
 DEPENDS = "libegt"
 
-SRC_URI = "git://bitbucket.microchip.com/scm/linux4sam/egt-launcher.git;protocol=https \
+SRC_URI = "git://github.com/linux4sam/egt-launcher.git;protocol=https \
 	  file://0001-launch.sh-Use-start-stop-daemon-to-restart-egt.patch"
 
 SRCREV = "b583f4a1b92a84ce8aa83ac970304caf85406dc6"
