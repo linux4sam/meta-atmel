@@ -9,7 +9,7 @@ PACKAGES = "\
 "
 DEPENDS = " libegt"
 
-SRC_URI = "git://bitbucket.microchip.com/scm/linux4sam/egt-thermostat.git;protocol=https"
+SRC_URI = "git://github.com/linux4sam/egt-thermostat.git;protocol=https"
 
 SRCREV = "e79c55761bed85bd1f885c63be9edde1ba6acab8"
 
