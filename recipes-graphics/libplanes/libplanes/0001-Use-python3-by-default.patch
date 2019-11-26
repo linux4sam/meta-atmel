@@ -1,0 +1,54 @@
+From ba4cc0d7b08efecd2b2bfb04c7a70187d7056304 Mon Sep 17 00:00:00 2001
+From: Khem Raj <raj.khem@gmail.com>
+Date: Tue, 26 Nov 2019 11:18:39 -0800
+Subject: [PATCH] Use python3 by default
+
+python2 is on its way out
+
+Upstream-Status: Submitted [https://github.com/linux4sam/libplanes/pull/3]
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+---
+ configure.ac           | 2 +-
+ python/Makefile.am     | 2 +-
+ scripts/planes-loop.py | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/configure.ac b/configure.ac
+index 69e9478..ba0d2e7 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -129,7 +129,7 @@ if test "x$PYTHON" = xyes; then
+ 
+    if test "x$have_python" = "xyes"; then
+       AC_MSG_CHECKING([for Python site-packages path])
+-      PYTHON_VERSION='2.7'
++      PYTHON_VERSION=`$PKG_CONFIG --modversion python3`
+       PYTHON_SITE_PKG=${prefix}/lib/python${PYTHON_VERSION}/site-packages
+       AC_MSG_RESULT([$PYTHON_SITE_PKG])
+       AC_SUBST([PYTHON_SITE_PKG])
+diff --git a/python/Makefile.am b/python/Makefile.am
+index 63c737f..015fc26 100644
+--- a/python/Makefile.am
++++ b/python/Makefile.am
+@@ -4,7 +4,7 @@ if HAVE_PYTHON
+ SWIG_SRC = planes.i
+ 
+ SWIG=swig
+-PYTHON=python
++PYTHON=python3
+ 
+ SWIG_V_GEN = $(swig_v_GEN_$(V))
+ swig_v_GEN_ = $(swig_v_GEN_$(AM_DEFAULT_VERBOSITY))
+diff --git a/scripts/planes-loop.py b/scripts/planes-loop.py
+index ded88d4..4c6904e 100755
+--- a/scripts/planes-loop.py
++++ b/scripts/planes-loop.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python3
+ 
+ from mpio import *
+ import glob
+-- 
+2.24.0
+
