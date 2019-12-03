@@ -52,7 +52,7 @@ IMAGE_INSTALL += "\
 	mxt-app \
 	usbutils \
 	wget \
-	start-stop-daemon \
+	dpkg-start-stop \
 	${CORE_IMAGE_BASE_INSTALL} \
 	\
 	cjson \
