@@ -25,7 +25,7 @@ Sources
 - meta-atmel
 URI: git://github.com/linux4sam/meta-atmel.git
 URI: https://github.com/linux4sam/meta-atmel.git
-Branch: warrior
+Branch: zeus
 
 
 Dependencies
@@ -33,21 +33,21 @@ Dependencies
 This Layer depends on :
 - poky
 URI: git://git.yoctoproject.org/poky
-Branch: warrior
-Tag: 1153a954e652304b6b5d287437817b7da891d491
+Branch: zeus
+Tag: 94f6b31befda5c496f65e863a6f8152b42d7ebf0
 
 - meta-openembedded
 URI: git://git.openembedded.org/meta-openembedded
 URI: http://cgit.openembedded.org/meta-openembedded/
-Branch: warrior
-Tag: 3bdbf72e3a4bf18a4a2c7afbde4f7ab773aeded9
+Branch: zeus
+Tag: aad5b3d070cd8c58828b0975cf861d8ebc90f460
 
 Optionally:
 - meta-qt5
 URI: git://code.qt.io/yocto/meta-qt5.git
 URI: http://code.qt.io/cgit/yocto/meta-qt5.git/
-Branch: jansa/warrior (5.12)
-Tag: dc2dedef9961950b88f4245ba7499538ec4244ab
+Branch: upstream/zeus (5.13)
+Tag: 432ad2aa6c3a13253fefc909faba368851d21fb1
 
 Build procedure
 ===============
@@ -57,19 +57,19 @@ mkdir my_dir
 cd my_dir
 
 1/ Clone yocto/poky git repository with the proper branch ready
-git clone git://git.yoctoproject.org/poky -b warrior
+git clone git://git.yoctoproject.org/poky -b zeus
 
 2/ Clone meta-openembedded git repository with the proper branch ready
-git clone git://git.openembedded.org/meta-openembedded -b warrior
+git clone git://git.openembedded.org/meta-openembedded -b zeus
 
 3/ Clone meta-qt5 git repository with the proper branch ready
 git clone git://code.qt.io/yocto/meta-qt5.git
 cd meta-qt5
-git checkout upstream/warrior
+git checkout upstream/zeus
 cd ..
 
 4/ Clone meta-atmel layer with the proper branch ready
-git clone git://github.com/linux4sam/meta-atmel.git -b warrior
+git clone git://github.com/linux4sam/meta-atmel.git -b zeus
 
 5/ Enter the poky directory to configure the build system and start the build process
 cd poky
@@ -141,24 +141,24 @@ bitbake microchip-headless-image
 Typical bitbake output
 ======================
 Build Configuration:
-BB_VERSION           = "1.42.0"
+BB_VERSION           = "1.44.0"
 BUILD_SYS            = "x86_64-linux"
 NATIVELSBSTRING      = "universal"
 TARGET_SYS           = "arm-poky-linux-gnueabi"
-MACHINE              = "sama5d2-xplained-sd"
+MACHINE              = "sam9x60ek-sd"
 DISTRO               = "poky-atmel"
-DISTRO_VERSION       = "2.7.1"
-TUNE_FEATURES        = "arm vfp cortexa5 neon vfpv4 thumb callconvention-hard"
-TARGET_FPU           = "hard"
-meta
-meta-poky
-meta-yocto-bsp       = "warrior:1153a954e652304b6b5d287437817b7da891d491"
-meta-atmel           = "warrior:f883dcdcb4e55ec0e073c497221e7fe7466b7acb"
-meta-oe
-meta-networking
-meta-python
-meta-multimedia      = "warrior:3bdbf72e3a4bf18a4a2c7afbde4f7ab773aeded9"
-meta-qt5             = "warrior:dc2dedef9961950b88f4245ba7499538ec4244ab"
+DISTRO_VERSION       = "3.0"
+TUNE_FEATURES        = "arm armv5 thumb dsp"
+TARGET_FPU           = "soft"
+meta                 
+meta-poky            
+meta-yocto-bsp       = "zeus:94f6b31befda5c496f65e863a6f8152b42d7ebf0"
+meta-atmel           = "zeus:a7fcc7117fe22d7a7398ec9e422e3feabe40d0fb"
+meta-oe              
+meta-networking      
+meta-python          
+meta-multimedia      = "zeus:aad5b3d070cd8c58828b0975cf861d8ebc90f460"
+meta-qt5             = "upstream/zeus:432ad2aa6c3a13253fefc909faba368851d21fb1"
 
 Contributing
 ============
