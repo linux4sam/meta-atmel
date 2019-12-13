@@ -29,6 +29,7 @@ DEPENDS_append_at91sam9 = " tslib"
 
 SRC_URI = "gitsm://github.com/linux4sam/egt.git;protocol=https \
            file://0001-link-libudev-for-udev_unref-and-udev_new.patch \
+           file://0001-check-for-reallocarray-before-using-it.patch \
 "
 
 SRCREV = "be50eef497a0900cf90b60a2da4aad30ba0e3663"
