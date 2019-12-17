@@ -62,7 +62,6 @@ do_install () {
     if [ -e ${AT91BOOTSTRAP_MACHINE}.itb ]; then
         install -d ${D}/boot
         install ${AT91BOOTSTRAP_MACHINE}.itb ${D}/boot/
-        install ${AT91BOOTSTRAP_MACHINE}.its ${D}/boot/
     fi;
 }
 
