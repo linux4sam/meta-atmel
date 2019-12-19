@@ -1,0 +1,33 @@
+From f35a891637ced372fa6f8b2e74c2bc4327ac3761 Mon Sep 17 00:00:00 2001
+From: Khem Raj <raj.khem@gmail.com>
+Date: Wed, 18 Dec 2019 18:24:03 -0800
+Subject: [PATCH] include asm-generic/ioctls.h
+
+This helps in including definitions for TCGETS2 TCSETSW2 and TCSETSF2
+
+Fixes
+
+custom_termios2.c:14:19: error: use of undeclared identifier 'TCGETS2'                                                  return ioctl(fd, TCGETS2, termios);                                                                                              ^                                                                                      custom_termios2.c:24:9: error: use of undeclared identifier 'TCSETS2'                                                           cmd = TCSETS2;                                                                                                        ^                                                                                         custom_termios2.c:27:9: error: use of undeclared identifier 'TCSETSW2'                                                          cmd = TCSETSW2;                                                                                                       ^                                                                                         custom_termios2.c:30:9: error: use of undeclared identifier 'TCSETSF2'                                                          cmd = TCSETSF2;
+                      ^
+Upstream-Status: Submitted [https://github.com/linux4sam/9bit/pull/1]
+
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+---
+ custom_termios2.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/custom_termios2.c b/custom_termios2.c
+index 3eb3049..ba0171a 100644
+--- a/custom_termios2.c
++++ b/custom_termios2.c
+@@ -5,6 +5,7 @@
+  */
+ #include "custom_termios2.h"
+ #include <asm/ioctls.h>
++#include <asm-generic/ioctls.h>
+ #include <errno.h>
+ #include <sys/ioctl.h>
+ 
+-- 
+2.24.1
+
