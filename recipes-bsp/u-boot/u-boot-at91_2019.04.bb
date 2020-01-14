@@ -5,7 +5,7 @@ LICENSE = "GPLv2+"
 LIC_FILES_CHKSUM = "file://README;beginline=1;endline=22;md5=9915e8cb100eb5dbb366010a0f10296c"
 
 SRCREV = "c16fd2e4b100206f88b9a543f96acd0d5e47eb38"
-SRCREV_sama5d2-icp-sd = "b02edf0fbac58ad92bf8bd3f0870ec71100a24cd"
+SRCREV_sama5d2-icp-sd = "2717319e09af7ce56b6404fbef8cab2fb526a7c3"
 
 PV = "v2019.04-at91+git${SRCPV}"
 
