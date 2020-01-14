@@ -8,6 +8,6 @@ SRC_URI = "git://github.com/linux4sam/at91bootstrap.git;protocol=https \
 "
 
 PV = "3.9.1+git${SRCPV}"
-SRCREV = "c685e79cf19730256adb51022eeced54af73aacd"
+SRCREV = "2a5f7f8464f631d8095c24ac1e5e8fc32e93c284"
 
 S = "${WORKDIR}/git"
