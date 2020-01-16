@@ -7,7 +7,9 @@ PACKAGES = "${PN}-dbg ${PN}"
 DEPENDS = "qtbase"
 inherit qmake5
 
-SRC_URI = "git://github.com/linux4sam/whiteboard.git;protocol=https"
+SRC_URI = "git://github.com/linux4sam/whiteboard.git;protocol=https \
+           file://0001-whiteboard.pro-Add-qt-to-CONFIG-in-project.patch \
+           "
 PV = "1.0+git${SRCPV}"
 SRCREV = "3d910b2373df365391e3c496270db8c696617abd"
 
