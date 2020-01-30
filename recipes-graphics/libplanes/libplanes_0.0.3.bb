@@ -6,18 +6,20 @@ PACKAGES = "${PN}-dbg ${PN} ${PN}-python"
 
 PR = "r1"
 
-DEPENDS = "libdrm cairo cjson lua swig-native python"
+DEPENDS = "libdrm cairo cjson lua swig-native python3"
 
-RDEPENDS_${PN} = "python udev-rules-at91"
+RDEPENDS_${PN} = "python3 udev-rules-at91"
 
-SRC_URI = "git://github.com/linux4sam/libplanes.git;protocol=https"
+SRC_URI = "git://github.com/linux4sam/libplanes.git;protocol=https \
+           file://0001-Use-python3-by-default.patch \
+"
 PV = "0.0.3+git${SRCPV}"
 
 SRCREV = "96a3e46c175a5dd02d3cb04a9ef9f5f201a684a6"
 
 S = "${WORKDIR}/git"
 
-inherit pkgconfig autotools
+inherit pkgconfig autotools python3-dir
 
 EXTRA_OECONF += "--enable-shared --disable-static"
 
@@ -46,7 +48,7 @@ do_install_append() {
     install -Dm 0755 ${S}/scripts/planes-loop.sh ${D}/opt/planes/planes-loop.sh
     install -Dm 0755 ${S}/scripts/planes-loop.py ${D}/opt/planes/planes-loop.py
     install -Dm 0755 ${S}/python/examples/splash.py ${D}/usr/share/planes/splash.py
-    rm -f ${D}/usr/lib/python2.7/site-packages/planes/_planes.a
+    rm -f ${D}/usr/lib/python*/site-packages/planes/_planes.a
     rm -f ${D}/usr/lib/libplanes.a
 }
 

@@ -7,7 +7,9 @@ PACKAGES = "${PN}-dbg ${PN}"
 DEPENDS = "qtbase libplanes"
 RDEPENDS_${PN} = "libplanes"
 
-SRC_URI = "git://github.com/linux4sam/wildwest.git;protocol=https"
+SRC_URI = "git://github.com/linux4sam/wildwest.git;protocol=https \
+           file://0001-wildwest.pro-Add-builddir-to-install-files.patch \
+          "
 PV = "1.0+git${SRCPV}"
 SRCREV = "0b1b22e3eb5c819983f3d14696214ebaabf28223"
 

@@ -15,7 +15,7 @@ SRCREV = "8a0018a838296d4cbf8fd71952de28a5b35bf977"
 
 S = "${WORKDIR}/git"
 
-inherit setuptools
+inherit setuptools3
 
 FILES_${PN} += " \
 	/opt/ApplicationL* \

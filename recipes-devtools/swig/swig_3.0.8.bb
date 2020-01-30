@@ -1,4 +1,4 @@
-require ${BPN}.inc
+require recipes-devtools/swig/${BPN}.inc
 
 SRC_URI += "file://0001-Use-proc-self-exe-for-swig-swiglib-on-non-Win32-plat.patch \
             file://0001-configure-use-pkg-config-for-pcre-detection.patch \
