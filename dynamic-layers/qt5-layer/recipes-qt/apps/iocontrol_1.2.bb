@@ -7,7 +7,7 @@ PACKAGES = "${PN}-dbg ${PN}"
 
 DEPENDS = "mpio qtbase"
 
-RDEPENDS_${PN} = "python"
+RDEPENDS_${PN} = "python3"
 
 SRC_URI = "git://github.com/linux4sam/iocontrol.git;protocol=https"
 PV = "1.2+git${SRCPV}"
