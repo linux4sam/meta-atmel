@@ -5,12 +5,12 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57 \
 
 PACKAGES = "${PN}-dbg ${PN}"
 
-RDEPENDS_${PN} = "python"
+RDEPENDS_${PN} = "python3"
 
 SRC_URI = "git://github.com/linux4sam/mpio.git;branch=master;protocol=https"
 PV = "1.2+git${SRCPV}"
 
-SRCREV = "cc1501d10fe8b178b4a8114076c237c760008abf"
+SRCREV = "dc0e9e00c39157b53a26736bdbc798c7ac99d045"
 
 S = "${WORKDIR}/git"
 
