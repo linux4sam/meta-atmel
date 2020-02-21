@@ -63,10 +63,7 @@ git clone git://git.yoctoproject.org/poky -b zeus
 git clone git://git.openembedded.org/meta-openembedded -b zeus
 
 3/ Clone meta-qt5 git repository with the proper branch ready
-git clone git://code.qt.io/yocto/meta-qt5.git
-cd meta-qt5
-git checkout upstream/zeus
-cd ..
+git clone git://code.qt.io/yocto/meta-qt5.git -b upstream/zeus
 
 4/ Clone meta-atmel layer with the proper branch ready
 git clone git://github.com/linux4sam/meta-atmel.git -b zeus
@@ -74,67 +71,16 @@ git clone git://github.com/linux4sam/meta-atmel.git -b zeus
 5/ Enter the poky directory to configure the build system and start the build process
 cd poky
 
-6/ Initialize build directory
+6/ Change TEMPLATECONF from .templateconf to:
+TEMPLATECONF=${TEMPLATECONF:-../meta-atmel/conf}
+
+7/ Initialize build directory
 source oe-init-build-env build-microchip
 
-7/ Add meta-atmel layer to bblayer configuration file
-vim conf/bblayers.conf
-
-# POKY_BBLAYERS_CONF_VERSION is increased each time build/conf/bblayers.conf
-# changes incompatibly
-POKY_BBLAYERS_CONF_VERSION = "2"
-
-BBPATH = "${TOPDIR}"
-BBFILES ?= ""
-
-BSPDIR := "${@os.path.abspath(os.path.dirname(d.getVar('FILE', True)) + '/../../..')}"
-
-BBLAYERS ?= " \
-  ${BSPDIR}/poky/meta \
-  ${BSPDIR}/poky/meta-poky \
-  ${BSPDIR}/poky/meta-yocto-bsp \
-  ${BSPDIR}/meta-atmel \
-  ${BSPDIR}/meta-openembedded/meta-oe \
-  ${BSPDIR}/meta-openembedded/meta-networking \
-  ${BSPDIR}/meta-openembedded/meta-python \
-  ${BSPDIR}/meta-openembedded/meta-multimedia \
-  ${BSPDIR}/meta-qt5 \
-  "
-
-BBLAYERS_NON_REMOVABLE ?= " \
-  ${BSPDIR}/poky/meta \
-  ${BSPDIR}/poky/meta-poky \
-  "
-
-8/ Edit local.conf to specify the machine, location of source archived, package type (rpm, deb or ipk)
-Pick one MACHINE name from the "Supported SoCs / MACHINE names" chapter above
-and edit the "local.conf" file. Here is an example:
-
-vim conf/local.conf
-[...]
-MACHINE ??= "sama5d2-xplained"
-[...]
-DL_DIR ?= "your_download_directory_path"
-[...]
-PACKAGE_CLASSES ?= "package_ipk"
-[...]
-USER_CLASSES ?= "buildstats image-mklibs"
-
-To get better performance, use the "poky-atmel" distribution by also adding that
-line:
-DISTRO = "poky-atmel"
-
-9/ Build core minimal image
+8/ Build core minimal image
 bitbake core-image-minimal
 
-10/ We found that additional local.conf changes are needed for our QT demo
-image. You can add these two lines at the end of the file:
-vim conf/local.conf
-[...]
-LICENSE_FLAGS_WHITELIST += "commercial"
-SYSVINIT_ENABLED_GETTYS = ""
-
-11/ Build images
+9/ Build images
 bitbake microchip-headless-image
 
 
@@ -179,11 +125,3 @@ Patrice Vilchez <patrice.vilchez@microchip.com>
 When creating patches insert the [meta-atmel] tag in the subject, for example
 use something like:
 git format-patch -s --subject-prefix='meta-atmel][PATCH' <origin>
-
-Known issues
-============
-This branch is under development and not fully tested. Some features may not work.
-
-QTWebEngine build fails with error:
-"khronos development headers appear to be missing (mesa/libegl1-mesa-dev)
-QtWebEngine will not be built."
