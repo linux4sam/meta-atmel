@@ -46,11 +46,10 @@ IMAGE_INSTALL = "\
     bridge-utils \
     can-utils \
     evtest \
-    python-pyserial \
-    python-smbus \
-    python-ctypes \
-    python-pip \
-    python-distribute \
+    python3-pyserial \
+    python3-smbus \
+    python3-ctypes \
+    python3-pip \
     gdb \
     usbutils \
     wget \
