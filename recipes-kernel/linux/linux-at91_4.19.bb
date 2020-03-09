@@ -25,6 +25,26 @@ python __anonymous () {
         d.appendVar('DEPENDS', ' u-boot-mkimage-native dtc-native')
 }
 
+do_configure_append() {
+	frags=""
+	for fragment in ${WORKDIR}/*.cfg
+	do
+		if [ -f ${fragment} ]; then
+			cp -v ${fragment} ${B}
+			frags=$frags" `basename ${fragment}`"
+		fi
+	done
+
+	if [ ! -z "${frags}" ]; then
+		echo "Fragments are: ${frags}"
+		PATH=${S}/scripts/kconfig:${PATH}
+		CFLAGS="${CFLAGS} ${TOOLCHAIN_OPTIONS}" HOSTCC="${BUILD_CC} ${BUILD_CFLAGS} ${BUILD_LDFLAGS}" HOSTCPP="${BUILD_CPP}" CC="${KERNEL_CC}" ARCH=${ARCH} merge_config.sh -n .config ${frags}  2>&1
+		if [ $? -ne 0 ]; then
+			bbfatal_log "Could not configure kernel fragments: ${frags}"
+		fi
+	fi
+}
+
 do_deploy_append() {
 	if [ "${UBOOT_FIT_IMAGE}" = "xyes" ]; then
 		DTB_PATH="${B}/arch/${ARCH}/boot/dts/"
