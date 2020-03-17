@@ -49,6 +49,13 @@ URI: http://code.qt.io/cgit/yocto/meta-qt5.git/
 Branch: upstream/zeus (5.13)
 Tag: 432ad2aa6c3a13253fefc909faba368851d21fb1
 
+For AWS Greengrass:
+- meta-aws
+URI: https://github.com/aws/meta-aws.git
+URI: https://github.com/aws/meta-aws
+Branch: zeus
+Tag: 41cf0c83c55f95e2aef01839ccd599162959a1ad
+
 Build procedure
 ===============
 
