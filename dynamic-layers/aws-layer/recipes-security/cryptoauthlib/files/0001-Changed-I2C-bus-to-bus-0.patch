@@ -1,0 +1,28 @@
+From 1e41ba3ec8421a364ad82d18cfbfc9eb5aec487d Mon Sep 17 00:00:00 2001
+From: Codrin Ciubotariu <codrin.ciubotariu@microchip.com>
+Date: Mon, 16 Mar 2020 11:34:16 +0200
+Subject: [PATCH] atca_cfs: Changed I2C bus to bus 0
+
+ATECC608A Secure Element will be connected on I2C bus 0.
+
+Signed-off-by: Codrin Ciubotariu <codrin.ciubotariu@microchip.com>
+---
+ lib/atca_cfgs.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/lib/atca_cfgs.c b/lib/atca_cfgs.c
+index 47491cdc..ab53426b 100644
+--- a/lib/atca_cfgs.c
++++ b/lib/atca_cfgs.c
+@@ -42,7 +42,7 @@ ATCAIfaceCfg cfg_ateccx08a_i2c_default = {
+     .devtype                    = ATECC608A,
+     {
+         .atcai2c.slave_address  = 0xC0,
+-        .atcai2c.bus            = 2,
++        .atcai2c.bus            = 0,
+         .atcai2c.baud           = 400000,
+         //.atcai2c.baud = 100000,
+     },
+-- 
+2.17.1
+
