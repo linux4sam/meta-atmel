@@ -17,6 +17,7 @@ built by adding an "-sd" suffix to the machine name.
 Microchip targets are:
     microchip-headless-image
     microchip-graphics-image
+    microchip-greengrass-image
 
 Common targets are:
     core-image-minimal
