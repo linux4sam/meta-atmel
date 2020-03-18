@@ -11,18 +11,18 @@ S = "${WORKDIR}/git"
 inherit allarch
 
 do_install() {
-	install -d ${D}/lib/firmware/mchp/
-	cp -r ${S}/* ${D}/lib/firmware/mchp/
+	install -d ${D}${nonarch_base_libdir}/firmware/mchp/
+	cp -r ${S}/* ${D}${nonarch_base_libdir}/firmware/mchp/
 
 	# remove unneeded file
-	rm -f ${D}/lib/firmware/mchp/README.md
-	rm -rf ${D}/lib/firmware/mchp/LICENCE.wilc_fw
-	chmod -x ${D}/lib/firmware/mchp/*
+	rm -f ${D}${nonarch_base_libdir}/firmware/mchp/README.md
+	rm -rf ${D}${nonarch_base_libdir}/firmware/mchp/LICENCE.wilc_fw
+	chmod -x ${D}${nonarch_base_libdir}/firmware/mchp/*
 }
 
 
 FILES_${PN} += " \
-	${base_libdir}/firmware/mchp/wilc*.bin \
+	${nonarch_base_libdir}/firmware/mchp/wilc*.bin \
 	"
 
 # TODO: use ALTERNATIVE like in "linux-firmware" package
