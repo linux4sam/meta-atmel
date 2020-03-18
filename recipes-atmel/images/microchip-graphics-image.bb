@@ -44,7 +44,6 @@ IMAGE_INSTALL += "\
 	python3-smbus \
 	python3-ctypes \
 	python3-pip \
-	python3-pyqt5 \
 	mpio \
 	gdb \
 	evtest \
@@ -57,33 +56,6 @@ IMAGE_INSTALL += "\
 	cjson \
 	lua \
 	libplanes \
-	\
-	qtbase \
-	qtbase-plugins \
-	qtbase-tools \
-	qtmqtt \
-	qtmultimedia \
-	qtmultimedia-plugins \
-	qtmultimedia-qmlplugins \
-	qtsvg \
-	qtsvg-plugins \
-	qtsensors \
-	qtserialport \
-	qtsystems \
-	qtsystems-tools \
-	qtsystems-qmlplugins \
-	qtscript \
-	qtgraphicaleffects-qmlplugins \
-	qtconnectivity-qmlplugins \
-	qtlocation-plugins \
-	qtlocation-qmlplugins \
-	qtdeclarative \
-	qtdeclarative-qmlplugins \
-	qtquickcontrols \
-	qtquickcontrols-qmlplugins \
-	qtquickcontrols2 \
-	qtquickcontrols2-qmlplugins \
-	qtxmlpatterns \
 	\
 	libicui18n \
 	gstreamer1.0 \
@@ -98,11 +70,7 @@ IMAGE_INSTALL += "\
 	ffmpeg \
 	\
 	liberation-fonts \
-	homeautomation \
-	applicationlauncher \
-	iocontrol \
 	mchp-egt-demo-init \
-	wildwest \
 	hostapd \
 	9bit \
 	rng-tools \
@@ -152,7 +120,7 @@ IMAGE_INSTALL_append_sama5d2-ptc-ek-sd = " ptc-examples"
 
 IMAGE_INSTALL_append_sama5d27-wlsom1-ek-sd = " ptc-examples"
 
-inherit core-image populate_sdk_qt5
+inherit core-image
 
 #TOOLCHAIN_HOST_TASK += "nativesdk-sam-ba"
 TOOLCHAIN_HOST_TASK += "nativesdk-swig"
