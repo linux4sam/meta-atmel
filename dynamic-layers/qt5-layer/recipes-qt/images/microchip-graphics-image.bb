@@ -40,12 +40,11 @@ IMAGE_INSTALL += "\
 	iptables \
 	bridge-utils \
 	can-utils \
-	python-pyserial \
-	python-smbus \
-	python-ctypes \
-	python-pip \
-	python-distribute \
-	python-pyqt5 \
+	python3-pyserial \
+	python3-smbus \
+	python3-ctypes \
+	python3-pip \
+	python3-pyqt5 \
 	mpio \
 	gdb \
 	evtest \
@@ -102,7 +101,6 @@ IMAGE_INSTALL += "\
 	homeautomation \
 	applicationlauncher \
 	iocontrol \
-	python-enum34 \
 	mchp-egt-demo-init \
 	wildwest \
 	hostapd \
