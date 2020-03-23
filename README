@@ -42,7 +42,7 @@ URI: http://cgit.openembedded.org/meta-openembedded/
 Branch: zeus
 Tag: aad5b3d070cd8c58828b0975cf861d8ebc90f460
 
-- meta-aws (for AWS Greengrass)
+- meta-aws (for AWS Greengrass, mandatory for microchip-* images)
 URI: https://github.com/aws/meta-aws.git
 URI: https://github.com/aws/meta-aws
 Branch: zeus

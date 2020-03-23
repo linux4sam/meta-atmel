@@ -110,6 +110,8 @@ IMAGE_INSTALL_append_sam9x60 = " \
 	bonnie++ \
 	libm2d "
 
+IMAGE_INSTALL_append_sama5d2 = " greengrass"
+
 IMAGE_INSTALL_append_sama5d4 = " \
 	gstreamer1.0-plugins-hantro \
 	g1-decoder \

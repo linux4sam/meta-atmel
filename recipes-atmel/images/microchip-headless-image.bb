@@ -10,7 +10,7 @@ IMAGE_INSTALL += "\
     mpio \
     "
 
-IMAGE_INSTALL_append_sama5d2 = " nodejs nodejs-npm"
+IMAGE_INSTALL_append_sama5d2 = " nodejs nodejs-npm greengrass"
 IMAGE_INSTALL_append_sama5d3 = " nodejs nodejs-npm"
 IMAGE_INSTALL_append_sama5d4 = " nodejs nodejs-npm"
 
