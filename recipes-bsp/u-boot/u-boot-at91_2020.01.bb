@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://README;beginline=1;endline=22;md5=9915e8cb100eb5dbb36
 
 SRCREV = "8d350344d037acb996e5b0709590720f90a5f1fe"
 
-PV = "v2020.04-at91+git${SRCPV}"
+PV = "v2020.01-at91+git${SRCPV}"
 
 DEPENDS += "bison-native flex-native"
 
