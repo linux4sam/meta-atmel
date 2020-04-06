@@ -6,6 +6,7 @@ COMPATIBLE_MACHINE = '(sama5d3xek|sama5d3-xplained|sama5d3-xplained-sd|at91sam9x
 
 SRC_URI = "https://github.com/linux4sam/at91bootstrap/archive/v3.8.12.tar.gz \
            file://0001-Add-an-option-to-enable-SAM-BA-download.patch \
+           file://0001-scripts-upgrade-scripts-to-use-Python3.patch \
 "
 
 SRC_URI[md5sum] = "9cdcd5b427a7998315e9a0cad4488ffd"
