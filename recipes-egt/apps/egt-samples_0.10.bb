@@ -9,22 +9,24 @@ PACKAGES = "\
 "
 DEPENDS = " libegt"
 
-SRC_URI = "git://github.com/linux4sam/egt-thermostat.git;protocol=https"
+SRC_URI = "gitsm://github.com/linux4sam/egt-samples.git;protocol=https \
+	   file://0001-fix-the-builf-error-of-Cannot-use-CP_USE_DOUBLES-on-.patch "
 
-SRCREV = "e79c55761bed85bd1f885c63be9edde1ba6acab8"
+PV = "0.10+git${SRCPV}"
+SRCREV = "91a333a8809215961744b236183f496ff134ae94"
 
 S = "${WORKDIR}/git"
-
-# out-of-tree building doesn't appear to work for this package.
-B = "${S}"
 
 inherit pkgconfig autotools gettext
 
 do_configure_prepend() {
-	( cd ${S};
-	${S}/autogen.sh; cd -)
+     ( cd ${S}; ${S}/autogen.sh; cd -)
 }
 
 FILES_${PN} += " \
     /usr/share/egt/* \
 "
+# out-of-tree building doesn't appear to work for this package.
+B = "${S}"
+
+EXTRA_OECONF = "--program-prefix='egt_'"
