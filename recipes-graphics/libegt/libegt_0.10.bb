@@ -19,7 +19,6 @@ DEPENDS = "\
     file \
     gstreamer1.0 \
     gstreamer1.0-plugins-base \
-    libxkbcommon \
     libinput \
     udev \
     xxd-native \
