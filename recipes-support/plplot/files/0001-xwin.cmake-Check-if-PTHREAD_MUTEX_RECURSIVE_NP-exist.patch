@@ -1,0 +1,32 @@
+From d8d0143b71fb49bcfda3a4f7061c7ec75c1b1faf Mon Sep 17 00:00:00 2001
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 13 Apr 2020 16:17:02 -0700
+Subject: [PATCH] xwin.cmake: Do not use PTHREAD_MUTEX_RECURSIVE_NP
+
+musl e.g. does not define it so just checking for Linux as platform is
+not enough, however PTHREAD_MUTEX_RECURSIVE is available on both and on
+glibc PTHREAD_MUTEX_RECURSIVE_NP = PTHREAD_MUTEX_RECURSIVE for unix98+
+
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+---
+ cmake/modules/xwin.cmake | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+--- a/cmake/modules/xwin.cmake
++++ b/cmake/modules/xwin.cmake
+@@ -49,13 +49,11 @@ if(PLD_xwin)
+       if(CMAKE_USE_PTHREADS_INIT)
+         set(xwin_LINK_FLAGS ${xwin_LINK_FLAGS} ${CMAKE_THREAD_LIBS_INIT})
+ 	cmake_link_flags(xwin_LINK_FLAGS "${xwin_LINK_FLAGS}")
+-	if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+-	  set(PLPLOT_MUTEX_RECURSIVE "PTHREAD_MUTEX_RECURSIVE_NP")
+- 	elseif(CMAKE_SYSTEM_NAME STREQUAL "kFreeBSD")
++ 	if(CMAKE_SYSTEM_NAME STREQUAL "kFreeBSD")
+  	  set(PLPLOT_MUTEX_RECURSIVE "PTHREAD_MUTEX_RECURSIVE_NP")
+ 	else(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+ 	  set(PLPLOT_MUTEX_RECURSIVE "PTHREAD_MUTEX_RECURSIVE")
+-	endif(CMAKE_SYSTEM_NAME STREQUAL "Linux")
++	endif(CMAKE_SYSTEM_NAME STREQUAL "kFreeBSD")
+       else(CMAKE_USE_PTHREADS_INIT)
+         # I am being super-careful here to follow the autotools model.  In
+         # fact, it is possible other thread systems will work as well as

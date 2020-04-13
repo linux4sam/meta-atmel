@@ -12,6 +12,7 @@ BUILDTAG="plplot-5.15.0"
 SRC_URI = "git://git.code.sf.net/p/plplot/plplot;protocol=https;tag=${BUILDTAG} \
     file://0001-plplot-fix-configure-error-for-generating-header-fil.patch \
     file://0002-utils-CMakeLists.txt-disable-pltek-build.patch \
+    file://0001-xwin.cmake-Check-if-PTHREAD_MUTEX_RECURSIVE_NP-exist.patch \
     file://deltaT.h \
     file://tai-utc.h \
     file://plhershey-unicode.h \
