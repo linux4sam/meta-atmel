@@ -13,7 +13,7 @@ SRC_URI = "git://github.com/linux4sam/libplanes.git;protocol=https \
           "
 
 PV = "1.0.0+git${SRCPV}"
-SRCREV = "00ef809348da7e315683ec73e97102cbb328fe52"
+SRCREV = "43f441d7e1b6fea89603d2a9b82f5e2696a98c71"
 
 S = "${WORKDIR}/git"
 
