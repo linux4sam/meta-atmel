@@ -23,6 +23,7 @@ DEPENDS = "\
     libinput \
     udev \
     xxd-native \
+    plplot \
 "
 
 DEPENDS_append_at91sam9 = " tslib"
@@ -60,6 +61,9 @@ FILES_${PN} += " \
 INSANE_SKIP_${PN} = "dev-so"
 
 #need to delete .a to avoid QA package errors
+#deleted audio files to avoid check_data_file_clashes error
 do_install_append() {
     rm -f ${D}/usr/lib/libegt.a
+    rm -f ${D}/usr/share/egt/examples/audioplayer/*.mp3
+    rm -f ${D}/usr/share/egt/examples/drummachine/*.wav
 }

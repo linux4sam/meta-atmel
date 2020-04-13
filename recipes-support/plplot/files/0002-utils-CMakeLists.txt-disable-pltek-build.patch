@@ -1,0 +1,26 @@
+From cb3012ca62de1d54963635d2a710526ebc8d6756 Mon Sep 17 00:00:00 2001
+From: Sandeep Sheriker M <sandeep.sheriker@microchip.com>
+Date: Fri, 21 Feb 2020 13:13:01 +0100
+Subject: [PATCH 2/2] utils/CMakeLists.txt: disable pltek build
+
+Signed-off-by: Sandeep Sheriker M <sandeep.sheriker@microchip.com>
+---
+ utils/CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/utils/CMakeLists.txt b/utils/CMakeLists.txt
+index 5772910d2..aedc7d777 100644
+--- a/utils/CMakeLists.txt
++++ b/utils/CMakeLists.txt
+@@ -32,7 +32,7 @@ if(PLD_plmeta)
+   configure_executable_build(plrender "plrender.c" "PLPLOT::plplot" "${LIB_INSTALL_RPATH}" ${BIN_DIR})
+ endif(PLD_plmeta)
+ 
+-configure_executable_build(pltek "pltek.c" "PLPLOT::plplot" "${LIB_INSTALL_RPATH}" ${BIN_DIR})
++#configure_executable_build(pltek "pltek.c" "PLPLOT::plplot" "${LIB_INSTALL_RPATH}" ${BIN_DIR})
+ 
+ # Build simple executable to check parity bits of all characters read
+ # by stdin.
+-- 
+2.25.0
+
