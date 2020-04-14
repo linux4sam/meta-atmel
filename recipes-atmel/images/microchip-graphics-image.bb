@@ -87,6 +87,7 @@ IMAGE_INSTALL += "\
 	egt-launcher \
 	egt-samples \
 	egt-media \
+	egt-thermostat \
 	noto-fonts \
 "
 
