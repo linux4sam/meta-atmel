@@ -8,12 +8,11 @@ PR = "r1"
 
 inherit qmake5
 
-SRC_URI = "https://github.com/linux4sam/qml-browser/archive/v${PV}.tar.gz;downloadfilename=qml-browser-${PV}.tar.gz"
+SRC_URI = "git://github.com/linux4sam/qml-browser.git;protocol=https"
+PV = "1.7+git${SRCPV}"
+SRCREV = "0626a3e087940bca6ced55ceee0df0074c0e9fee"
 
-SRC_URI[md5sum] = "283afa2e34160373c4ae333c5f8b5c6d"
-SRC_URI[sha256sum] = "12e5896ec52428e1283adf2775e354684f7309c3f558e110732dca961912f814"
-
-S = "${WORKDIR}/qml-browser-${PV}"
+S = "${WORKDIR}/git"
 
 inherit pkgconfig
 
