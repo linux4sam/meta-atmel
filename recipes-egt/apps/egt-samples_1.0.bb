@@ -12,7 +12,7 @@ DEPENDS = " libegt"
 SRC_URI = "gitsm://github.com/linux4sam/egt-samples.git;protocol=https \
 	   file://0001-fix-the-builf-error-of-Cannot-use-CP_USE_DOUBLES-on-.patch "
 
-PV = "0.10+git${SRCPV}"
+PV = "1.0+git${SRCPV}"
 SRCREV = "91a333a8809215961744b236183f496ff134ae94"
 
 S = "${WORKDIR}/git"
