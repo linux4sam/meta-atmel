@@ -7,7 +7,7 @@ PACKAGES = "\
     ${PN}-dev \
     ${PN}-dbg \
 "
-DEPENDS = " libegt"
+DEPENDS = " libegt sqlite3-native"
 
 SRC_URI = "git://github.com/linux4sam/egt-thermostat.git;protocol=https"
 
@@ -25,6 +25,11 @@ do_configure_prepend() {
 	${S}/autogen.sh; cd -)
 }
 
+do_install_append() {
+	( cd ${S} && sqlite3 thermostat.db < thermostat.sql; cd - )
+	install -m 0755 -D ${S}/thermostat.db ${D}${datadir}/egt/thermostat/thermostat.db
+}
+
 FILES_${PN} += " \
-    /usr/share/egt/* \
+    ${datadir}/egt/* \
 "
