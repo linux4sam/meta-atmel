@@ -25,7 +25,7 @@ Sources
 - meta-atmel
 URI: git://github.com/linux4sam/meta-atmel.git
 URI: https://github.com/linux4sam/meta-atmel.git
-Branch: zeus
+Branch: dunfell
 
 
 Dependencies
@@ -33,20 +33,20 @@ Dependencies
 This Layer depends on :
 - poky
 URI: git://git.yoctoproject.org/poky
-Branch: zeus
-Tag: 94f6b31befda5c496f65e863a6f8152b42d7ebf0
+Branch: dunfell
+Tag: a44b8d2856a937ca3991cbf566788b0cd541d777
 
 - meta-openembedded
 URI: git://git.openembedded.org/meta-openembedded
 URI: http://cgit.openembedded.org/meta-openembedded/
-Branch: zeus
-Tag: aad5b3d070cd8c58828b0975cf861d8ebc90f460
+Branch: dunfell
+Tag: b5f510e48080b6dc710ff4800feb90ef679c5456
 
 - meta-aws (for AWS Greengrass, mandatory for microchip-* images)
 URI: https://github.com/aws/meta-aws.git
 URI: https://github.com/aws/meta-aws
-Branch: zeus
-Tag: 41cf0c83c55f95e2aef01839ccd599162959a1ad
+Branch: master
+Tag: 48793a3084054fc6d94b7d8e12a091191526a1b5
 
 Build procedure
 ===============
@@ -56,50 +56,55 @@ mkdir my_dir
 cd my_dir
 
 1/ Clone yocto/poky git repository with the proper branch ready
-git clone git://git.yoctoproject.org/poky -b zeus
+git clone git://git.yoctoproject.org/poky -b dunfell
 
 2/ Clone meta-openembedded git repository with the proper branch ready
-git clone git://git.openembedded.org/meta-openembedded -b zeus
+git clone git://git.openembedded.org/meta-openembedded -b dunfell
 
-3/ Clone meta-atmel layer with the proper branch ready
-git clone git://github.com/linux4sam/meta-atmel.git -b zeus
+3/ Clone meta-aws git repository with the proper branch ready
+git clone git://github.com/aws/meta-aws -b master
 
-4/ Enter the poky directory to configure the build system and start the build process
+4/ Clone meta-atmel layer with the proper branch ready
+git clone git://github.com/linux4sam/meta-atmel.git -b dunfell
+
+5/ Enter the poky directory to configure the build system and start the build process
 cd poky
 
-5/ Change TEMPLATECONF from .templateconf to:
+6/ Change TEMPLATECONF from .templateconf to:
 TEMPLATECONF=${TEMPLATECONF:-../meta-atmel/conf}
 
-6/ Initialize build directory
+7/ Initialize build directory
 source oe-init-build-env build-microchip
 
-7/ Build core minimal image
+8/ Build core minimal image
 [MACHINE=<machine>] bitbake core-image-minimal
 
-8/ Build images
+9/ Build images
 [MACHINE=<machine>] bitbake microchip-headless-image
 
 
 Typical bitbake output
 ======================
 Build Configuration:
-BB_VERSION           = "1.44.0"
+BB_VERSION           = "1.46.0"
 BUILD_SYS            = "x86_64-linux"
 NATIVELSBSTRING      = "universal"
 TARGET_SYS           = "arm-poky-linux-gnueabi"
 MACHINE              = "sam9x60ek-sd"
 DISTRO               = "poky-atmel"
-DISTRO_VERSION       = "3.0"
+DISTRO_VERSION       = "3.1"
 TUNE_FEATURES        = "arm armv5 thumb dsp"
 TARGET_FPU           = "soft"
 meta                 
 meta-poky            
-meta-yocto-bsp       = "zeus:94f6b31befda5c496f65e863a6f8152b42d7ebf0"
-meta-atmel           = "zeus:a7fcc7117fe22d7a7398ec9e422e3feabe40d0fb"
+meta-yocto-bsp       = "dunfell:a44b8d2856a937ca3991cbf566788b0cd541d777"
 meta-oe              
 meta-networking      
 meta-python          
-meta-multimedia      = "zeus:aad5b3d070cd8c58828b0975cf861d8ebc90f460"
+meta-initramfs       = "dunfell:b5f510e48080b6dc710ff4800feb90ef679c5456"
+meta-atmel           = "dunfell:2f16c93dbd5e96250b87b4c2809ac44c23eec622"
+meta-multimedia      = "dunfell:b5f510e48080b6dc710ff4800feb90ef679c5456"
+meta-aws             = "master:48793a3084054fc6d94b7d8e12a091191526a1b5"
 
 Contributing
 ============
