@@ -2,14 +2,18 @@ DESCRIPTION = "Microchip libm2d library for 2DGFX LCD controller"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://COPYING;endline=20;md5=b0693ac296607eb1fc06d98b63272885"
 
-DEPENDS += "linux-at91 libdrm cairo"
+DEPENDS += "linux-at91 libdrm"
 
-SRC_URI="ftp://at91.com/pub/src/libm2d-sam9x60_2.0.tar.gz;protocol=ftp"
+SRC_URI = "git://github.com/linux4sam/libm2d.git;protocol=https"
 
-SRC_URI[md5sum] = "7e509aa413e3909a09dffd028965979f"
-SRC_URI[sha256sum] = "bb372e70a3d688024fabe0828c6e2e2529b3f7b944a92f829cf035e8611a7ded"
+SRCREV = "923e28dfe68690085905a1d9d1695cddb56c3ef8"
 
-S = "${WORKDIR}"
+S = "${WORKDIR}/git"
+
+PV = "1.0+git${SRCPV}"
+
+PACKAGECONFIG ??= ""
+PACKAGECONFIG[cairo] = "--enable-cairo,--disable-cairo"
 
 inherit pkgconfig autotools
 
@@ -35,15 +39,15 @@ do_configure_prepend() {
 }
 
 do_install_append() {
-	install -Dm 0644 --target-directory=${D}/usr/lib/		${S}/build/src/libm2d.la
+	install -Dm 0644 --target-directory=${D}/usr/lib/		${B}/src/libm2d.la
 	install -Dm 0644 --target-directory=${D}/usr/include/m2d/	${S}/include/m2d/*
-	install -Dm 0644 --target-directory=${D}/usr/lib/pkgconfig/	${S}/build/libm2d.pc
-	install -Dm 0644 --target-directory=${D}/usr/lib/		${S}/build/src/.libs/libm2d.so.1.0.0
-	install -Dm 0755 --target-directory=${D}/usr/bin/		${S}/build/test/.libs/*
+	install -Dm 0644 --target-directory=${D}/usr/lib/pkgconfig/	${B}/libm2d.pc
+	install -Dm 0644 --target-directory=${D}/usr/lib/		${B}/src/.libs/libm2d.so.1.0.0
+	install -Dm 0755 --target-directory=${D}/usr/bin/		${B}/test/.libs/*
 	install -Dm 0644 --target-directory=${D}/usr/share/libm2d/	${S}/test/*.png
 
 	cd ${D}/usr/lib && ln -s -f libm2d.so.1.0.0 libm2d.so.1
 	cd ${D}/usr/lib && ln -s -f libm2d.so.1.0.0 libm2d.so
 }
 
-COMPATIBLE_MACHINE="sam9x60ek|sam9x60ek-sd"
+COMPATIBLE_MACHINE="sam9x60"
