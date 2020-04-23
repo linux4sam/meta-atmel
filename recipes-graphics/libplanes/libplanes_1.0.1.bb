@@ -12,8 +12,8 @@ SRC_URI = "git://github.com/linux4sam/libplanes.git;protocol=https \
            file://0001-Use-python3-by-default.patch \
           "
 
-PV = "1.0.0+git${SRCPV}"
-SRCREV = "43f441d7e1b6fea89603d2a9b82f5e2696a98c71"
+PV = "1.0.1+git${SRCPV}"
+SRCREV = "34a107790f529a9b55abb924646ca89847679bfc"
 
 S = "${WORKDIR}/git"
 
