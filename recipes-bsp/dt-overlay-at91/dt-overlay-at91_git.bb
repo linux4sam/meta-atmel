@@ -11,7 +11,7 @@ COMPATIBLE_MACHINE = '(sama5d3-xplained|sama5d3-xplained-sd|at91sam9x5ek|at91sam
 SRC_URI = "git://github.com/linux4sam/dt-overlay-at91.git;protocol=https"
 
 PV = "1.0+git${SRCPV}"
-SRCREV = "39971b248ff0cc8778801ee935234dc960909f98"
+SRCREV = "1756e45cef8d02c8489cdb8aa89d14f2bf7df642"
 
 DEPENDS = "virtual/kernel u-boot-mkimage-native dtc-native"
 
