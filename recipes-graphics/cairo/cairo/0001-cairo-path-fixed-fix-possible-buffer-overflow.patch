@@ -1,0 +1,39 @@
+From 8bdd1b95a2440d6d39457ff21f920f3f5642466f Mon Sep 17 00:00:00 2001
+From: Ludovic Desroches <ludovic.desroches@microchip.com>
+Date: Mon, 21 Oct 2019 10:13:36 +0200
+Subject: [PATCH 1/4] cairo-path-fixed: fix possible buffer overflow
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+
+Signed-off-by: Ludovic Desroches <ludovic.desroches@microchip.com>
+---
+ src/cairo-path-fixed.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/src/cairo-path-fixed.c b/src/cairo-path-fixed.c
+index 9e9166cbd..907a46022 100644
+--- a/src/cairo-path-fixed.c
++++ b/src/cairo-path-fixed.c
+@@ -718,15 +718,15 @@ _cairo_path_fixed_add (cairo_path_fixed_t   *path,
+ 	int len = 0;
+ 	int i;
+ 
+-	len += snprintf (buf + len, sizeof (buf), "[");
++	len += snprintf (buf + len, sizeof (buf) - len, "[");
+ 	for (i = 0; i < num_points; i++) {
+ 	    if (i != 0)
+-		len += snprintf (buf + len, sizeof (buf), " ");
+-	    len += snprintf (buf + len, sizeof (buf), "(%f, %f)",
++		len += snprintf (buf + len, sizeof (buf) - len, " ");
++	    len += snprintf (buf + len, sizeof (buf) - len, "(%f, %f)",
+ 			     _cairo_fixed_to_double (points[i].x),
+ 			     _cairo_fixed_to_double (points[i].y));
+ 	}
+-	len += snprintf (buf + len, sizeof (buf), "]");
++	len += snprintf (buf + len, sizeof (buf) - len, "]");
+ 
+ #define STRINGIFYFLAG(x)  (path->x ? #x " " : "")
+ 	fprintf (stderr,
+-- 
+2.25.1
+

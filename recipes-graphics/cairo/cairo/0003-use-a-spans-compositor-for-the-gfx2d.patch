@@ -1,0 +1,1310 @@
+From a1dc97a64ad4c1ed60f7cfcb9dac46af2a83dbe6 Mon Sep 17 00:00:00 2001
+From: Ludovic Desroches <ludovic.desroches@microchip.com>
+Date: Thu, 13 Feb 2020 14:07:34 +0100
+Subject: [PATCH 3/4] use a spans compositor for the gfx2d
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+
+Signed-off-by: Ludovic Desroches <ludovic.desroches@microchip.com>
+---
+ src/Makefile.sources               |   3 +-
+ src/cairo-gfx2d-compositor.c       | 522 -----------------------------
+ src/cairo-gfx2d-private.h          |  16 +
+ src/cairo-gfx2d-spans-compositor.c | 470 ++++++++++++++++++++++++++
+ src/cairo-gfx2d-surface.c          |  79 +++--
+ src/cairo-gfx2d.h                  |   6 +
+ src/cairo.h                        |   1 +
+ 7 files changed, 548 insertions(+), 549 deletions(-)
+ delete mode 100644 src/cairo-gfx2d-compositor.c
+ create mode 100644 src/cairo-gfx2d-spans-compositor.c
+
+diff --git a/src/Makefile.sources b/src/Makefile.sources
+index afda319af..1abcf69cd 100644
+--- a/src/Makefile.sources
++++ b/src/Makefile.sources
+@@ -421,7 +421,8 @@ cairo_directfb_sources = cairo-directfb-surface.c
+ 
+ cairo_gfx2d_headers = cairo-gfx2d.h
+ cairo_gfx2d_private = cairo-gfx2d-private.h
+-cairo_gfx2d_sources = cairo-gfx2d-surface.c cairo-gfx2d-compositor.c
++cairo_gfx2d_sources = cairo-gfx2d-surface.c \
++		      cairo-gfx2d-spans-compositor.c
+ 
+ cairo_drm_headers = cairo-drm.h
+ cairo_drm_private = drm/cairo-drm-private.h \
+diff --git a/src/cairo-gfx2d-compositor.c b/src/cairo-gfx2d-compositor.c
+deleted file mode 100644
+index 1bdb0c046..000000000
+--- a/src/cairo-gfx2d-compositor.c
++++ /dev/null
+@@ -1,522 +0,0 @@
+-/* -*- Mode: c; c-basic-offset: 4; indent-tabs-mode: t; tab-width: 8; -*- */
+-/* cairo - a vector graphics library with display and print output
+- *
+- * Copyright © 2002 University of Southern California
+- * Copyright © 2005 Red Hat, Inc.
+- * Copyright © 2011 Intel Corporation
+- * Copyright © 2019 Microchip Technology Inc.
+- *
+- * This library is free software; you can redistribute it and/or
+- * modify it either under the terms of the GNU Lesser General Public
+- * License version 2.1 as published by the Free Software Foundation
+- * (the "LGPL") or, at your option, under the terms of the Mozilla
+- * Public License Version 1.1 (the "MPL"). If you do not alter this
+- * notice, a recipient may use your version of this file under either
+- * the MPL or the LGPL.
+- *
+- * You should have received a copy of the LGPL along with this library
+- * in the file COPYING-LGPL-2.1; if not, write to the Free Software
+- * Foundation, Inc., 51 Franklin Street, Suite 500, Boston, MA 02110-1335, USA
+- * You should have received a copy of the MPL along with this library
+- * in the file COPYING-MPL-1.1
+- *
+- * The contents of this file are subject to the Mozilla Public License
+- * Version 1.1 (the "License"); you may not use this file except in
+- * compliance with the License. You may obtain a copy of the License at
+- * http://www.mozilla.org/MPL/
+- *
+- * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY
+- * OF ANY KIND, either express or implied. See the LGPL or the MPL for
+- * the specific language governing rights and limitations.
+- *
+- * The Original Code is the cairo graphics library.
+- *
+- * The Initial Developer of the Original Code is University of Southern
+- * California.
+- *
+- * Contributor(s):
+- *	Carl D. Worth <cworth@cworth.org>
+- *	Behdad Esfahbod <behdad@behdad.org>
+- *	Chris Wilson <chris@chris-wilson.co.uk>
+- *	Karl Tomlinson <karlt+@karlt.net>, Mozilla Corporation
+- */
+-
+-#include "cairoint.h"
+-
+-#include "cairo-gfx2d-private.h"
+-
+-#include "cairo-boxes-private.h"
+-#include "cairo-clip-inline.h"
+-#include "cairo-compositor-private.h"
+-#include "cairo-image-surface-private.h"
+-#include "cairo-pattern-private.h"
+-#include "cairo-region-private.h"
+-#include "cairo-surface-offset-private.h"
+-
+-/* the low-level interface */
+-
+-struct _fill_box {
+-    uint32_t color;
+-    struct m2d_buf* buf;
+-    enum m2d_format format;
+-    void* handle;
+-    int pitch;
+-};
+-
+-static cairo_bool_t fill_box (cairo_box_t *box, void *closure)
+-{
+-    struct _fill_box *data = closure;
+-    int x = _cairo_fixed_integer_part (box->p1.x);
+-    int y = _cairo_fixed_integer_part (box->p1.y);
+-    int width  = _cairo_fixed_integer_part (box->p2.x - box->p1.x);
+-    int height = _cairo_fixed_integer_part (box->p2.y - box->p1.y);
+-
+-    struct m2d_surface dst;
+-    dst.buf = data->buf;
+-    dst.format = data->format;
+-    dst.pitch = data->pitch;
+-    dst.x = x;
+-    dst.y = y;
+-    dst.width = width;
+-    dst.height = height;
+-    dst.dir = M2D_XY00;
+-
+-    if (m2d_fill(data->handle, data->color, &dst)) {
+-	return FALSE;
+-    }
+-
+-    return TRUE;
+-}
+-
+-static uint32_t
+-color_to_pixel (const cairo_color_t *c)
+-{
+-    return (((uint32_t)(c->alpha_short) & 0xff) << 24) |
+-	(((uint32_t)(c->red_short) & 0xff) << 16) |
+-	(((uint32_t)(c->green_short) & 0xff) << 8) |
+-		      ((uint32_t)(c->blue_short) & 0xff);
+-}
+-
+-static cairo_int_status_t
+-_fill_box_init (struct _fill_box *fb,
+-		cairo_gfx2d_surface_t *dst,
+-		const cairo_color_t *color)
+-{
+-    fb->buf = dst->m2d_buf;
+-    fb->color = color_to_pixel(color);
+-    fb->format = _cairo_to_gfx2d_format(dst->image.format);
+-    fb->handle = dst->handle;
+-    fb->pitch = m2d_format_pitch(fb->format, dst->image.width);
+-
+-    return CAIRO_INT_STATUS_SUCCESS;
+-}
+-
+-static void
+-_fill_box_fini (struct _fill_box *fb,
+-		cairo_gfx2d_surface_t *dst)
+-{
+-    if (m2d_flush(fb->handle) != 0) {
+-	// TODO
+-    }
+-}
+-
+-static cairo_int_status_t
+-_cairo_gfx2d_fill_boxes (cairo_gfx2d_surface_t    *dst,
+-			     const cairo_color_t     *color,
+-			     cairo_boxes_t	    *boxes)
+-{
+-    cairo_int_status_t status;
+-    struct _fill_box fb;
+-
+-    status = _fill_box_init (&fb, dst, color);
+-    if (unlikely (status))
+-        return status;
+-
+-    _cairo_boxes_for_each_box (boxes, fill_box, &fb);
+-
+-    _fill_box_fini (&fb, dst);
+-    return CAIRO_STATUS_SUCCESS;
+-}
+-
+-static cairo_status_t
+-_cairo_gfx2d_surface_draw_image (cairo_gfx2d_surface_t   *surface,
+-				cairo_image_surface_t  *image,
+-				int                    src_x,
+-				int                    src_y,
+-				int                    width,
+-				int                    height,
+-				int                    dst_x,
+-				int                    dst_y)
+-{
+-    // todo
+-    return CAIRO_STATUS_SUCCESS;
+-}
+-
+-struct _fallback_box {
+-    cairo_gfx2d_surface_t	*dst;
+-    cairo_format_t		 format;
+-    const cairo_pattern_t	*pattern;
+-};
+-
+-static cairo_bool_t fallback_box (cairo_box_t *box, void *closure)
+-{
+-    struct _fallback_box *data = closure;
+-    int x = _cairo_fixed_integer_part (box->p1.x);
+-    int y = _cairo_fixed_integer_part (box->p1.y);
+-    int width  = _cairo_fixed_integer_part (box->p2.x - box->p1.x);
+-    int height = _cairo_fixed_integer_part (box->p2.y - box->p1.y);
+-    cairo_surface_t *image;
+-    cairo_status_t status;
+-
+-    image = cairo_surface_create_similar_image (&data->dst->image.base, data->format,
+-						width, height);
+-    status = _cairo_surface_offset_paint (image, x, y,
+-					  CAIRO_OPERATOR_SOURCE,
+-					  data->pattern, NULL);
+-    if (status == CAIRO_STATUS_SUCCESS) {
+-	status = _cairo_gfx2d_surface_draw_image (data->dst,
+-						 (cairo_image_surface_t *)image,
+-						 0, 0,
+-						 width, height,
+-						 x, y);
+-    }
+-    cairo_surface_destroy (image);
+-
+-    return status == CAIRO_STATUS_SUCCESS;
+-}
+-
+-static cairo_int_status_t
+-fallback_boxes (cairo_gfx2d_surface_t	*dst,
+-		const cairo_pattern_t	*pattern,
+-		cairo_boxes_t		*boxes)
+-{
+-    struct _fallback_box fb;
+-
+-    fb.dst = dst;
+-    fb.format = dst->image.format;
+-    fb.pattern = pattern;
+-
+-    if (! _cairo_boxes_for_each_box (boxes, fallback_box, &fb))
+-	return CAIRO_INT_STATUS_UNSUPPORTED;
+-
+-    return CAIRO_STATUS_SUCCESS;
+-}
+-
+-static cairo_int_status_t
+-render_boxes (cairo_gfx2d_surface_t	*dst,
+-	      const cairo_pattern_t	*pattern,
+-	      cairo_boxes_t		*boxes)
+-{
+-    if (pattern->filter != CAIRO_FILTER_NEAREST)
+-	return fallback_boxes (dst, pattern, boxes);
+-
+-    switch (pattern->extend) {
+-    default:
+-    case CAIRO_EXTEND_NONE:
+-    case CAIRO_EXTEND_REFLECT:
+-    case CAIRO_EXTEND_PAD:
+-	return fallback_boxes (dst, pattern, boxes);
+-
+-    case CAIRO_EXTEND_REPEAT:
+-	return fallback_boxes (dst, pattern, boxes);
+-    }
+-}
+-
+-/* the mid-level: converts boxes into drawing operations */
+-
+-struct _box_data {
+-    cairo_gfx2d_surface_t *dst;
+-    cairo_surface_t *src;
+-    int tx, ty;
+-    int width, height;
+-    void* handle;
+-};
+-
+-static cairo_bool_t source_contains_box (cairo_box_t *box, void *closure)
+-{
+-    struct _box_data *data = closure;
+-
+-    /* The box is pixel-aligned so the truncation is safe. */
+-    return
+-	_cairo_fixed_integer_part (box->p1.x) + data->tx >= 0 &&
+-	_cairo_fixed_integer_part (box->p1.y) + data->ty >= 0 &&
+-	_cairo_fixed_integer_part (box->p2.x) + data->tx <= data->width &&
+-	_cairo_fixed_integer_part (box->p2.y) + data->ty <= data->height;
+-}
+-
+-static cairo_bool_t image_upload_box (cairo_box_t *box, void *closure)
+-{
+-    const struct _box_data *iub = closure;
+-    int x = _cairo_fixed_integer_part (box->p1.x);
+-    int y = _cairo_fixed_integer_part (box->p1.y);
+-    int width  = _cairo_fixed_integer_part (box->p2.x - box->p1.x);
+-    int height = _cairo_fixed_integer_part (box->p2.y - box->p1.y);
+-
+-    return _cairo_gfx2d_surface_draw_image (iub->dst,
+-					   (cairo_image_surface_t *)iub->src,
+-					   x + iub->tx, y + iub->ty,
+-					   width, height,
+-					   x, y) == CAIRO_STATUS_SUCCESS;
+-}
+-
+-static cairo_status_t
+-upload_image_inplace (cairo_gfx2d_surface_t *dst,
+-		      const cairo_pattern_t *source,
+-		      cairo_boxes_t *boxes)
+-{
+-    const cairo_surface_pattern_t *pattern;
+-    struct _box_data iub;
+-    cairo_image_surface_t *image;
+-
+-    if (source->type != CAIRO_PATTERN_TYPE_SURFACE)
+-	return CAIRO_INT_STATUS_UNSUPPORTED;
+-
+-    pattern = (const cairo_surface_pattern_t *) source;
+-    if (pattern->surface->type != CAIRO_SURFACE_TYPE_IMAGE)
+-	return CAIRO_INT_STATUS_UNSUPPORTED;
+-
+-    image = (cairo_image_surface_t *) pattern->surface;
+-    if (image->format == CAIRO_FORMAT_INVALID)
+-	return CAIRO_INT_STATUS_UNSUPPORTED;
+-
+-    if (! _cairo_matrix_is_integer_translation (&source->matrix,
+-						&iub.tx, &iub.ty))
+-	return CAIRO_INT_STATUS_UNSUPPORTED;
+-
+-    iub.dst = dst;
+-    iub.src = &image->base;
+-    iub.width  = image->width;
+-    iub.height = image->height;
+-
+-    /* First check that the data is entirely within the image */
+-    if (! _cairo_boxes_for_each_box (boxes, source_contains_box, &iub))
+-	return CAIRO_INT_STATUS_UNSUPPORTED;
+-
+-    if (! _cairo_boxes_for_each_box (boxes, image_upload_box, &iub))
+-	return CAIRO_INT_STATUS_UNSUPPORTED;
+-
+-    return CAIRO_STATUS_SUCCESS;
+-}
+-
+-static cairo_bool_t copy_box (cairo_box_t *box, void *closure)
+-{
+-    const struct _box_data *cb = closure;
+-    cairo_gfx2d_surface_t* s = (cairo_gfx2d_surface_t *)cb->src;
+-    int x = _cairo_fixed_integer_part (box->p1.x);
+-    int y = _cairo_fixed_integer_part (box->p1.y);
+-    int width  = _cairo_fixed_integer_part (box->p2.x - box->p1.x);
+-    int height = _cairo_fixed_integer_part (box->p2.y - box->p1.y);
+-    struct m2d_surface src;
+-    struct m2d_surface dst;
+-
+-    src.buf = s->m2d_buf;
+-    src.format = _cairo_to_gfx2d_format(s->image.format);
+-    src.pitch = m2d_format_pitch(src.format, s->image.width);
+-    src.x = cb->tx;
+-    src.y = cb->ty;
+-    src.width = width;
+-    src.height = height;
+-    src.dir = M2D_XY00;
+-
+-    dst.buf = cb->dst->m2d_buf;
+-    dst.format = _cairo_to_gfx2d_format(cb->dst->image.format);
+-    dst.pitch = m2d_format_pitch(dst.format, cb->dst->image.width);
+-    dst.x = x;
+-    dst.y = y;
+-    dst.width = width;
+-    dst.height = height;
+-    dst.dir = M2D_XY00;
+-
+-    if (m2d_copy(cb->handle, &src, &dst)) {
+-	return FALSE;
+-    }
+-
+-    if (m2d_flush(cb->handle) != 0) {
+-	// TODO
+-    }
+-
+-    return TRUE;
+-}
+-
+-static cairo_status_t
+-copy_boxes (cairo_gfx2d_surface_t *dst,
+-	    const cairo_pattern_t *source,
+-	    cairo_boxes_t *boxes)
+-{
+-    const cairo_surface_pattern_t *pattern;
+-    struct _box_data cb;
+-    cairo_gfx2d_surface_t *src;
+-    cairo_status_t status;
+-
+-    if (source->type != CAIRO_PATTERN_TYPE_SURFACE)
+-	return CAIRO_INT_STATUS_UNSUPPORTED;
+-
+-    pattern = (const cairo_surface_pattern_t *) source;
+-    if (pattern->surface->backend->type != CAIRO_SURFACE_TYPE_GFX2D)
+-	return CAIRO_INT_STATUS_UNSUPPORTED;
+-
+-    src = (cairo_gfx2d_surface_t *) pattern->surface;
+-
+-    if (! _cairo_matrix_is_integer_translation (&source->matrix,
+-						&cb.tx, &cb.ty))
+-	return CAIRO_INT_STATUS_UNSUPPORTED;
+-
+-    cb.dst = dst;
+-    cb.src = &src->image.base;
+-    cb.width  = src->image.width;
+-    cb.height = src->image.height;
+-    cb.handle = src->handle;
+-
+-    /* First check that the data is entirely within the image */
+-    if (! _cairo_boxes_for_each_box (boxes, source_contains_box, &cb))
+-	return CAIRO_INT_STATUS_UNSUPPORTED;
+-
+-    status = CAIRO_STATUS_SUCCESS;
+-    if (! _cairo_boxes_for_each_box (boxes, copy_box, &cb))
+-	status = CAIRO_INT_STATUS_UNSUPPORTED;
+-
+-    return status;
+-}
+-
+-static cairo_status_t
+-draw_boxes (cairo_composite_rectangles_t *extents,
+-	    cairo_boxes_t *boxes)
+-{
+-    cairo_gfx2d_surface_t *dst = (cairo_gfx2d_surface_t *)extents->surface;
+-    cairo_operator_t op = extents->op;
+-    const cairo_pattern_t *src = &extents->source_pattern.base;
+-    cairo_int_status_t status;
+-
+-    if (boxes->num_boxes == 0 && extents->is_bounded)
+-	return CAIRO_STATUS_SUCCESS;
+-
+-    if (! boxes->is_pixel_aligned)
+-	return CAIRO_INT_STATUS_UNSUPPORTED;
+-
+-    if (op == CAIRO_OPERATOR_CLEAR)
+-	op = CAIRO_OPERATOR_SOURCE;
+-
+-    if (op == CAIRO_OPERATOR_OVER &&
+-	_cairo_pattern_is_opaque (src, &extents->bounded))
+-	op = CAIRO_OPERATOR_SOURCE;
+-
+-    if (dst->image.base.is_clear && op == CAIRO_OPERATOR_OVER)
+-	op = CAIRO_OPERATOR_SOURCE;
+-
+-    if (op != CAIRO_OPERATOR_SOURCE)
+-	return CAIRO_INT_STATUS_UNSUPPORTED;
+-
+-    if (src->type == CAIRO_PATTERN_TYPE_SOLID) {
+-	status = _cairo_gfx2d_fill_boxes(dst,
+-					 &((cairo_solid_pattern_t *) src)->color,
+-					 boxes);
+-    } else {
+-	status = upload_image_inplace (dst, src, boxes);
+-	if (status == CAIRO_INT_STATUS_UNSUPPORTED)
+-	    status = copy_boxes (dst, src, boxes);
+-	if (status == CAIRO_INT_STATUS_UNSUPPORTED)
+-	    status = render_boxes (dst, src, boxes);
+-    }
+-
+-    return status;
+-}
+-
+-/* high-level compositor interface */
+-
+-static cairo_int_status_t
+-_cairo_gfx2d_compositor_paint (const cairo_compositor_t	*compositor,
+-				   cairo_composite_rectangles_t *extents)
+-{
+-    cairo_int_status_t status;
+-
+-    status = CAIRO_INT_STATUS_UNSUPPORTED;
+-    if (_cairo_clip_is_region (extents->clip)) {
+-	cairo_boxes_t boxes;
+-
+-	 _cairo_clip_steal_boxes (extents->clip, &boxes);
+-	 status = draw_boxes (extents, &boxes);
+-	 _cairo_clip_unsteal_boxes (extents->clip, &boxes);
+-    }
+-
+-    return status;
+-}
+-
+-static cairo_int_status_t
+-_cairo_gfx2d_compositor_stroke (const cairo_compositor_t	*compositor,
+-				    cairo_composite_rectangles_t *extents,
+-				    const cairo_path_fixed_t	*path,
+-				    const cairo_stroke_style_t	*style,
+-				    const cairo_matrix_t	*ctm,
+-				    const cairo_matrix_t	*ctm_inverse,
+-				    double			 tolerance,
+-				    cairo_antialias_t		 antialias)
+-{
+-    cairo_int_status_t status;
+-
+-    status = CAIRO_INT_STATUS_UNSUPPORTED;
+-    if (extents->clip->path == NULL &&
+-	_cairo_path_fixed_stroke_is_rectilinear (path)) {
+-	cairo_boxes_t boxes;
+-
+-	_cairo_boxes_init_with_clip (&boxes, extents->clip);
+-	status = _cairo_path_fixed_stroke_rectilinear_to_boxes (path,
+-								style,
+-								ctm,
+-								antialias,
+-								&boxes);
+-	if (likely (status == CAIRO_INT_STATUS_SUCCESS))
+-	    status = draw_boxes (extents, &boxes);
+-	_cairo_boxes_fini (&boxes);
+-    }
+-
+-    return status;
+-}
+-
+-static cairo_int_status_t
+-_cairo_gfx2d_compositor_fill (const cairo_compositor_t	*compositor,
+-				  cairo_composite_rectangles_t	*extents,
+-				  const cairo_path_fixed_t	*path,
+-				  cairo_fill_rule_t		 fill_rule,
+-				  double			 tolerance,
+-				  cairo_antialias_t		 antialias)
+-{
+-    cairo_int_status_t status;
+-
+-    status = CAIRO_INT_STATUS_UNSUPPORTED;
+-    if (extents->clip->path == NULL &&
+-	_cairo_path_fixed_fill_is_rectilinear (path)) {
+-	cairo_boxes_t boxes;
+-
+-	_cairo_boxes_init_with_clip (&boxes, extents->clip);
+-	status = _cairo_path_fixed_fill_rectilinear_to_boxes (path,
+-							      fill_rule,
+-							      antialias,
+-							      &boxes);
+-	if (likely (status == CAIRO_INT_STATUS_SUCCESS))
+-	    status = draw_boxes (extents, &boxes);
+-	_cairo_boxes_fini (&boxes);
+-    }
+-
+-    return status;
+-}
+-
+-const cairo_compositor_t *
+-_cairo_gfx2d_compositor_get (void)
+-{
+-    static cairo_atomic_once_t once = CAIRO_ATOMIC_ONCE_INIT;
+-    static cairo_compositor_t compositor;
+-
+-    if (_cairo_atomic_init_once_enter(&once)) {
+-	compositor.delegate = &_cairo_fallback_compositor;
+-
+-	compositor.paint = _cairo_gfx2d_compositor_paint;
+-	compositor.mask  = NULL;
+-	compositor.stroke = _cairo_gfx2d_compositor_stroke;
+-	compositor.fill  = _cairo_gfx2d_compositor_fill;
+-	compositor.glyphs = NULL;
+-
+-	_cairo_atomic_init_once_leave(&once);
+-    }
+-
+-    return &compositor;
+-}
+diff --git a/src/cairo-gfx2d-private.h b/src/cairo-gfx2d-private.h
+index e8ee6f4b1..f21bbf4d7 100644
+--- a/src/cairo-gfx2d-private.h
++++ b/src/cairo-gfx2d-private.h
+@@ -7,15 +7,31 @@
+ #include <m2d/m2d.h>
+ #include <m2d/utils.h>
+ 
++/**
++ * cairo_gfx2d_surface_t:
++ * @image: a cairo_image_surface.
++ * @m2d_buf: surface 0 i.e. the output, the destination.
++ * @m2d_surface1: for COPY the source, for BLEND the source 0 Cd,
++ * for ROP the source S.
++ * @m2d_surface2: for BLEND the source 1 Cs, for ROP the pattern P.
++ * @m2d_surface3: for ROP the mask M.
++ * @handle: handle for libm2d.
++ **/
+ typedef struct _cairo_gfx2d_surface {
+     cairo_image_surface_t image;
+     struct m2d_buf *m2d_buf;
++    struct m2d_buf *m2d_surface1;
++    struct m2d_buf *m2d_surface2;
++    struct m2d_buf *m2d_surface3;
+     void* handle;
+ } cairo_gfx2d_surface_t;
+ 
+ const cairo_compositor_t *
+ _cairo_gfx2d_compositor_get (void);
+ 
++const cairo_compositor_t *
++_cairo_gfx2d_span_compositor_get (void);
++
+ enum m2d_format
+ _cairo_to_gfx2d_format(cairo_format_t format);
+ 
+diff --git a/src/cairo-gfx2d-spans-compositor.c b/src/cairo-gfx2d-spans-compositor.c
+new file mode 100644
+index 000000000..61ecf9b3a
+--- /dev/null
++++ b/src/cairo-gfx2d-spans-compositor.c
+@@ -0,0 +1,470 @@
++#include "cairo.h"
++#include "cairoint.h"
++#include "cairo-spans-compositor-private.h"
++#include "cairo-gfx2d-private.h"
++
++static uint32_t
++color_to_pixel (const cairo_color_t *c)
++{
++    return (((uint32_t)(c->alpha_short) >> 8) << 24)
++           | (((uint32_t)(c->red_short) >> 8) << 16)
++           | (((uint32_t)(c->green_short) >> 8) << 8)
++           | ((uint32_t)(c->blue_short) >> 8);
++}
++
++typedef struct _cairo_gfx2d_span_renderer {
++    cairo_span_renderer_t base;
++
++    struct m2d_buf *s0;
++    struct m2d_buf *s1;
++    struct m2d_buf *s2;
++    struct m2d_buf *s3;
++    enum m2d_format format;
++    uint32_t width;
++    int pitch;
++    cairo_color_t color;
++    void *handle;
++    int status;
++    uint32_t _x;
++    uint32_t _y;
++    uint32_t _width;
++    uint32_t _height;
++    cairo_bool_t need_blend;
++} cairo_gfx2d_span_renderer_t;
++
++static cairo_int_status_t
++_cairo_gfx2d_fill_boxes (void                *surface,
++                         cairo_operator_t     op,
++                         const cairo_color_t *color,
++                         cairo_boxes_t       *boxes)
++{
++    cairo_gfx2d_surface_t *s = (cairo_gfx2d_surface_t *)surface;
++    const struct _cairo_boxes_chunk *chunk;
++    int i;
++
++    TRACE ((stderr, "%s (op=%d)\n", __FUNCTION__, op));
++
++    for (chunk = &boxes->chunks; chunk; chunk = chunk->next) {
++        for (i = 0; i < chunk->count; i++) {
++            int x1 = _cairo_fixed_integer_part (chunk->base[i].p1.x);
++            int y1 = _cairo_fixed_integer_part (chunk->base[i].p1.y);
++            int x2 = _cairo_fixed_integer_part (chunk->base[i].p2.x);
++            int y2 = _cairo_fixed_integer_part (chunk->base[i].p2.y);
++
++            if (op == CAIRO_OPERATOR_SOURCE || op == CAIRO_OPERATOR_CLEAR) {
++                struct m2d_surface dst;
++
++                dst.buf = s->m2d_buf;
++                dst.format = _cairo_to_gfx2d_format(s->image.format);
++                dst.pitch = m2d_format_pitch(dst.format, s->image.width);
++                dst.x = x1;
++                dst.y = y1;
++                dst.width = x2 - x1;
++                dst.height = y2 - y1;
++                dst.dir = M2D_XY00;
++
++                m2d_fill(s->handle, color_to_pixel (color), &dst);
++            } else if (op == CAIRO_OPERATOR_OVER) {
++                /* Cairo uses pre-multiplied alpha value so alpha blending
++                 * equations are:
++                 * outA = srcA + dstA (1 - srcA)
++                 * outRGB = srcRGB + dstRGB (1 -srcA)
++                 */
++                struct m2d_surface cf, cd, cs;
++
++                cf.buf = s->m2d_buf;
++                cf.format = _cairo_to_gfx2d_format(s->image.format);
++                cf.pitch = m2d_format_pitch(cf.format, s->image.width);
++                cf.x = x1;
++                cf.y = y1;
++                cf.width = x2 - x1;
++                cf.height = y2 - y1;
++                cf.dir = M2D_XY00;
++                cf.fact = M2D_ONE_MINUS_SRC_ALPHA;
++
++                cd.buf = s->m2d_buf;
++                cd.format = _cairo_to_gfx2d_format(s->image.format);
++                cd.pitch = m2d_format_pitch(cd.format, s->image.width);
++                cd.x = x1;
++                cd.y = y1;
++                cd.fact = M2D_ONE;
++
++                cs.buf = s->m2d_surface1;
++                cs.format = _cairo_to_gfx2d_format(CAIRO_FORMAT_ARGB32);
++                cs.pitch = m2d_format_pitch(cs.format, s->image.width);
++                cs.x = x1;
++                cs.y = y1;
++                cs.width = x2 - x1;
++                cs.height = y2 - y1;
++                cs.dir = M2D_XY00;
++                m2d_fill(s->handle, color_to_pixel (color), &cs);
++
++                m2d_blend(s->handle, &cd, &cs, &cf, M2D_BLEND_ADD);
++            } else {
++                m2d_flush(s->handle);
++                return CAIRO_INT_STATUS_UNSUPPORTED;
++            }
++	}
++    }
++
++    m2d_flush(s->handle);
++    return CAIRO_INT_STATUS_SUCCESS;
++}
++
++static cairo_int_status_t
++_cairo_gfx2d_draw_image_boxes (void                  *surface,
++                               cairo_image_surface_t *image,
++                               cairo_boxes_t         *boxes,
++                               int                    dx,
++                               int                    dy)
++{
++    cairo_gfx2d_surface_t *s = (cairo_gfx2d_surface_t *)surface;
++
++    TRACE ((stderr, "%s\n", __FUNCTION__));
++
++    m2d_flush(s->handle);
++    return CAIRO_INT_STATUS_UNSUPPORTED;
++}
++
++static cairo_int_status_t
++_cairo_gfx2d_copy_boxes (void                        *surface,
++                         cairo_surface_t             *src,
++                         cairo_boxes_t               *boxes,
++                         const cairo_rectangle_int_t *extents,
++                         int                          dx,
++                         int                          dy)
++{
++    cairo_gfx2d_surface_t *d = (cairo_gfx2d_surface_t *)surface;
++    cairo_gfx2d_surface_t *s = (cairo_gfx2d_surface_t *)src;
++    const struct _cairo_boxes_chunk *chunk;
++
++    TRACE ((stderr, "%s\n", __FUNCTION__));
++
++    for (chunk = &boxes->chunks; chunk; chunk = chunk->next) {
++        int i;
++
++        for (i = 0; i < chunk->count; i++) {
++            int x1 = _cairo_fixed_integer_part (chunk->base[i].p1.x);
++            int y1 = _cairo_fixed_integer_part (chunk->base[i].p1.y);
++            int x2 = _cairo_fixed_integer_part (chunk->base[i].p2.x);
++            int y2 = _cairo_fixed_integer_part (chunk->base[i].p2.y);
++            struct m2d_surface src, dst;
++
++            src.buf = s->m2d_buf;
++            src.format = _cairo_to_gfx2d_format(s->image.format);
++            src.pitch = m2d_format_pitch(src.format, s->image.width);
++            src.x = x1;
++            src.y = y1;
++
++            dst.buf = d->m2d_buf;
++            dst.format = _cairo_to_gfx2d_format(d->image.format);
++            dst.pitch = m2d_format_pitch(dst.format, d->image.width);
++            dst.x = x1;
++            dst.y = y1;
++            dst.width = x2 - x1;
++            dst.height = y2 - y1;
++            dst.dir = M2D_XY00;
++
++            m2d_copy(d->handle, &src, &dst);
++        }
++    }
++
++    m2d_flush(s->handle);
++    return CAIRO_INT_STATUS_SUCCESS;
++}
++
++#define DEFINE_NIL_SURFACE(status, name)			\
++const cairo_surface_t name = {					\
++    NULL,				/* backend */		\
++    NULL,				/* device */		\
++    CAIRO_SURFACE_TYPE_IMAGE,		/* type */		\
++    CAIRO_CONTENT_COLOR,		/* content */		\
++    CAIRO_REFERENCE_COUNT_INVALID,	/* ref_count */		\
++    status,				/* status */		\
++    0,					/* unique id */		\
++    0,					/* serial */		\
++    NULL,				/* damage */		\
++    FALSE,				/* _finishing */	\
++    FALSE,				/* finished */		\
++    TRUE,				/* is_clear */		\
++    FALSE,				/* has_font_options */	\
++    FALSE,				/* owns_device */ \
++    FALSE,                              /* is_vector */ \
++    { 0, 0, 0, NULL, },			/* user_data */		\
++    { 0, 0, 0, NULL, },			/* mime_data */         \
++    { 1.0, 0.0, 0.0, 1.0, 0.0, 0.0 },   /* device_transform */	\
++    { 1.0, 0.0,	0.0, 1.0, 0.0, 0.0 },	/* device_transform_inverse */	\
++    { NULL, NULL },			/* device_transform_observers */ \
++    0.0,				/* x_resolution */	\
++    0.0,				/* y_resolution */	\
++    0.0,				/* x_fallback_resolution */	\
++    0.0,				/* y_fallback_resolution */	\
++    NULL,				/* snapshot_of */	\
++    NULL,				/* snapshot_detach */	\
++    { NULL, NULL },			/* snapshots */		\
++    { NULL, NULL },			/* snapshot */		\
++    { CAIRO_ANTIALIAS_DEFAULT,		/* antialias */		\
++      CAIRO_SUBPIXEL_ORDER_DEFAULT,	/* subpixel_order */	\
++      CAIRO_LCD_FILTER_DEFAULT,		/* lcd_filter */	\
++      CAIRO_HINT_STYLE_DEFAULT,		/* hint_style */	\
++      CAIRO_HINT_METRICS_DEFAULT,	/* hint_metrics */	\
++      CAIRO_ROUND_GLYPH_POS_DEFAULT	/* round_glyph_positions */	\
++    }					/* font_options */	\
++}
++static DEFINE_NIL_SURFACE(CAIRO_INT_STATUS_UNSUPPORTED, _cairo_surface_nil_unsupported);
++
++static cairo_surface_t *
++_cairo_gfx2d_pattern_to_surface (cairo_surface_t             *dst,
++                                 const cairo_pattern_t       *pattern,
++                                 cairo_bool_t                 is_mask,
++                                 const cairo_rectangle_int_t *extents,
++                                 const cairo_rectangle_int_t *sample,
++                                 int                         *src_x,
++                                 int                         *src_y)
++{
++    cairo_gfx2d_surface_t *s = (cairo_gfx2d_surface_t *)dst;
++
++    TRACE ((stderr, "%s\n", __FUNCTION__));
++
++    m2d_flush(s->handle);
++    return &_cairo_surface_nil_unsupported;
++}
++
++static cairo_int_status_t
++_cairo_gfx2d_composite_boxes (void                        *surface,
++                              cairo_operator_t             op,
++                              cairo_surface_t             *source,
++                              cairo_surface_t             *mask,
++                              int                          src_x,
++                              int                          src_y,
++                              int                          mask_x,
++                              int                          mask_y,
++                              int                          dst_x,
++                              int                          dst_y,
++                              cairo_boxes_t               *boxes,
++                              const cairo_rectangle_int_t *extents)
++{
++    cairo_gfx2d_surface_t *s = (cairo_gfx2d_surface_t *)surface;
++
++    TRACE ((stderr, "%s op=%u\n", __FUNCTION__, op));
++
++    m2d_flush(s->handle);
++    return CAIRO_INT_STATUS_UNSUPPORTED;
++}
++
++void
++_cairo_gfx2d_fill_rectangle (cairo_gfx2d_span_renderer_t *r,
++                             int                         x1,
++                             int                         y1,
++                             int                         x2,
++                             int                         y2,
++                             uint8_t                     opacity)
++{
++    struct m2d_surface dst;
++    uint32_t color;
++
++    TRACE ((stderr, "%s: (%d,%d)-(%d,%d) %d\n",
++	    __FUNCTION__, x1, y1, x2, y2, opacity));
++
++    /* During renderer_init, the surface has been initialized with the color
++     * and the alpha value is set to 0.
++     */
++    dst.buf = r->s1;
++    dst.format = _cairo_to_gfx2d_format(CAIRO_FORMAT_ARGB32);
++    dst.pitch = m2d_format_pitch(dst.format, r->width);
++    dst.x = x1;
++    dst.y = y1;
++    dst.width = x2 - x1;
++    dst.height = y2 - y1;
++    dst.dir = M2D_XY00;
++    color = color_to_pixel (&r->color);
++    if (opacity) {
++        color &= 0x00FFFFFF;
++        color |= opacity << 24;
++    }
++
++    m2d_fill(r->handle, color, &dst);
++}
++
++static cairo_status_t
++_cairo_gfx2d_render_rows (void                         *_r,
++                          int                           y,
++                          int                           height,
++                          const cairo_half_open_span_t *spans,
++                          unsigned                      num_spans)
++{
++    cairo_gfx2d_span_renderer_t *r = (cairo_gfx2d_span_renderer_t *) _r;
++    int x1, y1, y2;
++    uint8_t opacity;
++
++    TRACE ((stderr, "%s: y=%d, height=%d, num_spans=%u\n",
++            __FUNCTION__, y, height, num_spans));
++
++    if (num_spans == 0)
++        return CAIRO_STATUS_SUCCESS;
++
++    x1 = spans[0].x;
++    y1 = y;
++    y2 = y + height;
++    do {
++        if (spans[0].coverage) {
++	    opacity = r->color.alpha * spans[0].coverage;
++            _cairo_gfx2d_fill_rectangle(r, spans[0].x, y1, spans[1].x, y2, opacity);
++	}
++
++        spans++;
++    } while (--num_spans > 1);
++
++    return CAIRO_STATUS_SUCCESS;
++}
++
++static cairo_int_status_t
++_cairo_gfx2d_renderer_init (cairo_abstract_span_renderer_t     *_r,
++                            const cairo_composite_rectangles_t *extents,
++                            cairo_antialias_t                   antialias,
++                            cairo_bool_t                        needs_clip)
++{
++    const cairo_pattern_t *source = &extents->source_pattern.base;
++    cairo_operator_t op = extents->op;
++    cairo_gfx2d_surface_t *dest = (cairo_gfx2d_surface_t *) extents->surface;
++    cairo_gfx2d_span_renderer_t *r = (cairo_gfx2d_span_renderer_t *) _r;
++
++    TRACE ((stderr, "%s\n", __FUNCTION__));
++
++    r->status = 0;
++
++    if (op != CAIRO_OPERATOR_SOURCE && op!= CAIRO_OPERATOR_OVER) {
++        TRACE ((stderr, "%s: op (%d) not supported\n", __FUNCTION__, op));
++	return CAIRO_INT_STATUS_UNSUPPORTED;
++    }
++
++    if (source->type != CAIRO_PATTERN_TYPE_SOLID) {
++        TRACE ((stderr, "%s: source type (%d) not supported\n",
++	        __FUNCTION__, source->type));
++        return CAIRO_INT_STATUS_UNSUPPORTED;
++    }
++
++    r->status = 1;
++
++    r->format = _cairo_to_gfx2d_format(dest->image.format);
++    r->width = dest->image.width;
++    r->pitch = m2d_format_pitch(r->format, dest->image.width);
++    r->color = extents->source_pattern.solid.color;
++    r->s0 = dest->m2d_buf;
++    r->s1 = dest->m2d_surface1;
++    r->handle = dest->handle;
++    r->_x = extents->mask.x;
++    r->_y = extents->mask.y;
++    r->_width = extents->mask.width;
++    r->_height = extents->mask.height;
++
++    /* if antialiasing is enabled, alpha blending will be needed */
++    if (r->color.alpha < 1.0 || antialias != CAIRO_ANTIALIAS_NONE) {
++        int x = extents->mask.x, y = extents->mask.y;
++        int width = extents->mask.width, height = extents->mask.height;
++        struct m2d_surface cs;
++        uint32_t color = 0;
++
++        r->base.render_rows = _cairo_gfx2d_render_rows;
++        /* prefer straight alpha to manage final alpha value with coverage */
++        r->color.red_short = _cairo_color_double_to_short (r->color.red);
++        r->color.green_short = _cairo_color_double_to_short (r->color.green);
++        r->color.blue_short = _cairo_color_double_to_short (r->color.blue);
++	r->need_blend = TRUE;
++
++        /* prepare the alpha blending source surface */
++        cs.buf = r->s1;
++        cs.format = _cairo_to_gfx2d_format(CAIRO_FORMAT_ARGB32);
++        cs.pitch = m2d_format_pitch(cs.format, r->width);
++        cs.x = x;
++        cs.y = y;
++        cs.width = width;
++        cs.height = height;
++        cs.dir = M2D_XY00;
++        color = (r->color.red_short >> 8) << 16
++                | (r->color.green_short >> 8) << 8
++                | (r->color.blue_short >> 8);
++        m2d_fill(r->handle, color, &cs);
++        m2d_flush(r->handle);
++    } else {
++        //TODO
++        //r->base.render_rows = _cairo_gfx2d_render_opaque_rows;
++        TRACE ((stderr, "%s: opaque row rendering not supported yet\n", __FUNCTION__));
++	r->need_blend = FALSE;
++        return CAIRO_INT_STATUS_UNSUPPORTED;
++    }
++
++    return CAIRO_INT_STATUS_SUCCESS;
++}
++
++static void
++_cairo_gfx2d_renderer_fini (cairo_abstract_span_renderer_t *_r,
++                            cairo_int_status_t              status)
++{
++    cairo_gfx2d_span_renderer_t *r = (cairo_gfx2d_span_renderer_t *) _r;
++    if (!r->status) {
++        TRACE ((stderr, "%s do nothing init not supported\n", __FUNCTION__));
++        return;
++    }
++
++    TRACE ((stderr, "%s\n", __FUNCTION__));
++
++    if (r->need_blend) {
++        int x = r->_x, y = r->_y;
++        int width = r->_width, height = r->_height;
++        struct m2d_surface cf, cd, cs;
++
++        cf.buf = r->s0;
++        cf.format = r->format;
++        cf.pitch = m2d_format_pitch(cf.format, r->width);
++        cf.x = x;
++        cf.y = y;
++        cf.width = width;
++        cf.height = height;
++        cf.dir = M2D_XY00;
++        cf.fact = M2D_ONE_MINUS_SRC_ALPHA;
++
++        cd.buf = r->s0;
++        cd.format = r->format;
++        cd.pitch = m2d_format_pitch(cd.format, r->width);
++        cd.x = x;
++        cd.y = y;
++        /* We have an alpha-straight source. */
++        cd.fact = M2D_SRC_ALPHA;
++
++        cs.buf = r->s1;
++        cs.format = _cairo_to_gfx2d_format(CAIRO_FORMAT_ARGB32);
++        cs.pitch = m2d_format_pitch(cs.format, r->width);
++        cs.x = x;
++        cs.y = y;
++        cs.width = width;
++        cs.height = height;
++        cs.dir = M2D_XY00;
++
++        m2d_blend(r->handle, &cd, &cs, &cf, M2D_BLEND_ADD);
++        m2d_flush(r->handle);
++    }
++}
++
++const cairo_compositor_t *
++_cairo_gfx2d_span_compositor_get (void)
++{
++    static cairo_atomic_once_t once = CAIRO_ATOMIC_ONCE_INIT;
++    static cairo_spans_compositor_t spans;
++
++    TRACE ((stderr, "%s\n", __FUNCTION__));
++    if (_cairo_atomic_init_once_enter (&once)) {
++        _cairo_spans_compositor_init (&spans, &_cairo_fallback_compositor);
++        spans.fill_boxes         = _cairo_gfx2d_fill_boxes;
++        spans.draw_image_boxes   = _cairo_gfx2d_draw_image_boxes;
++        spans.copy_boxes         = _cairo_gfx2d_copy_boxes;
++        spans.pattern_to_surface = _cairo_gfx2d_pattern_to_surface;
++        spans.composite_boxes    = _cairo_gfx2d_composite_boxes;
++        spans.renderer_init      = _cairo_gfx2d_renderer_init;
++        spans.renderer_fini      = _cairo_gfx2d_renderer_fini;
++
++        _cairo_atomic_init_once_leave(&once);
++    }
++
++    return &spans.base;
++}
+diff --git a/src/cairo-gfx2d-surface.c b/src/cairo-gfx2d-surface.c
+index 83686556d..77b691b2c 100644
+--- a/src/cairo-gfx2d-surface.c
++++ b/src/cairo-gfx2d-surface.c
+@@ -61,9 +61,9 @@ slim_hidden_proto(cairo_gfx2d_surface_create_from_name);
+ 
+ static cairo_surface_t *
+ _cairo_gfx2d_surface_create_similar (void            *abstract_src,
+-				   cairo_content_t  content,
+-				   int              width,
+-				   int              height)
++                                     cairo_content_t  content,
++                                     int              width,
++                                     int              height)
+ {
+     cairo_surface_t *surface;
+     cairo_format_t format;
+@@ -71,6 +71,8 @@ _cairo_gfx2d_surface_create_similar (void            *abstract_src,
+     if (width <= 0 || height <= 0)
+ 	return _cairo_image_surface_create_with_content (content, width, height);
+ 
++    TRACE ((stderr, "%s\n", __FUNCTION__));
++
+     switch (content) {
+     default:
+ 	ASSERT_NOT_REACHED;
+@@ -95,17 +97,28 @@ _cairo_gfx2d_surface_finish (void *abstract_surface)
+ {
+     cairo_gfx2d_surface_t *surface = abstract_surface;
+ 
+-    m2d_free(surface->m2d_buf);
++    TRACE ((stderr, "%s\n", __FUNCTION__));
++
++    m2d_free(surface->handle, surface->m2d_buf);
++    if (surface->m2d_surface1)
++        m2d_free(surface->handle, surface->m2d_surface1);
++    if (surface->m2d_surface2)
++        m2d_free(surface->handle, surface->m2d_surface2);
++    if (surface->m2d_surface3)
++        m2d_free(surface->handle, surface->m2d_surface3);
++
++    //m2d_close(surface->handle);
+ 
+     return _cairo_image_surface_finish (abstract_surface);
+ }
+ 
+ static cairo_image_surface_t *
+-_cairo_gfx2d_surface_map_to_image (void *abstract_surface,
+-				 const cairo_rectangle_int_t *extents)
++_cairo_gfx2d_surface_map_to_image (void                        *abstract_surface,
++                                   const cairo_rectangle_int_t *extents)
+ {
+     cairo_gfx2d_surface_t *surface = abstract_surface;
+ 
++    TRACE ((stderr, "%s\n", __FUNCTION__));
+     if (surface->image.pixman_image == NULL) {
+ 	pixman_image_t *image;
+ 	void *data;
+@@ -134,6 +147,7 @@ _cairo_gfx2d_surface_unmap_image (void *abstract_surface,
+ {
+     cairo_gfx2d_surface_t *surface = abstract_surface;
+ 
++    TRACE ((stderr, "%s\n", __FUNCTION__));
+     return _cairo_image_surface_unmap_image (&surface->image.base, image);
+ }
+ 
+@@ -143,6 +157,8 @@ _cairo_gfx2d_surface_flush (void *abstract_surface,
+ {
+     cairo_gfx2d_surface_t *surface = abstract_surface;
+ 
++    TRACE ((stderr, "%s\n", __FUNCTION__));
++
+     if (flags)
+ 	return CAIRO_STATUS_SUCCESS;
+ 
+@@ -159,34 +175,32 @@ _cairo_gfx2d_surface_flush (void *abstract_surface,
+ }
+ 
+ static cairo_int_status_t
+-_cairo_gfx2d_surface_paint (void				*_surface,
++_cairo_gfx2d_surface_paint (void			*surface,
+ 			   cairo_operator_t		 op,
+ 			   const cairo_pattern_t	*source,
+ 			   const cairo_clip_t		*clip)
+ {
+-    cairo_gfx2d_surface_t *surface = _surface;
+-
+-    return _cairo_compositor_paint (_cairo_gfx2d_compositor_get (), &surface->image.base,
++    TRACE ((stderr, "%s\n", __FUNCTION__));
++    return _cairo_compositor_paint (_cairo_gfx2d_span_compositor_get (), surface,
+ 				    op, source,
+ 				    clip);
+ }
+ 
+ static cairo_int_status_t
+-_cairo_gfx2d_surface_mask (void			*_surface,
++_cairo_gfx2d_surface_mask (void			*surface,
+ 			  cairo_operator_t	 op,
+ 			  const cairo_pattern_t	*source,
+ 			  const cairo_pattern_t	*mask,
+ 			  const cairo_clip_t	*clip)
+ {
+-    cairo_gfx2d_surface_t *surface = _surface;
+-
+-    return _cairo_compositor_mask (_cairo_gfx2d_compositor_get (), &surface->image.base,
++    TRACE ((stderr, "%s\n", __FUNCTION__));
++    return _cairo_compositor_mask (_cairo_gfx2d_span_compositor_get (), surface,
+ 				   op, source, mask,
+ 				   clip);
+ }
+ 
+ static cairo_int_status_t
+-_cairo_gfx2d_surface_stroke (void			*_surface,
++_cairo_gfx2d_surface_stroke (void			*surface,
+ 			    cairo_operator_t		 op,
+ 			    const cairo_pattern_t	*source,
+ 			    const cairo_path_fixed_t	*path,
+@@ -197,9 +211,8 @@ _cairo_gfx2d_surface_stroke (void			*_surface,
+ 			    cairo_antialias_t		 antialias,
+ 			    const cairo_clip_t		*clip)
+ {
+-    cairo_gfx2d_surface_t *surface = _surface;
+-
+-    return _cairo_compositor_stroke (_cairo_gfx2d_compositor_get (), &surface->image.base,
++    TRACE ((stderr, "%s\n", __FUNCTION__));
++    return _cairo_compositor_stroke (_cairo_gfx2d_span_compositor_get (), surface,
+ 				     op, source,
+ 				     path, style, ctm, ctm_inverse,
+ 				     tolerance, antialias,
+@@ -207,7 +220,7 @@ _cairo_gfx2d_surface_stroke (void			*_surface,
+ }
+ 
+ static cairo_int_status_t
+-_cairo_gfx2d_surface_fill (void				*_surface,
++_cairo_gfx2d_surface_fill (void				*surface,
+ 			  cairo_operator_t		 op,
+ 			  const cairo_pattern_t		*source,
+ 			  const cairo_path_fixed_t	*path,
+@@ -216,9 +229,9 @@ _cairo_gfx2d_surface_fill (void				*_surface,
+ 			  cairo_antialias_t		 antialias,
+ 			  const cairo_clip_t		*clip)
+ {
+-    cairo_gfx2d_surface_t *surface = _surface;
+-
+-    return _cairo_compositor_fill (_cairo_gfx2d_compositor_get (), &surface->image.base,
++	cairo_solid_pattern_t *tmp = source;
++    TRACE ((stderr, "%s\n", __FUNCTION__));
++    return _cairo_compositor_fill (_cairo_gfx2d_span_compositor_get (), surface,
+ 				   op, source,
+ 				   path, fill_rule, tolerance, antialias,
+ 				   clip);
+@@ -280,11 +293,11 @@ _cairo_gfx2d_handle_get (void)
+     static void * handle;
+ 
+     if (_cairo_atomic_init_once_enter(&once)) {
+-	    if (m2d_open(&handle) != 0) {
+-		    // TODO
+-	    }
++        if (m2d_open(&handle) != 0) {
++            // TODO
++        }
+ 
+-	_cairo_atomic_init_once_leave(&once);
++        _cairo_atomic_init_once_leave(&once);
+     }
+ 
+     return handle;
+@@ -338,8 +351,14 @@ cairo_gfx2d_surface_create (cairo_format_t format,
+     if (unlikely(status))
+         return _cairo_surface_create_in_error (_cairo_error (status));
+ 
++    TRACE ((stderr, "%s\n", __FUNCTION__));
++
+     pitch = m2d_format_pitch(_cairo_to_gfx2d_format(format), width);
+     surface->m2d_buf = m2d_alloc(surface->handle, pitch * height);
++    pitch = m2d_format_pitch(_cairo_to_gfx2d_format(CAIRO_FORMAT_ARGB32), width);
++    surface->m2d_surface1 = m2d_alloc(surface->handle, pitch * height);
++    surface->m2d_surface2 = m2d_alloc(surface->handle, pitch * height);
++    surface->m2d_surface3 = m2d_alloc(surface->handle, pitch * height);
+ 
+     return &surface->image.base;
+ }
+@@ -352,13 +371,21 @@ cairo_gfx2d_surface_create_from_name (int name,
+ 				      int height)
+ {
+     cairo_gfx2d_surface_t *surface;
++    int pitch;
+     cairo_status_t status = _cairo_gfx2d_surface_create_internal(format, width,
+ 								 height, &surface);
+ 
+     if (unlikely(status))
+ 	return _cairo_surface_create_in_error (_cairo_error (status));
+ 
++    TRACE ((stderr, "%s\n", __FUNCTION__));
++
+     surface->m2d_buf = m2d_alloc_from_name(surface->handle, name);
++    pitch = m2d_format_pitch(_cairo_to_gfx2d_format(format), width);
++    pitch = m2d_format_pitch(_cairo_to_gfx2d_format(CAIRO_FORMAT_ARGB32), width);
++    surface->m2d_surface1 = m2d_alloc(surface->handle, pitch * height);
++    surface->m2d_surface2 = m2d_alloc(surface->handle, pitch * height);
++    surface->m2d_surface3 = m2d_alloc(surface->handle, pitch * height);
+ 
+     return &surface->image.base;
+ }
+diff --git a/src/cairo-gfx2d.h b/src/cairo-gfx2d.h
+index cfca76b42..46c249294 100644
+--- a/src/cairo-gfx2d.h
++++ b/src/cairo-gfx2d.h
+@@ -66,6 +66,12 @@ cairo_gfx2d_surface_create_from_name(int name,
+ 				     int width,
+ 				     int height);
+ 
++cairo_public cairo_surface_t *
++cairo_gfx2d_surface_create_for_data (struct m2d_buf 	*buf,
++				     cairo_format_t	format,
++				     int		width,
++				     int		height,
++				     int		stride);
+ CAIRO_END_DECLS
+ 
+ #else  /*CAIRO_HAS_GFX2D_SURFACE*/
+diff --git a/src/cairo.h b/src/cairo.h
+index 675beb10f..43706467c 100644
+--- a/src/cairo.h
++++ b/src/cairo.h
+@@ -2169,6 +2169,7 @@ typedef enum _cairo_device_type {
+     CAIRO_DEVICE_TYPE_XML,
+     CAIRO_DEVICE_TYPE_COGL,
+     CAIRO_DEVICE_TYPE_WIN32,
++    CAIRO_DEVICE_TYPE_GFX2D,
+ 
+     CAIRO_DEVICE_TYPE_INVALID = -1
+ } cairo_device_type_t;
+-- 
+2.25.1
+

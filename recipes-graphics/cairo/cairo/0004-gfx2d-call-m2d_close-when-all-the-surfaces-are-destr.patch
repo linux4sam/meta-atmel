@@ -1,0 +1,271 @@
+From 2b393af2b8a8a5e4426696fe1850dfab963430de Mon Sep 17 00:00:00 2001
+From: Ludovic Desroches <ludovic.desroches@microchip.com>
+Date: Mon, 17 Feb 2020 15:40:36 +0100
+Subject: [PATCH 4/4] gfx2d: call m2d_close when all the surfaces are destroyed
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+
+Signed-off-by: Ludovic Desroches <ludovic.desroches@microchip.com>
+---
+ src/cairo-gfx2d-private.h          |  8 +++-
+ src/cairo-gfx2d-spans-compositor.c | 26 ++++++-------
+ src/cairo-gfx2d-surface.c          | 60 +++++++++++++-----------------
+ 3 files changed, 46 insertions(+), 48 deletions(-)
+
+diff --git a/src/cairo-gfx2d-private.h b/src/cairo-gfx2d-private.h
+index f21bbf4d7..2b909c96a 100644
+--- a/src/cairo-gfx2d-private.h
++++ b/src/cairo-gfx2d-private.h
+@@ -3,10 +3,16 @@
+ 
+ #include "cairo-image-surface-inline.h"
+ #include "cairo-compositor-private.h"
++#include "cairo-reference-count-private.h"
+ 
+ #include <m2d/m2d.h>
+ #include <m2d/utils.h>
+ 
++typedef struct _cairo_gfx2d_m2d_handle {
++    void *h;
++    cairo_reference_count_t ref_count;
++} cairo_gfx2d_m2d_handle_t;
++
+ /**
+  * cairo_gfx2d_surface_t:
+  * @image: a cairo_image_surface.
+@@ -23,7 +29,7 @@ typedef struct _cairo_gfx2d_surface {
+     struct m2d_buf *m2d_surface1;
+     struct m2d_buf *m2d_surface2;
+     struct m2d_buf *m2d_surface3;
+-    void* handle;
++    cairo_gfx2d_m2d_handle_t *m2d_handle;
+ } cairo_gfx2d_surface_t;
+ 
+ const cairo_compositor_t *
+diff --git a/src/cairo-gfx2d-spans-compositor.c b/src/cairo-gfx2d-spans-compositor.c
+index 61ecf9b3a..bd3cd2d65 100644
+--- a/src/cairo-gfx2d-spans-compositor.c
++++ b/src/cairo-gfx2d-spans-compositor.c
+@@ -63,7 +63,7 @@ _cairo_gfx2d_fill_boxes (void                *surface,
+                 dst.height = y2 - y1;
+                 dst.dir = M2D_XY00;
+ 
+-                m2d_fill(s->handle, color_to_pixel (color), &dst);
++                m2d_fill(s->m2d_handle->h, color_to_pixel (color), &dst);
+             } else if (op == CAIRO_OPERATOR_OVER) {
+                 /* Cairo uses pre-multiplied alpha value so alpha blending
+                  * equations are:
+@@ -97,17 +97,17 @@ _cairo_gfx2d_fill_boxes (void                *surface,
+                 cs.width = x2 - x1;
+                 cs.height = y2 - y1;
+                 cs.dir = M2D_XY00;
+-                m2d_fill(s->handle, color_to_pixel (color), &cs);
++                m2d_fill(s->m2d_handle->h, color_to_pixel (color), &cs);
+ 
+-                m2d_blend(s->handle, &cd, &cs, &cf, M2D_BLEND_ADD);
++                m2d_blend(s->m2d_handle->h, &cd, &cs, &cf, M2D_BLEND_ADD);
+             } else {
+-                m2d_flush(s->handle);
++                m2d_flush(s->m2d_handle->h);
+                 return CAIRO_INT_STATUS_UNSUPPORTED;
+             }
+ 	}
+     }
+ 
+-    m2d_flush(s->handle);
++    m2d_flush(s->m2d_handle->h);
+     return CAIRO_INT_STATUS_SUCCESS;
+ }
+ 
+@@ -122,7 +122,7 @@ _cairo_gfx2d_draw_image_boxes (void                  *surface,
+ 
+     TRACE ((stderr, "%s\n", __FUNCTION__));
+ 
+-    m2d_flush(s->handle);
++    m2d_flush(s->m2d_handle->h);
+     return CAIRO_INT_STATUS_UNSUPPORTED;
+ }
+ 
+@@ -165,11 +165,11 @@ _cairo_gfx2d_copy_boxes (void                        *surface,
+             dst.height = y2 - y1;
+             dst.dir = M2D_XY00;
+ 
+-            m2d_copy(d->handle, &src, &dst);
++            m2d_copy(d->m2d_handle->h, &src, &dst);
+         }
+     }
+ 
+-    m2d_flush(s->handle);
++    m2d_flush(s->m2d_handle->h);
+     return CAIRO_INT_STATUS_SUCCESS;
+ }
+ 
+@@ -226,7 +226,7 @@ _cairo_gfx2d_pattern_to_surface (cairo_surface_t             *dst,
+ 
+     TRACE ((stderr, "%s\n", __FUNCTION__));
+ 
+-    m2d_flush(s->handle);
++    m2d_flush(s->m2d_handle->h);
+     return &_cairo_surface_nil_unsupported;
+ }
+ 
+@@ -248,7 +248,7 @@ _cairo_gfx2d_composite_boxes (void                        *surface,
+ 
+     TRACE ((stderr, "%s op=%u\n", __FUNCTION__, op));
+ 
+-    m2d_flush(s->handle);
++    m2d_flush(s->m2d_handle->h);
+     return CAIRO_INT_STATUS_UNSUPPORTED;
+ }
+ 
+@@ -352,7 +352,7 @@ _cairo_gfx2d_renderer_init (cairo_abstract_span_renderer_t     *_r,
+     r->color = extents->source_pattern.solid.color;
+     r->s0 = dest->m2d_buf;
+     r->s1 = dest->m2d_surface1;
+-    r->handle = dest->handle;
++    r->handle = dest->m2d_handle->h;
+     r->_x = extents->mask.x;
+     r->_y = extents->mask.y;
+     r->_width = extents->mask.width;
+@@ -384,8 +384,8 @@ _cairo_gfx2d_renderer_init (cairo_abstract_span_renderer_t     *_r,
+         color = (r->color.red_short >> 8) << 16
+                 | (r->color.green_short >> 8) << 8
+                 | (r->color.blue_short >> 8);
+-        m2d_fill(r->handle, color, &cs);
+-        m2d_flush(r->handle);
++        m2d_fill(dest->m2d_handle->h, color, &cs);
++        m2d_flush(dest->m2d_handle->h);
+     } else {
+         //TODO
+         //r->base.render_rows = _cairo_gfx2d_render_opaque_rows;
+diff --git a/src/cairo-gfx2d-surface.c b/src/cairo-gfx2d-surface.c
+index 77b691b2c..f87bae9d2 100644
+--- a/src/cairo-gfx2d-surface.c
++++ b/src/cairo-gfx2d-surface.c
+@@ -49,6 +49,7 @@
+ #include "cairo-default-context-private.h"
+ #include "cairo-error-private.h"
+ #include "cairo-pattern-private.h"
++#include "cairo-reference-count-private.h"
+ #include "cairo-surface-backend-private.h"
+ #include "cairo-surface-fallback-private.h"
+ 
+@@ -99,15 +100,16 @@ _cairo_gfx2d_surface_finish (void *abstract_surface)
+ 
+     TRACE ((stderr, "%s\n", __FUNCTION__));
+ 
+-    m2d_free(surface->handle, surface->m2d_buf);
++    m2d_free(surface->m2d_handle->h, surface->m2d_buf);
+     if (surface->m2d_surface1)
+-        m2d_free(surface->handle, surface->m2d_surface1);
++        m2d_free(surface->m2d_handle->h, surface->m2d_surface1);
+     if (surface->m2d_surface2)
+-        m2d_free(surface->handle, surface->m2d_surface2);
++        m2d_free(surface->m2d_handle->h, surface->m2d_surface2);
+     if (surface->m2d_surface3)
+-        m2d_free(surface->handle, surface->m2d_surface3);
++        m2d_free(surface->m2d_handle->h, surface->m2d_surface3);
+ 
+-    //m2d_close(surface->handle);
++    if (_cairo_reference_count_dec_and_test (&surface->m2d_handle->ref_count))
++        m2d_close(surface->m2d_handle->h);
+ 
+     return _cairo_image_surface_finish (abstract_surface);
+ }
+@@ -162,7 +164,7 @@ _cairo_gfx2d_surface_flush (void *abstract_surface,
+     if (flags)
+ 	return CAIRO_STATUS_SUCCESS;
+ 
+-    if (m2d_flush(surface->handle) != 0) {
++    if (m2d_flush(surface->m2d_handle->h) != 0) {
+         // TODO
+     }
+ 
+@@ -286,33 +288,21 @@ _cairo_to_gfx2d_format(cairo_format_t format)
+     return -1;
+ }
+ 
+-static void*
+-_cairo_gfx2d_handle_get (void)
+-{
+-    static cairo_atomic_once_t once = CAIRO_ATOMIC_ONCE_INIT;
+-    static void * handle;
+-
+-    if (_cairo_atomic_init_once_enter(&once)) {
+-        if (m2d_open(&handle) != 0) {
+-            // TODO
+-        }
+-
+-        _cairo_atomic_init_once_leave(&once);
+-    }
+-
+-    return handle;
+-}
+-
+ static cairo_status_t
+ _cairo_gfx2d_surface_create_internal (cairo_format_t format,
+ 				      int width,
+ 				      int height,
+ 				      cairo_gfx2d_surface_t ** surface)
+ {
++    static cairo_gfx2d_m2d_handle_t m2d_handle;
+     pixman_format_code_t pixman_format;
+-    void* handle = _cairo_gfx2d_handle_get ();
+ 
+-    assert(handle);
++    if (!CAIRO_REFERENCE_COUNT_HAS_REFERENCE (&m2d_handle.ref_count)) {
++        if (m2d_open(&m2d_handle.h) != 0)
++            return _cairo_error (CAIRO_STATUS_DEVICE_ERROR);
++
++        CAIRO_REFERENCE_COUNT_INIT (&m2d_handle.ref_count, 0);
++    }
+ 
+     pixman_format = _cairo_format_to_pixman_format_code (format);
+     if (! pixman_format_supported_destination (pixman_format))
+@@ -333,7 +323,9 @@ _cairo_gfx2d_surface_create_internal (cairo_format_t format,
+     (*surface)->image.width = width;
+     (*surface)->image.height = height;
+     (*surface)->image.depth = PIXMAN_FORMAT_DEPTH(pixman_format);
+-    (*surface)->handle = handle;
++    (*surface)->m2d_handle = &m2d_handle;
++
++    _cairo_reference_count_inc (&m2d_handle.ref_count);
+ 
+     return CAIRO_STATUS_SUCCESS;
+ }
+@@ -354,11 +346,11 @@ cairo_gfx2d_surface_create (cairo_format_t format,
+     TRACE ((stderr, "%s\n", __FUNCTION__));
+ 
+     pitch = m2d_format_pitch(_cairo_to_gfx2d_format(format), width);
+-    surface->m2d_buf = m2d_alloc(surface->handle, pitch * height);
++    surface->m2d_buf = m2d_alloc(surface->m2d_handle->h, pitch * height);
+     pitch = m2d_format_pitch(_cairo_to_gfx2d_format(CAIRO_FORMAT_ARGB32), width);
+-    surface->m2d_surface1 = m2d_alloc(surface->handle, pitch * height);
+-    surface->m2d_surface2 = m2d_alloc(surface->handle, pitch * height);
+-    surface->m2d_surface3 = m2d_alloc(surface->handle, pitch * height);
++    surface->m2d_surface1 = m2d_alloc(surface->m2d_handle->h, pitch * height);
++    surface->m2d_surface2 = m2d_alloc(surface->m2d_handle->h, pitch * height);
++    surface->m2d_surface3 = m2d_alloc(surface->m2d_handle->h, pitch * height);
+ 
+     return &surface->image.base;
+ }
+@@ -380,12 +372,12 @@ cairo_gfx2d_surface_create_from_name (int name,
+ 
+     TRACE ((stderr, "%s\n", __FUNCTION__));
+ 
+-    surface->m2d_buf = m2d_alloc_from_name(surface->handle, name);
++    surface->m2d_buf = m2d_alloc_from_name(surface->m2d_handle->h, name);
+     pitch = m2d_format_pitch(_cairo_to_gfx2d_format(format), width);
+     pitch = m2d_format_pitch(_cairo_to_gfx2d_format(CAIRO_FORMAT_ARGB32), width);
+-    surface->m2d_surface1 = m2d_alloc(surface->handle, pitch * height);
+-    surface->m2d_surface2 = m2d_alloc(surface->handle, pitch * height);
+-    surface->m2d_surface3 = m2d_alloc(surface->handle, pitch * height);
++    surface->m2d_surface1 = m2d_alloc(surface->m2d_handle->h, pitch * height);
++    surface->m2d_surface2 = m2d_alloc(surface->m2d_handle->h, pitch * height);
++    surface->m2d_surface3 = m2d_alloc(surface->m2d_handle->h, pitch * height);
+ 
+     return &surface->image.base;
+ }
+-- 
+2.25.1
+
