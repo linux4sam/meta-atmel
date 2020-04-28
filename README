@@ -45,8 +45,8 @@ Tag: b5f510e48080b6dc710ff4800feb90ef679c5456
 - meta-aws (for AWS Greengrass, mandatory for microchip-* images)
 URI: https://github.com/aws/meta-aws.git
 URI: https://github.com/aws/meta-aws
-Branch: master
-Tag: 48793a3084054fc6d94b7d8e12a091191526a1b5
+Branch: dunfell
+Tag: b74b6a7e99a8451b166a6cd36bfd16ab69d24da7
 
 Build procedure
 ===============
@@ -62,7 +62,7 @@ git clone git://git.yoctoproject.org/poky -b dunfell
 git clone git://git.openembedded.org/meta-openembedded -b dunfell
 
 3/ Clone meta-aws git repository with the proper branch ready
-git clone git://github.com/aws/meta-aws -b master
+git clone git://github.com/aws/meta-aws -b dunfell
 
 4/ Clone meta-atmel layer with the proper branch ready
 git clone git://github.com/linux4sam/meta-atmel.git -b dunfell
@@ -104,7 +104,7 @@ meta-python
 meta-initramfs       = "dunfell:b5f510e48080b6dc710ff4800feb90ef679c5456"
 meta-atmel           = "dunfell:2f16c93dbd5e96250b87b4c2809ac44c23eec622"
 meta-multimedia      = "dunfell:b5f510e48080b6dc710ff4800feb90ef679c5456"
-meta-aws             = "master:48793a3084054fc6d94b7d8e12a091191526a1b5"
+meta-aws             = "dunfell:b74b6a7e99a8451b166a6cd36bfd16ab69d24da7"
 
 Contributing
 ============
