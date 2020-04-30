@@ -13,19 +13,10 @@ DEPENDS = "\
     libdrm \
     cairo \
     cjson \
-    lua \
-    libpng \
-    jpeg \
     file \
-    gstreamer1.0 \
-    gstreamer1.0-plugins-base \
-    libinput \
     udev \
     xxd-native \
-    plplot \
 "
-
-DEPENDS_append_at91sam9 = " tslib"
 
 SRC_URI = "gitsm://github.com/linux4sam/egt.git;protocol=https"
 
@@ -35,12 +26,26 @@ S = "${WORKDIR}/git"
 
 inherit pkgconfig autotools gettext
 
-EXTRA_OECONF += " --disable-debug  --enable-examples"
+EXTRA_OECONF += "--disable-debug"
 
-PACKAGECONFIG ??= " librsvg curl"
+PACKAGECONFIG ??= "examples icons plplot curl librsvg gstreamer jpeg zlib libinput lua ${@bb.utils.filter('DISTRO_FEATURES', 'x11 alsa', d)}"
 
-PACKAGECONFIG[librsvg] = ",,librsvg"
-PACKAGECONFIG[curl] = ",,curl"
+PACKAGECONFIG[librsvg] = "--with-librsvg,-without-librsvg,librsvg"
+PACKAGECONFIG[curl] = "--with-libcurl,--without-libcurl,curl"
+PACKAGECONFIG[examples] = "--enable-examples,--disable-examples"
+PACKAGECONFIG[icons] = "--enable-icons,--disable-icons"
+PACKAGECONFIG[plplot] = "--with-plplot,--without-plplot,plplot"
+PACKAGECONFIG[gstreamer] = "--with-gstreamer,--without-gstreamer,gstreamer1.0 gstreamer1.0-plugins-base"
+PACKAGECONFIG[libevdev] = ",,libevdev"
+PACKAGECONFIG[jpeg] = "--with-libjpeg,--without-libjpeg,jpeg"
+PACKAGECONFIG[tslib] = "--with-tslib,--without-tslib,tslib"
+PACKAGECONFIG[alsa] = "--with-alsa,--without-alsa,alsa-lib"
+PACKAGECONFIG[libsndfile] = "--with-sndfile,--without-sndfile,libsndfile1"
+PACKAGECONFIG[zlib] = "--with-zlib,--without-zlib,zlib"
+PACKAGECONFIG[libinput] = "--with-libinput,--without-libinput,libinput"
+PACKAGECONFIG[lua] = "--with-lua,--without-lua,lua"
+PACKAGECONFIG[xkbcommon] = "--with-xkbcommon,--without-xkbcommon,libxkbcommon"
+PACKAGECONFIG[x11] = "--with-x11,--without-x11,libx11"
 
 do_configure_prepend() {
 	( cd ${S};
