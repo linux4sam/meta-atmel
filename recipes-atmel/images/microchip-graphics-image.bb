@@ -88,6 +88,7 @@ IMAGE_INSTALL += "\
 	egt-samples \
 	egt-media \
 	egt-thermostat \
+	egt-benchmark \
 	noto-fonts \
 "
 
