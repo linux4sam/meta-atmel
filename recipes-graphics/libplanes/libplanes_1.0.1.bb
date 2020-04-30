@@ -21,6 +21,9 @@ inherit pkgconfig autotools python3-dir
 
 EXTRA_OECONF += "--enable-shared --disable-static"
 
+PACKAGECONFIG ??= "examples"
+PACKAGECONFIG[examples] = "--enable-examples,--disable-examples"
+
 do_configure_prepend() {
 	( cd ${S};
 	${S}/autogen.sh; cd -)
@@ -46,6 +49,7 @@ do_install_append() {
     install -Dm 0755 ${S}/scripts/planes-loop.sh ${D}/opt/planes/planes-loop.sh
     install -Dm 0755 ${S}/scripts/planes-loop.py ${D}/opt/planes/planes-loop.py
     install -Dm 0755 ${S}/python/examples/splash.py ${D}/usr/share/planes/splash.py
+    install -Dm 0755 ${S}/python/examples/example.py ${D}/usr/share/planes/example.py
     rm -f ${D}/usr/lib/python*/site-packages/planes/_planes.a
     rm -f ${D}/usr/lib/libplanes.a
 }
