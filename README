@@ -74,7 +74,7 @@ git clone git://github.com/aws/meta-aws -b dunfell
 cd poky
 
 7/ Change TEMPLATECONF from .templateconf to:
-TEMPLATECONF=${TEMPLATECONF:-../meta-atmel/conf}
+export TEMPLATECONF=${TEMPLATECONF:-../meta-atmel/conf}
 
 8/ Initialize build directory
 source oe-init-build-env build-microchip
