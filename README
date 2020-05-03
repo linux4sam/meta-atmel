@@ -43,7 +43,7 @@ Branch: dunfell
 Tag: b5f510e48080b6dc710ff4800feb90ef679c5456
 
 - meta-aws (for AWS Greengrass, mandatory for microchip-* images)
-URI: https://github.com/aws/meta-aws.git
+URI: git://github.com/aws/meta-aws.git
 URI: https://github.com/aws/meta-aws
 Branch: dunfell
 Tag: b74b6a7e99a8451b166a6cd36bfd16ab69d24da7
@@ -67,19 +67,22 @@ git clone git://github.com/aws/meta-aws -b dunfell
 4/ Clone meta-atmel layer with the proper branch ready
 git clone git://github.com/linux4sam/meta-atmel.git -b dunfell
 
-5/ Enter the poky directory to configure the build system and start the build process
+5/ Clone aws layer with the proper branch ready
+git clone git://github.com/aws/meta-aws -b dunfell
+
+6/ Enter the poky directory to configure the build system and start the build process
 cd poky
 
-6/ Change TEMPLATECONF from .templateconf to:
+7/ Change TEMPLATECONF from .templateconf to:
 TEMPLATECONF=${TEMPLATECONF:-../meta-atmel/conf}
 
-7/ Initialize build directory
+8/ Initialize build directory
 source oe-init-build-env build-microchip
 
-8/ Build core minimal image
+9/ Build core minimal image
 [MACHINE=<machine>] bitbake core-image-minimal
 
-9/ Build images
+10/ Build images
 [MACHINE=<machine>] bitbake microchip-headless-image
 
 
