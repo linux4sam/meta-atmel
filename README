@@ -126,8 +126,8 @@ for some useful guidelines to be followed when submitting patches:
 http://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded
 
 Maintainers:
+Codrin Ciubotariu <codrin.ciubotariu@microchip.com>
 Nicolas Ferre <nicolas.ferre@microchip.com>
-Patrice Vilchez <patrice.vilchez@microchip.com>
 
 When creating patches insert the [meta-atmel] tag in the subject, for example
 use something like:
