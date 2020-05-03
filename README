@@ -75,6 +75,10 @@ cd poky
 
 7/ Change TEMPLATECONF from .templateconf to:
 export TEMPLATECONF=${TEMPLATECONF:-../meta-atmel/conf}
+Note: If it's the first time you use Yocto Project templates, and if the
+build-microchip directory remains from a previous use, we advice you start
+from a fresh directory. Keep your build-microchip/conf/local.conf file for
+reference.
 
 8/ Initialize build directory
 source oe-init-build-env build-microchip
