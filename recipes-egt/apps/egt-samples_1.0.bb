@@ -13,7 +13,7 @@ SRC_URI = "gitsm://github.com/linux4sam/egt-samples.git;protocol=https \
 	   file://0001-fix-the-builf-error-of-Cannot-use-CP_USE_DOUBLES-on-.patch "
 
 PV = "1.0+git${SRCPV}"
-SRCREV = "91a333a8809215961744b236183f496ff134ae94"
+SRCREV = "84524fe84fb8f67e9047e21a47ab1b3e46e26a4f"
 
 S = "${WORKDIR}/git"
 
