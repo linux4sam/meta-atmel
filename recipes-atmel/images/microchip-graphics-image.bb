@@ -1,4 +1,4 @@
-DESCRIPTION = "An image that will launch into the demo application for the embedded (not based on X11) version of Qt."
+DESCRIPTION = "An image that includes EGT with its demo applications"
 LICENSE = "MIT"
 PR = "r0"
 
