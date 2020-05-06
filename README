@@ -42,7 +42,7 @@ URI: http://cgit.openembedded.org/meta-openembedded/
 Branch: dunfell
 Tag: b5f510e48080b6dc710ff4800feb90ef679c5456
 
-- meta-aws (for AWS Greengrass, mandatory for microchip-* images)
+- meta-aws (for AWS Greengrass, mandatory for SAMA5D2 microchip-* images)
 URI: git://github.com/aws/meta-aws.git
 URI: https://github.com/aws/meta-aws
 Branch: dunfell
