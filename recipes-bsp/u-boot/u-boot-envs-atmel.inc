@@ -8,7 +8,7 @@ ENV_FILEPATH = "${WORKDIR}/envs"
 do_compile_append() {
     if [ -e "${ENV_FILEPATH}/${MACHINE}.txt" ]; then
         echo "Compile U-Boot environment for ${MACHINE}"
-        ${B}/tools/mkenvimage -s ${UBOOT_ENV_SIZE} ${ENV_FILEPATH}/${MACHINE}.txt -o ${ENV_FILENAME}
+        ${B}/tools/mkenvimage ${MKENVIMAGE_EXTRA_ARGS} -s ${UBOOT_ENV_SIZE} ${ENV_FILEPATH}/${MACHINE}.txt -o ${ENV_FILENAME}
     else
         echo "No custom environment available for ${MACHINE}."
     fi
