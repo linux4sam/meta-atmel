@@ -20,7 +20,7 @@ DEPENDS = "\
 
 SRC_URI = "gitsm://github.com/linux4sam/egt.git;protocol=https"
 
-SRCREV = "f2dcf1d2903b30ddb340ef7988103d427fe3839f"
+SRCREV = "72ab915baa760fe744eeb52bd2259113a1cac6e6"
 
 S = "${WORKDIR}/git"
 

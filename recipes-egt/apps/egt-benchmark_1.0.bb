@@ -4,11 +4,9 @@ LIC_FILES_CHKSUM = "file://COPYING;endline=202;md5=3b83ef96387f14655fc854ddc3c6b
 
 DEPENDS = "libegt"
 
-SRC_URI = "git://github.com/linux4sam/egt-benchmark.git;protocol=https \
-           file://0001-configure-Do-not-add-C-compiler-flags-to-CPPFLAGS.patch \
-          "
+SRC_URI = "git://github.com/linux4sam/egt-benchmark.git;protocol=https"
 
-SRCREV = "e20643eb2c6165e34dc52edbba488616a3aaae22"
+SRCREV = "304434a09de7e55a5fa4c95f6c5c32d99f60ae63"
 
 S = "${WORKDIR}/git"
 
