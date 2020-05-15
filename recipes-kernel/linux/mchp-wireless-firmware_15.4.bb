@@ -4,7 +4,7 @@ LICENSE = "MICROCHIP_FW"
 
 LIC_FILES_CHKSUM = "file://LICENSE.wilc_fw;beginline=6;md5=e1a0446d046c966a27276cf8e728f687"
 
-SRCREV = "06a9a9717029bce940d1125b748f61388c995961"
+SRCREV = "2a39a7ea49ee6af896a34be9879efff612b6fea5"
 SRC_URI = "git://github.com/linux4wilc/firmware.git;protocol=https;branch=dev"
 S = "${WORKDIR}/git"
 
