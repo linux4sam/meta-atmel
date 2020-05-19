@@ -1,5 +1,7 @@
 LICENSE = "CLOSED"
-SRC_URI = "git://github.com/MicrochipTech/cryptoauthlib.git;branch=pkcs11;protocol=https"
+SRC_URI = "git://github.com/MicrochipTech/cryptoauthlib.git;branch=pkcs11;protocol=https \
+	   file://cryptoauthlib.module \
+"
 
 PV = "1.0+git${SRCPV}"
 SRCREV = "2df0eb145c7241263d07577394dd12f8b1e783f0"
@@ -15,6 +17,7 @@ inherit cmake
 EXTRA_OECMAKE = ""
 
 do_install_append_sama5d2() {
+    install -Dm 644 ${WORKDIR}/cryptoauthlib.module ${D}${datadir}/p11-kit/modules/cryptoauthlib.module
     cp -p ${D}${localstatedir}/lib/cryptoauthlib/slot.conf.tmpl ${D}${localstatedir}/lib/cryptoauthlib/0.conf
 }
 
@@ -52,6 +55,7 @@ do_install_append_sama5d2-ptc-ek-sd() {
 FILES_${PN} = "${nonarch_libdir}/libcryptoauth.so \
 	       ${sysconfdir}/cryptoauthlib/cryptoauthlib.conf \
 	       ${localstatedir}/lib/cryptoauthlib/slot.conf.tmpl \
+	       ${datadir}/p11-kit/modules/cryptoauthlib.module \
 	       ${localstatedir}/lib/cryptoauthlib/0.conf \
 "
 FILES_${PN}-dev = ""
