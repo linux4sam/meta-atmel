@@ -34,22 +34,22 @@ INSANE_SKIP_${PN} = "dev-so"
 FILES_${PN} += " \
   /opt/planes/planes-loop.sh \
   /opt/planes/planes-loop.py \
-  /opt/ApplicationL* \
+  /opt/applications/resources/* \
   ${libdir}/* \
   ${includedir}/* \
   ${bindir}/* \
-  /usr/share/planes/* \
+  ${datadir}/planes/* \
 "
 FILES_${PN}-python = "${libdir}/python${PYTHON_BASEVERSION}/site-packages/*"
 
 #need to delete _planes.a to avoid QA package errors
 do_install_append() {
-    install -Dm 0644 ${S}/scripts/planes.png  ${D}/opt/ApplicationLauncher/applications/resources/planes.png
-    install -Dm 0644 ${S}/scripts/09-planes.xml  ${D}/opt/ApplicationLauncher/applications/xml/09-planes.xml
+    install -Dm 0644 ${S}/scripts/planes.png  ${D}/opt/applications/resources/planes.png
+    install -Dm 0644 ${S}/scripts/09-planes.xml  ${D}/opt/applications/resources/09-planes.xml
     install -Dm 0755 ${S}/scripts/planes-loop.sh ${D}/opt/planes/planes-loop.sh
     install -Dm 0755 ${S}/scripts/planes-loop.py ${D}/opt/planes/planes-loop.py
-    install -Dm 0755 ${S}/python/examples/splash.py ${D}/usr/share/planes/splash.py
-    install -Dm 0755 ${S}/python/examples/example.py ${D}/usr/share/planes/example.py
+    install -Dm 0755 ${S}/python/examples/splash.py ${D}${datadir}/planes/splash.py
+    install -Dm 0755 ${S}/python/examples/example.py ${D}${datadir}/planes/example.py
     rm -f ${D}/usr/lib/python*/site-packages/planes/_planes.a
     rm -f ${D}/usr/lib/libplanes.a
 }

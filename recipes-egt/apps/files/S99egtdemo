@@ -4,7 +4,7 @@
 
 start()
 {
-    LAUNCHER_ARGS="/usr/share/egt/examples/ /usr/share/egt/"
+    LAUNCHER_ARGS="/opt/applications/resources/ /usr/share/egt/"
 
     printf "Starting EGT Application Launcher: "
 
