@@ -34,19 +34,19 @@ This Layer depends on :
 - poky
 URI: git://git.yoctoproject.org/poky
 Branch: dunfell
-Tag: a44b8d2856a937ca3991cbf566788b0cd541d777
+Tag: 33fdf03169ab2a3355e090d41ba034855d47f865
 
 - meta-openembedded
 URI: git://git.openembedded.org/meta-openembedded
 URI: http://cgit.openembedded.org/meta-openembedded/
 Branch: dunfell
-Tag: b5f510e48080b6dc710ff4800feb90ef679c5456
+Tag: a62ad77973b16daac1cbaa03cbda3c6b9b91f2ff
 
 - meta-aws (for AWS Greengrass, mandatory for SAMA5D2 microchip-* images)
 URI: git://github.com/aws/meta-aws.git
 URI: https://github.com/aws/meta-aws
 Branch: dunfell
-Tag: b74b6a7e99a8451b166a6cd36bfd16ab69d24da7
+Tag: 6fdd1bd619bde0207e990dde13f5a512e5a6552b
 
 Build procedure
 ===============
@@ -97,21 +97,21 @@ BB_VERSION           = "1.46.0"
 BUILD_SYS            = "x86_64-linux"
 NATIVELSBSTRING      = "universal"
 TARGET_SYS           = "arm-poky-linux-gnueabi"
-MACHINE              = "sam9x60ek-sd"
+MACHINE              = "sama5d2-xplained-sd"
 DISTRO               = "poky-atmel"
 DISTRO_VERSION       = "3.1"
-TUNE_FEATURES        = "arm armv5 thumb dsp"
-TARGET_FPU           = "soft"
+TUNE_FEATURES        = "arm vfp cortexa5 neon vfpv4 thumb callconvention-hard"
+TARGET_FPU           = "hard"
 meta                 
 meta-poky            
-meta-yocto-bsp       = "dunfell:a44b8d2856a937ca3991cbf566788b0cd541d777"
+meta-yocto-bsp       = "dunfell:33fdf03169ab2a3355e090d41ba034855d47f865"
 meta-oe              
 meta-networking      
 meta-python          
-meta-initramfs       = "dunfell:b5f510e48080b6dc710ff4800feb90ef679c5456"
-meta-atmel           = "dunfell:2f16c93dbd5e96250b87b4c2809ac44c23eec622"
-meta-multimedia      = "dunfell:b5f510e48080b6dc710ff4800feb90ef679c5456"
-meta-aws             = "dunfell:b74b6a7e99a8451b166a6cd36bfd16ab69d24da7"
+meta-initramfs       
+meta-multimedia      = "dunfell:a62ad77973b16daac1cbaa03cbda3c6b9b91f2ff"
+meta-atmel           = "dunfell:796eaa3c34b3474a13267544e432e348582370c1"
+meta-aws             = "dunfell:6fdd1bd619bde0207e990dde13f5a512e5a6552b"
 
 Contributing
 ============
