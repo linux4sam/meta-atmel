@@ -6,7 +6,7 @@ DEPENDS = "libegt"
 
 SRC_URI = "git://github.com/linux4sam/egt-benchmark.git;protocol=https"
 
-SRCREV = "304434a09de7e55a5fa4c95f6c5c32d99f60ae63"
+SRCREV = "be25417177e874d1a665705a86dfaa25458f64ac"
 
 S = "${WORKDIR}/git"
 
