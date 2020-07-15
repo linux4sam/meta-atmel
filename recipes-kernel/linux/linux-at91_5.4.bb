@@ -20,6 +20,7 @@ KBRANCH = "linux-5.4-at91"
 KBRANCH_sama7g5ek-sd = "sama7g5_early"
 SRC_URI = "git://github.com/linux4sam/linux-at91.git;protocol=git;branch=${KBRANCH}"
 SRC_URI += "file://defconfig"
+SRC_URI_remove_sama7g5ek-sd = "file://defconfig"
 
 python __anonymous () {
     if d.getVar('UBOOT_FIT_IMAGE', True) == 'xyes':
