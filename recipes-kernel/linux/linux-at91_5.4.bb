@@ -26,6 +26,16 @@ python __anonymous () {
         d.appendVar('DEPENDS', ' u-boot-mkimage-native dtc-native')
 }
 
+do_configure_prepend() {
+	if [ ! -f "${WORKDIR}/defconfig" ] && [ -n "${KBUILD_DEFCONFIG}" ]; then
+		if [ -f "${S}/arch/${ARCH}/configs/${KBUILD_DEFCONFIG}" ]; then
+			cp -f ${S}/arch/${ARCH}/configs/${KBUILD_DEFCONFIG} ${WORKDIR}/defconfig
+                else
+                        bbfatal "A KBUILD_DEFCONFIG '${KBUILD_DEFCONFIG}' was specified, but not present in the source tree"
+                fi
+        fi
+}
+
 do_configure_append() {
 	frags=""
 	for fragment in ${WORKDIR}/*.cfg
