@@ -8,7 +8,7 @@ SRCREV = "2df0eb145c7241263d07577394dd12f8b1e783f0"
 
 S = "${WORKDIR}/git"
 
-DEPENDS = "eudev"
+DEPENDS ?= "eudev"
 RDEPENDS_${PN} = "libp11 (>= 0.4.10) gnutls-bin"
 RRECOMMENDS_${PN} = "p11-kit"
 
