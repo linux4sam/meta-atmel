@@ -14,4 +14,6 @@ inherit pypi setuptools3
 
 RDEPENDS_${PN} += "python3-core python3-cryptography python3-ctypes python3-datetime python3-netclient"
 
-DEPENDS += "cmake-native"
+DEPENDS += "cmake-native udev"
+
+export CRYPTOAUTHLIB_NOUSB = "True"
