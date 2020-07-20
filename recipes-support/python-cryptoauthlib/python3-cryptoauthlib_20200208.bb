@@ -14,6 +14,6 @@ inherit pypi setuptools3
 
 RDEPENDS_${PN} += "python3-core python3-cryptography python3-ctypes python3-datetime python3-netclient"
 
-DEPENDS += "cmake-native ${@bb.utils.contains('DISTRO_FEATURES','systemd','udev','eudev',d)}"
+DEPENDS += "cmake-native udev"
 
 export CRYPTOAUTHLIB_NOUSB = "True"
