@@ -35,6 +35,7 @@ AT91BOOTSTRAP_CONFIG_sama5d27-wlsom1-ek-sd ??= "${AT91BOOTSTRAP_MACHINE}-bsrsd_u
 AT91BOOTSTRAP_CONFIG_sama5d2-icp-sd ??= "${AT91BOOTSTRAP_MACHINE}-bsrsd_uboot"
 AT91BOOTSTRAP_CONFIG_sam9x60ek ??= "${AT91BOOTSTRAP_MACHINE}nf_uboot"
 AT91BOOTSTRAP_CONFIG_sam9x60ek-sd ??= "${AT91BOOTSTRAP_MACHINE}sd_uboot"
+AT91BOOTSTRAP_CONFIG_sama7g5ek-sd ??= "${AT91BOOTSTRAP_MACHINE}sd_uboot"
 
 AT91BOOTSTRAP_TARGET ??= "${AT91BOOTSTRAP_CONFIG}_defconfig"
 AT91BOOTSTRAP_LOAD ??= "nandflashboot-uboot"
@@ -49,6 +50,7 @@ AT91BOOTSTRAP_LOAD_sama5d3-xplained-sd ??= "sdboot-uboot"
 AT91BOOTSTRAP_LOAD_sama5d4-xplained-sd ??= "sdboot-uboot"
 AT91BOOTSTRAP_LOAD_sama5d2-icp-sd ??= "sdboot-uboot"
 AT91BOOTSTRAP_LOAD_sam9x60ek-sd ??= "sdboot-uboot"
+AT91BOOTSTRAP_LOAD_sama7g5ek-sd ??= "sdboot-uboot"
 
 AT91BOOTSTRAP_SUFFIX ?= "bin"
 AT91BOOTSTRAP_IMAGE ?= "${AT91BOOTSTRAP_MACHINE}-${AT91BOOTSTRAP_LOAD}-${PV}.${AT91BOOTSTRAP_SUFFIX}"
