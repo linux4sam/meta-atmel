@@ -67,28 +67,36 @@ git clone git://github.com/aws/meta-aws -b dunfell
 4/ Clone meta-atmel layer with the proper branch ready
 git clone git://github.com/linux4sam/meta-atmel.git -b dunfell
 
-5/ Clone aws layer with the proper branch ready
-git clone git://github.com/aws/meta-aws -b dunfell
-
-6/ Enter the poky directory to configure the build system and start the build process
+5/ Enter the poky directory to configure the build system and start the build process
 cd poky
 
-7/ Change TEMPLATECONF from .templateconf to:
+6/ Change TEMPLATECONF from .templateconf to:
 export TEMPLATECONF=${TEMPLATECONF:-../meta-atmel/conf}
 Note: If it's the first time you use Yocto Project templates, and if the
 build-microchip directory remains from a previous use, we advice you start
 from a fresh directory. Keep your build-microchip/conf/local.conf file for
 reference.
 
-8/ Initialize build directory
+7/ Initialize build directory
 source oe-init-build-env build-microchip
 
-9/ Build core minimal image
+8/ To build a small image provided by Yocto Project:
 [MACHINE=<machine>] bitbake core-image-minimal
 
-10/ Build images
+Example for sama5d2-xplained-sd SD card image:
+MACHINE=sama5d2-xplained-sd bitbake core-image-minimal
+
+9/ To build the microchip image with no graphics support:
 [MACHINE=<machine>] bitbake microchip-headless-image
 
+Example for sama5d2-xplained-sd SD card image:
+MACHINE=sama5d2-xplained-sd bitbake microchip-headless-image
+
+10/ To build the microchip image with graphics support (EGT):
+[MACHINE=<machine>] bitbake microchip-graphics-image
+
+Example for sama5d2-xplained-sd SD card image:
+MACHINE=sama5d2-xplained-sd bitbake microchip-graphics-image
 
 Typical bitbake output
 ======================
