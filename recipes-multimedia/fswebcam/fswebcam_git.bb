@@ -10,7 +10,7 @@ PR = "r0"
 
 inherit autotools-brokensep
 
-SRCREV="e9f8094b6a3d1a49f99b2abec4e6ab4df33e2e33"
+SRCREV="db35d4bbd336885a44f017ff142bc9523dbdce3c"
 SRC_URI = "git://github.com/fsphil/fswebcam.git;protocol=git"
 
 S = "${WORKDIR}/git"
