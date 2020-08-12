@@ -11,6 +11,8 @@ PV = "1.28+git${SRCPV}"
 inherit autotools
 
 SRCREV="4e9daa7c7606e0bf95b34d1e9736bb8a8d2b29b9"
-SRC_URI = "git://github.com/atmel-maxtouch/mxt-app.git"
+SRC_URI = "git://github.com/atmel-maxtouch/mxt-app.git \
+           file://0001-Make-mxt_sigint_rx-extern-in-header-file.patch \
+          "
 
 S = "${WORKDIR}/git"

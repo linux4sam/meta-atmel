@@ -1,0 +1,34 @@
+From 571e6e81de252eed1bc4dad08ba0cd28e3295fcc Mon Sep 17 00:00:00 2001
+From: Khem Raj <raj.khem@gmail.com>
+Date: Tue, 11 Aug 2020 18:21:47 -0700
+Subject: [PATCH] Make mxt_sigint_rx extern in header file
+
+Its defined in src/mxt-app/signal.c like
+
+volatile sig_atomic_t mxt_sigint_rx = 0;
+
+Therefore we do not need another definition in header file, this fixes
+the build with -fno-common ( which is default with gcc 10+)
+
+Upstream-Status: Submitted [https://github.com/atmel-maxtouch/mxt-app/pull/80]
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+---
+ src/mxt-app/mxt_app.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/mxt-app/mxt_app.h b/src/mxt-app/mxt_app.h
+index fb3beb5..b2af27f 100644
+--- a/src/mxt-app/mxt_app.h
++++ b/src/mxt-app/mxt_app.h
+@@ -113,7 +113,7 @@ typedef enum mxt_app_cmd_t {
+ 
+ //******************************************************************************
+ /// \brief Signal handler semaphore
+-volatile sig_atomic_t mxt_sigint_rx;
++extern volatile sig_atomic_t mxt_sigint_rx;
+ 
+ struct t37_diagnostic_data;
+ struct mxt_conn_info;
+-- 
+2.28.0
+
