@@ -7,9 +7,10 @@ LIC_FILES_CHKSUM = "file://Copyright;endline=285;md5=9222bd6b5e4e128fac952e168cf
 
 DEPENDS = " libtool freetype fontconfig cairo pango "
 
-BUILDTAG="plplot-5.15.0"
+#TAG plplot-5.15.0
+SRCREV = "4f88e45dbd85468a96364548f8d06a9b52dac14a"
 
-SRC_URI = "git://git.code.sf.net/p/plplot/plplot;protocol=https;tag=${BUILDTAG} \
+SRC_URI = "git://github.com/PLplot/PLplot;protocol=https \
     file://0001-plplot-fix-configure-error-for-generating-header-fil.patch \
     file://0002-utils-CMakeLists.txt-disable-pltek-build.patch \
     file://0001-xwin.cmake-Check-if-PTHREAD_MUTEX_RECURSIVE_NP-exist.patch \
@@ -19,8 +20,6 @@ SRC_URI = "git://git.code.sf.net/p/plplot/plplot;protocol=https;tag=${BUILDTAG} 
 "
 
 S = "${WORKDIR}/git"
-
-B = "${WORKDIR}/build"
 
 EXTRA_OECMAKE += " \
     -DCMAKE_INSTALL_LIBDIR=${libdir} \
