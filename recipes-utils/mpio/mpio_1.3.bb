@@ -8,9 +8,9 @@ PACKAGES = "${PN}-dbg ${PN}"
 RDEPENDS_${PN} = "python3"
 
 SRC_URI = "git://github.com/linux4sam/mpio.git;branch=master;protocol=https"
-PV = "1.2+git${SRCPV}"
+PV = "1.3+git${SRCPV}"
 
-SRCREV = "dc0e9e00c39157b53a26736bdbc798c7ac99d045"
+SRCREV = "21c7f5dc185c9bfa3a5a49b25f3a9164bab56ebe"
 
 S = "${WORKDIR}/git"
 
