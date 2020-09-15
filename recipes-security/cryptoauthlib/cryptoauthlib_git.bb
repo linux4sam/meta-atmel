@@ -1,10 +1,10 @@
 LICENSE = "CLOSED"
-SRC_URI = "git://github.com/MicrochipTech/cryptoauthlib.git;branch=pkcs11;protocol=https \
+SRC_URI = "git://github.com/MicrochipTech/cryptoauthlib.git;branch=main;protocol=https \
 	   file://cryptoauthlib.module \
 "
 
 PV = "1.0+git${SRCPV}"
-SRCREV = "2df0eb145c7241263d07577394dd12f8b1e783f0"
+SRCREV = "70d082c0110086ef97d50faa43a9a3c847b4bb12"
 
 S = "${WORKDIR}/git"
 
