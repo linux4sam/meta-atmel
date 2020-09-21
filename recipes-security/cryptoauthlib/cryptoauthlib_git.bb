@@ -16,6 +16,8 @@ inherit cmake
 
 EXTRA_OECMAKE = ""
 
+CFLAGS += "-fcommon"
+
 do_install_append_sama5d2() {
     install -Dm 644 ${WORKDIR}/cryptoauthlib.module ${D}${datadir}/p11-kit/modules/cryptoauthlib.module
     cp -p ${D}${localstatedir}/lib/cryptoauthlib/slot.conf.tmpl ${D}${localstatedir}/lib/cryptoauthlib/0.conf
