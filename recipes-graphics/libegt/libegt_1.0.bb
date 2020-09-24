@@ -28,7 +28,7 @@ inherit pkgconfig autotools gettext
 
 EXTRA_OECONF += "--disable-debug"
 
-PACKAGECONFIG ??= "examples icons plplot curl librsvg gstreamer jpeg zlib libinput ${@bb.utils.filter('DISTRO_FEATURES', 'x11 alsa', d)}"
+PACKAGECONFIG ??= "examples icons plplot curl librsvg gstreamer jpeg zlib libinput lua ${@bb.utils.filter('DISTRO_FEATURES', 'x11 alsa', d)}"
 
 PACKAGECONFIG[librsvg] = "--with-librsvg,-without-librsvg,librsvg"
 PACKAGECONFIG[curl] = "--with-libcurl,--without-libcurl,curl"
