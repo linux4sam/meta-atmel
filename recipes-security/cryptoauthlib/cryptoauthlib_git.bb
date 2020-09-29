@@ -1,6 +1,8 @@
 DESCRIPTION = "Microchip CryptoAuthentication Library"
 
-LICENSE = "CLOSED"
+LICENSE = "MICROCHIP_CAL"
+LIC_FILES_CHKSUM = "file://license.txt;endline=18;md5=a6d0adc44da1eb4799100655116c5ca4"
+
 SRC_URI = "git://github.com/MicrochipTech/cryptoauthlib.git;branch=main;protocol=https \
 	   file://cryptoauthlib.module \
 "
