@@ -1,3 +1,5 @@
+DESCRIPTION = "Microchip CryptoAuthentication Library"
+
 LICENSE = "CLOSED"
 SRC_URI = "git://github.com/MicrochipTech/cryptoauthlib.git;branch=main;protocol=https \
 	   file://cryptoauthlib.module \
