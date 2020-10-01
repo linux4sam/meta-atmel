@@ -7,6 +7,6 @@ COMPATIBLE_MACHINE = '(sama7g5ek-sd)'
 SRC_URI = "git://github.com/linux4sam/at91bootstrap.git;protocol=https"
 
 PV = "3.10.0+git${SRCPV}"
-SRCREV = "b6b0ecebb9ef737ae59528e24066a26b1f7c8f23"
+SRCREV = "72be09e758d4cd1adf5734c868fef87c7dee4fa4"
 
 S = "${WORKDIR}/git"
