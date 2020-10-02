@@ -10,7 +10,7 @@ RDEPENDS_${KERNEL_PACKAGE_NAME}-base = ""
 FILESEXTRAPATHS_prepend := "${THISDIR}/${P}:"
 
 SRCREV = "67771e4768c342b82186eae4abb72c369cdad2e5"
-SRCREV_sama7g5ek-sd = "c6bd512df0b9934bb7b8db179bfe08a1c992e0d7"
+SRCREV_sama7g5ek-sd = "d67f0979dcc377863060e803a2280b7a7e1a22c0"
 
 PV = "5.4+git${SRCPV}"
 
