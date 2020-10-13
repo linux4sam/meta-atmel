@@ -11,7 +11,7 @@ SRC_URI = "git://github.com/linux4sam/g1_decoder.git;branch=master;protocol=http
 
 SRCREV = "cb81273566b7c1609ce27bbf38af8042946472f7"
 
-S = "${WORKDIR}/git/"
+S = "${WORKDIR}/git"
 
 do_configure_prepend() {
     (cd ${S};
