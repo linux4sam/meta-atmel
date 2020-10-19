@@ -4,7 +4,7 @@ do_install_append() {
         install -d ${D}${includedir}/bluez5_utils/src/shared
         install -d ${D}${libdir}/bluez5_utils/lib
 
-        install -D -m 0755 --target-directory=${D}/usr/bin/ ${B}/tools/btgatt-server
+        install -m 0755 ${B}/tools/btgatt-server ${D}/usr/bin/bluez-gatt-server
 
         install -m 644 ${B}/src/.libs/libshared-mainloop.a ${D}/${libdir}/bluez5_utils/lib
         install -m 644 ${B}/gdbus/.libs/libgdbus-internal.a ${D}/${libdir}/bluez5_utils/lib
@@ -15,7 +15,7 @@ do_install_append() {
         install -m 644  ${S}/monitor/*.h ${D}${includedir}/bluez5_utils/monitor/
 }
 
-FILES_${PN} += "${usrbin}/btgatt*"
+FILES_${PN} += "${usrbin}/bluez-gatt-server"
 
 FILES_${PN}-staticdev += " \
     ${libdir}/bluez5_utils/lib/*.a \
