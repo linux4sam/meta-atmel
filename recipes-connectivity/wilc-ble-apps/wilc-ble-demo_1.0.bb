@@ -14,7 +14,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=2aadfbb30f3dc663d0c881ccb240fc4c"
 
 DEPENDS = "bluez5 wilc-demo-fs-overlay"
 SRC_URI = "git://github.com/MicrochipTech/wilcbtapps-buildroot-external-microchip.git;protocol=git"
-SRCREV  = "ef37a75f4105289c12c83849e2b85112a78f81a2"
+SRCREV  = "44dae79d567ab713edbd313ee3647b000f9c81b3"
 
 S = "${WORKDIR}/git"
 
