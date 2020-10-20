@@ -81,8 +81,7 @@ IMAGE_INSTALL += "\
 	nftables \
 	phytool \
 	tcpdump \
-	dhcp-server \
-	dhcp-server-config \
+	kea \
 	libegt \
 	egt-launcher \
 	egt-samples \

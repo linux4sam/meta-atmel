@@ -63,8 +63,7 @@ IMAGE_INSTALL = "\
     nftables \
     phytool \
     tcpdump \
-    dhcp-server \
-    dhcp-server-config \
+    kea \
     ${CORE_IMAGE_EXTRA_INSTALL} \
     "
 
