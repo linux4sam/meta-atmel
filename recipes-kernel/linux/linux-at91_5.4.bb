@@ -10,8 +10,7 @@ RDEPENDS_${KERNEL_PACKAGE_NAME}-base = ""
 FILESEXTRAPATHS_prepend := "${THISDIR}/${P}:"
 
 SRCREV = "67771e4768c342b82186eae4abb72c369cdad2e5"
-SRCREV_sama7g5ek-sd = "d67f0979dcc377863060e803a2280b7a7e1a22c0"
-SRCREV_sama7g5ek-emmc = "d67f0979dcc377863060e803a2280b7a7e1a22c0"
+SRCREV_sama7g5ek = "d67f0979dcc377863060e803a2280b7a7e1a22c0"
 
 PV = "5.4+git${SRCPV}"
 
@@ -22,8 +21,7 @@ KBRANCH_sama7g5ek-sd = "sama7g5_early"
 KBRANCH_sama7g5ek-emmc = "sama7g5_early"
 SRC_URI = "git://github.com/linux4sam/linux-at91.git;protocol=git;branch=${KBRANCH}"
 SRC_URI += "file://defconfig"
-SRC_URI_remove_sama7g5ek-sd = "file://defconfig"
-SRC_URI_remove_sama7g5ek-emmc = "file://defconfig"
+SRC_URI_remove_sama7g5ek = "file://defconfig"
 
 python __anonymous () {
     if d.getVar('UBOOT_FIT_IMAGE', True) == 'xyes':
@@ -79,4 +77,4 @@ do_deploy_append() {
 
 KERNEL_MODULE_AUTOLOAD += "atmel_usba_udc g_serial"
 
-COMPATIBLE_MACHINE = "(sama5d2-xplained|sama5d2-xplained-sd|sama5d2-xplained-emmc|sama5d2-ptc-ek|sama5d2-ptc-ek-sd|sama5d27-som1-ek|sama5d27-som1-ek-sd|sama5d4-xplained|sama5d4-xplained-sd|sama5d4ek|sama5d3-xplained|sama5d3-xplained-sd|sama5d3xek|at91sam9x5ek|at91sam9m10g45ek|at91sam9rlek|sama5d2-icp-sd|sam9x60ek|sam9x60ek-sd|sama5d27-wlsom1-ek-sd|sama7g5ek-sd|sama7g5ek-emmc)"
+COMPATIBLE_MACHINE = "(sama5d2-xplained|sama5d2-xplained-sd|sama5d2-xplained-emmc|sama5d2-ptc-ek|sama5d2-ptc-ek-sd|sama5d27-som1-ek|sama5d27-som1-ek-sd|sama5d4-xplained|sama5d4-xplained-sd|sama5d4ek|sama5d3-xplained|sama5d3-xplained-sd|sama5d3xek|at91sam9x5ek|at91sam9m10g45ek|at91sam9rlek|sama5d2-icp-sd|sam9x60ek|sam9x60ek-sd|sama5d27-wlsom1-ek-sd|sama7g5ek)"
