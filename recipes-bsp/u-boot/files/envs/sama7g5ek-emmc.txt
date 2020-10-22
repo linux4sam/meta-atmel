@@ -1,0 +1,9 @@
+#board=sama7g5ek
+#board_name=sama7g5ek
+bootargs=console=ttyS0,115200 earlycon earlyprintk=serial,ttyS0, ignore_loglevel root=/dev/mmcblk0p2 memtest=0 rootfstype=ext4 rw rootwait cma=256m
+bootcmd=fatload mmc 0:1 0x63000000 sama7g5ek.itb; bootm 0x63000000#kernel_dtb
+bootdelay=1
+ethact=gmac0
+stderr=serial
+stdin=serial
+stdout=serial
