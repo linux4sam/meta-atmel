@@ -18,7 +18,7 @@ built by adding an "-sd" suffix to the machine name.
 - AT91SAM9RL / at91sam9rlek
 - AT91SAM9G45 / at91sam9m10g45ek
 - SAM9X60 / sam9x60ek
-- SAMA7G5 / sama7g5ek-sd
+- SAMA7G5 / sama7g5ek-sd, sama7g5ek-emmc
 
 
 Sources
