@@ -20,7 +20,7 @@ LICENSE = "GPLv3"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=1ebbd3e34237af26da5dc08a4e440464"
 
 SRC_URI = "git://github.com/MicrochipTech/linux4sam-wilc-demo-fs-overlay.git;protocol=git"
-SRCREV = "34d452c077c9c75b72d5b9220ea6040bcd2df42d"
+SRCREV = "bb35c3a12b23255f15fde44ab04a1635d69bc6df"
 S = "${WORKDIR}/git"
 
 do_install () {
