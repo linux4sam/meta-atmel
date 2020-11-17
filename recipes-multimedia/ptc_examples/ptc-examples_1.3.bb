@@ -23,7 +23,7 @@ EXTRA_OEMAKE = 'CROSS_COMPILE=${TARGET_PREFIX} \
                 LDFLAGS="${TARGET_CC_ARCH} ${TOOLCHAIN_OPTIONS} ${LDFLAGS}" \
                 '
 
-EXTRA_OEMAKE_append_sama5d27-wlsom1-ek-sd += 'CFLAGS+="-DSAMA5D27_WLSOM1_EK"'
+EXTRA_OEMAKE_append_sama5d27-wlsom1-ek-sd = ' CFLAGS+="-DSAMA5D27_WLSOM1_EK"'
 
 do_compile () {
     oe_runmake
