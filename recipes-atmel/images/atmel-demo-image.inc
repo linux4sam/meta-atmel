@@ -70,6 +70,6 @@ IMAGE_INSTALL = "\
 IMAGE_INSTALL_append_sam9x60 = " \
     hostapd \
     bonnie++ \
-    libm2d "
+    "
 
 inherit core-image
