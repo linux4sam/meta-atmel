@@ -35,6 +35,7 @@ IMAGE_INSTALL = "\
     alsa-utils \
     i2c-tools \
     devmem2 \
+    libgpiod-tools \
     dosfstools \
     libdrm-tests \
     mtd-utils \
