@@ -13,7 +13,8 @@ LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://COPYING;md5=2aadfbb30f3dc663d0c881ccb240fc4c"
 
 DEPENDS = "bluez5 wilc-demo-fs-overlay"
-SRC_URI = "git://github.com/MicrochipTech/wilcbtapps-buildroot-external-microchip.git;protocol=git"
+SRC_URI = "git://github.com/MicrochipTech/wilcbtapps-buildroot-external-microchip.git;protocol=https"
+PV = "1.0+git${SRCPV}"
 SRCREV  = "44dae79d567ab713edbd313ee3647b000f9c81b3"
 
 S = "${WORKDIR}/git"
