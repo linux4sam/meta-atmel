@@ -8,7 +8,7 @@ SRC_URI = "git://github.com/MicrochipTech/cryptoauthlib.git;branch=main;protocol
 "
 
 PV = "1.0+git${SRCPV}"
-SRCREV = "70d082c0110086ef97d50faa43a9a3c847b4bb12"
+SRCREV = "e981e09edbb902ee49d74365e66b7292ebad8934"
 
 S = "${WORKDIR}/git"
 
@@ -64,4 +64,6 @@ FILES_${PN} = "${nonarch_libdir}/libcryptoauth.so \
 	       ${datadir}/p11-kit/modules/cryptoauthlib.module \
 	       ${localstatedir}/lib/cryptoauthlib/0.conf \
 "
-FILES_${PN}-dev = ""
+FILES_${PN}-dev = " \
+		${includedir}/cryptoauthlib/* \
+"
