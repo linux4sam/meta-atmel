@@ -14,8 +14,8 @@ RDEPENDS_${PN} = "evtest"
 SRC_URI = "git://github.com/linux4sam/egt-launcher.git;protocol=https \
 	  file://0001-launch.sh-Use-start-stop-daemon-to-restart-egt.patch"
 
-PV = "1.0+git${SRCPV}"
-SRCREV = "de71a927a3a49d834c6310db8bb4b1c721e59d2a"
+PV = "1.1+git${SRCPV}"
+SRCREV = "d1559803806bba26fe3a4b3f7aff2ddaa439534d"
 
 S = "${WORKDIR}/git"
 
