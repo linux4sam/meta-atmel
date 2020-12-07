@@ -71,3 +71,9 @@ do_install_append() {
     rm -f ${D}/usr/share/egt/examples/audioplayer/*.mp3
     rm -f ${D}/usr/share/egt/examples/drummachine/*.wav
 }
+
+python __anonymous () {
+    endianness = d.getVar('SITEINFO_ENDIANNESS')
+    if endianness == 'be':
+        raise bb.parse.SkipRecipe('Requires little-endian target.')
+}
