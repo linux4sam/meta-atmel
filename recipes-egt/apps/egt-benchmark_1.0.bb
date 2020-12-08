@@ -15,9 +15,15 @@ inherit pkgconfig autotools-brokensep
 EXTRA_OECONF += "--program-prefix='egt_'"
 
 do_configure_prepend() {
-	( cd ${S} && ${S}/autogen.sh ) 
+	( cd ${S} && ${S}/autogen.sh )
 }
 
 FILES_${PN} += " \
     ${datadir}/egt/* \
 "
+
+python __anonymous () {
+    endianness = d.getVar('SITEINFO_ENDIANNESS')
+    if endianness == 'be':
+        raise bb.parse.SkipRecipe('Requires little-endian target.')
+}

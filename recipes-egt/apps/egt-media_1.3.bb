@@ -32,3 +32,10 @@ do_install() {
 
 ALLOW_EMPTY_${PN} = "1"
 INHIBIT_DEFAULT_DEPS = "1"
+
+python __anonymous () {
+    endianness = d.getVar('SITEINFO_ENDIANNESS')
+    if endianness == 'be':
+        raise bb.parse.SkipRecipe('Requires little-endian target.')
+}
+
