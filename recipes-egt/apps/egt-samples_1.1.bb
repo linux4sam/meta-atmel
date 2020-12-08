@@ -30,3 +30,9 @@ FILES_${PN} += " \
 B = "${S}"
 
 EXTRA_OECONF = "--program-prefix='egt_'"
+
+python __anonymous () {
+    endianness = d.getVar('SITEINFO_ENDIANNESS')
+    if endianness == 'be':
+        raise bb.parse.SkipRecipe('Requires little-endian target.')
+}

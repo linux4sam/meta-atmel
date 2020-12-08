@@ -32,3 +32,8 @@ B = "${S}"
 FILES_${PN} += " \
     /usr/share/egt/* \
 "
+python __anonymous () {
+    endianness = d.getVar('SITEINFO_ENDIANNESS')
+    if endianness == 'be':
+        raise bb.parse.SkipRecipe('Requires little-endian target.')
+}
