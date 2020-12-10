@@ -3,7 +3,7 @@ LICENSE = "CLOSED"
 
 PR = "r1"
 
-SRC_URI = "ftp://www.at91.com/pub/demo/media/egt-media-${PV}.tar.gz"
+SRC_URI = "https://files.linux4sam.org/pub/demo/media/egt-media-${PV}.tar.gz"
 
 SRC_URI[md5sum] = "c9ddf805e8513847ed1058c267e32737"
 
