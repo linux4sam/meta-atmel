@@ -47,6 +47,8 @@ PACKAGECONFIG[lua] = "--with-lua,--without-lua,lua"
 PACKAGECONFIG[xkbcommon] = "--with-xkbcommon,--without-xkbcommon,libxkbcommon"
 PACKAGECONFIG[x11] = "--with-x11,--without-x11,libx11"
 
+FULL_OPTIMIZATION_append = " -Ofast"
+
 do_configure_prepend() {
 	( cd ${S};
 	${S}/autogen.sh; cd -)
