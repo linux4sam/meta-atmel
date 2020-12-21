@@ -53,4 +53,12 @@ do_install_append() {
     rm -rf ${D}/usr/share/plplot${PV}/examples
 }
 
+RDEPENDS_${PN} = " \
+    ttf-dejavu-sans \
+    ttf-dejavu-sans-mono \
+    ttf-dejavu-sans-condensed \
+    ttf-dejavu-serif \
+    ttf-dejavu-serif-condensed \
+"
+
 inherit cmake pkgconfig
