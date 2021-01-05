@@ -11,7 +11,7 @@ DEPENDS = " libegt sqlite3-native"
 
 SRC_URI = "git://github.com/linux4sam/egt-thermostat.git;protocol=https"
 
-SRCREV = "578d2c320989b90560723b236f0c9e9f8071d73b"
+SRCREV = "df09fff7fcf79641abda663bd74b518efacdf652"
 
 S = "${WORKDIR}/git"
 
