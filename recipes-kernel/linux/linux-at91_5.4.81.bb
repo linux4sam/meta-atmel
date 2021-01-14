@@ -9,7 +9,7 @@ inherit kernel
 RDEPENDS_${KERNEL_PACKAGE_NAME}-base = ""
 FILESEXTRAPATHS_prepend := "${THISDIR}/${P}:"
 
-SRCREV = "6cb5b8839e5f8b9bdd69273bd396ded4f0edd09e"
+SRCREV = "3dba8c9991d2466eb5e9398de22fa7f28accee83"
 SRCREV_sama7g5ek = "d67f0979dcc377863060e803a2280b7a7e1a22c0"
 
 PV = "5.4+git${SRCPV}"
