@@ -35,19 +35,19 @@ This Layer depends on :
 - poky
 URI: git://git.yoctoproject.org/poky
 Branch: dunfell
-Tag: 33fdf03169ab2a3355e090d41ba034855d47f865
+Tag: 861cfcd52f0b769772c3726530210f2f43c3449b
 
 - meta-openembedded
 URI: git://git.openembedded.org/meta-openembedded
 URI: http://cgit.openembedded.org/meta-openembedded/
 Branch: dunfell
-Tag: a62ad77973b16daac1cbaa03cbda3c6b9b91f2ff
+Tag: f2d02cb71eaff8eb285a1997b30be52486c160ae
 
 - meta-aws (for AWS Greengrass, mandatory for SAMA5D2 microchip-* images)
 URI: git://github.com/aws/meta-aws.git
 URI: https://github.com/aws/meta-aws
 Branch: dunfell
-Tag: 6fdd1bd619bde0207e990dde13f5a512e5a6552b
+Tag: e34ed15a87e36fa4199c63a184630fa370abac55
 
 Build procedure
 ===============
@@ -108,19 +108,20 @@ NATIVELSBSTRING      = "universal"
 TARGET_SYS           = "arm-poky-linux-gnueabi"
 MACHINE              = "sama5d2-xplained-sd"
 DISTRO               = "poky-atmel"
-DISTRO_VERSION       = "3.1"
+DISTRO_VERSION       = "3.1.4"
 TUNE_FEATURES        = "arm vfp cortexa5 neon vfpv4 thumb callconvention-hard"
 TARGET_FPU           = "hard"
-meta                 
-meta-poky            
-meta-yocto-bsp       = "dunfell:33fdf03169ab2a3355e090d41ba034855d47f865"
-meta-oe              
-meta-networking      
-meta-python          
-meta-initramfs       
-meta-multimedia      = "dunfell:a62ad77973b16daac1cbaa03cbda3c6b9b91f2ff"
-meta-atmel           = "dunfell:796eaa3c34b3474a13267544e432e348582370c1"
-meta-aws             = "dunfell:6fdd1bd619bde0207e990dde13f5a512e5a6552b"
+meta
+meta-poky
+meta-yocto-bsp       = "dunfell:861cfcd52f0b769772c3726530210f2f43c3449b"
+meta-oe
+meta-networking
+meta-python
+meta-initramfs       = "dunfell:f2d02cb71eaff8eb285a1997b30be52486c160ae"
+meta-atmel           = "dunfell:ce8fd89980a4982cc90a730f9f53251e6973ff7f"
+meta-multimedia      = "dunfell:f2d02cb71eaff8eb285a1997b30be52486c160ae"
+meta-aws             = "dunfell:e34ed15a87e36fa4199c63a184630fa370abac55"
+
 
 Contributing
 ============
