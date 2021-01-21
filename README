@@ -118,7 +118,7 @@ meta-oe
 meta-networking
 meta-python
 meta-initramfs       = "dunfell:f2d02cb71eaff8eb285a1997b30be52486c160ae"
-meta-atmel           = "dunfell:ce8fd89980a4982cc90a730f9f53251e6973ff7f"
+meta-atmel           = "dunfell:060a1d102176dbffdcd113d62585f728735811d3"
 meta-multimedia      = "dunfell:f2d02cb71eaff8eb285a1997b30be52486c160ae"
 meta-aws             = "dunfell:e34ed15a87e36fa4199c63a184630fa370abac55"
 
