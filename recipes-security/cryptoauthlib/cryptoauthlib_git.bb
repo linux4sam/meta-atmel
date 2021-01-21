@@ -4,8 +4,10 @@ LICENSE = "MICROCHIP_CAL"
 LIC_FILES_CHKSUM = "file://license.txt;endline=18;md5=a6d0adc44da1eb4799100655116c5ca4"
 
 SRC_URI = "git://github.com/MicrochipTech/cryptoauthlib.git;branch=main;protocol=https \
-	   file://cryptoauthlib.module \
-"
+           file://cryptoauthlib.module \
+           file://0001-pkcs11-Fix-deadlock-in-pkcs11_token_init.patch \
+           file://0002-pkcs11-Fix-user-s-PIN-usage.patch \
+           "
 
 PV = "1.0+git${SRCPV}"
 SRCREV = "e981e09edbb902ee49d74365e66b7292ebad8934"

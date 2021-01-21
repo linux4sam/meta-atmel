@@ -1,0 +1,46 @@
+From 8dc0004e154753913f7c7fceb034db4c0e2a7784 Mon Sep 17 00:00:00 2001
+From: Tudor Ambarus <tudor.ambarus@microchip.com>
+Date: Thu, 21 Jan 2021 15:09:44 +0200
+Subject: [PATCH] pkcs11: Fix user's PIN usage
+
+1/ The PIN size is 32 bytes, update buffer length accordingly
+2/ Add condition to check so_pin_handle is not pointing to
+default value
+3/ Update KeyLen condition in pkcs11_token_convert_pin_to_key.
+
+Signed-off-by: Tudor Ambarus <tudor.ambarus@microchip.com>
+---
+ lib/pkcs11/pkcs11_token.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/lib/pkcs11/pkcs11_token.c b/lib/pkcs11/pkcs11_token.c
+index a40f822c93ec..92b633220513 100644
+--- a/lib/pkcs11/pkcs11_token.c
++++ b/lib/pkcs11/pkcs11_token.c
+@@ -125,7 +125,7 @@ CK_RV pkcs11_token_init(CK_SLOT_ID slotID, CK_UTF8CHAR_PTR pPin, CK_ULONG ulPinL
+ {
+ #if PKCS11_TOKEN_INIT_SUPPORT
+     CK_RV rv;
+-    uint8_t buf[34];
++    uint8_t buf[32];
+     uint8_t * pConfig = NULL;
+     bool lock = false;
+     pkcs11_lib_ctx_ptr pLibCtx;
+@@ -255,7 +255,7 @@ CK_RV pkcs11_token_init(CK_SLOT_ID slotID, CK_UTF8CHAR_PTR pPin, CK_ULONG ulPinL
+                 rv = pkcs11_token_convert_pin_to_key(pPin, ulPinLen, NULL, 0, buf, buflen);
+             }
+ 
+-            if (CKR_OK == rv)
++            if ((CKR_OK == rv) && (pSlotCtx->so_pin_handle != 0xFFFF))
+             {
+                 if (atcab_is_ca_device(pSlotCtx->interface_config.devtype))
+                 {
+@@ -577,7 +577,7 @@ CK_RV pkcs11_token_convert_pin_to_key(
+ {
+     ATCA_STATUS status = ATCA_SUCCESS;
+ 
+-    if (!pPin || !ulPinLen || !pKey || 32 != ulKeyLen)
++    if (!pPin || !ulPinLen || !pKey || 32 > ulKeyLen)
+     {
+         return CKR_ARGUMENTS_BAD;
+     }
