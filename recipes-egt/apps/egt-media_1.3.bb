@@ -18,7 +18,7 @@ RDEPENDS_${PN} = "gstreamer1.0 \
 	gstreamer1.0-plugins-base-videoscale \
 	gstreamer1.0-plugins-base-videoconvert \
 	gstreamer1.0-plugins-base-volume \
-	gstreamer1.0-libav \
+	${@bb.utils.contains("LICENSE_FLAGS_WHITELIST", "commercial", "gstreamer1.0-libav", "", d)} \
 "
 
 FILES_${PN} += " \
@@ -38,4 +38,3 @@ python __anonymous () {
     if endianness == 'be':
         raise bb.parse.SkipRecipe('Requires little-endian target.')
 }
-
