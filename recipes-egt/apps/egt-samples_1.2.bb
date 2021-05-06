@@ -7,32 +7,28 @@ PACKAGES = "\
     ${PN}-dev \
     ${PN}-dbg \
 "
-DEPENDS = " libegt sqlite3-native"
+DEPENDS = " libegt"
 
-SRC_URI = "git://github.com/linux4sam/egt-thermostat.git;protocol=https"
+SRC_URI = "gitsm://github.com/linux4sam/egt-samples.git;protocol=https "
 
-SRCREV = "21fcbd82e94ecf82f0179007799e9b01e1d078c8"
+PV = "1.2+git${SRCPV}"
+SRCREV = "8d96fd098c074e40c57f2c3308b4b85a555b30ce"
 
 S = "${WORKDIR}/git"
-
-# out-of-tree building doesn't appear to work for this package.
-B = "${S}"
 
 inherit pkgconfig autotools gettext
 
 do_configure_prepend() {
-	( cd ${S};
-	${S}/autogen.sh; cd -)
-}
-
-do_install_append() {
-	( cd ${S} && sqlite3 thermostat.db < thermostat.sql; cd - )
-	install -m 0755 -D ${S}/thermostat.db ${D}${datadir}/egt/thermostat/thermostat.db
+     ( cd ${S}; ${S}/autogen.sh; cd -)
 }
 
 FILES_${PN} += " \
-    ${datadir}/egt/* \
+    /usr/share/egt/* \
 "
+# out-of-tree building doesn't appear to work for this package.
+B = "${S}"
+
+EXTRA_OECONF = "--program-prefix='egt_'"
 
 python __anonymous () {
     endianness = d.getVar('SITEINFO_ENDIANNESS')
