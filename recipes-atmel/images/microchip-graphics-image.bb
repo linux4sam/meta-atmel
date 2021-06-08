@@ -123,3 +123,9 @@ inherit core-image
 
 #TOOLCHAIN_HOST_TASK += "nativesdk-sam-ba"
 TOOLCHAIN_HOST_TASK += "nativesdk-swig"
+
+# Required dependencies to build EGT with the SDK.
+TOOLCHAIN_TARGET_TASK += " \
+    lua-dev \
+    lua-staticdev \
+    "
