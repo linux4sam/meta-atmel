@@ -28,6 +28,8 @@ inherit pkgconfig autotools gettext
 
 EXTRA_OECONF += "--disable-debug"
 
+EXTRA_AUTORECONF_append = " -I ${STAGING_DATADIR}/aclocal"
+
 PACKAGECONFIG ??= "examples icons plplot curl librsvg gstreamer jpeg zlib libinput lua ${@bb.utils.filter('DISTRO_FEATURES', 'x11 alsa', d)}"
 
 PACKAGECONFIG[librsvg] = "--with-librsvg,-without-librsvg,librsvg"
