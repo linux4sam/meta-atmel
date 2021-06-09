@@ -1,9 +1,12 @@
-Flashing the NAND using SAM-BA
-==============================
+Access to RomCode SAM-BA monitor
+================================
 
-This document explains how to flash a system on various Atmel boards.
-Additional details can also be found on the Linux4SAM website, in particular
-here: http://www.at91.com/linux4sam/bin/view/Linux4SAM/GettingStarted
+This document explains how to access the RomCode SAM-BA monitor that allows to
+flash a system on various boards.
+The SAM-BA tool available on Microchip website connects to the chip's SAM-BA
+monitor as explained in the product's datasheet.
+Additional details can also be found on the Linux4SAM website, by selecting the
+appropriate board pages here: http://www.linux4sam.org
 
 Connect the board:
  o at91sam9g45m10ek: DBGU: J10, USB sam-ba: J14
@@ -80,7 +83,6 @@ cdc_acm 1-2.1.4:1.0: ttyACM0: USB ACM device
 
 Look for idVendor=03eb, idProduct=6124, this is the interface you want to use.
 
-You can then flash the board using the provided flasher.sh script in board/atmel:
-
-../source/meta-atmel/scripts/flasher.sh <image_name> <interface> <board> [lcd]
-
+You can then flash the board using the SAM-BA tool. Helpful automation scripts
+are available in each board's demo archive available on Linux4SAM website
+(http://www.linux4sam.org).
