@@ -2,21 +2,21 @@ SECTION = "kernel"
 DESCRIPTION = "Linux kernel for Microchip ARM SoCs (aka AT91)"
 SUMMARY = "Linux kernel for Microchip ARM SoCs (aka AT91)"
 LICENSE = "GPLv2"
-LIC_FILES_CHKSUM = "file://COPYING;md5=bbea815ee2795b2f4230826c0c6b8814"
+LIC_FILES_CHKSUM = "file://COPYING;md5=6bc538ed5bd9a7fc9398086aedcd7e46"
 
 inherit kernel
 
 RDEPENDS_${KERNEL_PACKAGE_NAME}-base = ""
 FILESEXTRAPATHS_prepend := "${THISDIR}/${P}:"
 
-SRCREV = "3dba8c9991d2466eb5e9398de22fa7f28accee83"
+SRCREV = "d6b1f371ab6be3733f7ff41f552db86f2a311022"
 SRCREV_sama7g5ek = "d67f0979dcc377863060e803a2280b7a7e1a22c0"
 
-PV = "5.4+git${SRCPV}"
+PV = "5.10+git${SRCPV}"
 
 S = "${WORKDIR}/git"
 
-KBRANCH = "linux-5.4-at91"
+KBRANCH = "linux-5.10-at91"
 KBRANCH_sama7g5ek-sd = "sama7g5_early"
 KBRANCH_sama7g5ek-emmc = "sama7g5_early"
 SRC_URI = "git://github.com/linux4sam/linux-at91.git;protocol=git;branch=${KBRANCH}"
