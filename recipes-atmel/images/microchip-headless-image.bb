@@ -11,9 +11,12 @@ IMAGE_INSTALL += "\
     rsync \
     "
 
-IMAGE_INSTALL_append_sama5d2 = " nodejs nodejs-npm greengrass"
+IMAGE_INSTALL_append_sama5d2 = " nodejs nodejs-npm"
 IMAGE_INSTALL_append_sama5d3 = " nodejs nodejs-npm"
 IMAGE_INSTALL_append_sama5d4 = " nodejs nodejs-npm"
+
+# packages needed for greengrass with ECC608
+IMAGE_INSTALL_append_sama5d2 = " cryptoauthlib python3-cryptoauthlib p11-kit"
 
 IMAGE_INSTALL_append_sama5d2-ptc-ek = " ptc-examples"
 IMAGE_INSTALL_append_sama5d2-ptc-ek-sd = " ptc-examples"

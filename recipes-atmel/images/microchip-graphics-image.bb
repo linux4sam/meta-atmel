@@ -109,7 +109,8 @@ IMAGE_INSTALL_append_sam9x60 = " \
 	bonnie++ \
 	libm2d "
 
-IMAGE_INSTALL_append_sama5d2 = " greengrass"
+# packages needed for greengrass with ECC608
+IMAGE_INSTALL_append_sama5d2 = " cryptoauthlib python3-cryptoauthlib p11-kit"
 
 IMAGE_INSTALL_append_sama5d4 = " \
 	gstreamer1.0-plugins-hantro \
