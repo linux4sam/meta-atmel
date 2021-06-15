@@ -8,6 +8,7 @@ IMAGE_INSTALL += "\
     packagegroup-base-usbhost \
     mpg123 \
     mpio \
+    rsync \
     "
 
 IMAGE_INSTALL_append_sama5d2 = " nodejs nodejs-npm greengrass"
