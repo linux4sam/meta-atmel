@@ -18,9 +18,9 @@ DEPENDS = "\
     xxd-native \
 "
 
-SRC_URI = "gitsm://github.com/linux4sam/egt.git;protocol=https"
+SRC_URI = "gitsm://github.com/linux4sam/egt.git;protocol=https;branch=1.2"
 
-SRCREV = "c5ce551a3e0d9a1c7d217036592258a98a7f0bbf"
+SRCREV = "a0628661641b97a0b88530c9021c586b0c273b61"
 
 S = "${WORKDIR}/git"
 
