@@ -41,7 +41,7 @@ Tag: 43060f59ba60a0257864f1f7b25b51fac3f2d2cf
 URI: git://git.openembedded.org/meta-openembedded
 URI: http://cgit.openembedded.org/meta-openembedded/
 Branch: dunfell
-Tag: 7bd47ef6c98323c95a9e527129dca98c9a65ee08
+Tag: 85f8047c71047d93cf79a954142157f85079968d
 
 - meta-aws (for AWS Greengrass)
 URI: git://github.com/aws/meta-aws.git
@@ -101,7 +101,6 @@ MACHINE=sama5d2-xplained-sd bitbake microchip-graphics-image
 
 Typical bitbake output
 ======================
-Build Configuration:
 BB_VERSION           = "1.46.0"
 BUILD_SYS            = "x86_64-linux"
 NATIVELSBSTRING      = "universal"
@@ -118,9 +117,9 @@ meta-oe
 meta-networking      
 meta-webserver       
 meta-python          
-meta-initramfs       = "dunfell:7bd47ef6c98323c95a9e527129dca98c9a65ee08"
-meta-atmel           = "dunfell:cd44d62145ca8dc9aa34fa61a8337f5973580442"
-meta-multimedia      = "dunfell:7bd47ef6c98323c95a9e527129dca98c9a65ee08"
+meta-initramfs       = "dunfell:85f8047c71047d93cf79a954142157f85079968d"
+meta-atmel           = "dunfell:78cac8e42a09175c5f92e8335036656ac749a758"
+meta-multimedia      = "dunfell:85f8047c71047d93cf79a954142157f85079968d"
 
 Contributing
 ============
