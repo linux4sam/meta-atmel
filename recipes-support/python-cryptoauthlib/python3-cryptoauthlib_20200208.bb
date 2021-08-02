@@ -12,7 +12,7 @@ SRC_URI[sha256sum] = "7b04a4097c6f8d4b539c7425261eac3353016405b863fec2d827152ce3
 
 inherit pypi setuptools3
 
-RDEPENDS_${PN} += "python3-core python3-cryptography python3-ctypes python3-datetime python3-netclient"
+RDEPENDS:${PN} += "python3-core python3-cryptography python3-ctypes python3-datetime python3-netclient"
 
 DEPENDS += "cmake-native udev"
 

@@ -6,8 +6,8 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7"
 
 inherit kernel
 
-RDEPENDS_${KERNEL_PACKAGE_NAME}-base = ""
-FILESEXTRAPATHS_prepend := "${THISDIR}/${P}:"
+RDEPENDS:${KERNEL_PACKAGE_NAME}-base = ""
+FILESEXTRAPATHS:prepend := "${THISDIR}/${P}:"
 
 SRCREV = "b733e44da245b2a62ba09e6ec7060be2563d4f4e"
 
@@ -25,7 +25,7 @@ python __anonymous () {
         d.appendVar('DEPENDS', ' u-boot-mkimage-native dtc-native')
 }
 
-do_deploy_append() {
+do_deploy:append() {
 	if [ "${UBOOT_FIT_IMAGE}" = "xyes" ]; then
 		DTB_PATH="${B}/arch/${ARCH}/boot/dts/"
 		if [ ! -e "${DTB_PATH}" ]; then

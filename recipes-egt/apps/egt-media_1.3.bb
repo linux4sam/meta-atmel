@@ -9,7 +9,7 @@ SRC_URI[md5sum] = "c9ddf805e8513847ed1058c267e32737"
 
 S = "${WORKDIR}/examples"
 
-RDEPENDS_${PN} = "gstreamer1.0 \
+RDEPENDS:${PN} = "gstreamer1.0 \
 	gstreamer1.0-plugins-base \
 	gstreamer1.0-plugins-base-alsa \
 	gstreamer1.0-plugins-base-playback \
@@ -21,7 +21,7 @@ RDEPENDS_${PN} = "gstreamer1.0 \
 	${@bb.utils.contains("LICENSE_FLAGS_WHITELIST", "commercial", "gstreamer1.0-libav", "", d)} \
 "
 
-FILES_${PN} += " \
+FILES:${PN} += " \
     /usr/share/egt/* \
 "
 
@@ -30,7 +30,7 @@ do_install() {
 	cp -Rf ${S}/* ${D}//usr/share/egt/examples/
 }
 
-ALLOW_EMPTY_${PN} = "1"
+ALLOW_EMPTY:${PN} = "1"
 INHIBIT_DEFAULT_DEPS = "1"
 
 python __anonymous () {

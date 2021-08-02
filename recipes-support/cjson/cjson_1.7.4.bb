@@ -19,5 +19,5 @@ EXTRA_OECMAKE += "-DENABLE_CJSON_UTILS=On \
 				  -DBUILD_SHARED_AND_STATIC_LIBS=On \
 				  -DCMAKE_INSTALL_PREFIX=/usr "
 
-FILES_${PN} += "/usr/lib/* \
+FILES:${PN} += "/usr/lib/* \
 		/usr/include/cjson/* "

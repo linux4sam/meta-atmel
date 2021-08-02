@@ -9,7 +9,7 @@ PACKAGES = "\
 "
 DEPENDS = "libegt"
 
-RDEPENDS_${PN} = "evtest"
+RDEPENDS:${PN} = "evtest"
 
 SRC_URI = "git://github.com/linux4sam/egt-launcher.git;protocol=https \
 	  file://0001-launch.sh-Use-start-stop-daemon-to-restart-egt.patch"
@@ -21,7 +21,7 @@ S = "${WORKDIR}/git"
 
 inherit pkgconfig autotools gettext
 
-do_configure_prepend() {
+do_configure:prepend() {
 	( cd ${S};
 	${S}/autogen.sh; cd -)
 }
@@ -29,7 +29,7 @@ do_configure_prepend() {
 # out-of-tree building doesn't appear to work for this package.
 B = "${S}"
 
-FILES_${PN} += " \
+FILES:${PN} += " \
     /usr/share/egt/* \
 "
 python __anonymous () {

@@ -13,7 +13,7 @@ SRCREV = "cb81273566b7c1609ce27bbf38af8042946472f7"
 
 S = "${WORKDIR}/git"
 
-do_configure_prepend() {
+do_configure:prepend() {
     (cd ${S};
     chmod +x ${S}/autogen.sh;
     ${S}/autogen.sh; cd -)

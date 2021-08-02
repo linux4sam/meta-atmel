@@ -15,10 +15,10 @@ do_install () {
     cp -R --no-dereference --preserve=mode,links ${S}/* ${D}${bindir}/sam-ba_cdc_linux
 }
 
-do_install_append_class-target() {
+do_install:append:class-target() {
     rm -rf ${D}${bindir}/sam-ba_cdc_linux/sam-ba_64
     rm -rf ${D}${bindir}/sam-ba_cdc_linux/sam-ba
 }
 
-INSANE_SKIP_${PN} += "already-stripped"
+INSANE_SKIP:${PN} += "already-stripped"
 BBCLASSEXTEND = "native nativesdk"

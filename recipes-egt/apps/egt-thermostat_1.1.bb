@@ -20,17 +20,17 @@ B = "${S}"
 
 inherit pkgconfig autotools gettext
 
-do_configure_prepend() {
+do_configure:prepend() {
 	( cd ${S};
 	${S}/autogen.sh; cd -)
 }
 
-do_install_append() {
+do_install:append() {
 	( cd ${S} && sqlite3 thermostat.db < thermostat.sql; cd - )
 	install -m 0755 -D ${S}/thermostat.db ${D}${datadir}/egt/thermostat/thermostat.db
 }
 
-FILES_${PN} += " \
+FILES:${PN} += " \
     ${datadir}/egt/* \
 "
 

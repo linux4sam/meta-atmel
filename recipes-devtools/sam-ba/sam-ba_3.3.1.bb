@@ -24,7 +24,7 @@ do_deploy () {
         cp -R --no-dereference --preserve=mode,links ${D}${bindir}/sam-ba_cdc_linux/* ${DEPLOYDIR}/sam-ba
 }
 
-INSANE_SKIP_${PN} += "already-stripped"
+INSANE_SKIP:${PN} += "already-stripped"
 BBCLASSEXTEND = "native nativesdk"
 
-COMPATIBLE_HOST_class-target = "null"
+COMPATIBLE_HOST:class-target = "null"

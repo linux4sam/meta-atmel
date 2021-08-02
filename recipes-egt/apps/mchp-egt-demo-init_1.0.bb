@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/Apache-2.0;md5=89aea4e17d99a7ca
 SRC_URI = "file://S99egtdemo \
 	"
 
-RDEPENDS_${PN} = "udev-rules-at91"
+RDEPENDS:${PN} = "udev-rules-at91"
 
 PR = "r2"
 

@@ -1,3 +1,3 @@
-PACKAGECONFIG_remove = " directfb"
-PACKAGECONFIG_remove = " vulkan"
-PACKAGECONFIG_append = " kms"
+PACKAGECONFIG:remove = " directfb"
+PACKAGECONFIG:remove = " vulkan"
+PACKAGECONFIG:append = " kms"

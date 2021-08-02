@@ -17,7 +17,7 @@ PACKAGECONFIG[cairo] = "--enable-cairo,--disable-cairo"
 
 inherit pkgconfig autotools
 
-FILES_${PN} += " \
+FILES:${PN} += " \
 	${libdir}/*libm2d*.so* \
 	${libdir}/pkgconfig/libm2d.pc \
 	${bindir}/blendtest \
@@ -27,18 +27,18 @@ FILES_${PN} += " \
 	/usr/share/libm2d/* \
 	"
 
-FILES_${PN}-dev += " \
+FILES:${PN}-dev += " \
 	${includedir}/m2d/* \
 	${libdir}/libm2d.la \
 	"
 
-do_configure_prepend() {
+do_configure:prepend() {
 	mkdir -p ${S}/include/drm
 	cp ${STAGING_KERNEL_DIR}/include/uapi/drm/atmel_drm.h ${S}/include/drm/atmel_drm.h
 	( cd ${S}; ./autogen.sh; cd -)
 }
 
-do_install_append() {
+do_install:append() {
 	install -Dm 0644 --target-directory=${D}/usr/lib/		${B}/src/libm2d.la
 	install -Dm 0644 --target-directory=${D}/usr/include/m2d/	${S}/include/m2d/*
 	install -Dm 0644 --target-directory=${D}/usr/lib/pkgconfig/	${B}/libm2d.pc

@@ -1,1 +1,1 @@
-PACKAGECONFIG_append = " p11-kit"
+PACKAGECONFIG:append = " p11-kit"

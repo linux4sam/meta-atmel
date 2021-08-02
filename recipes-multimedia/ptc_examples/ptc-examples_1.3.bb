@@ -10,7 +10,7 @@ LIC_FILES_CHKSUM = "file://src/COPYING;md5=e23fadd6ceef8c618fc1c65191d846fa \
                     "
 NO_GENERIC_LICENSE[PTC_config] = "cfg/LICENCE.ptc_cfg"
 DEPENDS = "libevdev libgpiod"
-RDEPENDS_${PN} = "udev-rules-at91"
+RDEPENDS:${PN} = "udev-rules-at91"
 PV = "1.3+git${SRCPV}"
 
 SRC_URI = "git://github.com/linux4sam/ptc_examples.git;protocol=git"
@@ -23,7 +23,7 @@ EXTRA_OEMAKE = 'CROSS_COMPILE=${TARGET_PREFIX} \
                 LDFLAGS="${TARGET_CC_ARCH} ${TOOLCHAIN_OPTIONS} ${LDFLAGS}" \
                 '
 
-EXTRA_OEMAKE_append_sama5d27-wlsom1-ek-sd = ' CFLAGS+="-DSAMA5D27_WLSOM1_EK"'
+EXTRA_OEMAKE:append:sama5d27-wlsom1-ek-sd = ' CFLAGS+="-DSAMA5D27_WLSOM1_EK"'
 
 do_compile () {
     oe_runmake
@@ -37,7 +37,7 @@ do_install () {
 }
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
-FILES_${PN} += "${base_libdir}/firmware/microchip \
+FILES:${PN} += "${base_libdir}/firmware/microchip \
                 /home/root/start_ptc_qt* \
                 "
 COMPATIBLE_MACHINE = "(at91sam9|sama5)"

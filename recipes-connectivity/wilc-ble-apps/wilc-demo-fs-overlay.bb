@@ -31,9 +31,9 @@ do_install () {
     install -D -m 0644 --target-directory=${D}${sysconfdir}/ ${S}/sama5d27_wlsom1_ek/etc/wilc*
 }
 
-FILES_${PN} += "/home/root/*"
-FILES_${PN} += "${datadir}/nginx/html/*"
-FILES_${PN} += "${sysconfdir}/wilc*"
+FILES:${PN} += "/home/root/*"
+FILES:${PN} += "${datadir}/nginx/html/*"
+FILES:${PN} += "${sysconfdir}/wilc*"
 
 inherit allarch
 do_compile[noexec] = "1"

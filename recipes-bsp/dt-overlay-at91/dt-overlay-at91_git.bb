@@ -24,7 +24,7 @@ AT91BOOTSTRAP_MACHINE ??= "${MACHINE}"
 do_compile[depends] += "virtual/kernel:do_deploy virtual/kernel:do_shared_workdir"
 do_compile[nostamp] = "1"
 
-do_configure_append() {
+do_configure:append() {
     if ${@bb.utils.contains('INITRAMFS_IMAGE_BUNDLE','1','true','false',d)}; then
         sed -i -e "s#\"./zImage\"#\"./zImage-initramfs-${MACHINE}.bin\"#" ${S}/${AT91BOOTSTRAP_MACHINE}.its
     fi
@@ -54,7 +54,7 @@ do_compile () {
     fi
 }
 
-FILES_${PN} = "/boot/*.*"
+FILES:${PN} = "/boot/*.*"
 
 addtask install after do_compile
 

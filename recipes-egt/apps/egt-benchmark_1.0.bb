@@ -14,11 +14,11 @@ inherit pkgconfig autotools-brokensep
 
 EXTRA_OECONF += "--program-prefix='egt_'"
 
-do_configure_prepend() {
+do_configure:prepend() {
 	( cd ${S} && ${S}/autogen.sh )
 }
 
-FILES_${PN} += " \
+FILES:${PN} += " \
     ${datadir}/egt/* \
 "
 
