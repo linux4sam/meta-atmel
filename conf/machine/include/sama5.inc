@@ -1,6 +1,6 @@
 # Atmel SAMA5 defaults
 require conf/machine/include/soc-family.inc
-require conf/machine/include/tune-cortexa5.inc
+require conf/machine/include/arm/armv7a/tune-cortexa5.inc
 require conf/machine/include/bootloaders.inc
 
 SOC_FAMILY = "sama5"

@@ -1,6 +1,6 @@
 # Microchip SAMA7 defaults
 require conf/machine/include/soc-family.inc
-require conf/machine/include/tune-cortexa7.inc
+require conf/machine/include/arm/armv7a/tune-cortexa7.inc
 require conf/machine/include/bootloaders.inc
 
 SOC_FAMILY = "sama7"
