@@ -86,6 +86,7 @@ IMAGE_INSTALL += "\
 	dhcp-server-config \
         ${@oe.utils.conditional('SITEINFO_ENDIANNESS', 'le', 'libegt egt-launcher egt-samples egt-media egt-thermostat egt-benchmark', '', d)} \
 	noto-fonts \
+	lohit-fonts \
 	rsync \
 "
 
