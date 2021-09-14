@@ -269,3 +269,29 @@ CONF_VERSION = "1"
 LICENSE_FLAGS_WHITELIST += "commercial"
 SYSVINIT_ENABLED_GETTYS = ""
 INHERIT += "rm_work"
+
+# ENABLE_BINARY_LOCALE_GENERATION controls the generation of binary locale
+# packages at build time using qemu-native. Disabling it (by setting it to 0)
+# will save some build time at the expense of breaking i18n on devices with
+# less than 128MB RAM.
+ENABLE_BINARY_LOCALE_GENERATION = "1"
+
+# If GLIBC_SPLIT_LC_PACKAGES is set to a non-zero value, convert
+# glibc-binary-localedata-XX-YY to be a meta package depending on
+# glibc-binary-localedata-XX-YY-lc-address and so on. This enables
+# saving quite some space if someone doesn't need LC_COLLATE for
+# example.
+GLIBC_SPLIT_LC_PACKAGES = "1"
+
+# Set GLIBC_GENERATE_LOCALES to the locales you wish to generate should you not
+# wish to perform the time-consuming step of generating all LIBC locales.
+# NOTE: If removing en_US.UTF-8 you will also need to uncomment, and set
+# appropriate value for IMAGE_LINGUAS.
+# WARNING: this may break localisation!
+# WARNING: some recipes expect certain localizations to be enabled, e.g.
+# bash-ptest: fr-fr, de-de
+# glib-2.0-ptest: tr-tr, lt-lt, ja-jp.euc-jp, fa-ir, ru-ru, de-de, hr-hr, el-gr, fr-fr, es-es, en-gb
+# if you remove some of these and enable ptest, you'll get QA warning like:
+# ERROR: glib-2.0-1_2.58.0-r0 do_package_qa: QA Issue: glib-2.0-ptest rdepends on locale-base-de-de, but it isn't a build dependency? [build-deps]
+GLIBC_GENERATE_LOCALES += "en_GB.UTF-8 en_US.UTF-8 fr_FR.UTF-8 hi_IN.UTF-8 de_DE.UTF-8 zh_CN.UTF-8 es_ES.UTF-8"
+IMAGE_LINGUAS += "en-gb en-us fr-fr hi-in de-de zh-cn es-es"
