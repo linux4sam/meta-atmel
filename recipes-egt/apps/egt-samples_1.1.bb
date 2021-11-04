@@ -9,7 +9,7 @@ PACKAGES = "\
 "
 DEPENDS = " libegt"
 
-SRC_URI = "gitsm://github.com/linux4sam/egt-samples.git;protocol=https \
+SRC_URI = "gitsm://github.com/linux4sam/egt-samples.git;protocol=https;branch=master \
 	   file://0001-fix-the-builf-error-of-Cannot-use-CP_USE_DOUBLES-on-.patch "
 
 PV = "1.1+git${SRCPV}"
