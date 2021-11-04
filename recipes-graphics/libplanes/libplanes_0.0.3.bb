@@ -10,7 +10,7 @@ DEPENDS = "libdrm cairo cjson lua swig-native python3"
 
 RDEPENDS:${PN} = "python3 udev-rules-at91"
 
-SRC_URI = "git://github.com/linux4sam/libplanes.git;protocol=https \
+SRC_URI = "git://github.com/linux4sam/libplanes.git;protocol=https;branch=master \
            file://0001-Use-python3-by-default.patch \
 "
 PV = "0.0.3+git${SRCPV}"
