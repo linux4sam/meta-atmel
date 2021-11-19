@@ -1,0 +1,38 @@
+From e62b8c93e52afb634b9e639225371506cb254e1a Mon Sep 17 00:00:00 2001
+From: Ajay Singh <ajay.kathat@microchip.com>
+Date: Fri, 9 Jul 2021 16:33:50 +0530
+Subject: [PATCH] fix send_mlme to use monitor interface only for AP interface
+
+Use monitor interface to send_mlme only when that interface is configured in
+AP mode. In multiple interface setup, one interface can be configured in AP
+mode using monitor interface and another interface configure in station mode.
+The station mode interface may also require to receive the frames without
+monitor interface e.g support external SAE authenticatoin to send AUTH frames
+without monitor interface.
+
+Additionally, the monitor interface is only valid for AP mode
+(nl80211_create_monitor_interface() gets called in setup AP) so interface
+type check ensure to use monitor interface only when required by that specific
+interface.
+
+Signed-off-by: Ajay Singh <ajay.kathat@microchip.com>
+---
+ src/drivers/driver_nl80211.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/drivers/driver_nl80211.c b/src/drivers/driver_nl80211.c
+index 0a356eefd..8716d41a8 100644
+--- a/src/drivers/driver_nl80211.c
++++ b/src/drivers/driver_nl80211.c
+@@ -3650,7 +3650,7 @@ static int wpa_driver_nl80211_send_frame(struct i802_bss *bss,
+ 		freq = bss->freq;
+ 	}
+ 
+-	if (drv->use_monitor) {
++	if (drv->use_monitor && is_ap_interface(drv->nlmode)) {
+ 		wpa_printf(MSG_DEBUG, "nl80211: send_frame(freq=%u bss->freq=%u) -> send_monitor",
+ 			   freq, bss->freq);
+ 		return nl80211_send_monitor(drv, data, len, encrypt, noack);
+-- 
+2.25.1
+
