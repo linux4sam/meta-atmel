@@ -124,7 +124,6 @@ IMAGE_INSTALL_append_sama5d27-wlsom1-ek-sd = " ptc-examples"
 
 inherit core-image
 
-#TOOLCHAIN_HOST_TASK += "nativesdk-sam-ba"
 TOOLCHAIN_HOST_TASK += "nativesdk-swig"
 
 # Required dependencies to build EGT with the SDK.
