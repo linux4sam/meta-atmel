@@ -107,7 +107,7 @@ NATIVELSBSTRING      = "universal"
 TARGET_SYS           = "arm-poky-linux-gnueabi"
 MACHINE              = "sama5d2-xplained-sd"
 DISTRO               = "poky-atmel"
-DISTRO_VERSION       = "3.1.9"
+DISTRO_VERSION       = "3.1.12"
 TUNE_FEATURES        = "arm vfp cortexa5 neon vfpv4 thumb callconvention-hard"
 TARGET_FPU           = "hard"
 meta                 
