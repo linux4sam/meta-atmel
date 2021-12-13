@@ -118,7 +118,7 @@ meta-networking
 meta-webserver       
 meta-python          
 meta-initramfs       = "dunfell:69f94af4d91215e7d4e225bab54bf3bcfee42f1c"
-meta-atmel           = "dunfell:016628a187f3c1404af7ab00771805f7d4bdaf68"
+meta-atmel           = "dunfell:06083fe2458bce4eabcf3f54d82791a323467dee"
 meta-multimedia      = "dunfell:69f94af4d91215e7d4e225bab54bf3bcfee42f1c"
 
 Contributing
