@@ -2,15 +2,14 @@ DESCRIPTION = "plplot library"
 HOMEPAGE = "http://plplot.org/"
 SECTION = "devel"
 
-LICENSE = "LGPLv2+"
-LIC_FILES_CHKSUM = "file://Copyright;endline=285;md5=9222bd6b5e4e128fac952e168cffc361"
+LICENSE = "GPLv2+"
+LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
 
 DEPENDS = " libtool freetype fontconfig cairo pango "
 
-#TAG plplot-5.15.0
-SRCREV = "4f88e45dbd85468a96364548f8d06a9b52dac14a"
-
-SRC_URI = "git://github.com/PLplot/PLplot;protocol=https \
+# TAG plplot-5.15.0
+SRC_URI = " \
+    https://github.com/PLplot/PLplot/archive/refs/tags/${PN}-${PV}.zip;protocol=https \
     file://0001-plplot-fix-configure-error-for-generating-header-fil.patch \
     file://0002-utils-CMakeLists.txt-disable-pltek-build.patch \
     file://0001-xwin.cmake-Check-if-PTHREAD_MUTEX_RECURSIVE_NP-exist.patch \
@@ -19,7 +18,9 @@ SRC_URI = "git://github.com/PLplot/PLplot;protocol=https \
     file://plhershey-unicode.h \
 "
 
-S = "${WORKDIR}/git"
+SRC_URI[sha256sum] = "2d98caa088a74d4f89e80cf2b347897d79964fd62d0957996a6aea9ca06c99c1"
+
+S = "${WORKDIR}/PLplot-${PN}-${PV}"
 
 EXTRA_OECMAKE += " \
     -DCMAKE_INSTALL_LIBDIR=${libdir} \
