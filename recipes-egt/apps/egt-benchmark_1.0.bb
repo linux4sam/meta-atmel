@@ -14,6 +14,10 @@ inherit pkgconfig autotools-brokensep
 
 EXTRA_OECONF += "--program-prefix='egt_'"
 
+# Workaround for package accessing network during build
+# allow it for now
+do_configure[network] = "1"
+
 do_configure:prepend() {
 	( cd ${S} && ${S}/autogen.sh )
 }
