@@ -20,7 +20,7 @@ do_install() {
 	chmod -x ${D}${nonarch_base_libdir}/firmware/mchp/*
 }
 
-FILES_${PN} += " \
+FILES:${PN} += " \
 	${nonarch_base_libdir}/firmware/mchp/wilc*.bin \
 	"
 

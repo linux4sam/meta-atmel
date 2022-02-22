@@ -41,7 +41,7 @@ do_install () {
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 
-FILES_${PN} += "${bindir}/transparent_service"
-FILES_${PN} += "${bindir}/wifi_prov_service"
+FILES:${PN} += "${bindir}/transparent_service"
+FILES:${PN} += "${bindir}/wifi_prov_service"
 
 COMPATIBLE_MACHINE = "(at91sam9|sama5)"

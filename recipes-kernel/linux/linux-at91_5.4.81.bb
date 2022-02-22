@@ -6,8 +6,8 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=bbea815ee2795b2f4230826c0c6b8814"
 
 inherit kernel
 
-RDEPENDS_${KERNEL_PACKAGE_NAME}-base = ""
-FILESEXTRAPATHS_prepend := "${THISDIR}/${P}:"
+RDEPENDS:${KERNEL_PACKAGE_NAME}-base = ""
+FILESEXTRAPATHS:prepend := "${THISDIR}/${P}:"
 
 SRCREV = "6cb5b8839e5f8b9bdd69273bd396ded4f0edd09e"
 SRCREV_sama7g5ek = "d67f0979dcc377863060e803a2280b7a7e1a22c0"
@@ -17,18 +17,18 @@ PV = "5.4+git${SRCPV}"
 S = "${WORKDIR}/git"
 
 KBRANCH = "linux-5.4-at91"
-KBRANCH_sama7g5ek-sd = "sama7g5_early"
-KBRANCH_sama7g5ek-emmc = "sama7g5_early"
+KBRANCH:sama7g5ek-sd = "sama7g5_early"
+KBRANCH:sama7g5ek-emmc = "sama7g5_early"
 SRC_URI = "git://github.com/linux4sam/linux-at91.git;protocol=git;branch=${KBRANCH}"
 SRC_URI += "file://defconfig"
-SRC_URI_remove_sama7g5ek = "file://defconfig"
+SRC_URI:remove_sama7g5ek = "file://defconfig"
 
 python __anonymous () {
     if d.getVar('UBOOT_FIT_IMAGE', True) == 'xyes':
         d.appendVar('DEPENDS', ' u-boot-mkimage-native dtc-native')
 }
 
-do_configure_prepend() {
+do_configure:prepend() {
 	if [ ! -f "${WORKDIR}/defconfig" ] && [ -n "${KBUILD_DEFCONFIG}" ]; then
 		if [ -f "${S}/arch/${ARCH}/configs/${KBUILD_DEFCONFIG}" ]; then
 			cp -f ${S}/arch/${ARCH}/configs/${KBUILD_DEFCONFIG} ${WORKDIR}/defconfig
@@ -38,7 +38,7 @@ do_configure_prepend() {
         fi
 }
 
-do_configure_append() {
+do_configure:append() {
 	frags=""
 	for fragment in ${WORKDIR}/*.cfg
 	do
@@ -58,7 +58,7 @@ do_configure_append() {
 	fi
 }
 
-do_deploy_append() {
+do_deploy:append() {
 	if [ "${UBOOT_FIT_IMAGE}" = "xyes" ]; then
 		DTB_PATH="${B}/arch/${ARCH}/boot/dts/"
 		if [ ! -e "${DTB_PATH}" ]; then

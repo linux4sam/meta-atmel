@@ -35,7 +35,7 @@ EXTRA_OECMAKE += " \
     -DCMAKE_VERBOSE_MAKEFILE=ON \
 "
 
-do_compile_prepend() {
+do_compile:prepend() {
     mkdir -p ${B}/lib/qsastime
     mkdir -p ${B}/include
     cp -avf ${WORKDIR}/deltaT.h  ${B}/lib/qsastime/
@@ -43,17 +43,17 @@ do_compile_prepend() {
     cp -avf ${WORKDIR}/plhershey-unicode.h ${B}/include/
 }
 
-FILES_${PN} = " \
+FILES:${PN} = " \
     ${libdir}/* \
     /usr/include/* \
     /usr/share/* \
 "
 
-do_install_append() {
+do_install:append() {
     rm -rf ${D}/usr/share/plplot${PV}/examples
 }
 
-RDEPENDS_${PN} = " \
+RDEPENDS:${PN} = " \
     ttf-dejavu-sans \
     ttf-dejavu-sans-mono \
     ttf-dejavu-sans-condensed \

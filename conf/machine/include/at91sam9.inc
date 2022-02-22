@@ -1,6 +1,6 @@
 # Atmel AT91SAM9 defaults
 require conf/machine/include/soc-family.inc
-require conf/machine/include/tune-arm926ejs.inc
+require conf/machine/include/arm/armv5/tune-arm926ejs.inc
 require conf/machine/include/bootloaders.inc
 
 SOC_FAMILY = "at91sam9"

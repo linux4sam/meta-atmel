@@ -87,37 +87,37 @@ IMAGE_INSTALL += "\
 	noto-fonts \
 "
 
-IMAGE_INSTALL_append_at91sam9m10g45 = " \
+IMAGE_INSTALL:append_at91sam9m10g45 = " \
 	tslib tslib-conf tslib-tests tslib-calibrate "
 
-IMAGE_INSTALL_append_at91sam9rl = " \
+IMAGE_INSTALL:append_at91sam9rl = " \
 	tslib tslib-conf tslib-tests tslib-calibrate "
 
-IMAGE_INSTALL_append_at91sam9x5 = " \
+IMAGE_INSTALL:append_at91sam9x5 = " \
 	tslib tslib-conf tslib-tests tslib-calibrate "
 
-IMAGE_INSTALL_append_at91sam9rl = " \
+IMAGE_INSTALL:append_at91sam9rl = " \
 	tslib tslib-conf tslib-tests tslib-calibrate "
 
-IMAGE_INSTALL_append_at91sam9x5 = " \
+IMAGE_INSTALL:append_at91sam9x5 = " \
 	tslib tslib-conf tslib-tests tslib-calibrate "
 
-IMAGE_INSTALL_append_sam9x60 = " \
+IMAGE_INSTALL:append_sam9x60 = " \
 	hostapd \
 	bonnie++ \
 	libm2d "
 
-IMAGE_INSTALL_append_sama5d2 = " greengrass"
+IMAGE_INSTALL:append_sama5d2 = " greengrass"
 
-IMAGE_INSTALL_append_sama5d4 = " \
+IMAGE_INSTALL:append_sama5d4 = " \
 	gstreamer1.0-plugins-hantro \
 	g1-decoder \
 	"
 
-IMAGE_INSTALL_append_sama5d2-ptc-ek = " ptc-examples"
-IMAGE_INSTALL_append_sama5d2-ptc-ek-sd = " ptc-examples"
+IMAGE_INSTALL:append:sama5d2-ptc-ek = " ptc-examples"
+IMAGE_INSTALL:append:sama5d2-ptc-ek-sd = " ptc-examples"
 
-IMAGE_INSTALL_append_sama5d27-wlsom1-ek-sd = " ptc-examples"
+IMAGE_INSTALL:append:sama5d27-wlsom1-ek-sd = " ptc-examples"
 
 inherit core-image
 

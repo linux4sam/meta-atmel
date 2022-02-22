@@ -13,7 +13,7 @@ S = "${WORKDIR}"
 
 inherit allarch fontcache
 
-FILES_${PN} += " \
+FILES:${PN} += " \
     ${datadir}/fonts/noto/* \
 "
 
@@ -25,5 +25,5 @@ do_install() {
 
 do_compile[noexec] = "1"
 
-ALLOW_EMPTY_${PN} = "1"
+ALLOW_EMPTY:${PN} = "1"
 INHIBIT_DEFAULT_DEPS = "1"

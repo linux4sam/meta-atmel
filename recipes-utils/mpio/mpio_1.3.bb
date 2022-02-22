@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57 \
 
 PACKAGES = "${PN}-dbg ${PN}"
 
-RDEPENDS_${PN} = "python3"
+RDEPENDS:${PN} = "python3"
 
 SRC_URI = "git://github.com/linux4sam/mpio.git;branch=master;protocol=https"
 PV = "1.3+git${SRCPV}"

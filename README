@@ -26,7 +26,7 @@ Sources
 - meta-atmel
 URI: git://github.com/linux4sam/meta-atmel.git
 URI: https://github.com/linux4sam/meta-atmel.git
-Branch: dunfell
+Branch: master
 
 
 Dependencies
@@ -34,20 +34,20 @@ Dependencies
 This Layer depends on :
 - poky
 URI: git://git.yoctoproject.org/poky
-Branch: dunfell
-Tag: 33fdf03169ab2a3355e090d41ba034855d47f865
+Branch: master
+Tag:HEAD
 
 - meta-openembedded
 URI: git://git.openembedded.org/meta-openembedded
 URI: http://cgit.openembedded.org/meta-openembedded/
-Branch: dunfell
-Tag: a62ad77973b16daac1cbaa03cbda3c6b9b91f2ff
+Branch: master
+Tag: HEAD
 
 - meta-aws (for AWS Greengrass, mandatory for SAMA5D2 microchip-* images)
 URI: git://github.com/aws/meta-aws.git
 URI: https://github.com/aws/meta-aws
 Branch: dunfell
-Tag: 6fdd1bd619bde0207e990dde13f5a512e5a6552b
+Tag:HEAD
 
 Build procedure
 ===============

@@ -6,9 +6,9 @@ PACKAGES = "${PN}-dbg ${PN} ${PN}-python"
 
 DEPENDS = "libdrm cairo cjson lua swig-native python3"
 
-RDEPENDS_${PN} = "python3 udev-rules-at91"
+RDEPENDS:${PN} = "python3 udev-rules-at91"
 
-SRC_URI = "git://github.com/linux4sam/libplanes.git;protocol=https \
+SRC_URI = "git://github.com/linux4sam/libplanes.git;protocol=https;branch=master \
            file://0001-Use-python3-by-default.patch \
           "
 
@@ -24,14 +24,14 @@ EXTRA_OECONF += "--enable-shared --disable-static"
 PACKAGECONFIG ??= "examples"
 PACKAGECONFIG[examples] = "--enable-examples,--disable-examples"
 
-do_configure_prepend() {
+do_configure:prepend() {
 	( cd ${S};
 	${S}/autogen.sh; cd -)
 }
 
-INSANE_SKIP_${PN} = "dev-so"
+INSANE_SKIP:${PN} = "dev-so"
 
-FILES_${PN} += " \
+FILES:${PN} += " \
   /opt/planes/planes-loop.sh \
   /opt/planes/planes-loop.py \
   /opt/applications/resources/* \
@@ -40,10 +40,10 @@ FILES_${PN} += " \
   ${bindir}/* \
   ${datadir}/planes/* \
 "
-FILES_${PN}-python = "${libdir}/python${PYTHON_BASEVERSION}/site-packages/*"
+FILES:${PN}-python = "${libdir}/python${PYTHON_BASEVERSION}/site-packages/*"
 
 #need to delete _planes.a to avoid QA package errors
-do_install_append() {
+do_install:append() {
     install -Dm 0644 ${S}/scripts/planes.png  ${D}/opt/applications/resources/planes.png
     install -Dm 0644 ${S}/scripts/09-planes.xml  ${D}/opt/applications/resources/09-planes.xml
     install -Dm 0755 ${S}/scripts/planes-loop.sh ${D}/opt/planes/planes-loop.sh

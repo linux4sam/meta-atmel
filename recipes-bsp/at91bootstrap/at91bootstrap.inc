@@ -20,39 +20,39 @@ DEPENDS += "bc-native python3-native"
 AT91BOOTSTRAP_MACHINE ??= "${MACHINE}"
 
 AT91BOOTSTRAP_CONFIG ??= "${AT91BOOTSTRAP_MACHINE}nf_uboot"
-AT91BOOTSTRAP_CONFIG_at91sam9x5ek-sd ??= "${AT91BOOTSTRAP_MACHINE}sd_uboot"
-AT91BOOTSTRAP_CONFIG_sama5d3-xplained-sd ??= "${AT91BOOTSTRAP_MACHINE}sd_uboot"
-AT91BOOTSTRAP_CONFIG_sama5d4ek ??= "${AT91BOOTSTRAP_MACHINE}nf_uboot_secure"
-AT91BOOTSTRAP_CONFIG_sama5d4-xplained ??= "${AT91BOOTSTRAP_MACHINE}nf_uboot_secure"
-AT91BOOTSTRAP_CONFIG_sama5d4-xplained-sd ??= "${AT91BOOTSTRAP_MACHINE}sd_uboot_secure"
-AT91BOOTSTRAP_CONFIG_sama5d2-xplained ??= "${AT91BOOTSTRAP_MACHINE}-bsrdf_uboot"
-AT91BOOTSTRAP_CONFIG_sama5d2-xplained-emmc ??= "${AT91BOOTSTRAP_MACHINE}emmc_uboot"
-AT91BOOTSTRAP_CONFIG_sama5d2-xplained-sd ??= "${AT91BOOTSTRAP_MACHINE}-bsrsd_uboot"
-AT91BOOTSTRAP_CONFIG_sama5d2-ptc-ek-sd ??= "${AT91BOOTSTRAP_MACHINE}sd_uboot"
-AT91BOOTSTRAP_CONFIG_sama5d27-som1-ek ??= "${AT91BOOTSTRAP_MACHINE}qspi_uboot"
-AT91BOOTSTRAP_CONFIG_sama5d27-som1-ek-sd ??= "${AT91BOOTSTRAP_MACHINE}sd_uboot"
-AT91BOOTSTRAP_CONFIG_sama5d27-wlsom1-ek-sd ??= "${AT91BOOTSTRAP_MACHINE}-bsrsd_uboot"
-AT91BOOTSTRAP_CONFIG_sama5d2-icp-sd ??= "${AT91BOOTSTRAP_MACHINE}-bsrsd_uboot"
-AT91BOOTSTRAP_CONFIG_sam9x60ek ??= "${AT91BOOTSTRAP_MACHINE}nf_uboot"
-AT91BOOTSTRAP_CONFIG_sam9x60ek-sd ??= "${AT91BOOTSTRAP_MACHINE}sd_uboot"
-AT91BOOTSTRAP_CONFIG_sama7g5ek-sd ??= "${AT91BOOTSTRAP_MACHINE}sd_uboot"
-AT91BOOTSTRAP_CONFIG_sama7g5ek-emmc ??= "${AT91BOOTSTRAP_MACHINE}emmc_uboot"
+AT91BOOTSTRAP_CONFIG:at91sam9x5ek-sd ??= "${AT91BOOTSTRAP_MACHINE}sd_uboot"
+AT91BOOTSTRAP_CONFIG:sama5d3-xplained-sd ??= "${AT91BOOTSTRAP_MACHINE}sd_uboot"
+AT91BOOTSTRAP_CONFIG:sama5d4ek ??= "${AT91BOOTSTRAP_MACHINE}nf_uboot_secure"
+AT91BOOTSTRAP_CONFIG:sama5d4-xplained ??= "${AT91BOOTSTRAP_MACHINE}nf_uboot_secure"
+AT91BOOTSTRAP_CONFIG:sama5d4-xplained-sd ??= "${AT91BOOTSTRAP_MACHINE}sd_uboot_secure"
+AT91BOOTSTRAP_CONFIG:sama5d2-xplained ??= "${AT91BOOTSTRAP_MACHINE}-bsrdf_uboot"
+AT91BOOTSTRAP_CONFIG:sama5d2-xplained-emmc ??= "${AT91BOOTSTRAP_MACHINE}emmc_uboot"
+AT91BOOTSTRAP_CONFIG:sama5d2-xplained-sd ??= "${AT91BOOTSTRAP_MACHINE}-bsrsd_uboot"
+AT91BOOTSTRAP_CONFIG:sama5d2-ptc-ek-sd ??= "${AT91BOOTSTRAP_MACHINE}sd_uboot"
+AT91BOOTSTRAP_CONFIG:sama5d27-som1-ek ??= "${AT91BOOTSTRAP_MACHINE}qspi_uboot"
+AT91BOOTSTRAP_CONFIG:sama5d27-som1-ek-sd ??= "${AT91BOOTSTRAP_MACHINE}sd_uboot"
+AT91BOOTSTRAP_CONFIG:sama5d27-wlsom1-ek-sd ??= "${AT91BOOTSTRAP_MACHINE}-bsrsd_uboot"
+AT91BOOTSTRAP_CONFIG:sama5d2-icp-sd ??= "${AT91BOOTSTRAP_MACHINE}-bsrsd_uboot"
+AT91BOOTSTRAP_CONFIG:sam9x60ek ??= "${AT91BOOTSTRAP_MACHINE}nf_uboot"
+AT91BOOTSTRAP_CONFIG:sam9x60ek-sd ??= "${AT91BOOTSTRAP_MACHINE}sd_uboot"
+AT91BOOTSTRAP_CONFIG:sama7g5ek-sd ??= "${AT91BOOTSTRAP_MACHINE}sd_uboot"
+AT91BOOTSTRAP_CONFIG:sama7g5ek-emmc ??= "${AT91BOOTSTRAP_MACHINE}emmc_uboot"
 
 AT91BOOTSTRAP_TARGET ??= "${AT91BOOTSTRAP_CONFIG}_defconfig"
 AT91BOOTSTRAP_LOAD ??= "nandflashboot-uboot"
-AT91BOOTSTRAP_LOAD_at91sam9x5ek-sd ??= "sdboot-uboot"
-AT91BOOTSTRAP_LOAD_sama5d2-xplained ??= "dataflashboot-uboot"
-AT91BOOTSTRAP_LOAD_sama5d2-xplained-sd ??= "sdboot-uboot"
-AT91BOOTSTRAP_LOAD_sama5d27-ptc-ek-sd ??= "sdboot-uboot"
-AT91BOOTSTRAP_LOAD_sama5d27-som1-ek ??= "qspiboot-uboot"
-AT91BOOTSTRAP_LOAD_sama5d27-som1-ek-sd ??= "sdboot-uboot"
-AT91BOOTSTRAP_LOAD_sama5d27-wlsom1-ek-sd ??= "sdboot-uboot"
-AT91BOOTSTRAP_LOAD_sama5d3-xplained-sd ??= "sdboot-uboot"
-AT91BOOTSTRAP_LOAD_sama5d4-xplained-sd ??= "sdboot-uboot"
-AT91BOOTSTRAP_LOAD_sama5d2-icp-sd ??= "sdboot-uboot"
-AT91BOOTSTRAP_LOAD_sam9x60ek-sd ??= "sdboot-uboot"
-AT91BOOTSTRAP_LOAD_sama7g5ek-sd ??= "sdboot-uboot"
-AT91BOOTSTRAP_LOAD_sama7g5ek-emmc ??= "sdboot-uboot"
+AT91BOOTSTRAP_LOAD:at91sam9x5ek-sd ??= "sdboot-uboot"
+AT91BOOTSTRAP_LOAD:sama5d2-xplained ??= "dataflashboot-uboot"
+AT91BOOTSTRAP_LOAD:sama5d2-xplained-sd ??= "sdboot-uboot"
+AT91BOOTSTRAP_LOAD:sama5d27-ptc-ek-sd ??= "sdboot-uboot"
+AT91BOOTSTRAP_LOAD:sama5d27-som1-ek ??= "qspiboot-uboot"
+AT91BOOTSTRAP_LOAD:sama5d27-som1-ek-sd ??= "sdboot-uboot"
+AT91BOOTSTRAP_LOAD:sama5d27-wlsom1-ek-sd ??= "sdboot-uboot"
+AT91BOOTSTRAP_LOAD:sama5d3-xplained-sd ??= "sdboot-uboot"
+AT91BOOTSTRAP_LOAD:sama5d4-xplained-sd ??= "sdboot-uboot"
+AT91BOOTSTRAP_LOAD:sama5d2-icp-sd ??= "sdboot-uboot"
+AT91BOOTSTRAP_LOAD:sam9x60ek-sd ??= "sdboot-uboot"
+AT91BOOTSTRAP_LOAD:sama7g5ek-sd ??= "sdboot-uboot"
+AT91BOOTSTRAP_LOAD:sama7g5ek-emmc ??= "sdboot-uboot"
 
 AT91BOOTSTRAP_SUFFIX ?= "bin"
 AT91BOOTSTRAP_IMAGE ?= "${AT91BOOTSTRAP_MACHINE}-${AT91BOOTSTRAP_LOAD}-${PV}.${AT91BOOTSTRAP_SUFFIX}"
@@ -64,13 +64,13 @@ EXTRA_OEMAKE = 'CROSS_COMPILE=${TARGET_PREFIX} CC="${TARGET_PREFIX}gcc ${TOOLCHA
 do_configure() {
 	# Copy board defconfig to .config if .config does not exist. This
 	# allows recipes to manage the .config themselves in
-	# do_configure_prepend().
+	# do_configure:prepend().
 	if [ -f "${S}/board/${AT91BOOTSTRAP_MACHINE}/${AT91BOOTSTRAP_TARGET}" ] && [ ! -f "${B}/.config" ]; then
 		cp "${S}/board/${AT91BOOTSTRAP_MACHINE}/${AT91BOOTSTRAP_TARGET}" "${B}/.config"
 	fi
 
 	# Copy defconfig to .config if .config does not exist. This allows
-	# recipes to manage the .config themselves in do_configure_prepend()
+	# recipes to manage the .config themselves in do_configure:prepend()
 	# and to override default settings with a custom file.
 	if [ -f "${WORKDIR}/defconfig" ] && [ ! -f "${B}/.config" ]; then
 		cp "${WORKDIR}/defconfig" "${B}/.config"

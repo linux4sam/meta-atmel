@@ -1,11 +1,11 @@
-FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 
-SRC_URI_append = "\
+SRC_URI:append = "\
     file://local.conf\
     "
 
-do_install_append() {
+do_install:append() {
 	install -Dm 644 --target-directory=${D}${sysconfdir}/fonts ${WORKDIR}/local.conf
 }
 
-FILES_${PN} += "${sysconfdir}/fonts"
+FILES:${PN} += "${sysconfdir}/fonts"

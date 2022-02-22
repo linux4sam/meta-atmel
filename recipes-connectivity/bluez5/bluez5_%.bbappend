@@ -1,4 +1,4 @@
-do_install_append() {
+do_install:append() {
         install -d ${D}${includedir}/bluez5_utils/lib
         install -d ${D}${includedir}/bluez5_utils/monitor
         install -d ${D}${includedir}/bluez5_utils/src/shared
@@ -15,9 +15,9 @@ do_install_append() {
         install -m 644  ${S}/monitor/*.h ${D}${includedir}/bluez5_utils/monitor/
 }
 
-FILES_${PN} += "${usrbin}/bluez-gatt-server"
+FILES:${PN} += "${usrbin}/bluez-gatt-server"
 
-FILES_${PN}-staticdev += " \
+FILES:${PN}-staticdev += " \
     ${libdir}/bluez5_utils/lib/*.a \
     ${includedir}/bluez5_utils/lib/*.h \
     ${includedir}/bluez5_utils/src/shared/*.h \

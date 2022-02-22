@@ -28,7 +28,7 @@ inherit pkgconfig autotools gettext
 
 EXTRA_OECONF += "--disable-debug"
 
-EXTRA_AUTORECONF_append = " -I ${STAGING_DATADIR}/aclocal"
+EXTRA_AUTORECONF:append = " -I ${STAGING_DATADIR}/aclocal"
 
 PACKAGECONFIG ??= "examples icons plplot curl librsvg gstreamer jpeg zlib libinput lua ${@bb.utils.filter('DISTRO_FEATURES', 'x11 alsa', d)}"
 
@@ -49,9 +49,9 @@ PACKAGECONFIG[lua] = "--with-lua,--without-lua,lua"
 PACKAGECONFIG[xkbcommon] = "--with-xkbcommon,--without-xkbcommon,libxkbcommon"
 PACKAGECONFIG[x11] = "--with-x11,--without-x11,libx11"
 
-FULL_OPTIMIZATION_append = " -Ofast"
+FULL_OPTIMIZATION:append = " -Ofast"
 
-do_configure_prepend() {
+do_configure:prepend() {
 	( cd ${S};
 	${S}/autogen.sh; cd -)
 }
@@ -59,21 +59,25 @@ do_configure_prepend() {
 # out-of-tree building doesn't appear to work for this package.
 B = "${S}"
 
-FILES_${PN} += " \
+FILES:${PN} += " \
   ${libdir}/* \
   ${includedir}/* \
   ${bindir}/* \
   /usr/share/egt/* \
   /usr/share/libegt/* \
 "
-INSANE_SKIP_${PN} = "dev-so"
+INSANE_SKIP:${PN} = "dev-so"
 
 #need to delete .a to avoid QA package errors
 #deleted audio files to avoid check_data_file_clashes error
-do_install_append() {
+do_install:append() {
     rm -f ${D}/usr/lib/libegt.a
     rm -f ${D}/usr/share/egt/examples/audioplayer/*.mp3
     rm -f ${D}/usr/share/egt/examples/drummachine/*.wav
+    sed -e 's@[^ ]*-ffile-prefix-map=[^ "]*@@g' \
+        -e 's@[^ ]*-fdebug-prefix-map=[^ "]*@@g' \
+        -e 's@[^ ]*-fmacro-prefix-map=[^ "]*@@g' \
+        -i ${D}${libdir}/pkgconfig/*.pc
 }
 
 python __anonymous () {
