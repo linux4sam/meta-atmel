@@ -2,7 +2,7 @@ DESCRIPTION = "plplot library"
 HOMEPAGE = "http://plplot.org/"
 SECTION = "devel"
 
-LICENSE = "LGPLv2+"
+LICENSE = "LGPL-2.0-or-later"
 LIC_FILES_CHKSUM = "file://Copyright;endline=285;md5=9222bd6b5e4e128fac952e168cffc361"
 
 DEPENDS = " libtool freetype fontconfig cairo pango "

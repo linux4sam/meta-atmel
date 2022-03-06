@@ -1,7 +1,7 @@
 require u-boot-atmel.inc
 require u-boot-envs-atmel.inc
 
-LICENSE = "GPLv2+"
+LICENSE = "GPL-2.0-or-later"
 LIC_FILES_CHKSUM = "file://README;beginline=1;endline=22;md5=9915e8cb100eb5dbb366010a0f10296c"
 
 SRCREV = "c16fd2e4b100206f88b9a543f96acd0d5e47eb38"
