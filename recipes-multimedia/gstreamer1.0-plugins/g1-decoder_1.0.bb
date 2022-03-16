@@ -7,7 +7,7 @@ PR = "r1"
 
 inherit autotools pkgconfig gettext
 
-SRC_URI = "git://github.com/linux4sam/g1_decoder.git;branch=master;protocol=http"
+SRC_URI = "git://github.com/linux4sam/g1_decoder.git;branch=master;protocol=https"
 
 SRCREV = "cb81273566b7c1609ce27bbf38af8042946472f7"
 
