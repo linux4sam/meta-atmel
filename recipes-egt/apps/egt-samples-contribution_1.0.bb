@@ -9,7 +9,7 @@ PACKAGES = "\
 "
 DEPENDS = " libegt"
 
-SRC_URI = "gitsm://github.com/linux4sam/egt-samples-contribution.git;protocol=https;branch=master "
+SRC_URI = "git://github.com/linux4sam/egt-samples-contribution.git;protocol=https;branch=master "
 
 PV = "1.0+git${SRCPV}"
 SRCREV = "153d01d8ed8db182e01df202916f85f41cc6365e"
