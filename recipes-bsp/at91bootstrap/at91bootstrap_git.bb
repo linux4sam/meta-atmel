@@ -3,7 +3,7 @@ require at91bootstrap.inc
 DEFAULT_PREFERENCE = "-1"
 
 SRCREV = "${AUTOREV}"
-SRC_URI = "${@bb.utils.contains('BB_NO_NETWORK', '1', '', 'git://github.com/linux4sam/at91bootstrap.git;protocol=git', d)}"
+SRC_URI = "${@bb.utils.contains('BB_NO_NETWORK', '1', '', 'git://github.com/linux4sam/at91bootstrap.git;protocol=https', d)}"
 
 S = "${WORKDIR}/git"
 
