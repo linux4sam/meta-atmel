@@ -5,7 +5,7 @@ SECTION = "libs"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=218947f77e8cb8e2fa02918dc41c50d0"
 
-SRC_URI = "git://github.com/DaveGamble/cJSON.git;protocol=http"
+SRC_URI = "git://github.com/DaveGamble/cJSON.git;protocol=https;branch=master"
 
 SRCREV = "6f264b5d0c7a494934ca418634c47365f8b87e5a"
 
