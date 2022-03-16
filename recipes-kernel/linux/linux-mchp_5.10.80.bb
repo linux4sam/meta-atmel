@@ -4,7 +4,7 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${P}:"
 PV = "5.10+git${SRCPV}"
 
 KBRANCH = "linux-5.10-mchp"
-SRC_URI = "git://github.com/linux4microchip/linux.git;protocol=git;branch=${KBRANCH}"
+SRC_URI = "git://github.com/linux4microchip/linux.git;protocol=https;branch=${KBRANCH}"
 SRC_URI += "file://defconfig"
 SRCREV = "d0d603fcdf0c3e50f173a9a01e0228b0242c7306"
 LIC_FILES_CHKSUM = "file://COPYING;md5=6bc538ed5bd9a7fc9398086aedcd7e46"

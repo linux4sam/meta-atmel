@@ -13,7 +13,7 @@ DEPENDS = "libevdev libgpiod"
 RDEPENDS_${PN} = "udev-rules-at91"
 PV = "1.3+git${SRCPV}"
 
-SRC_URI = "git://github.com/linux4sam/ptc_examples.git;protocol=git"
+SRC_URI = "git://github.com/linux4sam/ptc_examples.git;protocol=https"
 SRCREV = "625f1066a1da81c146947855f4b4686bb0079b50"
 
 S = "${WORKDIR}/git"
