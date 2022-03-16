@@ -11,7 +11,7 @@ LIC_FILES_CHKSUM = "file://COPYING.LESSER;md5=4fbd65380cdd255951079008b364516c"
 DEPENDS += "libdrm"
 
 S = "${WORKDIR}/git"
-SRC_URI = "gitsm://github.com/linux4sam/gst1-hantro-g1;branch=master"
+SRC_URI = "gitsm://github.com/linux4sam/gst1-hantro-g1;protocol=https;branch=master"
 
 FILES_${PN} += "${libdir}/gstreamer-1.0/*.so"
 FILES_${PN}-dbg += "${libdir}/gstreamer-1.0/.debug"
