@@ -2,7 +2,7 @@ DESCRIPTION = "plplot library"
 HOMEPAGE = "http://plplot.org/"
 SECTION = "devel"
 
-LICENSE = "LGPLv2+"
+LICENSE = "LGPL-2.0-or-later"
 LIC_FILES_CHKSUM = "file://Copyright;endline=285;md5=9222bd6b5e4e128fac952e168cffc361"
 
 DEPENDS = " libtool freetype fontconfig cairo pango "
@@ -10,7 +10,7 @@ DEPENDS = " libtool freetype fontconfig cairo pango "
 #TAG plplot-5.15.0
 SRCREV = "4f88e45dbd85468a96364548f8d06a9b52dac14a"
 
-SRC_URI = "git://github.com/PLplot/PLplot;protocol=https \
+SRC_URI = "git://github.com/PLplot/PLplot;protocol=https;branch=master \
     file://0001-plplot-fix-configure-error-for-generating-header-fil.patch \
     file://0002-utils-CMakeLists.txt-disable-pltek-build.patch \
     file://0001-xwin.cmake-Check-if-PTHREAD_MUTEX_RECURSIVE_NP-exist.patch \

@@ -16,7 +16,7 @@ DESCRIPTION = "The recipie installs following 3 different types of files    \
 
 AUTHOR = "Microchip Technology Incorporated"
 SECTION = "net"
-LICENSE = "GPLv3"
+LICENSE = "GPL-3.0-only"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=1ebbd3e34237af26da5dc08a4e440464"
 
 SRC_URI = "git://github.com/MicrochipTech/linux4sam-wilc-demo-fs-overlay.git;protocol=https"

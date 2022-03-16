@@ -9,7 +9,7 @@ DESCRIPTION = "The example is to demonstrate BLE provisioning and BLE 	\
 
 AUTHOR = "Microchip Technology Inc"
 SECTION = "examples"
-LICENSE = "GPLv2"
+LICENSE = "GPL-2.0-only"
 LIC_FILES_CHKSUM = "file://COPYING;md5=2aadfbb30f3dc663d0c881ccb240fc4c"
 
 DEPENDS = "bluez5 wilc-demo-fs-overlay"

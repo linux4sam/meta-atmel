@@ -1,6 +1,6 @@
 SUMMARY = "Hantro plugins for GStreamer"
 SECTION = "multimedia"
-LICENSE = "LGPLv2.1"
+LICENSE = "LGPL-2.1-only"
 HOMEPAGE = "http://www.gstreamer.net/"
 DEPENDS = "gstreamer1.0 gstreamer1.0-plugins-base g1-decoder"
 
