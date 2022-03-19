@@ -14,6 +14,4 @@ SRCREV = "21c7f5dc185c9bfa3a5a49b25f3a9164bab56ebe"
 
 S = "${WORKDIR}/git"
 
-inherit setuptools_build_meta
-
-PYPA_WHEEL = "${PIP_INSTALL_DIST_PATH}/${PIP_INSTALL_PACKAGE}-*-*.whl"
+inherit setuptools3
