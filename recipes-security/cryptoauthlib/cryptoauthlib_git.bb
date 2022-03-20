@@ -58,7 +58,7 @@ do_install:append:sama5d2-ptc-ek-sd() {
     sed -i "s/interface = i2c.*/interface = i2c,0xC0,1/"  ${D}${localstatedir}/lib/cryptoauthlib/0.conf
 }
 
-FILES:${PN} = "${nonarch_libdir}/libcryptoauth.so \
+FILES:${PN} = "${libdir}/libcryptoauth.so \
 	       ${sysconfdir}/cryptoauthlib/cryptoauthlib.conf \
 	       ${localstatedir}/lib/cryptoauthlib/slot.conf.tmpl \
 	       ${datadir}/p11-kit/modules/cryptoauthlib.module \
