@@ -11,7 +11,7 @@ S = "${WORKDIR}/lohit-ttf-20140220"
 
 inherit allarch fontcache
 
-FILES_${PN} += " \
+FILES:${PN} += " \
     ${datadir}/fonts/truetype/* \
 "
 
