@@ -14,11 +14,14 @@ DEPENDS = "\
     cairo \
     cjson \
     file \
+    fmt \
     udev \
     xxd-native \
 "
 
-SRC_URI = "git://github.com/linux4sam/egt.git;protocol=https;branch=1.3"
+SRC_URI = "gitsm://github.com/linux4sam/egt.git;protocol=https;branch=1.3 \
+           file://0001-src-app.cpp-Check-for-right-variable-from-config.h.patch \
+"
 
 SRCREV = "6f247a344f3c003c4efc29bc67f50e01f1565836"
 
@@ -52,8 +55,8 @@ PACKAGECONFIG[x11] = "--with-x11,--without-x11,libx11"
 FULL_OPTIMIZATION:append = " -Ofast"
 
 do_configure:prepend() {
-	( cd ${S};
-	${S}/autogen.sh; cd -)
+	rm -rf ${S}/m4/libtool.m4 ${S}/m4/lt*.m4
+	( cd ${S} && ${S}/autogen.sh && cd -)
 }
 
 # out-of-tree building doesn't appear to work for this package.

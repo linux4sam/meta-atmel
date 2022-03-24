@@ -1,0 +1,29 @@
+From e342ecb4ed143fe61b883835e289e98d203b0666 Mon Sep 17 00:00:00 2001
+From: Khem Raj <raj.khem@gmail.com>
+Date: Thu, 24 Mar 2022 14:56:16 -0700
+Subject: [PATCH] src/app.cpp: Check for right variable from config.h
+
+HAVE_LIBINTL_H is not populated by automake, only HAVE_LIBINTL is.
+
+Upstream-Status: Submitted [https://github.com/linux4sam/egt/pull/19]
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+---
+ src/app.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/app.cpp b/src/app.cpp
+index 869b1e2e..439550ca 100644
+--- a/src/app.cpp
++++ b/src/app.cpp
+@@ -26,7 +26,7 @@
+ #include <clocale>
+ #include <csignal>
+ #include <iostream>
+-#ifdef HAVE_LIBINTL_H
++#ifdef HAVE_LIBINTL
+ #include <libintl.h>
+ #endif
+ #include <regex>
+-- 
+2.35.1
+
