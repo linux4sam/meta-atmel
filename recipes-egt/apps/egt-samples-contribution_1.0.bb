@@ -18,7 +18,7 @@ S = "${WORKDIR}/git"
 
 EXTRA_OECMAKE += "-DEGT_SAMPLES_CONTRIBUTION_SLIDERB=true"
 
-inherit pkgconfig cmake
+inherit pkgconfig cmake siteinfo
 
 python __anonymous () {
     endianness = d.getVar('SITEINFO_ENDIANNESS')

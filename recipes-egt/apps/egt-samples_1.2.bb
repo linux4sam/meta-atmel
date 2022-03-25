@@ -9,14 +9,14 @@ PACKAGES = "\
 "
 DEPENDS = " libegt"
 
-SRC_URI = "git://github.com/linux4sam/egt-samples.git;protocol=https;branch=master "
+SRC_URI = "gitsm://github.com/linux4sam/egt-samples.git;protocol=https;branch=master "
 
 PV = "1.2+git${SRCPV}"
 SRCREV = "a76905398fbd05423c6525eb2a953412889b2d60"
 
 S = "${WORKDIR}/git"
 
-inherit pkgconfig autotools gettext
+inherit pkgconfig autotools gettext siteinfo
 
 do_configure:prepend() {
      ( cd ${S}; ${S}/autogen.sh; cd -)
