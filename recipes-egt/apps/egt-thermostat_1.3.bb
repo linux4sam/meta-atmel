@@ -18,7 +18,7 @@ S = "${WORKDIR}/git"
 # out-of-tree building doesn't appear to work for this package.
 B = "${S}"
 
-inherit pkgconfig autotools gettext
+inherit pkgconfig autotools gettext siteinfo
 
 do_configure:prepend() {
 	( cd ${S};

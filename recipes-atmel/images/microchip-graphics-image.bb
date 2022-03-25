@@ -119,7 +119,7 @@ IMAGE_INSTALL:append:sama5d2-ptc-ek-sd = " ptc-examples"
 
 IMAGE_INSTALL:append:sama5d27-wlsom1-ek-sd = " ptc-examples"
 
-inherit core-image
+inherit core-image siteinfo
 
 #TOOLCHAIN_HOST_TASK += "nativesdk-sam-ba"
 TOOLCHAIN_HOST_TASK += "nativesdk-swig"

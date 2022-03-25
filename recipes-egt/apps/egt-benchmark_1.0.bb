@@ -10,7 +10,7 @@ SRCREV = "be25417177e874d1a665705a86dfaa25458f64ac"
 
 S = "${WORKDIR}/git"
 
-inherit pkgconfig autotools-brokensep
+inherit pkgconfig autotools-brokensep siteinfo
 
 EXTRA_OECONF += "--program-prefix='egt_'"
 

@@ -21,6 +21,8 @@ RDEPENDS:${PN} = "gstreamer1.0 \
 	${@bb.utils.contains("LICENSE_FLAGS_WHITELIST", "commercial", "gstreamer1.0-libav", "", d)} \
 "
 
+inherit siteinfo
+
 FILES:${PN} += " \
     /usr/share/egt/* \
 "
