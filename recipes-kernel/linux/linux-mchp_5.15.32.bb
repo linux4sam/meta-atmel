@@ -5,7 +5,7 @@ PV = "5.15+git${SRCPV}"
 
 KBRANCH = "linux-5.15-mchp"
 SRC_URI = "git://github.com/linux4microchip/linux.git;protocol=https;branch=${KBRANCH}"
-SRCREV = "865f0c8411a759c2d43239b97217abd7d0eb21e5"
+SRCREV = "ee5893a26c317eec98391c143d4d44abf6aacf42"
 LIC_FILES_CHKSUM = "file://COPYING;md5=6bc538ed5bd9a7fc9398086aedcd7e46"
 
 # Add greengrass fragment for SAMA5D2 platforms
