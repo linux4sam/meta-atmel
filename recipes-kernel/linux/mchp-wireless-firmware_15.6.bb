@@ -4,8 +4,8 @@ LICENSE = "MICROCHIP_FW"
 
 LIC_FILES_CHKSUM = "file://LICENSE.wilc_fw;beginline=6;md5=e1a0446d046c966a27276cf8e728f687"
 
-SRCREV = "6b3897f8a95497c568ab6aa64675137bdeac8fb9"
-SRC_URI = "git://github.com/linux4wilc/firmware.git;protocol=https"
+SRCREV = "1c04e63ded9ca7265e7132dcae8ba3060d8cdd38"
+SRC_URI = "git://github.com/linux4wilc/firmware.git;protocol=https;branch=master"
 S = "${WORKDIR}/git"
 
 inherit allarch
