@@ -24,7 +24,6 @@ built by adding an "-sd" suffix to the machine name.
 Sources
 =======
 - meta-atmel
-URI: git://github.com/linux4sam/meta-atmel.git
 URI: https://github.com/linux4sam/meta-atmel.git
 Branch: dunfell
 
@@ -44,8 +43,7 @@ Branch: dunfell
 Tag: 69f94af4d91215e7d4e225bab54bf3bcfee42f1c
 
 - meta-aws (for AWS Greengrass)
-URI: git://github.com/aws/meta-aws.git
-URI: https://github.com/aws/meta-aws
+URI: https://github.com/aws4embeddedlinux/meta-aws.git
 Branch: dunfell
 Tag: e34ed15a87e36fa4199c63a184630fa370abac55
 
@@ -63,10 +61,10 @@ git clone git://git.yoctoproject.org/poky -b dunfell
 git clone git://git.openembedded.org/meta-openembedded -b dunfell
 
 3/ Clone meta-aws git repository with the proper branch ready (optional)
-git clone git://github.com/aws/meta-aws -b dunfell
+git clone https://github.com/aws4embeddedlinux/meta-aws.git -b dunfell
 
 4/ Clone meta-atmel layer with the proper branch ready
-git clone git://github.com/linux4sam/meta-atmel.git -b dunfell
+git clone https://github.com/linux4sam/meta-atmel.git -b dunfell
 
 5/ Enter the poky directory to configure the build system and start the build process
 cd poky
