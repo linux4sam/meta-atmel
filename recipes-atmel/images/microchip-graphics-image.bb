@@ -122,6 +122,10 @@ IMAGE_INSTALL:append:sama5d2-ptc-ek-sd = " ptc-examples"
 
 IMAGE_INSTALL:append:sama5d27-wlsom1-ek-sd = " ptc-examples"
 
+IMAGE_INSTALL:append_sama5d2 = " video-capture-at91 \
+				libv4l v4l-utils media-ctl yavta \
+				"
+
 inherit core-image siteinfo
 
 TOOLCHAIN_HOST_TASK += "nativesdk-swig"
