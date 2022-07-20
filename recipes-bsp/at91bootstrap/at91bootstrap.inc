@@ -64,9 +64,9 @@ EXTRA_OEMAKE = 'CROSS_COMPILE=${TARGET_PREFIX} CC="${TARGET_PREFIX}gcc ${TOOLCHA
 do_configure() {
 	# Copy board defconfig to .config if .config does not exist. This
 	# allows recipes to manage the .config themselves in
-	# do_configure:prepend().
-	if [ -f "${S}/board/${AT91BOOTSTRAP_MACHINE}/${AT91BOOTSTRAP_TARGET}" ] && [ ! -f "${B}/.config" ]; then
-		cp "${S}/board/${AT91BOOTSTRAP_MACHINE}/${AT91BOOTSTRAP_TARGET}" "${B}/.config"
+	# do_configure_prepend().
+	if [ -f "${AT91BOOTSTRAP_CONFIG_PATH}/${AT91BOOTSTRAP_TARGET}" ] && [ ! -f "${B}/.config" ]; then
+		cp "${AT91BOOTSTRAP_CONFIG_PATH}/${AT91BOOTSTRAP_TARGET}" "${B}/.config"
 	fi
 
 	# Copy defconfig to .config if .config does not exist. This allows
@@ -94,7 +94,7 @@ do_compile() {
 
 do_deploy () {
 	install -d ${DEPLOYDIR}
-	install ${S}/binaries/${AT91BOOTSTRAP_BINARY} ${DEPLOYDIR}/${AT91BOOTSTRAP_IMAGE}
+	install ${AT91BOOTSTRAP_BIN_PATH}/${AT91BOOTSTRAP_BINARY} ${DEPLOYDIR}/${AT91BOOTSTRAP_IMAGE}
 
 	cd ${DEPLOYDIR}
 	rm -f ${AT91BOOTSTRAP_BINARY} ${AT91BOOTSTRAP_SYMLINK}
