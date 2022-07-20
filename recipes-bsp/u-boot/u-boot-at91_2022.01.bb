@@ -2,19 +2,17 @@ require u-boot-atmel.inc
 require u-boot-envs-atmel.inc
 
 LICENSE = "GPL-2.0-or-later"
-LIC_FILES_CHKSUM = "file://README;beginline=1;endline=22;md5=9915e8cb100eb5dbb366010a0f10296c"
+LIC_FILES_CHKSUM = "file://README;beginline=1;endline=22;md5=b5410c33378a67de244a5877f9ff9a27"
 
-SRCREV = "af59b26c2241cb191ed0f57e4369ea718aa1dfac"
-SRCREV_sama7g5 = "8d2e69b3c0d924a68d2ae2c3a4cfa9a2c2a3171b"
+SRCREV = "2ea48999345a4e96f404d9d9a7003ac6781f9427"
 
-PV = "v2020.01-at91+git${SRCPV}"
+PV = "v2022.01-at91+git${SRCPV}"
 
 DEPENDS += "bison-native flex-native"
 
 COMPATIBLE_MACHINE = '(sama5d3xek|sama5d3-xplained|sama5d3-xplained-sd|at91sam9x5ek|at91sam9rlek|at91sam9m10g45ek|sama5d4ek|sama5d4-xplained|sama5d4-xplained-sd|sama5d2-xplained|sama5d2-xplained-sd|sama5d2-xplained-emmc|sama5d2-ptc-ek|sama5d2-ptc-ek-sd|sama5d27-som1-ek|sama5d27-som1-ek-sd|sama5d2-icp-sd|sam9x60ek|sam9x60ek-sd|sama5d27-wlsom1-ek-sd|sama7g5ek)'
 
-UBRANCH = "u-boot-2020.01-at91"
-UBRANCH_sama7g5 = "sama7g5_early"
+UBRANCH = "u-boot-2022.01-at91"
 
 SRC_URI = "git://github.com/linux4sam/u-boot-at91.git;protocol=https;branch=${UBRANCH}"
 
