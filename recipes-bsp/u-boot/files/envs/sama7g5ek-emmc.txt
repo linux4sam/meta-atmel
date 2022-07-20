@@ -1,6 +1,6 @@
 #board=sama7g5ek
 #board_name=sama7g5ek
-bootargs=console=ttyS0,115200 root=/dev/mmcblk0p2 rootfstype=ext4 rw rootwait atmel.pm_modes=standby,ulp1 cma=192m
+bootargs=console=ttyS0,115200 root=/dev/mmcblk0p2 rootfstype=ext4 rw rootwait atmel.pm_modes=standby,ulp0 cma=192m
 bootcmd=fatload mmc 0:1 0x63000000 sama7g5ek.itb; bootm 0x63000000#kernel_dtb
 bootdelay=1
 ethact=gmac0
