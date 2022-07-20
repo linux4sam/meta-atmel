@@ -68,13 +68,16 @@ git clone https://github.com/linux4sam/meta-atmel.git -b dunfell
 
 5/ Enter the poky directory to configure the build system and start the build process
 cd poky
-
-6/ Change TEMPLATECONF from .templateconf to:
-export TEMPLATECONF=${TEMPLATECONF:-../meta-atmel/conf}
-Note: If it's the first time you use Yocto Project templates, and if the
-build-microchip directory remains from a previous use, we advice you start
+If not created yet, add a new "build-microchip" directory:
+mkdir build-microchip
+Else, if it's the first time you use Yocto Project templates, and if the
+build-microchip directory remains from a previous use, we advise you to start
 from a fresh directory. Keep your build-microchip/conf/local.conf file for
 reference.
+
+6/ Inside the .templateconf file, you will need to modify the TEMPLATECONF
+variable to match the path to the meta-atmel layer "conf" directory:
+export TEMPLATECONF=${TEMPLATECONF:-../meta-atmel/conf}
 
 7/ Initialize build directory
 source oe-init-build-env build-microchip
