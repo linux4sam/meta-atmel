@@ -5,7 +5,7 @@ require conf/machine/include/bootloaders.inc
 
 SOC_FAMILY = "sama7"
 
-PREFERRED_PROVIDER_virtual/kernel:sama7 ?= "linux-at91"
+PREFERRED_PROVIDER_virtual/kernel:sama7 ?= "linux-mchp"
 PREFERRED_PROVIDER_virtual/bootloader:sama7 ?= "u-boot-at91"
 PREFERRED_PROVIDER_u-boot:sama7 ?= "u-boot-at91"
 
