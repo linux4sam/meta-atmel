@@ -22,5 +22,5 @@ do_install() {
 
 do_compile[noexec] = "1"
 
-ALLOW_EMPTY_${PN} = "1"
+ALLOW_EMPTY:${PN} = "1"
 INHIBIT_DEFAULT_DEPS = "1"
