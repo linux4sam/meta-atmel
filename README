@@ -43,7 +43,7 @@ URI: http://cgit.openembedded.org/meta-openembedded/
 Branch: master
 Tag: HEAD
 
-- meta-aws (for AWS Greengrass, mandatory for SAMA5D2 microchip-* images)
+- meta-aws (for AWS Greengrass)
 URI: git://github.com/aws/meta-aws.git
 URI: https://github.com/aws/meta-aws
 Branch: dunfell
@@ -62,7 +62,7 @@ git clone git://git.yoctoproject.org/poky -b dunfell
 2/ Clone meta-openembedded git repository with the proper branch ready
 git clone git://git.openembedded.org/meta-openembedded -b dunfell
 
-3/ Clone meta-aws git repository with the proper branch ready
+3/ Clone meta-aws git repository with the proper branch ready (optional)
 git clone git://github.com/aws/meta-aws -b dunfell
 
 4/ Clone meta-atmel layer with the proper branch ready
