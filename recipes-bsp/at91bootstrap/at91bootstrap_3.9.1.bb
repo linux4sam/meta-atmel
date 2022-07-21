@@ -4,7 +4,7 @@ LIC_FILES_CHKSUM = "file://main.c;endline=27;md5=a2a70db58191379e2550cbed95449fb
 
 COMPATIBLE_MACHINE = 'sama5d2-icp-sd'
 
-SRC_URI = "git://github.com/linux4sam/at91bootstrap.git;protocol=https \
+SRC_URI = "git://github.com/linux4sam/at91bootstrap.git;protocol=https;branch=master \
            file://0001-scripts-upgrade-scripts-to-use-Python3.patch \
 "
 

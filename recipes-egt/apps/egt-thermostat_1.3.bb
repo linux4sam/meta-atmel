@@ -9,7 +9,7 @@ PACKAGES = "\
 "
 DEPENDS = " libegt sqlite3-native"
 
-SRC_URI = "git://github.com/linux4sam/egt-thermostat.git;protocol=https"
+SRC_URI = "git://github.com/linux4sam/egt-thermostat.git;protocol=https;branch=master"
 
 SRCREV = "6519e4c516ded1b9557fdea16de7b28e82e2b8f3"
 
