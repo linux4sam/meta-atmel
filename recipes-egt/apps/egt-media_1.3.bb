@@ -18,7 +18,7 @@ RDEPENDS:${PN} = "gstreamer1.0 \
 	gstreamer1.0-plugins-base-videoscale \
 	gstreamer1.0-plugins-base-videoconvert \
 	gstreamer1.0-plugins-base-volume \
-	${@bb.utils.contains("LICENSE_FLAGS_WHITELIST", "commercial", "gstreamer1.0-libav", "", d)} \
+	${@bb.utils.contains("LICENSE_FLAGS_ACCEPTED", "commercial", "gstreamer1.0-libav", "", d)} \
 "
 
 inherit siteinfo

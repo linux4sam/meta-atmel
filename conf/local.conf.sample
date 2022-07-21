@@ -266,6 +266,6 @@ BB_DISKMON_DIRS ??= "\
 # track the version of this file when it was generated. This can safely be ignored if
 # this doesn't mean anything to you.
 CONF_VERSION = "1"
-LICENSE_FLAGS_WHITELIST += "commercial"
+LICENSE_FLAGS_ACCEPTED += "commercial"
 SYSVINIT_ENABLED_GETTYS = ""
 INHERIT += "rm_work"
