@@ -1,0 +1,33 @@
+From 9b56d82f3ee6ea4b6d82b08ee252c40c76f19a76 Mon Sep 17 00:00:00 2001
+From: Tudor Ambarus <tudor.ambarus@microchip.com>
+Date: Mon, 18 Jan 2021 17:32:23 +0200
+Subject: [PATCH] pkcs11: Fix deadlock in pkcs11_token_init
+
+pkcs11_token_init() grabs the pContext->mutex at the beginning
+of the function, locking the library. Later in the same function,
+the code tries to grab the same lock, while already held. Mutexes
+are not recursive in linux, resulting in a deadlock. Drop the
+second attempt of grabbing the lock.
+
+Signed-off-by: Tudor Ambarus <tudor.ambarus@microchip.com>
+---
+ lib/pkcs11/pkcs11_token.c | 6 +-----
+ 1 file changed, 1 insertion(+), 5 deletions(-)
+
+diff --git a/lib/pkcs11/pkcs11_token.c b/lib/pkcs11/pkcs11_token.c
+index 7bcfd629181c..a40f822c93ec 100644
+--- a/lib/pkcs11/pkcs11_token.c
++++ b/lib/pkcs11/pkcs11_token.c
+@@ -242,11 +242,7 @@ CK_RV pkcs11_token_init(CK_SLOT_ID slotID, CK_UTF8CHAR_PTR pPin, CK_ULONG ulPinL
+         {
+             if (64 != ulPinLen)
+             {
+-                if (CKR_OK == (rv = pkcs11_lock_context(pLibCtx)))
+-                {
+-                    rv = pkcs11_util_convert_rv(atcab_read_serial_number(buf));
+-                    (void)pkcs11_unlock_context(pLibCtx);
+-                }
++                rv = pkcs11_util_convert_rv(atcab_read_serial_number(buf));
+ 
+                 if (CKR_OK == rv)
+                 {
