@@ -23,6 +23,11 @@ SRC_URI = "git://github.com/linux4sam/linux-at91.git;protocol=git;branch=${KBRAN
 SRC_URI += "file://defconfig"
 SRC_URI:remove_sama7g5ek = "file://defconfig"
 
+# Add greengrass fragment for SAMA5D2 platforms
+SRC_URI_append_sama5d2 = "\
+    file://gg.cfg \
+"
+
 python __anonymous () {
     if d.getVar('UBOOT_FIT_IMAGE', True) == 'xyes':
         d.appendVar('DEPENDS', ' u-boot-mkimage-native dtc-native')
