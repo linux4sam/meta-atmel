@@ -1,0 +1,116 @@
+From 6425d91e34ba0f126413023fa43bd3bc3ad7ae2d Mon Sep 17 00:00:00 2001
+From: Khem Raj <raj.khem@gmail.com>
+Date: Sat, 13 Aug 2022 13:43:36 -0700
+Subject: [PATCH] Use std::filesystem and c++17
+
+filesystem support is in main runtime for many years now.
+Clang15 has dropped experimental/filesystem
+therefore adjust accordingly
+
+Upstream-Status: Pending
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+---
+ configure.ac                    | 3 +--
+ examples/dialog/dialog.cpp      | 4 ++--
+ src/detail/filesystem.cpp       | 6 ++----
+ src/detail/screen/kmsscreen.cpp | 7 ++-----
+ src/filedialog.cpp              | 4 ++--
+ 5 files changed, 9 insertions(+), 15 deletions(-)
+
+diff --git a/configure.ac b/configure.ac
+index a6879eb0..24ddc39b 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -27,7 +27,7 @@ LT_INIT([win32-dll])
+ AC_LANG(C++)
+ AC_DISABLE_STATIC
+ AC_PROG_CXX
+-AX_CXX_COMPILE_STDCXX(14, noext)
++AX_CXX_COMPILE_STDCXX(17, noext)
+ AX_CODE_COVERAGE
+ AC_PROG_AWK
+ AC_PROG_CC
+@@ -602,7 +602,6 @@ AS_IF([test "x$with_filesystem" != "xno"],[
+    AM_CONDITIONAL([HAVE_EXPERIMENTAL_FILESYSTEM], [test "x${have_libstdcppfs}" = xyes])
+    if test "x${have_libstdcppfs}" = xyes;
+    then
+-      AX_APPEND_FLAG([-lstdc++fs], [LDFLAGS])
+       AC_DEFINE(HAVE_EXPERIMENTAL_FILESYSTEM, 1, [Have experimental filesystem support])
+       AC_SUBST(include_filedialog, ["#define EGT_HAS_FILEDIALOG 1"])
+    fi
+diff --git a/examples/dialog/dialog.cpp b/examples/dialog/dialog.cpp
+index 0780f135..cea8f985 100644
+--- a/examples/dialog/dialog.cpp
++++ b/examples/dialog/dialog.cpp
+@@ -4,11 +4,11 @@
+  * SPDX-License-Identifier: Apache-2.0
+  */
+ #include <egt/ui>
+-#include <experimental/filesystem>
++#include <filesystem>
+ #include <memory>
+ #include <string>
+ 
+-namespace fs = std::experimental::filesystem;
++namespace fs = std::filesystem;
+ 
+ int main(int argc, char** argv)
+ {
+diff --git a/src/detail/filesystem.cpp b/src/detail/filesystem.cpp
+index e2723813..961fb41a 100644
+--- a/src/detail/filesystem.cpp
++++ b/src/detail/filesystem.cpp
+@@ -23,10 +23,8 @@
+ #include <glob.h>
+ #endif
+ 
+-#ifdef HAVE_EXPERIMENTAL_FILESYSTEM
+-#include <experimental/filesystem>
+-namespace fs = std::experimental::filesystem;
+-#endif
++#include <filesystem>
++namespace fs = std::filesystem;
+ 
+ #ifdef HAVE_WINDOWS_H
+ #include <cstdio>
+diff --git a/src/detail/screen/kmsscreen.cpp b/src/detail/screen/kmsscreen.cpp
+index 3958a556..faa16fc8 100644
+--- a/src/detail/screen/kmsscreen.cpp
++++ b/src/detail/screen/kmsscreen.cpp
+@@ -29,11 +29,8 @@
+ #include <cairo-gfx2d.h>
+ #endif
+ 
+-#ifdef HAVE_EXPERIMENTAL_FILESYSTEM
+-#include <experimental/filesystem>
+-
+-namespace fs = std::experimental::filesystem;
+-#endif
++#include <filesystem>
++namespace fs = std::filesystem;
+ 
+ namespace egt
+ {
+diff --git a/src/filedialog.cpp b/src/filedialog.cpp
+index 949af4cf..dfbe1c86 100644
+--- a/src/filedialog.cpp
++++ b/src/filedialog.cpp
+@@ -6,13 +6,13 @@
+ #include "detail/egtlog.h"
+ #include "egt/embed.h"
+ #include "egt/filedialog.h"
+-#include <experimental/filesystem>
++#include <filesystem>
+ 
+ #ifdef SRCDIR
+ EGT_EMBED(internal_folder, SRCDIR "/icons/32px/folder.png")
+ #endif
+ 
+-namespace fs = std::experimental::filesystem;
++namespace fs = std::filesystem;
+ 
+ namespace egt
+ {
+-- 
+2.37.2
+

@@ -21,6 +21,7 @@ DEPENDS = "\
 
 SRC_URI = "gitsm://github.com/linux4sam/egt.git;protocol=https;branch=1.3 \
            file://0001-src-app.cpp-Check-for-right-variable-from-config.h.patch \
+           file://0001-Use-std-filesystem-and-c-17.patch \
 "
 
 SRCREV = "6f247a344f3c003c4efc29bc67f50e01f1565836"
@@ -88,3 +89,4 @@ python __anonymous () {
     if endianness == 'be':
         raise bb.parse.SkipRecipe('Requires little-endian target.')
 }
+
