@@ -1,0 +1,53 @@
+From 83b22292d9ff862706d785916be773e2a25b17e2 Mon Sep 17 00:00:00 2001
+From: Khem Raj <raj.khem@gmail.com>
+Date: Sun, 14 Aug 2022 08:55:49 -0700
+Subject: [PATCH] launcher: Switch to using c++17
+
+experimental/filesystem is removed by some compilers e.g. libcxx with
+llvm 15.x
+
+Upstream-Status: Pending
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+---
+ configure.ac     | 2 +-
+ src/launcher.cpp | 4 ++--
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/configure.ac b/configure.ac
+index 3dc9994..9df5ab7 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -14,7 +14,7 @@ m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
+ 
+ AC_LANG(C++)
+ AC_PROG_CXX
+-AX_CXX_COMPILE_STDCXX([14], [noext])
++AX_CXX_COMPILE_STDCXX([17], [noext])
+ AC_CHECK_HEADER_STDBOOL
+ AC_C_INLINE
+ AC_TYPE_UINT32_T
+diff --git a/src/launcher.cpp b/src/launcher.cpp
+index dd961b0..0aa3c63 100644
+--- a/src/launcher.cpp
++++ b/src/launcher.cpp
+@@ -12,7 +12,7 @@
+ #include <cmath>
+ #include <egt/detail/filesystem.h>
+ #include <egt/ui>
+-#include <experimental/filesystem>
++#include <filesystem>
+ #include <fstream>
+ #include <iostream>
+ #include <memory>
+@@ -121,7 +121,7 @@ private:
+     SwipeCallback m_callback;
+ };
+ 
+-namespace filesys = std::experimental::filesystem;
++namespace filesys = std::filesystem;
+ 
+ /*
+  * Execute a command.
+-- 
+2.37.2
+
