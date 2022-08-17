@@ -2,7 +2,7 @@ DESCRIPTION = "Microchip libm2d library for 2DGFX LCD controller"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://COPYING;endline=20;md5=b0693ac296607eb1fc06d98b63272885"
 
-DEPENDS += "linux-at91 libdrm"
+DEPENDS += "linux-mchp libdrm"
 
 SRC_URI = "git://github.com/linux4sam/libm2d.git;protocol=https"
 
