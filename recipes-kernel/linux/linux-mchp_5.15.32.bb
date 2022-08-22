@@ -5,6 +5,8 @@ PV = "5.15+git${SRCPV}"
 
 KBRANCH = "linux-5.15-mchp"
 SRC_URI = "git://github.com/linux4microchip/linux.git;protocol=https;branch=${KBRANCH}"
+SRC_URI_append_sam9x60 += "file://defconfig"
+SRC_URI_append_sama5 += "file://defconfig"
 SRCREV = "ee5893a26c317eec98391c143d4d44abf6aacf42"
 LIC_FILES_CHKSUM = "file://COPYING;md5=6bc538ed5bd9a7fc9398086aedcd7e46"
 
