@@ -20,6 +20,8 @@ B = "${S}"
 
 inherit pkgconfig autotools gettext siteinfo
 
+do_configure[network] = "1"
+
 do_configure:prepend() {
 	( cd ${S};
 	${S}/autogen.sh; cd -)
