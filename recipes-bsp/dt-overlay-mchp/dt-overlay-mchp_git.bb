@@ -1,5 +1,5 @@
 DESCRIPTION = "Compile AT91 board device tree overlays and pack them in a FIT image"
-LICENSE = "(GPLv2+ & MIT)"
+LICENSE = "(GPL-2.0-or-later & MIT)"
 LIC_FILES_CHKSUM = "file://COPYING;md5=775626b7bc958bdcc525161f725ece0f \
                     file://LICENSES/GPL-2.0;md5=e6a75371ba4d16749254a51215d13f97 \
                     file://LICENSES/MIT;md5=e8f57dd048e186199433be2c41bd3d6d"
