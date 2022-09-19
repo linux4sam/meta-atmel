@@ -14,6 +14,7 @@ DEPENDS = "\
     cairo \
     cjson \
     file \
+    fmt \
     udev \
     xxd-native \
 "
@@ -27,6 +28,8 @@ S = "${WORKDIR}/git"
 inherit pkgconfig autotools gettext
 
 EXTRA_OECONF += "--disable-debug"
+
+EXTRA_AUTORECONF:append = " -I ${STAGING_DATADIR}/aclocal"
 
 PACKAGECONFIG ??= "examples icons plplot curl librsvg gstreamer jpeg zlib libinput lua ${@bb.utils.filter('DISTRO_FEATURES', 'x11 alsa', d)}"
 
@@ -50,8 +53,8 @@ PACKAGECONFIG[x11] = "--with-x11,--without-x11,libx11"
 FULL_OPTIMIZATION:append = " -Ofast"
 
 do_configure:prepend() {
-	( cd ${S};
-	${S}/autogen.sh; cd -)
+	rm -rf ${S}/m4/libtool.m4 ${S}/m4/lt*.m4
+	( cd ${S} && ${S}/autogen.sh && cd - )
 }
 
 # out-of-tree building doesn't appear to work for this package.
@@ -72,6 +75,10 @@ do_install:append() {
     rm -f ${D}/usr/lib/libegt.a
     rm -f ${D}/usr/share/egt/examples/audioplayer/*.mp3
     rm -f ${D}/usr/share/egt/examples/drummachine/*.wav
+    sed -e 's@[^ ]*-ffile-prefix-map=[^ "]*@@g' \
+        -e 's@[^ ]*-fdebug-prefix-map=[^ "]*@@g' \
+        -e 's@[^ ]*-fmacro-prefix-map=[^ "]*@@g' \
+        -i ${D}${libdir}/pkgconfig/*.pc
 }
 
 python __anonymous () {
