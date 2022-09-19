@@ -19,4 +19,4 @@ do_install () {
 	done
 }
 
-FILES_${PN} += "${ROOT_HOME}"
+FILES:${PN} += "${ROOT_HOME}"

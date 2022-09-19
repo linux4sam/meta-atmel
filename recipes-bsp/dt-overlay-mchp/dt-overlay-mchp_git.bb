@@ -48,7 +48,7 @@ do_compile () {
     fi
 }
 
-FILES_${PN} = "/boot/*.*"
+FILES:${PN} = "/boot/*.*"
 
 addtask install after do_compile
 

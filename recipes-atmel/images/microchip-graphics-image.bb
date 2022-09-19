@@ -89,31 +89,31 @@ IMAGE_INSTALL += "\
 	rsync \
 "
 
-IMAGE_INSTALL:append_at91sam9m10g45 = " \
+IMAGE_INSTALL:append:at91sam9m10g45 = " \
 	tslib tslib-conf tslib-tests tslib-calibrate "
 
-IMAGE_INSTALL:append_at91sam9rl = " \
+IMAGE_INSTALL:append:at91sam9rl = " \
 	tslib tslib-conf tslib-tests tslib-calibrate "
 
-IMAGE_INSTALL:append_at91sam9x5 = " \
+IMAGE_INSTALL:append:at91sam9x5 = " \
 	tslib tslib-conf tslib-tests tslib-calibrate "
 
-IMAGE_INSTALL:append_at91sam9rl = " \
+IMAGE_INSTALL:append:at91sam9rl = " \
 	tslib tslib-conf tslib-tests tslib-calibrate "
 
-IMAGE_INSTALL:append_at91sam9x5 = " \
+IMAGE_INSTALL:append:at91sam9x5 = " \
 	tslib tslib-conf tslib-tests tslib-calibrate "
 
-IMAGE_INSTALL:append_sam9x60 = " \
+IMAGE_INSTALL:append:sam9x60 = " \
 	hostapd \
 	bonnie++ \
 	libm2d "
 
 # packages needed for greengrass with ECC608
-IMAGE_INSTALL:append_sama5d2 = " cryptoauthlib python3-cryptoauthlib p11-kit"
-IMAGE_INSTALL:append_sama7 = " cryptoauthlib python3-cryptoauthlib p11-kit"
+IMAGE_INSTALL:append:sama5d2 = " cryptoauthlib python3-cryptoauthlib p11-kit"
+IMAGE_INSTALL:append:sama7 = " cryptoauthlib python3-cryptoauthlib p11-kit"
 
-IMAGE_INSTALL:append_sama5d4 = " \
+IMAGE_INSTALL:append:sama5d4 = " \
 	gstreamer1.0-plugins-hantro \
 	g1-decoder \
 	"
@@ -123,7 +123,7 @@ IMAGE_INSTALL:append:sama5d2-ptc-ek-sd = " ptc-examples"
 
 IMAGE_INSTALL:append:sama5d27-wlsom1-ek-sd = " ptc-examples"
 
-IMAGE_INSTALL:append_sama5d2 = " video-capture-at91 \
+IMAGE_INSTALL:append:sama5d2 = " video-capture-at91 \
 				libv4l v4l-utils media-ctl yavta \
 				"
 

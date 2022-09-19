@@ -17,6 +17,6 @@ IMAGE_INSTALL += "\
     tslib-calibrate \
     "
 
-IMAGE_INSTALL:append_sam9x60 = " \
+IMAGE_INSTALL:append:sam9x60 = " \
     libm2d \
     "

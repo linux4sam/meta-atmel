@@ -1,6 +1,6 @@
 require linux.inc
 
-FILESEXTRAPATHS_prepend := "${THISDIR}/${P}:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/${P}:"
 PV = "5.4+git${SRCPV}"
 
 KBRANCH = "sama7g5_early"

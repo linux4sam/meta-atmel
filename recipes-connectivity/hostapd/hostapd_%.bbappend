@@ -1,6 +1,6 @@
 S = "${WORKDIR}/hostapd-${PV}"
 
-do_configure_append() {
+do_configure:append() {
 	echo 'CONFIG_SAE=y' >>  ${S}/hostapd/.config
 	echo 'CONFIG_DPP=y' >>  ${S}/hostapd/.config
 	echo 'CONFIG_OWE=y' >>  ${S}/hostapd/.config

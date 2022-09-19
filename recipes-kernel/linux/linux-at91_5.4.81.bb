@@ -6,25 +6,25 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=bbea815ee2795b2f4230826c0c6b8814"
 
 inherit kernel
 
-RDEPENDS_${KERNEL_PACKAGE_NAME}-base = ""
-FILESEXTRAPATHS_prepend := "${THISDIR}/${P}:"
+RDEPENDS:${KERNEL_PACKAGE_NAME}-base = ""
+FILESEXTRAPATHS:prepend := "${THISDIR}/${P}:"
 
 SRCREV = "3dba8c9991d2466eb5e9398de22fa7f28accee83"
-SRCREV_sama7g5ek = "d67f0979dcc377863060e803a2280b7a7e1a22c0"
+SRCREV:sama7g5ek = "d67f0979dcc377863060e803a2280b7a7e1a22c0"
 
 PV = "5.4+git${SRCPV}"
 
 S = "${WORKDIR}/git"
 
 KBRANCH = "linux-5.4-at91"
-KBRANCH_sama7g5ek-sd = "sama7g5_early"
-KBRANCH_sama7g5ek-emmc = "sama7g5_early"
+KBRANCH:sama7g5ek-sd = "sama7g5_early"
+KBRANCH:sama7g5ek-emmc = "sama7g5_early"
 SRC_URI = "git://github.com/linux4sam/linux-at91.git;protocol=https;branch=${KBRANCH}"
 SRC_URI += "file://defconfig"
-SRC_URI_remove_sama7g5ek = "file://defconfig"
+SRC_URI:remove:sama7g5ek = " file://defconfig"
 
 # Add greengrass fragment for SAMA5D2 platforms
-SRC_URI_append_sama5d2 = "\
+SRC_URI:append:sama5d2 = "\
     file://gg.cfg \
 "
 
@@ -33,7 +33,7 @@ python __anonymous () {
         d.appendVar('DEPENDS', ' u-boot-mkimage-native dtc-native')
 }
 
-do_configure_prepend() {
+do_configure:prepend() {
 	if [ ! -f "${WORKDIR}/defconfig" ] && [ -n "${KBUILD_DEFCONFIG}" ]; then
 		if [ -f "${S}/arch/${ARCH}/configs/${KBUILD_DEFCONFIG}" ]; then
 			cp -f ${S}/arch/${ARCH}/configs/${KBUILD_DEFCONFIG} ${WORKDIR}/defconfig
@@ -43,7 +43,7 @@ do_configure_prepend() {
         fi
 }
 
-do_configure_append() {
+do_configure:append() {
 	frags=""
 	for fragment in ${WORKDIR}/*.cfg
 	do
@@ -63,7 +63,7 @@ do_configure_append() {
 	fi
 }
 
-do_deploy_append() {
+do_deploy:append() {
 	if [ "${UBOOT_FIT_IMAGE}" = "xyes" ]; then
 		DTB_PATH="${B}/arch/${ARCH}/boot/dts/"
 		if [ ! -e "${DTB_PATH}" ]; then
@@ -81,6 +81,6 @@ do_deploy_append() {
 }
 
 KERNEL_MODULE_AUTOLOAD += "atmel_usba_udc g_serial"
-KERNEL_MODULE_AUTOLOAD_append_sama5d27-wlsom1-ek-sd = " wilc-sdio"
+KERNEL_MODULE_AUTOLOAD:append:sama5d27-wlsom1-ek-sd = " wilc-sdio"
 
 COMPATIBLE_MACHINE = "(sama5d2-xplained|sama5d2-xplained-sd|sama5d2-xplained-emmc|sama5d2-ptc-ek|sama5d2-ptc-ek-sd|sama5d27-som1-ek|sama5d27-som1-ek-sd|sama5d4-xplained|sama5d4-xplained-sd|sama5d4ek|sama5d3-xplained|sama5d3-xplained-sd|sama5d3xek|at91sam9x5ek|at91sam9m10g45ek|at91sam9rlek|sama5d2-icp-sd|sam9x60ek|sam9x60ek-sd|sama5d27-wlsom1-ek-sd)"

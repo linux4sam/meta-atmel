@@ -68,7 +68,7 @@ IMAGE_INSTALL = "\
     ${CORE_IMAGE_EXTRA_INSTALL} \
     "
 
-IMAGE_INSTALL:append_sam9x60 = " \
+IMAGE_INSTALL:append:sam9x60 = " \
     hostapd \
     bonnie++ \
     "

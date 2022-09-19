@@ -5,7 +5,7 @@ LICENSE = "GPL-2.0-only"
 
 inherit kernel
 
-RDEPENDS_${KERNEL_PACKAGE_NAME}-base = ""
+RDEPENDS:${KERNEL_PACKAGE_NAME}-base = ""
 
 S = "${WORKDIR}/git"
 
@@ -14,7 +14,7 @@ python __anonymous () {
         d.appendVar('DEPENDS', ' u-boot-mkimage-native dtc-native')
 }
 
-do_configure_prepend() {
+do_configure:prepend() {
 	if [ ! -f "${WORKDIR}/defconfig" ] && [ -n "${KBUILD_DEFCONFIG}" ]; then
 		if [ -f "${S}/arch/${ARCH}/configs/${KBUILD_DEFCONFIG}" ]; then
 			cp -f ${S}/arch/${ARCH}/configs/${KBUILD_DEFCONFIG} ${WORKDIR}/defconfig
@@ -24,7 +24,7 @@ do_configure_prepend() {
         fi
 }
 
-do_configure_append() {
+do_configure:append() {
 	frags=""
 	for fragment in ${WORKDIR}/*.cfg
 	do
@@ -44,7 +44,7 @@ do_configure_append() {
 	fi
 }
 
-do_deploy_append() {
+do_deploy:append() {
 	if [ "${UBOOT_FIT_IMAGE}" = "xyes" ]; then
 		DTB_PATH="${B}/arch/${ARCH}/boot/dts/"
 		if [ ! -e "${DTB_PATH}" ]; then

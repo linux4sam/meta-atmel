@@ -34,12 +34,12 @@ EXTRA_OECMAKE = " \
 
 CFLAGS += "-fcommon"
 
-do_install:append_sama5d2() {
+do_install:append:sama5d2() {
     install -Dm 644 ${WORKDIR}/cryptoauthlib.module ${D}${datadir}/p11-kit/modules/cryptoauthlib.module
     cp -p ${D}${localstatedir}/lib/cryptoauthlib/slot.conf.tmpl ${D}${localstatedir}/lib/cryptoauthlib/0.conf
 }
 
-do_install_append_sama7() {
+do_install:append:sama7() {
     install -Dm 644 ${WORKDIR}/cryptoauthlib.module ${D}${datadir}/p11-kit/modules/cryptoauthlib.module
     cp -p ${D}${localstatedir}/lib/cryptoauthlib/slot.conf.tmpl ${D}${localstatedir}/lib/cryptoauthlib/0.conf
 }
@@ -77,10 +77,10 @@ do_install:append:sama5d2-ptc-ek-sd() {
 }
 
 # On sama7g5ek board, the ATECC608A is embedded in the PCB
-do_install_append_sama7g5ek-sd() {
+do_install:append:sama7g5ek-sd() {
     sed -i "s/interface = .*/interface = i2c,0xC0,1/"  ${D}${localstatedir}/lib/cryptoauthlib/0.conf
 }
-do_install_append_sama7g5ek-emmc() {
+do_install:append:sama7g5ek-emmc() {
     sed -i "s/interface = .*/interface = i2c,0xC0,1/"  ${D}${localstatedir}/lib/cryptoauthlib/0.conf
 }
 
