@@ -8,7 +8,7 @@ inherit deploy
 
 COMPATIBLE_MACHINE = '(sam9x60-curiosity|sam9x60-curiosity-sd)'
 
-SRC_URI = "git://github.com/linux4microchip/dt-overlay-mchp.git;protocol=https"
+SRC_URI = "git://github.com/linux4microchip/dt-overlay-mchp.git;protocol=https;branch=master"
 
 PV = "1.0+git${SRCPV}"
 SRCREV = "712ddeb699b9c51782d32b6bc9abb5164c79e294"

@@ -4,7 +4,7 @@ LIC_FILES_CHKSUM = "file://COPYING;endline=20;md5=b0693ac296607eb1fc06d98b632728
 
 DEPENDS += "linux-mchp libdrm"
 
-SRC_URI = "git://github.com/linux4sam/libm2d.git;protocol=https"
+SRC_URI = "git://github.com/linux4sam/libm2d.git;protocol=https;branch=master"
 
 SRCREV = "923e28dfe68690085905a1d9d1695cddb56c3ef8"
 

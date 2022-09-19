@@ -4,7 +4,7 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${P}:"
 PV = "5.10+git${SRCPV}"
 
 KBRANCH = "linux-5.10-at91"
-SRC_URI = "git://github.com/linux4sam/linux-at91.git;protocol=git;branch=${KBRANCH}"
+SRC_URI = "git://github.com/linux4sam/linux-at91.git;protocol=https;branch=${KBRANCH}"
 SRC_URI += "file://defconfig"
 SRCREV = "67a85fd0f58f4c197e4c02a8d556ac3a84480e0b"
 LIC_FILES_CHKSUM = "file://COPYING;md5=6bc538ed5bd9a7fc9398086aedcd7e46"

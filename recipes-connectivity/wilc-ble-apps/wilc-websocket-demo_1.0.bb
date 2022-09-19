@@ -10,7 +10,7 @@ SECTION = "examples"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://COPYING;md5=e24bfdbf6035afa17b105dc86b249d9f"
 DEPENDS = "nginx"
-SRC_URI = "git://github.com/MicrochipTech/websocket-buildroot-external-microchip.git;protocol=https"
+SRC_URI = "git://github.com/MicrochipTech/websocket-buildroot-external-microchip.git;protocol=https;branch=master"
 PV = "1.0+git${SRCPV}"
 SRCREV = "dccae5ea9b0710d4331a5a1f9f56764141b99117"
 
