@@ -19,15 +19,13 @@ DEPENDS = "\
     xxd-native \
 "
 
-SRC_URI = "gitsm://github.com/linux4sam/egt.git;protocol=https;branch=1.3 \
-           file://0001-src-app.cpp-Check-for-right-variable-from-config.h.patch \
-"
+SRC_URI = "gitsm://github.com/linux4sam/egt.git;protocol=https;branch=1.5"
 
-SRCREV = "6f247a344f3c003c4efc29bc67f50e01f1565836"
+SRCREV = "86b0e56ea77f05a52f092e3615a147fb7506bdc0"
 
 S = "${WORKDIR}/git"
 
-inherit pkgconfig autotools gettext siteinfo
+inherit pkgconfig autotools gettext
 
 EXTRA_OECONF += "--disable-debug"
 
@@ -56,7 +54,7 @@ FULL_OPTIMIZATION:append = " -Ofast"
 
 do_configure:prepend() {
 	rm -rf ${S}/m4/libtool.m4 ${S}/m4/lt*.m4
-	( cd ${S} && ${S}/autogen.sh && cd -)
+	( cd ${S} && ${S}/autogen.sh && cd - )
 }
 
 # out-of-tree building doesn't appear to work for this package.
