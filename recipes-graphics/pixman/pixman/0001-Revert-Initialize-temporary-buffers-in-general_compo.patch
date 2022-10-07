@@ -1,0 +1,37 @@
+From 5451c4ade3eb703e602274d3304d8056bc388cc0 Mon Sep 17 00:00:00 2001
+From: Ludovic Desroches <ludovic.desroches@microchip.com>
+Date: Thu, 3 Mar 2022 08:54:46 +0100
+Subject: [PATCH] Revert "Initialize temporary buffers in
+ general_composite_rect()"
+
+This reverts commit 6fe0131394fb029d2fccaee6b8edcb108840ad8a as it
+causes performance issues with EGT:
+- Very low score for DrawShapeFixture.DrawCirclesAlpha on sam9x60.
+- Lower score for DrawFixture.MoveAnimate/UpdateButton for all devices.
+- egt_drop very slow for all devices.
+
+Signed-off-by: Ludovic Desroches <ludovic.desroches@microchip.com>
+---
+ pixman/pixman-general.c | 6 ------
+ 1 file changed, 6 deletions(-)
+
+diff --git a/pixman/pixman-general.c b/pixman/pixman-general.c
+index 7e5a0d0..7d74f98 100644
+--- a/pixman/pixman-general.c
++++ b/pixman/pixman-general.c
+@@ -165,12 +165,6 @@ general_composite_rect  (pixman_implementation_t *imp,
+ 
+ 	if (!scanline_buffer)
+ 	    return;
+-
+-	memset (scanline_buffer, 0, width * Bpp * 3 + 15 * 3);
+-    }
+-    else
+-    {
+-	memset (stack_scanline_buffer, 0, sizeof (stack_scanline_buffer));
+     }
+ 
+     src_buffer = ALIGN (scanline_buffer);
+-- 
+2.32.0
+
