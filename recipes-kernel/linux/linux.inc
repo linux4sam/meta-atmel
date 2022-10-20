@@ -37,7 +37,7 @@ do_configure:append() {
 	if [ ! -z "${frags}" ]; then
 		echo "Fragments are: ${frags}"
 		PATH=${S}/scripts/kconfig:${PATH}
-		CFLAGS="${CFLAGS} ${TOOLCHAIN_OPTIONS}" HOSTCC="${BUILD_CC} ${BUILD_CFLAGS} ${BUILD_LDFLAGS}" HOSTCPP="${BUILD_CPP}" CC="${KERNEL_CC}" ARCH=${ARCH} merge_config.sh -n .config ${frags}  2>&1
+		CFLAGS="${CFLAGS} ${TOOLCHAIN_OPTIONS}" HOSTCC="${BUILD_CC} ${BUILD_CFLAGS} ${BUILD_LDFLAGS}" HOSTCPP="${BUILD_CPP}" CC="${KERNEL_CC}" ARCH=${ARCH} merge_config.sh -m .config ${frags}  2>&1
 		if [ $? -ne 0 ]; then
 			bbfatal_log "Could not configure kernel fragments: ${frags}"
 		fi
