@@ -7,7 +7,7 @@ KBRANCH = "linux-5.15-mchp"
 SRC_URI = "git://github.com/linux4microchip/linux.git;protocol=https;branch=${KBRANCH}"
 SRC_URI:append:sam9x60 = " file://defconfig"
 SRC_URI:append:sama5 = " file://defconfig"
-SRCREV = "4250b214c543899823e4be28a0d5163804686072"
+SRCREV = "f25e3e2f4a45895e408cdf69c22bf95700694257"
 LIC_FILES_CHKSUM = "file://COPYING;md5=6bc538ed5bd9a7fc9398086aedcd7e46"
 
 # Add greengrass fragment for SAMA5D2 platforms
