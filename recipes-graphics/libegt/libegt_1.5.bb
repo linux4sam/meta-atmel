@@ -75,6 +75,7 @@ do_install:append() {
     rm -f ${D}/usr/lib/libegt.a
     rm -f ${D}/usr/share/egt/examples/audioplayer/*.mp3
     rm -f ${D}/usr/share/egt/examples/drummachine/*.wav
+    sed -i -e '2,/<\/entry>/d' ${D}/usr/share/egt/examples/video/video.xml
     sed -e 's@[^ ]*-ffile-prefix-map=[^ "]*@@g' \
         -e 's@[^ ]*-fdebug-prefix-map=[^ "]*@@g' \
         -e 's@[^ ]*-fmacro-prefix-map=[^ "]*@@g' \
