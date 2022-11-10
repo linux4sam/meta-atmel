@@ -10,7 +10,7 @@ SRC_URI:append:sama5 = " file://defconfig"
 SRC_URI:append:sama5d27-som1-ek-optee-sd = " file://sama5-linux-optee.cfg \
                                              file://0001-dts-include-optee-dtsi.patch \
                                              "
-SRCREV = "ed087a4b170d7f592302c8e663c82e444b7cb413"
+SRCREV = "5aedde3bc33b1337144f4db5d12204993d291b35"
 LIC_FILES_CHKSUM = "file://COPYING;md5=6bc538ed5bd9a7fc9398086aedcd7e46"
 
 # Add greengrass fragment for SAMA5D2 platforms
