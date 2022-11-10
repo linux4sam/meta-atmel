@@ -34,19 +34,25 @@ Dependencies
 This Layer depends on :
 - poky
 URI: git://git.yoctoproject.org/poky
-Branch: master
+Branch: kirkstone
 Tag:HEAD
 
 - meta-openembedded
 URI: git://git.openembedded.org/meta-openembedded
 URI: http://cgit.openembedded.org/meta-openembedded/
-Branch: master
+Branch: kirkstone
 Tag: HEAD
 
 - meta-aws (for AWS Greengrass)
 URI: git://github.com/aws/meta-aws.git
 URI: https://github.com/aws/meta-aws
-Branch: dunfell
+Branch: kirkstone
+Tag:HEAD
+
+- meta-arm (for optee components)
+URI: git://git.yoctoproject.org/meta-arm
+URI: https://git.yoctoproject.org/meta-arm
+Branch: kirkstone
 Tag:HEAD
 
 Build procedure
@@ -57,18 +63,21 @@ mkdir my_dir
 cd my_dir
 
 1/ Clone yocto/poky git repository with the proper branch ready
-git clone git://git.yoctoproject.org/poky -b dunfell
+git clone git://git.yoctoproject.org/poky -b kirkstone
 
 2/ Clone meta-openembedded git repository with the proper branch ready
-git clone git://git.openembedded.org/meta-openembedded -b dunfell
+git clone git://git.openembedded.org/meta-openembedded -b kirkstone
 
 3/ Clone meta-aws git repository with the proper branch ready (optional)
-git clone git://github.com/aws/meta-aws -b dunfell
+git clone git://github.com/aws/meta-aws -b kirkstone
 
 4/ Clone meta-atmel layer with the proper branch ready
-git clone git://github.com/linux4sam/meta-atmel.git -b dunfell
+git clone git://github.com/linux4sam/meta-atmel.git -b kirkstone
 
-5/ Enter the poky directory to configure the build system and start the build process
+5/ Clone meta-arm layer with the proper branch ready
+git clone https://git.yoctoproject.org/meta-arm -b kirkstone
+
+6/ Enter the poky directory to configure the build system and start the build process
 cd poky
 If not created yet, add a new "build-microchip" directory:
 mkdir build-microchip
@@ -77,26 +86,26 @@ build-microchip directory remains from a previous use, we advise you to start
 from a fresh directory. Keep your build-microchip/conf/local.conf file for
 reference.
 
-6/ Inside the .templateconf file, you will need to modify the TEMPLATECONF
+7/ Inside the .templateconf file, you will need to modify the TEMPLATECONF
 variable to match the path to the meta-atmel layer "conf" directory:
 export TEMPLATECONF=${TEMPLATECONF:-../meta-atmel/conf}
 
-7/ Initialize build directory
+8/ Initialize build directory
 source oe-init-build-env build-microchip
 
-8/ To build a small image provided by Yocto Project:
+9/ To build a small image provided by Yocto Project:
 [MACHINE=<machine>] bitbake core-image-minimal
 
 Example for sama5d2-xplained-sd SD card image:
 MACHINE=sama5d2-xplained-sd bitbake core-image-minimal
 
-9/ To build the microchip image with no graphics support:
+10/ To build the microchip image with no graphics support:
 [MACHINE=<machine>] bitbake microchip-headless-image
 
 Example for sama5d2-xplained-sd SD card image:
 MACHINE=sama5d2-xplained-sd bitbake microchip-headless-image
 
-10/ To build the microchip image with graphics support (EGT):
+11/ To build the microchip image with graphics support (EGT):
 [MACHINE=<machine>] bitbake microchip-graphics-image
 
 Example for sama5d2-xplained-sd SD card image:
@@ -105,25 +114,27 @@ MACHINE=sama5d2-xplained-sd bitbake microchip-graphics-image
 Typical bitbake output
 ======================
 Build Configuration:
-BB_VERSION           = "1.46.0"
+BB_VERSION           = "2.0.0"
 BUILD_SYS            = "x86_64-linux"
 NATIVELSBSTRING      = "universal"
 TARGET_SYS           = "arm-poky-linux-gnueabi"
-MACHINE              = "sama5d2-xplained-sd"
+MACHINE              = "sam9x60-curiosity-sd"
 DISTRO               = "poky-atmel"
-DISTRO_VERSION       = "3.1"
-TUNE_FEATURES        = "arm vfp cortexa5 neon vfpv4 thumb callconvention-hard"
-TARGET_FPU           = "hard"
+DISTRO_VERSION       = "4.0.5"
+TUNE_FEATURES        = "arm armv5 thumb dsp"
+TARGET_FPU           = "soft"
 meta                 
 meta-poky            
-meta-yocto-bsp       = "dunfell:33fdf03169ab2a3355e090d41ba034855d47f865"
+meta-yocto-bsp       = "heads/kirkstone-4.0.5:2e79b199114b25d81bfaa029ccfb17676946d20d"
 meta-oe              
 meta-networking      
+meta-webserver
 meta-python          
-meta-initramfs       
-meta-multimedia      = "dunfell:a62ad77973b16daac1cbaa03cbda3c6b9b91f2ff"
-meta-atmel           = "dunfell:796eaa3c34b3474a13267544e432e348582370c1"
-meta-aws             = "dunfell:6fdd1bd619bde0207e990dde13f5a512e5a6552b"
+meta-initramfs       = "kirkstone:744a4b6eda88b9a9ca1cf0df6e18be384d9054e3"
+meta-atmel           = "kirkstone:e71f4b71dba523c464cbb7aaa374b3e5e92bb674"
+meta-multimedia      = "kirkstone:744a4b6eda88b9a9ca1cf0df6e18be384d9054e3"
+meta-arm
+meta-arm-toolchain   = "kirkstone:bafd1d013c2470bcec123ba4eb8232ab879b2660"
 
 Contributing
 ============
