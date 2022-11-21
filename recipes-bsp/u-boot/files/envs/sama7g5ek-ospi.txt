@@ -1,0 +1,9 @@
+#board=sama7g5ek
+#board_name=sama7g5ek
+bootargs=console=ttyS0,115200 rootfstype=ubifs ubi.mtd=6 root=ubi0:rootfs rw rootwait
+bootcmd=sf probe;sf read 0x63000000 0x180000 0x800000;bootm 0x63000000#kernel_dtb
+bootdelay=1
+ethact=gmac0
+stderr=serial
+stdin=serial
+stdout=serial
