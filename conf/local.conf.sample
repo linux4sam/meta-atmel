@@ -281,7 +281,7 @@ ENABLE_BINARY_LOCALE_GENERATION = "1"
 # glibc-binary-localedata-XX-YY-lc-address and so on. This enables
 # saving quite some space if someone doesn't need LC_COLLATE for
 # example.
-GLIBC_SPLIT_LC_PACKAGES = "1"
+GLIBC_SPLIT_LC_PACKAGES = "0"
 
 # Set GLIBC_GENERATE_LOCALES to the locales you wish to generate should you not
 # wish to perform the time-consuming step of generating all LIBC locales.
