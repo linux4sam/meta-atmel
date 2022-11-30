@@ -14,6 +14,3 @@ PREFERRED_PROVIDER_jpeg-native ?= "jpeg-native"
 
 SERIAL_CONSOLES ?= "115200;ttyS0"
 WIC_CREATE_EXTRA_ARGS ?= "--no-fstab-update"
-
-# default kernel defconfig
-KBUILD_DEFCONFIG = "sama7_defconfig"
