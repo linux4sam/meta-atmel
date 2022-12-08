@@ -142,8 +142,8 @@ To contribute to this layer you should submit the patches for review to:
 the github pull-request facility directly or the forum. Anyway, don't forget to
 Cc the maintainers.
 
-AT91 Forum:
-http://www.at91.com/discussions/
+Microchip Forum:
+https://www.microchip.com/forums/f542.aspx
 
 for some useful guidelines to be followed when submitting patches:
 http://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded
