@@ -24,7 +24,6 @@ built by adding an "-sd" suffix to the machine name.
 Sources
 =======
 - meta-atmel
-URI: git://github.com/linux4sam/meta-atmel.git
 URI: https://github.com/linux4sam/meta-atmel.git
 Branch: master
 
@@ -44,8 +43,7 @@ Branch: kirkstone
 Tag: HEAD
 
 - meta-aws (for AWS Greengrass)
-URI: git://github.com/aws/meta-aws.git
-URI: https://github.com/aws/meta-aws
+URI: https://github.com/aws4embeddedlinux/meta-aws.git
 Branch: kirkstone
 Tag:HEAD
 
@@ -69,10 +67,10 @@ git clone git://git.yoctoproject.org/poky -b kirkstone
 git clone git://git.openembedded.org/meta-openembedded -b kirkstone
 
 3/ Clone meta-aws git repository with the proper branch ready (optional)
-git clone git://github.com/aws/meta-aws -b kirkstone
+git clone https://github.com/aws4embeddedlinux/meta-aws.git -b kirkstone
 
 4/ Clone meta-atmel layer with the proper branch ready
-git clone git://github.com/linux4sam/meta-atmel.git -b kirkstone
+git clone https://github.com/linux4sam/meta-atmel.git -b kirkstone
 
 5/ Clone meta-arm layer with the proper branch ready
 git clone https://git.yoctoproject.org/meta-arm -b kirkstone
