@@ -32,13 +32,12 @@ Dependencies
 ============
 This Layer depends on :
 - poky
-URI: git://git.yoctoproject.org/poky
+URI: https://git.yoctoproject.org/poky
 Branch: kirkstone
 Tag:HEAD
 
 - meta-openembedded
-URI: git://git.openembedded.org/meta-openembedded
-URI: http://cgit.openembedded.org/meta-openembedded/
+URI: https://git.openembedded.org/meta-openembedded
 Branch: kirkstone
 Tag: HEAD
 
@@ -48,7 +47,6 @@ Branch: kirkstone
 Tag:HEAD
 
 - meta-arm (for optee components)
-URI: git://git.yoctoproject.org/meta-arm
 URI: https://git.yoctoproject.org/meta-arm
 Branch: kirkstone
 Tag:HEAD
@@ -61,10 +59,10 @@ mkdir my_dir
 cd my_dir
 
 1/ Clone yocto/poky git repository with the proper branch ready
-git clone git://git.yoctoproject.org/poky -b kirkstone
+git clone https://git.yoctoproject.org/poky -b kirkstone
 
 2/ Clone meta-openembedded git repository with the proper branch ready
-git clone git://git.openembedded.org/meta-openembedded -b kirkstone
+git clone https://git.openembedded.org/meta-openembedded -b kirkstone
 
 3/ Clone meta-aws git repository with the proper branch ready (optional)
 git clone https://github.com/aws4embeddedlinux/meta-aws.git -b kirkstone
