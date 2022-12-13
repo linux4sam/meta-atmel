@@ -41,11 +41,6 @@ URI: https://git.openembedded.org/meta-openembedded
 Branch: kirkstone
 Tag: HEAD
 
-- meta-aws (for AWS Greengrass)
-URI: https://github.com/aws4embeddedlinux/meta-aws.git
-Branch: kirkstone
-Tag:HEAD
-
 - meta-arm (for optee components)
 URI: https://git.yoctoproject.org/meta-arm
 Branch: kirkstone
@@ -64,16 +59,13 @@ git clone https://git.yoctoproject.org/poky -b kirkstone
 2/ Clone meta-openembedded git repository with the proper branch ready
 git clone https://git.openembedded.org/meta-openembedded -b kirkstone
 
-3/ Clone meta-aws git repository with the proper branch ready (optional)
-git clone https://github.com/aws4embeddedlinux/meta-aws.git -b kirkstone
-
-4/ Clone meta-atmel layer with the proper branch ready
+3/ Clone meta-atmel layer with the proper branch ready
 git clone https://github.com/linux4sam/meta-atmel.git -b kirkstone
 
-5/ Clone meta-arm layer with the proper branch ready
+4/ Clone meta-arm layer with the proper branch ready
 git clone https://git.yoctoproject.org/meta-arm -b kirkstone
 
-6/ Enter the poky directory to configure the build system and start the build process
+5/ Enter the poky directory to configure the build system and start the build process
 cd poky
 If not created yet, add a new "build-microchip" directory:
 mkdir build-microchip
@@ -82,26 +74,26 @@ build-microchip directory remains from a previous use, we advise you to start
 from a fresh directory. Keep your build-microchip/conf/local.conf file for
 reference.
 
-7/ Inside the .templateconf file, you will need to modify the TEMPLATECONF
+6/ Inside the .templateconf file, you will need to modify the TEMPLATECONF
 variable to match the path to the meta-atmel layer "conf" directory:
 export TEMPLATECONF=${TEMPLATECONF:-../meta-atmel/conf}
 
-8/ Initialize build directory
+7/ Initialize build directory
 source oe-init-build-env build-microchip
 
-9/ To build a small image provided by Yocto Project:
+8/ To build a small image provided by Yocto Project:
 [MACHINE=<machine>] bitbake core-image-minimal
 
 Example for sama5d2-xplained-sd SD card image:
 MACHINE=sama5d2-xplained-sd bitbake core-image-minimal
 
-10/ To build the microchip image with no graphics support:
+9/ To build the microchip image with no graphics support:
 [MACHINE=<machine>] bitbake microchip-headless-image
 
 Example for sama5d2-xplained-sd SD card image:
 MACHINE=sama5d2-xplained-sd bitbake microchip-headless-image
 
-11/ To build the microchip image with graphics support (EGT):
+10/ To build the microchip image with graphics support (EGT):
 [MACHINE=<machine>] bitbake microchip-graphics-image
 
 Example for sama5d2-xplained-sd SD card image:
