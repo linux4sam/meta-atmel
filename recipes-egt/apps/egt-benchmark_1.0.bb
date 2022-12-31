@@ -4,7 +4,7 @@ LIC_FILES_CHKSUM = "file://COPYING;endline=202;md5=3b83ef96387f14655fc854ddc3c6b
 
 DEPENDS = "libegt"
 
-SRC_URI = "git://github.com/linux4sam/egt-benchmark.git;protocol=https;branch=master"
+SRC_URI = "gitsm://github.com/linux4sam/egt-benchmark.git;protocol=https;branch=master"
 
 SRCREV = "be25417177e874d1a665705a86dfaa25458f64ac"
 
