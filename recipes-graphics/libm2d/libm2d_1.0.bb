@@ -51,3 +51,4 @@ do_install:append() {
 }
 
 COMPATIBLE_MACHINE="sam9x60"
+COMPATIBLE_MACHINE="sam9x75"
