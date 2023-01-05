@@ -25,7 +25,7 @@ Sources
 =======
 - meta-atmel
 URI: https://github.com/linux4sam/meta-atmel.git
-Branch: kirkstone
+Branch: master
 
 
 Dependencies
@@ -33,18 +33,18 @@ Dependencies
 This Layer depends on :
 - poky
 URI: https://git.yoctoproject.org/poky
-Branch: kirkstone
+Branch: master
 Tag:HEAD
 
 - meta-openembedded
 URI: https://git.openembedded.org/meta-openembedded
-Branch: kirkstone
+Branch: master
 Tag: HEAD
 
 - meta-arm (for optee components)
 URI: https://git.yoctoproject.org/meta-arm
-Branch: kirkstone
-Tag:HEAD
+Branch: master
+
 
 Build procedure
 ===============
@@ -54,16 +54,16 @@ mkdir my_dir
 cd my_dir
 
 1/ Clone yocto/poky git repository with the proper branch ready
-git clone https://git.yoctoproject.org/poky -b kirkstone
+git clone https://git.yoctoproject.org/poky -b master
 
 2/ Clone meta-openembedded git repository with the proper branch ready
-git clone https://git.openembedded.org/meta-openembedded -b kirkstone
+git clone https://git.openembedded.org/meta-openembedded -b master
 
 3/ Clone meta-atmel layer with the proper branch ready
-git clone https://github.com/linux4sam/meta-atmel.git -b kirkstone
+git clone https://github.com/linux4sam/meta-atmel.git -b master
 
 4/ Clone meta-arm layer with the proper branch ready
-git clone https://git.yoctoproject.org/meta-arm -b kirkstone
+git clone https://git.yoctoproject.org/meta-arm -b master
 
 5/ Enter the poky directory to configure the build system and start the build process
 cd poky
