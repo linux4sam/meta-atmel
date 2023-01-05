@@ -24,7 +24,6 @@ built by adding an "-sd" suffix to the machine name.
 Sources
 =======
 - meta-atmel
-URI: git://github.com/linux4sam/meta-atmel.git
 URI: https://github.com/linux4sam/meta-atmel.git
 Branch: master
 
@@ -33,20 +32,18 @@ Dependencies
 ============
 This Layer depends on :
 - poky
-URI: git://git.yoctoproject.org/poky
+URI: https://git.yoctoproject.org/poky
 Branch: master
 Tag:HEAD
 
 - meta-openembedded
-URI: git://git.openembedded.org/meta-openembedded
-URI: http://cgit.openembedded.org/meta-openembedded/
+URI: https://git.openembedded.org/meta-openembedded
 Branch: master
 Tag: HEAD
 
 - meta-aws (for AWS Greengrass, mandatory for SAMA5D2 microchip-* images)
-URI: git://github.com/aws/meta-aws.git
-URI: https://github.com/aws/meta-aws
-Branch: dunfell
+URI: https://github.com/aws4embeddedlinux/meta-aws.git
+Branch: master
 Tag:HEAD
 
 Build procedure
@@ -57,16 +54,16 @@ mkdir my_dir
 cd my_dir
 
 1/ Clone yocto/poky git repository with the proper branch ready
-git clone git://git.yoctoproject.org/poky -b dunfell
+git clone https://git.yoctoproject.org/poky -b master
 
 2/ Clone meta-openembedded git repository with the proper branch ready
-git clone git://git.openembedded.org/meta-openembedded -b dunfell
+git clone https://git.openembedded.org/meta-openembedded -b master
 
 3/ Clone meta-aws git repository with the proper branch ready
-git clone git://github.com/aws/meta-aws -b dunfell
+git clone https://github.com/aws4embeddedlinux/meta-aws.git -b master
 
 4/ Clone meta-atmel layer with the proper branch ready
-git clone git://github.com/linux4sam/meta-atmel.git -b dunfell
+git clone https://github.com/linux4sam/meta-atmel.git -b master
 
 5/ Enter the poky directory to configure the build system and start the build process
 cd poky
