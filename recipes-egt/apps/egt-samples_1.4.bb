@@ -16,7 +16,7 @@ SRCREV = "7a87f1691391817fde762c346f3974f28aaf7d0b"
 
 S = "${WORKDIR}/git"
 
-inherit pkgconfig autotools gettext
+inherit pkgconfig autotools gettext siteinfo
 
 do_configure:prepend() {
      ( cd ${S}; ${S}/autogen.sh; cd -)
