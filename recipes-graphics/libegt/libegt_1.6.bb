@@ -25,7 +25,7 @@ SRCREV = "b1236ef56cc531c21813c9aa796584d1ba9e88fd"
 
 S = "${WORKDIR}/git"
 
-inherit pkgconfig autotools gettext
+inherit pkgconfig autotools gettext siteinfo
 
 EXTRA_OECONF += "--disable-debug"
 
