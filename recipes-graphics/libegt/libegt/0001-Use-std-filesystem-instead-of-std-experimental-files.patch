@@ -1,0 +1,101 @@
+From 7c3c6e07199af92e6d3c2efa0696142b2e493ebb Mon Sep 17 00:00:00 2001
+From: Khem Raj <raj.khem@gmail.com>
+Date: Sat, 7 Jan 2023 18:58:21 -0800
+Subject: [PATCH] Use std::filesystem instead of std::experimental::filesystem
+
+filesystem support is in main runtime for many years now.
+Clang 15+ has dropped experimental/filesystem
+and now c++17 is asked explicitly so we can be confident of
+filesystem support in c++ standard runtime, therefore adjust accordingly
+
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+---
+ examples/dialog/dialog.cpp      | 4 ++--
+ src/detail/filesystem.cpp       | 6 ++----
+ src/detail/screen/kmsscreen.cpp | 6 ++----
+ src/filedialog.cpp              | 4 ++--
+ 4 files changed, 8 insertions(+), 12 deletions(-)
+
+diff --git a/examples/dialog/dialog.cpp b/examples/dialog/dialog.cpp
+index b0725f67..fafcfad2 100644
+--- a/examples/dialog/dialog.cpp
++++ b/examples/dialog/dialog.cpp
+@@ -4,11 +4,11 @@
+  * SPDX-License-Identifier: Apache-2.0
+  */
+ #include <egt/ui>
+-#include <experimental/filesystem>
++#include <filesystem>
+ #include <memory>
+ #include <string>
+ 
+-namespace fs = std::experimental::filesystem;
++namespace fs = std::filesystem;
+ 
+ int main(int argc, char** argv)
+ {
+diff --git a/src/detail/filesystem.cpp b/src/detail/filesystem.cpp
+index 5f9e404c..e1fc3c20 100644
+--- a/src/detail/filesystem.cpp
++++ b/src/detail/filesystem.cpp
+@@ -11,6 +11,7 @@
+ #include "egt/detail/filesystem.h"
+ #include <climits>
+ #include <cstring>
++#include <filesystem>
+ #include <fstream>
+ #include <iterator>
+ #include <libgen.h>
+@@ -23,10 +24,7 @@
+ #include <glob.h>
+ #endif
+ 
+-#ifdef HAVE_EXPERIMENTAL_FILESYSTEM
+-#include <experimental/filesystem>
+-namespace fs = std::experimental::filesystem;
+-#endif
++namespace fs = std::filesystem;
+ 
+ #ifdef HAVE_WINDOWS_H
+ #include <cstdio>
+diff --git a/src/detail/screen/kmsscreen.cpp b/src/detail/screen/kmsscreen.cpp
+index 3958a556..3c2973f2 100644
+--- a/src/detail/screen/kmsscreen.cpp
++++ b/src/detail/screen/kmsscreen.cpp
+@@ -29,11 +29,9 @@
+ #include <cairo-gfx2d.h>
+ #endif
+ 
+-#ifdef HAVE_EXPERIMENTAL_FILESYSTEM
+-#include <experimental/filesystem>
++#include <filesystem>
+ 
+-namespace fs = std::experimental::filesystem;
+-#endif
++namespace fs = std::filesystem;
+ 
+ namespace egt
+ {
+diff --git a/src/filedialog.cpp b/src/filedialog.cpp
+index 850bd598..e84bcd80 100644
+--- a/src/filedialog.cpp
++++ b/src/filedialog.cpp
+@@ -6,13 +6,13 @@
+ #include "detail/egtlog.h"
+ #include "egt/embed.h"
+ #include "egt/filedialog.h"
+-#include <experimental/filesystem>
++#include <filesystem>
+ 
+ #ifdef SRCDIR
+ EGT_EMBED(internal_folder, SRCDIR "/icons/32px/folder.png")
+ #endif
+ 
+-namespace fs = std::experimental::filesystem;
++namespace fs = std::filesystem;
+ 
+ namespace egt
+ {
+-- 
+2.39.0
+

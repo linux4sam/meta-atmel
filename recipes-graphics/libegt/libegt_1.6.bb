@@ -19,7 +19,9 @@ DEPENDS = "\
     xxd-native \
 "
 
-SRC_URI = "gitsm://github.com/linux4sam/egt.git;protocol=https;branch=1.6"
+SRC_URI = "gitsm://github.com/linux4sam/egt.git;protocol=https;branch=1.6 \
+           file://0001-Use-std-filesystem-instead-of-std-experimental-files.patch \
+          "
 
 SRCREV = "b1236ef56cc531c21813c9aa796584d1ba9e88fd"
 
