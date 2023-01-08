@@ -1,0 +1,40 @@
+From 6a9542ff552689e80aae913d12282ae21c9c5c82 Mon Sep 17 00:00:00 2001
+From: Khem Raj <raj.khem@gmail.com>
+Date: Sat, 7 Jan 2023 19:07:28 -0800
+Subject: [PATCH] launcher: Switch to using std::filesystem
+
+experimental/filesystem is promoted to std::filesystem and is must have
+with c++17 and newer standard, some compilers e.g. libcxx with
+llvm/clang 15+ has already dropped experimental/filesystem and expect
+one to use std::filesystem
+
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+---
+ src/launcher.cpp | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/launcher.cpp b/src/launcher.cpp
+index 35afa0f..c6d583d 100644
+--- a/src/launcher.cpp
++++ b/src/launcher.cpp
+@@ -12,7 +12,7 @@
+ #include <cmath>
+ #include <egt/detail/filesystem.h>
+ #include <egt/ui>
+-#include <experimental/filesystem>
++#include <filesystem>
+ #include <fstream>
+ #include <iostream>
+ #include <memory>
+@@ -121,7 +121,7 @@ private:
+     SwipeCallback m_callback;
+ };
+ 
+-namespace filesys = std::experimental::filesystem;
++namespace filesys = std::filesystem;
+ 
+ /*
+  * Execute a command.
+-- 
+2.39.0
+
