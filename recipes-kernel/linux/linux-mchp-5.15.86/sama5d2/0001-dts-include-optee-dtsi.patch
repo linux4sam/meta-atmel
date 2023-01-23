@@ -1,0 +1,26 @@
+From 100fa19af3c09097623788d0124322afc0bbf9b7 Mon Sep 17 00:00:00 2001
+From: Dharma Balasubiramani <dharma.b@microchip.com>
+Date: Sat, 15 Oct 2022 03:15:28 +0530
+Subject: [PATCH] dts: include optee dtsi
+
+Include sama5d2-optee.dtsi in at91-sama5d27_som1_ek.dts
+
+Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
+---
+ arch/arm/boot/dts/at91-sama5d27_som1_ek.dts | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/arm/boot/dts/at91-sama5d27_som1_ek.dts b/arch/arm/boot/dts/at91-sama5d27_som1_ek.dts
+index 08f0d4b995ff..5136139bcca7 100644
+--- a/arch/arm/boot/dts/at91-sama5d27_som1_ek.dts
++++ b/arch/arm/boot/dts/at91-sama5d27_som1_ek.dts
+@@ -9,6 +9,7 @@
+  */
+ /dts-v1/;
+ #include "at91-sama5d27_som1.dtsi"
++#include "sama5d2-optee.dtsi"
+ #include <dt-bindings/mfd/atmel-flexcom.h>
+ #include <dt-bindings/gpio/gpio.h>
+ #include <dt-bindings/input/input.h>
+--
+2.25.1
