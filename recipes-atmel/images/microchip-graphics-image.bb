@@ -112,6 +112,11 @@ IMAGE_INSTALL:append:sam9x60 = " \
 IMAGE_INSTALL:append:sam9x75 = " \
 	hostapd \
 	bonnie++ \
+	video-capture-at91 \
+	libv4l \
+	v4l-utils \
+	media-ctl \
+	yavta \
 	libm2d "
 
 # packages needed for greengrass with ECC608

@@ -33,6 +33,13 @@ IMAGE_INSTALL:append:sama7g5ek = " bonnie++ iozone3 gstreamer1.0 \
 				libv4l v4l-utils media-ctl libcamera yavta \
 				video-capture-at91"
 
+IMAGE_INSTALL:append:sam9x75eb = " bonnie++ iozone3 gstreamer1.0 \
+				gstreamer1.0-plugins-bad \
+				gstreamer1.0-plugins-good \
+				gstreamer1.0-plugins-ugly fswebcam ffmpeg \
+				libv4l v4l-utils media-ctl libcamera yavta \
+				video-capture-at91"
+
 IMAGE_INSTALL:append:sama5d27-som1-ek-optee-sd = " optee-os optee-test optee-examples"
 
 # OSPI image must fit into 120 MBytes
