@@ -90,3 +90,5 @@ IMAGE_INSTALL:remove:sama7g5ek-ospi = " \
 IMAGE_FEATURES:remove:sama7g5ek-ospi = " \
 	package-management \
 	"
+
+IMAGE_INSTALL:append = " linuxptp"
