@@ -19,14 +19,15 @@ built by adding an "-sd" suffix to the machine name.
 - AT91SAM9G45 / at91sam9m10g45ek
 - SAM9X60 / sam9x60ek, sam9x60-curiosity
 - SAMA7G5 / sama7g5ek-sd, sama7g5ek-emmc, sama7g5ek-ospi
+- SAM9X75 / sam9x75eb
 
 
 Sources
 =======
 - meta-atmel
 URI: https://github.com/linux4sam/meta-atmel.git
-Branch: kirkstone
-Tag:linux4microchip-2022.10
+Branch: sam9x7_early
+Tag:linux4microchip+sam9x7-2023.01
 
 Dependencies
 ============
@@ -60,7 +61,7 @@ git clone https://git.yoctoproject.org/poky -b kirkstone
 git clone https://git.openembedded.org/meta-openembedded -b kirkstone
 
 3/ Clone meta-atmel layer with the proper branch ready
-git clone https://github.com/linux4sam/meta-atmel.git -b kirkstone
+git clone https://github.com/linux4sam/meta-atmel.git -b sam9x7_early
 
 4/ Clone meta-arm layer with the proper branch ready
 git clone https://git.yoctoproject.org/meta-arm -b kirkstone
@@ -119,7 +120,7 @@ meta-networking
 meta-webserver
 meta-python
 meta-initramfs       = "744a4b6eda88b9a9ca1cf0df6e18be384d9054e3:744a4b6eda88b9a9ca1cf0df6e18be384d9054e3"
-meta-atmel           = "heads/linux4microchip-2022.10:30ef71f26146dfe228c7d4d2c550bc05791ccc0d"
+meta-atmel           = "sam9x7_early:5e1090acdf61c070f6fa47e1ba49e0fa702ef1b4"
 meta-multimedia      = "744a4b6eda88b9a9ca1cf0df6e18be384d9054e3:744a4b6eda88b9a9ca1cf0df6e18be384d9054e3"
 meta-arm
 meta-arm-toolchain   = "heads/yocto-4.0.1:bafd1d013c2470bcec123ba4eb8232ab879b2660"
