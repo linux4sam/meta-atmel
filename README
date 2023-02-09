@@ -34,17 +34,17 @@ This Layer depends on :
 - poky
 URI: https://git.yoctoproject.org/poky
 Branch: kirkstone
-Tag:HEAD
+Tag:yocto-4.0.5
 
 - meta-openembedded
 URI: https://git.openembedded.org/meta-openembedded
 Branch: kirkstone
-Tag: HEAD
+Tag/commit:744a4b6eda88b9a9ca1cf0df6e18be384d9054e3
 
 - meta-arm (for optee components)
 URI: https://git.yoctoproject.org/meta-arm
 Branch: kirkstone
-Tag:HEAD
+Tag:yocto-4.0.1
 
 Build procedure
 ===============
@@ -119,7 +119,7 @@ meta-networking
 meta-webserver
 meta-python          
 meta-initramfs       = "kirkstone:744a4b6eda88b9a9ca1cf0df6e18be384d9054e3"
-meta-atmel           = "kirkstone:e71f4b71dba523c464cbb7aaa374b3e5e92bb674"
+meta-atmel           = "kirkstone:30ef71f26146dfe228c7d4d2c550bc05791ccc0d"
 meta-multimedia      = "kirkstone:744a4b6eda88b9a9ca1cf0df6e18be384d9054e3"
 meta-arm
 meta-arm-toolchain   = "kirkstone:bafd1d013c2470bcec123ba4eb8232ab879b2660"
