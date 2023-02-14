@@ -1,0 +1,74 @@
+From 0b76ffe124719f96fe8bc3daf6410cf3198309f4 Mon Sep 17 00:00:00 2001
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 13 Feb 2023 22:07:10 -0800
+Subject: [PATCH] atca_iface.h: Fix function mismatches in function pointers
+
+Newer compilers e.g. clang16 can detect signature mismatches in the
+functions used as function pointers, therefore correct the function
+prototypes and ensure the typedefs they use are available at the time of
+use
+
+Fixes
+lib/hal/atca_hal.c:310:33: error: incompatible function pointer types       assigning to 'ATCA_STATUS (*)(ATCAIface, ATCAIfaceCfg *)' (aka 'ATCA_STATUS (*)(struct atca_iface *, ATCAIfaceCfg *)') from 'ATCA_STATUS (*)(void *, void *)' [-Wincompatible-function-      pointer-types]
+                 (*hal)->halinit = cfg->atcacustom.halinit;
+                                 ^ ~~~~~~~~~~~~~~~~~~~~~~~
+
+Upstream-Status: Submitted [https://github.com/MicrochipTech/cryptoauthlib/pull/330]
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+---
+ lib/atca_iface.h | 21 +++++++++------------
+ 1 file changed, 9 insertions(+), 12 deletions(-)
+
+diff --git a/lib/atca_iface.h b/lib/atca_iface.h
+index 9dfc422..e669b33 100644
+--- a/lib/atca_iface.h
++++ b/lib/atca_iface.h
+@@ -81,11 +81,12 @@ typedef enum
+     ATCA_KIT_SPI_IFACE,
+     ATCA_KIT_UNKNOWN_IFACE } ATCAKitType;
+ 
++typedef struct atca_iface * ATCAIface;
+ 
+ /* ATCAIfaceCfg is the configuration object for a device
+  */
+ 
+-typedef struct
++typedef struct ATCAIfaceCfgType
+ {
+ 
+     ATCAIfaceType  iface_type;      // active iface - how to interpret the union below
+@@ -147,13 +148,13 @@ typedef struct
+ 
+         struct
+         {
+-            ATCA_STATUS (*halinit)(void *hal, void *cfg);
+-            ATCA_STATUS (*halpostinit)(void *iface);
+-            ATCA_STATUS (*halsend)(void *iface, uint8_t word_address, uint8_t *txdata, int txlength);
+-            ATCA_STATUS (*halreceive)(void *iface, uint8_t word_address, uint8_t* rxdata, uint16_t* rxlength);
+-            ATCA_STATUS (*halwake)(void *iface);
+-            ATCA_STATUS (*halidle)(void *iface);
+-            ATCA_STATUS (*halsleep)(void *iface);
++            ATCA_STATUS (*halinit)(ATCAIface hal, struct ATCAIfaceCfgType* cfg);
++            ATCA_STATUS (*halpostinit)(ATCAIface iface);
++            ATCA_STATUS (*halsend)(ATCAIface iface, uint8_t word_address, uint8_t *txdata, int txlength);
++            ATCA_STATUS (*halreceive)(ATCAIface iface, uint8_t word_address, uint8_t* rxdata, uint16_t* rxlength);
++            ATCA_STATUS (*halwake)(ATCAIface iface);
++            ATCA_STATUS (*halidle)(ATCAIface iface);
++            ATCA_STATUS (*halsleep)(ATCAIface iface);
+             ATCA_STATUS (*halrelease)(void* hal_data);
+         } atcacustom;
+     } ATCA_IFACECFG_NAME(cfg);
+@@ -163,10 +164,6 @@ typedef struct
+     void *   cfg_data;      // opaque data used by HAL in device discovery
+ } ATCAIfaceCfg;
+ 
+-
+-
+-typedef struct atca_iface * ATCAIface;
+-
+ /** \brief HAL Driver Structure
+  */
+ typedef struct
+-- 
+2.39.1
+
