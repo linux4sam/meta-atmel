@@ -1,0 +1,29 @@
+From 3138909f544e24cee6b14134148c22215816b15e Mon Sep 17 00:00:00 2001
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 13 Feb 2023 16:55:42 -0800
+Subject: [PATCH] correct the python_requires version syntax
+
+Fixes errors like
+'python_requires' must be a string containing valid version specifiers; Invalid specifier: '>=3.4.*'
+
+Upstream-Status: Submitted [https://github.com/MicrochipTech/cryptoauthlib/pull/330]
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+---
+ setup.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/setup.py b/setup.py
+index 706574c..c06593b 100644
+--- a/setup.py
++++ b/setup.py
+@@ -231,6 +231,6 @@ if __name__ == '__main__':
+         setup_requires=['setuptools>=38.6.0', 'wheel'],
+         install_requires=['enum34;python_version<"3.4"'],
+         ext_modules=_EXTENSIONS,
+-        python_requires='>=3.4.*',
++        python_requires='>=3.4.0',
+         zip_safe=False
+     )
+-- 
+2.39.1
+
