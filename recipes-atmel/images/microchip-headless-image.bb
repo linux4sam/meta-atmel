@@ -9,6 +9,7 @@ IMAGE_INSTALL += "\
     mpg123 \
     mpio \
     rsync \
+    linuxptp \
     "
 
 IMAGE_INSTALL:append:sama5d2 = " nodejs nodejs-npm"
