@@ -87,6 +87,7 @@ IMAGE_INSTALL += "\
 	noto-fonts \
 	lohit-fonts \
 	rsync \
+	linuxptp \
 "
 
 IMAGE_INSTALL:append:at91sam9m10g45 = " \
