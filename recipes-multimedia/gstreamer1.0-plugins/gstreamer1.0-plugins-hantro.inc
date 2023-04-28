@@ -11,7 +11,12 @@ LIC_FILES_CHKSUM = "file://COPYING.LESSER;md5=4fbd65380cdd255951079008b364516c"
 DEPENDS += "libdrm"
 
 S = "${WORKDIR}/git"
-SRC_URI = "git://github.com/linux4sam/gst1-hantro-g1;protocol=https;branch=master"
+SRC_URI = "git://github.com/linux4sam/gst1-hantro-g1;protocol=https;branch=master \
+           git://github.com/GStreamer/common.git;protocol=https;branch=master;destsuffix=git/common;name=common \
+           "
+
+SRCREV_common = "9aed1d7a80a38b76f9441ecf181942df99f09c38"
+SRCREV_FORMAT = "base"
 
 FILES:${PN} += "${libdir}/gstreamer-1.0/*.so"
 FILES:${PN}-dbg += "${libdir}/gstreamer-1.0/.debug"
