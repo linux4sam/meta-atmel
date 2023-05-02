@@ -1,7 +1,7 @@
 DESCRIPTION = "Microchip CryptoAuthentication Library"
 
 LICENSE = "MICROCHIP_CAL"
-LIC_FILES_CHKSUM = "file://license.txt;endline=18;md5=8f046e550ca998a71c7d7ceb7069ccee"
+LIC_FILES_CHKSUM = "file://license.txt;endline=18;md5=9aeb1b770001d315ff758ac2a0588ba8"
 
 SRC_URI = "git://github.com/MicrochipTech/cryptoauthlib.git;branch=main;protocol=https \
            file://cryptoauthlib.module \
@@ -9,7 +9,7 @@ SRC_URI = "git://github.com/MicrochipTech/cryptoauthlib.git;branch=main;protocol
            "
 
 PV = "1.0+git${SRCPV}"
-SRCREV = "055dd4afafb019db1f4d61880aa441832139faa2"
+SRCREV = "86b3046d2e0b74af20cf6694ada5cc21af18c0d1"
 
 S = "${WORKDIR}/git"
 
