@@ -27,24 +27,24 @@ do_compile[nostamp] = "1"
 do_compile () {
     # Check to properly identify the board
     if [ -z "${AT91BOOTSTRAP_MACHINE}" ]; then
-        echo "No AT91BOOTSTRAP_MACHINE set for ${MACHINE}"
+        bbnote "No AT91BOOTSTRAP_MACHINE set for ${MACHINE}"
         exit 1
     fi
 
     if [ -d "${AT91BOOTSTRAP_MACHINE}" ]; then
-        echo "Compiling DTBOs"
+        bbnote "Compiling DTBOs"
         oe_runmake DTC=dtc KERNEL_DIR=${STAGING_KERNEL_DIR} KERNEL_BUILD_DIR=${KERNEL_PATH} ${AT91BOOTSTRAP_MACHINE}_dtbos
     else
-        echo "No DTBOs to compile"
+        bbnote "No DTBOs to compile"
     fi
 
     # Over-ride itb target in Makefile
     if [ -e "${AT91BOOTSTRAP_MACHINE}.its" ]; then
-        echo "Creating the FIT image"
+        bbnote "Creating the FIT image"
         DTC_OPTIONS="-Wno-unit_address_vs_reg -Wno-graph_child_address -Wno-pwms_property"
         mkimage -D "-i${DEPLOY_DIR_IMAGE} -p 1000 ${DTC_OPTIONS}" -f ${AT91BOOTSTRAP_MACHINE}.its ${AT91BOOTSTRAP_MACHINE}.itb
     else
-        echo "No its file to create FIT images"
+        bbnote "No its file to create FIT images"
     fi
 }
 
@@ -69,7 +69,7 @@ do_install () {
 addtask deploy after do_install
 
 do_deploy () {
-    #echo "Copying ${fit_image_basename}.itb and source file to ${DEPLOYDIR}..."
+    #bbnote "Copying ${fit_image_basename}.itb and source file to ${DEPLOYDIR}..."
     if [ -e ${AT91BOOTSTRAP_MACHINE}.itb ]; then
         install ${AT91BOOTSTRAP_MACHINE}.itb ${DEPLOYDIR}/
         install ${AT91BOOTSTRAP_MACHINE}.its ${DEPLOYDIR}/
