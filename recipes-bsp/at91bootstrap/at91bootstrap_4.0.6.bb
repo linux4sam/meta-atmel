@@ -8,7 +8,7 @@ COMPATIBLE_MACHINE = '(sama5d3-xplained|sama5d3-xplained-sd|sama5d4-xplained|sam
 SRC_URI = "git://github.com/linux4sam/at91bootstrap.git;protocol=https;branch=at91bootstrap-4.x"
 
 PV = "4.0.6+git${SRCPV}"
-SRCREV = "e05486a6d65745cb7a66770c3398186ebb8f71b3"
+SRCREV = "d166742ae1cf084a175c2433ac683f6cd8c07918"
 
 S = "${WORKDIR}/git"
 
