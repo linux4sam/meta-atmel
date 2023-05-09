@@ -7,7 +7,7 @@ SRC_URI = "git://github.com/linux4sam/video-capture-at91.git;protocol=https;bran
 COMPATIBLE_MACHINE = "sama7g5ek|sama5d2"
 
 PV = "1.0+git${SRCPV}"
-SRCREV = "9cbeed745ab98f1a847e349beb30ac16c0d1ca08"
+SRCREV = "7e3a0f7c37c1895f06b498caa5074fed4ab203d6"
 
 S = "${WORKDIR}/git"
 
