@@ -16,6 +16,7 @@ do_install () {
 	do
 		install -d ${D}${ROOT_HOME}/video-capture-at91
 		cp -r ${S}/${SOC}/* ${D}${ROOT_HOME}/video-capture-at91/ || true
+		cp -r ${S}/utils.sh ${D}${ROOT_HOME}/ || true
 	done
 }
 
