@@ -15,7 +15,7 @@ SRC_URI = "git://github.com/linux4sam/egt-launcher.git;protocol=https;branch=mas
 	  file://0001-launch.sh-Use-start-stop-daemon-to-restart-egt.patch"
 
 PV = "1.3+git${SRCPV}"
-SRCREV = "e82f6754f800c9295c3ddd5544c1ec42288cead5"
+SRCREV = "eefcb0ec4e7277cb5040d394e2ef6775d06f785d"
 
 S = "${WORKDIR}/git"
 
