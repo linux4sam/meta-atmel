@@ -28,6 +28,7 @@ IMAGE_INSTALL:append:sama5d27-wlsom1-ek-sd = " ptc-examples nginx \
 				wilc-websocket-demo "
 
 IMAGE_INSTALL:append:sama7g5ek = " bonnie++ iozone3 gstreamer1.0 \
+				gstreamer1.0-plugins-base \
 				gstreamer1.0-plugins-bad \
 				gstreamer1.0-plugins-good \
 				gstreamer1.0-plugins-ugly fswebcam ffmpeg \
