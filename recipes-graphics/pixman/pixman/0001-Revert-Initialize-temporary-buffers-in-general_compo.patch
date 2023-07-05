@@ -10,6 +10,7 @@ causes performance issues with EGT:
 - Lower score for DrawFixture.MoveAnimate/UpdateButton for all devices.
 - egt_drop very slow for all devices.
 
+Upstream-Status: Inappropriate
 Signed-off-by: Ludovic Desroches <ludovic.desroches@microchip.com>
 ---
  pixman/pixman-general.c | 6 ------
