@@ -54,16 +54,19 @@ mkdir my_dir
 cd my_dir
 
 1/ Clone yocto/poky git repository with the proper branch ready
-git clone https://git.yoctoproject.org/poky -b kirkstone
+git clone https://git.yoctoproject.org/poky && cd poky && \
+git checkout -b kirkstone yocto-4.0.9 && cd -
 
 2/ Clone meta-openembedded git repository with the proper branch ready
-git clone https://git.openembedded.org/meta-openembedded -b kirkstone
+git clone git://git.openembedded.org/meta-openembedded && \
+cd meta-openembedded && git checkout -b kirkstone df452d && cd -
 
 3/ Clone meta-atmel layer with the proper branch ready
 git clone https://github.com/linux4sam/meta-atmel.git -b kirkstone
 
 4/ Clone meta-arm layer with the proper branch ready
-git clone https://git.yoctoproject.org/meta-arm -b kirkstone
+git clone https://git.yoctoproject.org/meta-arm && cd meta-arm && \
+git checkout -b kirkstone yocto-4.0.1 && cd -
 
 5/ Enter the poky directory to configure the build system and start the build process
 cd poky
