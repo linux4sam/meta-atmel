@@ -267,8 +267,14 @@ BB_DISKMON_DIRS ??= "\
 # this doesn't mean anything to you.
 CONF_VERSION = "2"
 LICENSE_FLAGS_ACCEPTED += "commercial"
-SYSVINIT_ENABLED_GETTYS = ""
 INHERIT += "rm_work"
+
+# Set the init manager to systemd
+INIT_MANAGER = "systemd"
+
+# Remove the default syslog mechanism's "sysklogd" and "busybox-syslog"
+VIRTUAL-RUNTIME_syslog = ""
+VIRTUAL-RUNTIME_base-utils-syslog = ""
 
 # ENABLE_BINARY_LOCALE_GENERATION controls the generation of binary locale
 # packages at build time using qemu-native. Disabling it (by setting it to 0)
