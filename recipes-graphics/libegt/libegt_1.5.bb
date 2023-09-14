@@ -2,12 +2,6 @@ DESCRIPTION = "Microchip EGT library for sama5 & sam9x lcd controller"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://COPYING;endline=202;md5=3b83ef96387f14655fc854ddc3c6bd57"
 
-PACKAGES = "\
-    ${PN} \
-    ${PN}-dev \
-    ${PN}-dbg \
-"
-
 DEPENDS = "\
     libplanes \
     libdrm \
@@ -61,13 +55,8 @@ do_configure:prepend() {
 B = "${S}"
 
 FILES:${PN} += " \
-  ${libdir}/* \
-  ${includedir}/* \
-  ${bindir}/* \
-  /usr/share/egt/* \
-  /usr/share/libegt/* \
+  ${datadir}/egt/* \
 "
-INSANE_SKIP:${PN} = "dev-so"
 
 #need to delete .a to avoid QA package errors
 #deleted audio files to avoid check_data_file_clashes error
