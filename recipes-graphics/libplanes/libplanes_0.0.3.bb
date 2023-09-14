@@ -2,7 +2,7 @@ DESCRIPTION = "Microchip libplanes library for sama5 lcd controller"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://COPYING;endline=20;md5=b884a464579c410fd1dace93db8e97b3"
 
-PACKAGES = "${PN}-dbg ${PN} ${PN}-python"
+PACKAGES =+ "${PN}-python"
 
 PR = "r1"
 
@@ -28,16 +28,11 @@ do_configure:prepend() {
 	${S}/autogen.sh; cd -)
 }
 
-INSANE_SKIP:${PN} = "dev-so"
-
 FILES:${PN} += " \
   /opt/planes/planes-loop.sh \
   /opt/planes/planes-loop.py \
   /opt/ApplicationL* \
-  ${libdir}/* \
-  ${includedir}/* \
-  ${bindir}/* \
-  /usr/share/planes/* \
+  ${datadir}/planes/* \
 "
 FILES:${PN}-python = "${libdir}/python${PYTHON_BASEVERSION}/site-packages/*"
 
