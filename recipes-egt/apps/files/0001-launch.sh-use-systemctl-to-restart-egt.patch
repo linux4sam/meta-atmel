@@ -1,0 +1,27 @@
+From e477cef48f29c64c62c3f7bd93535fa61f3101f8 Mon Sep 17 00:00:00 2001
+From: Balakrishnan Sambath <balakrishnan.s@microchip.com>
+Date: Tue, 5 Sep 2023 17:08:10 +0530
+Subject: [PATCH] launch.sh: use systemctl to restart egt
+
+Use systemctl utility to properly restart egt service.
+
+Signed-off-by: Balakrishnan Sambath <balakrishnan.s@microchip.com>
+---
+ launch.sh | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/launch.sh b/launch.sh
+index 28dc166..c947101 100755
+--- a/launch.sh
++++ b/launch.sh
+@@ -29,7 +29,7 @@ handle_exit_key()
+ run()
+ {
+     handle_exit_key $@
+-    egt-launcher
++    systemctl restart egtdemo.service
+ }
+
+ # redirect stdout, stderr to /dev/null, close stdin and double fork - it's magic
+--
+2.25.1

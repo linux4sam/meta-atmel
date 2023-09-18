@@ -12,7 +12,7 @@ DEPENDS = "libegt"
 RDEPENDS:${PN} = "evtest"
 
 SRC_URI = "git://github.com/linux4sam/egt-launcher.git;protocol=https;branch=master \
-	  file://0001-launch.sh-Use-start-stop-daemon-to-restart-egt.patch"
+	  file://0001-launch.sh-use-systemctl-to-restart-egt.patch"
 
 PV = "1.3+git${SRCPV}"
 SRCREV = "eefcb0ec4e7277cb5040d394e2ef6775d06f785d"

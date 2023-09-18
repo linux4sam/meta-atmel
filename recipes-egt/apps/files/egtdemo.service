@@ -1,0 +1,13 @@
+[Unit]
+Description=EGT Application Launcher Service
+After=network.target
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/egtdemo start
+ExecStop=/usr/bin/egtdemo stop
+RemainAfterExit=yes
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
