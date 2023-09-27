@@ -1,0 +1,9 @@
+[Match]
+Name=eth*
+
+[Network]
+DHCP=yes
+#Address=192.168.7.2
+#Netmask=255.255.255.0
+#Network=192.168.7.0
+#Gateway=192.168.7.1
