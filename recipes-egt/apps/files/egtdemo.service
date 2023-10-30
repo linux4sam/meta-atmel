@@ -1,6 +1,7 @@
 [Unit]
 Description=EGT Application Launcher Service
 After=network.target
+StartLimitBurst=2
 
 [Service]
 Type=forking
