@@ -6,7 +6,7 @@ require conf/machine/include/bootloaders.inc
 SOC_FAMILY = "at91sam9"
 
 PREFERRED_PROVIDER_virtual/kernel:at91sam9 ?= "linux-mchp"
-PREFERRED_PROVIDER_virtual/bootloader:at91sam9 ?= "u-boot-at91"
-PREFERRED_PROVIDER_u-boot:at91sam9 ?= "u-boot-at91"
+PREFERRED_PROVIDER_virtual/bootloader:at91sam9 ?= "u-boot-mchp"
+PREFERRED_PROVIDER_u-boot:at91sam9 ?= "u-boot-mchp"
 
 SERIAL_CONSOLES ?= "115200;ttyS0"
