@@ -269,6 +269,9 @@ CONF_VERSION = "2"
 LICENSE_FLAGS_ACCEPTED += "commercial"
 INHERIT += "rm_work"
 
+#Include build information in the image generated
+INHERIT += "image-buildinfo"
+
 # Set the init manager to systemd
 INIT_MANAGER = "systemd"
 
