@@ -1,6 +1,6 @@
 video_mode_lvds=Unknown-1:800x480-16
 at91_display_detect=run lvdstest;
-lvdstest=test -n $display && test $display = ST7262 && setenv display_var ‘lvds’ && setenv video_mode ${video_mode_lvds}
+lvdstest=test -n $display && test $display = ST7262 && setenv display_var 'lvds' && setenv video_mode ${video_mode_lvds}
 at91_prepare_bootargs=test -n $display_var && setenv bootargs ${bootargs} ${at91_video_bootargs}
 at91_prepare_video_bootargs=test -n $display_var && setenv at91_video_bootargs video=${video_mode}
 at91_prepare_overlays_config=test -n $display_var && setenv at91_overlays_config '#'${display_var}
