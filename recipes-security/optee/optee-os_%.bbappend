@@ -2,11 +2,11 @@ FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
 
 OPTEEMACHINE = "sam"
 
-DEPENDS:append = " dtc-native"
+DEPENDS:append = " dtc-native python3-cryptography-native"
 
-SRC_URI = "git://github.com/linux4sam/optee_os-at91.git;branch=master;protocol=https"
+SRCREV = "2a5b1d1232f582056184367fb58a425ac7478ec6"
 
-SRCREV = "9ca99a29b95e7b07c4849d9578dd633a4aed00fb"
+PV = "4.0.0+git${SRCPV}"
 
 COMPATIBLE_MACHINE = "(sama5d27-som1-ek-optee-sd)"
 
