@@ -1,12 +1,11 @@
 [Unit]
 Description=EGT Application Launcher Service
 After=network.target
-StartLimitBurst=2
+ConditionPathExists=/dev/dri/card0
 
 [Service]
-Type=forking
-ExecStart=/usr/bin/egtdemo start
-ExecStop=/usr/bin/egtdemo stop
+Type=simple
+ExecStart=sh -c 'egt-launcher /opt/applications/resources /usr/share/egt'
 RemainAfterExit=yes
 Restart=on-failure
 
