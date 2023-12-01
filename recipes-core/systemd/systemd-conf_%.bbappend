@@ -1,17 +1,16 @@
-FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
 
-SRC_URI += " \
+SRC_URI:append = " \
     file://eth.network \
-     file://wlan.network \
+    file://wlan.network \
 "
 
 FILES:${PN} += " \
-    ${sysconfdir}/systemd/network/eth.network \
-     ${sysconfdir}/systemd/network/wlan.network \
+    ${sysconfdir}/systemd/network/ \
 "
 
-do_install () {
+do_install:append () {
     install -d ${D}${sysconfdir}/systemd/network
     install -m 0644 ${WORKDIR}/eth.network ${D}${sysconfdir}/systemd/network
-     install -m 0644 ${WORKDIR}/wlan.network ${D}${sysconfdir}/systemd/network
+    install -m 0644 ${WORKDIR}/wlan.network ${D}${sysconfdir}/systemd/network
 }
