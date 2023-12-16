@@ -1,28 +1,29 @@
-From 548cac2972ac44fe2b6e1d391331634a68721f6c Mon Sep 17 00:00:00 2001
+From 2f82cfab79e7e19c4afd4252326d042d35048dd6 Mon Sep 17 00:00:00 2001
 From: Hari Prasath <Hari.PrasathGE@microchip.com>
-Date: Tue, 5 Apr 2022 11:01:46 +0530
+Date: Wed, 13 Dec 2023 17:05:17 +0530
 Subject: [PATCH] pkcs11: add KeyLen condition
 
 Add the KeyLen condition check
 
 Signed-off-by: Hari Prasath <Hari.PrasathGE@microchip.com>
 Signed-off-by: Tudor Ambarus <tudor.ambarus@microchip.com>
+Signed-off-by: Balakrishnan Sambath <balakrishnan.s@microchip.com>
 ---
  lib/pkcs11/pkcs11_token.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/lib/pkcs11/pkcs11_token.c b/lib/pkcs11/pkcs11_token.c
-index 8d09cbb3..3c8e4f00 100644
+index 98d3aec9..b9a67474 100644
 --- a/lib/pkcs11/pkcs11_token.c
 +++ b/lib/pkcs11/pkcs11_token.c
-@@ -588,7 +588,7 @@ CK_RV pkcs11_token_convert_pin_to_key(
-     bool is_ca_device = atcab_is_ca_device(atcab_get_device_type());
-     uint16_t key_len = is_ca_device ? 32 : 16;
+@@ -680,7 +680,7 @@ CK_RV pkcs11_token_convert_pin_to_key(
+ {
+     ATCA_STATUS status = ATCA_SUCCESS;
 
--    if (!pPin || !ulPinLen || !pKey)
-+    if (!pPin || !ulPinLen || !pKey || 32 > ulKeyLen)
+-    if (NULL == pPin || 0u == ulPinLen || NULL == pKey || NULL == slot_ctx)
++    if (NULL == pPin || 0u == ulPinLen || NULL == pKey || NULL == slot_ctx || 32 > ulKeyLen)
      {
          return CKR_ARGUMENTS_BAD;
      }
 --
-2.17.1
+2.25.1
