@@ -115,6 +115,7 @@ IMAGE_INSTALL:append:sam9x75-curiosity-sd = " video-capture-at91"
 # packages needed for greengrass with ECC608
 IMAGE_INSTALL:append:sama5d2 = " cryptoauthlib python3-cryptoauthlib p11-kit"
 IMAGE_INSTALL:append:sama7 = " cryptoauthlib python3-cryptoauthlib p11-kit"
+IMAGE_INSTALL:append:sam9x60 = " cryptoauthlib python3-cryptoauthlib p11-kit"
 
 IMAGE_INSTALL:append:sama5d4 = " \
 	gstreamer1.0-plugins-hantro \

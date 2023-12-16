@@ -44,6 +44,11 @@ do_install:append:sama7() {
     cp -p ${D}${localstatedir}/lib/cryptoauthlib/slot.conf.tmpl ${D}${localstatedir}/lib/cryptoauthlib/0.conf
 }
 
+do_install:append:sam9x60() {
+    install -Dm 644 ${WORKDIR}/cryptoauthlib.module ${D}${datadir}/p11-kit/modules/cryptoauthlib.module
+    cp -p ${D}${localstatedir}/lib/cryptoauthlib/slot.conf.tmpl ${D}${localstatedir}/lib/cryptoauthlib/0.conf
+}
+
 # On sama5d2-xplained board, the ATECC608A Secure4 click board must be connected to the XPRO EXT2 socket
 
 do_install:append:sama5d2-xplained() {
@@ -82,6 +87,14 @@ do_install:append:sama7g5ek-sd() {
 }
 do_install:append:sama7g5ek-emmc() {
     sed -i "s/interface = .*/interface = i2c,0xC0,1/"  ${D}${localstatedir}/lib/cryptoauthlib/0.conf
+}
+
+# On sam9x60ek and sam9x60-curiosity boards, the ATECC608B TRUST click board must be connected to the mikro bus
+do_install:append:sam9x60ek-sd() {
+    sed -i "s/interface = .*/interface = i2c,0x6A,1/"  ${D}${localstatedir}/lib/cryptoauthlib/0.conf
+}
+do_install:append:sam9x60-curiosity-sd() {
+    sed -i "s/interface = .*/interface = i2c,0x6A,0/"  ${D}${localstatedir}/lib/cryptoauthlib/0.conf
 }
 
 FILES:${PN} = "${libdir}/libcryptoauth.so \
