@@ -34,12 +34,12 @@ This Layer depends on :
 - poky
 URI: https://git.yoctoproject.org/poky
 Branch: kirkstone
-Tag:yocto-4.0.9
+Tag:yocto-4.0.13
 
 - meta-openembedded
 URI: https://git.openembedded.org/meta-openembedded
 Branch: kirkstone
-Tag/commit:df452d9d98659b49888fa8a5428a0a8bd3e3aaec
+Tag/commit:79a6f60dabad9e5b0e041efa91379447ef030482
 
 - meta-arm (for optee components)
 URI: https://git.yoctoproject.org/meta-arm
@@ -55,11 +55,11 @@ cd my_dir
 
 1/ Clone yocto/poky git repository with the proper branch ready
 git clone https://git.yoctoproject.org/poky && cd poky && \
-git checkout -b kirkstone yocto-4.0.9 && cd -
+git checkout -b kirkstone yocto-4.0.13 && cd -
 
 2/ Clone meta-openembedded git repository with the proper branch ready
 git clone git://git.openembedded.org/meta-openembedded && \
-cd meta-openembedded && git checkout -b kirkstone df452d && cd -
+cd meta-openembedded && git checkout -b kirkstone 79a6f6 && cd -
 
 3/ Clone meta-atmel layer with the proper branch ready
 git clone https://github.com/linux4sam/meta-atmel.git -b kirkstone
@@ -111,21 +111,21 @@ NATIVELSBSTRING      = "universal"
 TARGET_SYS           = "arm-poky-linux-gnueabi"
 MACHINE              = "sam9x60-curiosity-sd"
 DISTRO               = "poky-atmel"
-DISTRO_VERSION       = "4.0.9"
+DISTRO_VERSION       = "4.0.13"
 TUNE_FEATURES        = "arm armv5 thumb dsp"
 TARGET_FPU           = "soft"
 meta                 
 meta-poky            
-meta-yocto-bsp       = "HEAD:09def309f91929f47c6cce386016ccb777bd2cfc"
+meta-yocto-bsp       = "heads/kirkstone-4.0.13:e51bf557f596c4da38789a948a3228ba11455e3c"
 meta-oe              
 meta-networking      
 meta-webserver
 meta-python
-meta-initramfs       = "kirkstone:df452d9d98659b49888fa8a5428a0a8bd3e3aaec"
-meta-atmel           = "kirkstone:aeeb0d2e90c6b6546fa5b9cb20bf7e58020e3df9"
-meta-multimedia      = "kirkstone:df452d9d98659b49888fa8a5428a0a8bd3e3aaec"
+meta-initramfs       = "79a6f60dabad9e5b0e041efa91379447ef030482:79a6f60dabad9e5b0e041efa91379447ef030482"
+meta-atmel           = "heads/linux4microchip-2023.10-rc3:c94eec92946f6469d8adb30490d26f55021e1299"
+meta-multimedia      = "79a6f60dabad9e5b0e041efa91379447ef030482:79a6f60dabad9e5b0e041efa91379447ef030482"
 meta-arm
-meta-arm-toolchain   = "kirkstone:bafd1d013c2470bcec123ba4eb8232ab879b2660"
+meta-arm-toolchain   = "heads/yocto-4.0.2:96aad3b29aa7a5ee4df5cf617a6336e5218fa9bd"
 
 Contributing
 ============
