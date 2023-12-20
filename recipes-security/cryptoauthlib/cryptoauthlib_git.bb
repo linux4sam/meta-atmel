@@ -3,7 +3,7 @@ DESCRIPTION = "Microchip CryptoAuthentication Library"
 LICENSE = "MICROCHIP_CAL"
 LIC_FILES_CHKSUM = "file://license.txt;endline=18;md5=8f046e550ca998a71c7d7ceb7069ccee"
 
-SRC_URI = "git://github.com/MicrochipTech/cryptoauthlib.git;branch=main;protocol=https \
+SRC_URI = "git://github.com/MicrochipTech/cryptoauthlib.git;branch=main;protocol=https;lfs=0 \
            file://cryptoauthlib.module \
 	   file://0001-pkcs11-add-KeyLen-condition.patch \
            "
