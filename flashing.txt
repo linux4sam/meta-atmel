@@ -19,6 +19,7 @@ Connect the board:
  o sam9x60: DBGU: J24, USB sam-ba: J8
  o sama5d27 wlsom1 ek: DBGU: J26, USB sam-ba: J10
  o sam9x60 curiosity: DBGU: J11, USB sam-ba: J1
+ o sam9x75eb: DBGU: J34, USB sam-ba: U6 near RESET button
 
 Start the board in RomBOOT:
  o at91sam9g45m10ek:
@@ -77,6 +78,11 @@ Start the board in RomBOOT:
  o sam9x60 curiosity:
    1. open J4 (NANDCS) and Remove SDMMC card.
    2. Power on the board
+
+ o sam9x75eb:
+   1. Power on the board
+   2. Remove SDMMC card and press DISABLE BOOT switch
+   3. Reboot the board
 
 "RomBOOT" should appear on your console (this should be ttyUSBx or ttyACMx)
 
