@@ -110,7 +110,11 @@ IMAGE_INSTALL:append:sam9x60 = " \
 	bonnie++ \
 	libm2d "
 
-IMAGE_INSTALL:append:sam9x75-curiosity-sd = " video-capture-at91"
+IMAGE_INSTALL:append:sam9x75 = " \
+        bonnie++ \
+        video-capture-at91 \
+	media-ctl \
+	yavta "
 
 # packages needed for greengrass with ECC608
 IMAGE_INSTALL:append:sama5d2 = " cryptoauthlib python3-cryptoauthlib p11-kit"
