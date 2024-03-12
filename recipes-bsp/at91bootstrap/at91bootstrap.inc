@@ -15,7 +15,7 @@ LIC_FILES_CHKSUM = "file://main.c;endline=27;md5=42f86d2f6fd17d1221c5c651b487a07
 
 inherit cml1 deploy
 
-DEPENDS += "bc-native python3-native"
+DEPENDS += "bc-native python3-native kern-tools-native"
 
 AT91BOOTSTRAP_MACHINE ??= "${MACHINE}"
 
@@ -92,6 +92,13 @@ do_configure() {
 
 	if [ ! -f "${S}/.config" ]; then
 		bbfatal "No config files found"
+	fi
+
+	# If .cfg files exist, merge them to .config file
+	# This allows recipes to add .cfg files to change or to add features
+	if [ -n "${@' '.join(find_cfgs(d))}" ]; then
+		oe_runmake -C ${S} O=${B} oldconfig
+		merge_config.sh -m "${B}/.config" ${@" ".join(find_cfgs(d))}
 	fi
 
 	cml1_do_configure
