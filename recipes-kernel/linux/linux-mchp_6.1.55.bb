@@ -13,6 +13,8 @@ SRC_URI:append:sama5 = " file://defconfig"
 SRC_URI:append:sama5d27-som1-ek-optee-sd = " file://sama5-linux-optee.cfg \
                                              file://sama5d2/0001-dts-include-optee-dtsi.patch \
                                              "
+SRC_URI:append:sama5d2 = " file://encx24j600.patch"
+SRC_URI:append:sama5d2 = " file://0001-net-encx24j600-fix-transmit-queue-timeout-issue.patch"
 SRCREV = "7297efac896e4e51b9785918dde843674057d573"
 LIC_FILES_CHKSUM = "file://COPYING;md5=6bc538ed5bd9a7fc9398086aedcd7e46"
 

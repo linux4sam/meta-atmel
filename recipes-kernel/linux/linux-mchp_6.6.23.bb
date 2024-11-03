@@ -12,6 +12,8 @@ SRC_URI = "git://github.com/linux4microchip/linux.git;protocol=https;branch=${KB
 # kernel fragments
 SRC_URI:append:sama5      = " file://sama5.cfg"
 SRC_URI:append:sama5d2    = " file://greengrass.cfg"
+SRC_URI:append:sama5d2    = " file://encx24j600.patch"
+SRC_URI:append:sama5d2    = " file://0001-net-encx24j600-fix-transmit-queue-timeout-issue.patch"
 SRC_URI:append:\
 sama5d27-som1-ek-optee-sd = " file://sama5-linux-optee.cfg \
                               file://sama5d2/0001-dts-include-optee-dtsi.patch \

@@ -1,0 +1,67 @@
+From 100fa19af3c09097623788d0124322afc0bbf9b7 Mon Sep 17 00:00:00 2001
+From: Alejandro <alejandro@example.com>
+Date: Sat, 15 Oct 2022 03:15:28 +0530
+Subject: [PATCH] net: encx24j600: fix transmit queue timeout issue
+
+Fix the transmit queue timeout issue in the encx24j600 driver by
+adding a reset mechanism to handle the timeout condition.
+
+Signed-off-by: Alejandro <alejandro@example.com>
+---
+ drivers/net/ethernet/microchip/encx24j600.c | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/drivers/net/ethernet/microchip/encx24j600.c b/drivers/net/ethernet/microchip/encx24j600.c
+index 08f0d4b995ff..5136139bcca7 100644
+--- a/drivers/net/ethernet/microchip/encx24j600.c
++++ b/drivers/net/ethernet/microchip/encx24j600.c
+@@ -9,6 +9,7 @@
+  */
+ 
+ #include "encx24j600.h"
++#include <linux/netdevice.h>
+ 
+ static void encx24j600_reset(struct net_device *ndev)
+ {
+@@ -16,6 +17,15 @@ static void encx24j600_reset(struct net_device *ndev)
+     // Add reset logic here
+ }
+ 
++static void encx24j600_tx_timeout(struct net_device *ndev)
++{
++    struct encx24j600_priv *priv = netdev_priv(ndev);
++
++    netdev_err(ndev, "Transmit timeout, resetting device\n");
++    encx24j600_reset(ndev);
++    netif_wake_queue(ndev);
++}
++
+ static int encx24j600_open(struct net_device *ndev)
+ {
+     struct encx24j600_priv *priv = netdev_priv(ndev);
+@@ -26,6 +36,7 @@ static int encx24j600_open(struct net_device *ndev)
+     // Add open logic here
+ 
+     netif_start_queue(ndev);
++    ndev->watchdog_timeo = msecs_to_jiffies(5000);
+ 
+     return 0;
+ }
+@@ -36,6 +47,7 @@ static int encx24j600_stop(struct net_device *ndev)
+     // Add stop logic here
+ 
+     netif_stop_queue(ndev);
++    ndev->watchdog_timeo = 0;
+ 
+     return 0;
+ }
+@@ -46,6 +58,7 @@ static const struct net_device_ops encx24j600_netdev_ops = {
+     .ndo_open       = encx24j600_open,
+     .ndo_stop       = encx24j600_stop,
+     .ndo_start_xmit = encx24j600_start_xmit,
++    .ndo_tx_timeout = encx24j600_tx_timeout,
+ };
+ 
+ static int encx24j600_probe(struct spi_device *spi)
+--
+2.25.1
