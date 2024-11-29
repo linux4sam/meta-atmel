@@ -26,7 +26,7 @@ Sources
 - meta-atmel
 URI: https://github.com/linux4sam/meta-atmel.git
 Branch: scarthgap
-Tag/commit:d48c7e6656214034cd6ee055c893849f079587c1
+Tag/commit:53c6bb2eddceb62ae5120c7c68174ce423d341e2
 
 Dependencies
 ============
@@ -34,12 +34,12 @@ This Layer depends on :
 - poky
 URI: https://git.yoctoproject.org/poky
 Branch: scarthgap
-Tag:scarthgap-5.0.1
+Tag:scarthgap-5.0.3
 
 - meta-openembedded
 URI: https://git.openembedded.org/meta-openembedded
 Branch: scarthgap
-Tag/commit:78a14731cf0cf38a19ff8bd0e9255b319afaf3a7
+Tag/commit:735ae0310870ffce07ce0c55c4f87c20ac161ff9
 
 - meta-arm (for optee components)
 URI: https://git.yoctoproject.org/meta-arm
@@ -55,15 +55,15 @@ cd my_dir
 
 1/ Clone yocto/poky git repository with the proper branch ready
 git clone https://git.yoctoproject.org/poky && cd poky && \
-git checkout -b scarthgap scarthgap-5.0.1 && cd -
+git checkout -b scarthgap scarthgap-5.0.3 && cd -
 
 2/ Clone meta-openembedded git repository with the proper branch ready
 git clone git://git.openembedded.org/meta-openembedded && \
-cd meta-openembedded && git checkout -b scarthgap 78a147 && cd -
+cd meta-openembedded && git checkout -b scarthgap 735ae0 && cd -
 
 3/ Clone meta-atmel layer with the proper branch ready
-git clone https://github.com/linux4sam/meta-atmel.git
-git checkout -b scarthgap 7340ed && cd -
+git clone https://github.com/linux4sam/meta-atmel.git && cd meta-atmel && \
+git checkout -b scarthgap 53c6bb && cd -
 
 4/ Clone meta-arm layer with the proper branch ready
 git clone https://git.yoctoproject.org/meta-arm && cd meta-arm && \
@@ -112,19 +112,19 @@ NATIVELSBSTRING      = "universal"
 TARGET_SYS           = "arm-poky-linux-gnueabi"
 MACHINE              = "sam9x75-curiosity-sd"
 DISTRO               = "poky-atmel"
-DISTRO_VERSION       = "5.0.1"
+DISTRO_VERSION       = "5.0.3"
 TUNE_FEATURES        = "arm armv5 thumb dsp"
 TARGET_FPU           = "soft"
 meta                 
 meta-poky            
-meta-yocto-bsp       = "heads/scarthgap-5.0.1:4b07a5316ed4b858863dfdb7cab63859d46d1810"
+meta-yocto-bsp       = "heads/scarthgap-5.0.3:0b37512fb4b231cc106768e2a7328431009b3b70"
 meta-oe
 meta-networking
 meta-webserver
 meta-python
-meta-initramfs       = "78a14731cf0cf38a19ff8bd0e9255b319afaf3a7:78a14731cf0cf38a19ff8bd0e9255b319afaf3a7"
-meta-atmel           = "1b0fa4c623bc63f45c61b13c786ec351a8e2c302:1b0fa4c623bc63f45c61b13c786ec351a8e2c302"
-meta-multimedia      = "78a14731cf0cf38a19ff8bd0e9255b319afaf3a7:78a14731cf0cf38a19ff8bd0e9255b319afaf3a7"
+meta-initramfs       = "735ae0310870ffce07ce0c55c4f87c20ac161ff9:735ae0310870ffce07ce0c55c4f87c20ac161ff9"
+meta-atmel           = "heads/linux4microchip-2024.10:53c6bb2eddceb62ae5120c7c68174ce423d341e2"
+meta-multimedia      = "735ae0310870ffce07ce0c55c4f87c20ac161ff9:735ae0310870ffce07ce0c55c4f87c20ac161ff9"
 meta-arm
 meta-arm-toolchain   = "heads/yocto-5.0:8aa8a1f17f5b64bc691544f989f04fc83df98adb"
 
