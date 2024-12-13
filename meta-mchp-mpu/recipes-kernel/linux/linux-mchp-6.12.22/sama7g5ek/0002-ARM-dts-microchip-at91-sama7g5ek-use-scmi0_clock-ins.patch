@@ -1,0 +1,31 @@
+From 64b4a584fd7533a65f710740b66d562551ec03bd Mon Sep 17 00:00:00 2001
+From: Dharma Balasubiramani <dharma.b@microchip.com>
+Date: Fri, 28 Mar 2025 13:49:14 +0530
+Subject: [PATCH] ARM: dts: microchip: at91-sama7g5ek: use scmi0_clock instead
+ of pmc
+
+Use scmi0_clock instead of pmc clock in the sound node for optee
+machine.
+
+Upstream-Status: Inappropriate [only specific to optee configuration]
+Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
+---
+ arch/arm/boot/dts/microchip/at91-sama7g5ek.dts | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/arch/arm/boot/dts/microchip/at91-sama7g5ek.dts b/arch/arm/boot/dts/microchip/at91-sama7g5ek.dts
+index 7d32779ecf4d..05a414d9e300 100644
+--- a/arch/arm/boot/dts/microchip/at91-sama7g5ek.dts
++++ b/arch/arm/boot/dts/microchip/at91-sama7g5ek.dts
+@@ -93,8 +93,7 @@ memory@60000000 {
+	sound: sound {
+		#address-cells = <1>;
+		#size-cells = <0>;
+-		assigned-clocks = <&pmc PMC_TYPE_CORE PMC_AUDIOPMCPLL>;
+-		assigned-clock-rates = <196608000>;
++		assigned-clocks = <&scmi0_clock AT91_SCMI_CLK_CORE_AUDIOPLLCK>;
+		compatible = "microchip,asrc-card";
+		microchip,model = "mchp-asrc-card @ sama7g5 EK";
+		status = "okay";
+--
+2.45.2

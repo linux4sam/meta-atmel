@@ -1,0 +1,27 @@
+From 51ddcbf6be66fb53f93ca85b4e7c0eb514de47f8 Mon Sep 17 00:00:00 2001
+From: Dharma Balasubiramani <dharma.b@microchip.com>
+Date: Tue, 8 Oct 2024 09:55:05 +0530
+Subject: [PATCH] dts: include optee dtsi
+
+Include sama7g5-optee.dtsi in at91-sama7g5ek.dts.
+
+Upstream-Status: Inappropriate [only specific to optee configuration]
+Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
+---
+ arch/arm/boot/dts/microchip/at91-sama7g5ek.dts | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/arm/boot/dts/microchip/at91-sama7g5ek.dts b/arch/arm/boot/dts/microchip/at91-sama7g5ek.dts
+index 5366a274d2b8..7d32779ecf4d 100644
+--- a/arch/arm/boot/dts/microchip/at91-sama7g5ek.dts
++++ b/arch/arm/boot/dts/microchip/at91-sama7g5ek.dts
+@@ -11,6 +11,7 @@
+ /dts-v1/;
+ #include "sama7g5-pinfunc.h"
+ #include "sama7g5.dtsi"
++#include "sama7g5-optee.dtsi"
+ #include <dt-bindings/mfd/atmel-flexcom.h>
+ #include <dt-bindings/input/input.h>
+ #include <dt-bindings/pinctrl/at91.h>
+--
+2.45.2
