@@ -1,0 +1,16 @@
+video_mode_mipi=Unknown-1:720x1280-16
+video_mode_lvds=Unknown-1:800x480-16
+eth_phy=lan8840
+at91_display_detect=run lvdstest; run mipitest; run at91_prepare_bootargs; run at91_prepare_display_overlay
+lvdstest=test -n $display && test $display = ST7262 && setenv display_var 'lvds' && setenv at91_video_bootargs video=${video_mode_lvds}
+mipitest=test -n $display && test $display = HX8394 && setenv display_var 'mipi' && setenv at91_video_bootargs video=${video_mode_mipi}
+at91_prepare_bootargs=test -n $at91_video_bootargs && setenv bootargs ${bootargs} ${at91_video_bootargs}
+at91_prepare_display_overlay=test -n $display_var && setenv at91_overlays_config ${at91_overlays_config}'#'${display_var}
+bootargs=console=ttyS0,115200 root=/dev/mmcblk0p2 rw rootfstype=ext4 rootwait atmel.pm_modes=standby,ulp0 cma=192m
+bootcmd=run at91_display_detect; run bootcmd_boot;
+bootcmd_boot=fatload mmc 0:1 0x63000000 sama7d65_curiosity.itb; bootm 0x63000000#kernel_dtb${at91_overlays_config}
+bootdelay=1
+ethact=gmac0
+stderr=serial
+stdin=serial
+stdout=serial

@@ -1,0 +1,7 @@
+bootargs=console=ttyS0,115200 root=/dev/mmcblk0p2 rw rootfstype=ext4 rootwait atmel.pm_modes=standby,ulp0
+bootcmd=fatload mmc 0:1 0x24000000 sam9x75eb.itb; bootm 0x24000000#kernel_dtb
+bootdelay=1
+ethact=gmac0
+stderr=serial
+stdin=serial
+stdout=serial
