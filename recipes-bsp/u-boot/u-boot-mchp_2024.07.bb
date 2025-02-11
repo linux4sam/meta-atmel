@@ -24,6 +24,7 @@ COMPATIBLE_MACHINE = '(at91sam9x5ek|at91sam9rlek|at91sam9m10g45ek\
 |sam9x60-curiosity|sam9x60-curiosity-sd\
 |sam9x75-curiosity|sam9x75-curiosity-sd\
 |sam9x75eb|sam9x75eb-sd\
+|sama7d65-curiosity|sama7d65-curiosity-sd\
 )'
 
 UBRANCH = "u-boot-2024.07-mchp"

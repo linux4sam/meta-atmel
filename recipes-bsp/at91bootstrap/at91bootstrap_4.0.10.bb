@@ -15,6 +15,7 @@ COMPATIBLE_MACHINE = '(sama5d2-icp-sd\
 |sam9x60ek|sam9x60ek-sd\
 |sam9x60-curiosity|sam9x60-curiosity-sd\
 |sam9x75-curiosity|sam9x75-curiosity-sd|sam9x75eb|sam9x75eb-sd\
+|sama7d65-curiosity|sama7d65-curiosity-sd\
 )'
 
 SRC_URI = "git://github.com/linux4sam/at91bootstrap.git;protocol=https;branch=at91bootstrap-4.x"
