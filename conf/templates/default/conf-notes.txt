@@ -13,6 +13,7 @@ Microchip supported machines are:
 - SAM9X60 / sam9x60ek / sam9x60-curiosity
 - SAM9X75 / sam9x75-curiosity-sd / sam9x75eb
 - SAMA7G5 / sama7g5ek-sd, sama7g5ek-optee-sd, sama7g5ek-emmc, sama7g5ek-ospi
+- SAMA7D65 / sama7d65-curiosity
 Note that most of the machine names above, have a SD Card variant that can be
 built by adding an "-sd" suffix to the machine name.
 
