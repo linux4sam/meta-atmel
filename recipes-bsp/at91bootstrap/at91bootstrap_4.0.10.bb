@@ -3,6 +3,8 @@ require at91bootstrap.inc
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://LICENSES/MIT.txt;md5=12c44f58fe16bd407f016e45950c2f3d"
 
+DEPENDS += " sam-ba-native"
+
 COMPATIBLE_MACHINE = '(sama5d2-icp-sd\
 |sama5d2-ptc-ek|sama5d2-ptc-ek-sd\
 |sama5d2-xplained|sama5d2-xplained-sd|sama5d2-xplained-emmc\
