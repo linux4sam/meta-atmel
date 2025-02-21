@@ -3,11 +3,10 @@ LICENSE = "CLOSED"
 
 PR = "r1"
 
-SRC_URI = "https://files.linux4sam.org/pub/demo/media/egt-media-${PV}.tar.gz"
+SRC_URI ="git://github.com/linux4sam/egt-media.git;protocol=https;branch=master"
+SRCREV = "7bdb1f492554f7bd1600c0095bab2a75f02a9c71"
 
-SRC_URI[md5sum] = "c9ddf805e8513847ed1058c267e32737"
-
-S = "${WORKDIR}/examples"
+S = "${WORKDIR}/git"
 
 RDEPENDS:${PN} = "gstreamer1.0 \
 	gstreamer1.0-plugins-base \
@@ -28,7 +27,7 @@ FILES:${PN} += " \
 
 do_install() {
 	install -d ${D}/usr/share/egt/examples
-	cp -Rf ${S}/* ${D}//usr/share/egt/examples/
+	cp -Rf ${S}/* ${D}//usr/share/egt/
 }
 
 ALLOW_EMPTY:${PN} = "1"
