@@ -23,7 +23,7 @@ COMPATIBLE_MACHINE = '(sama5d2-icp-sd\
 SRC_URI = "git://github.com/linux4sam/at91bootstrap.git;protocol=https;branch=at91bootstrap-4.x"
 
 PV = "4.0.10+git${SRCPV}"
-SRCREV = "3a4c7de8859299fec14384826912a7a23fa72b65"
+SRCREV = "88c34f82db5e5ef02d45173beacc11f7b252aaee"
 
 S = "${WORKDIR}/git"
 
