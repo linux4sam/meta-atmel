@@ -23,7 +23,7 @@ sama7g5ek-optee-sd	  = " file://sama7g5ek-linux-optee.cfg \
 			      file://sama7g5ek/0002-ARM-dts-microchip-at91-sama7g5ek-use-scmi0_clock-ins.patch \
                               "
 
-SRCREV = "3b49563636d9dc6adc26b7a71857533e5036ea92"
+SRCREV = "3bbb29176cf71912c922fbe395de088119805dda"
 LIC_FILES_CHKSUM = "file://COPYING;md5=6bc538ed5bd9a7fc9398086aedcd7e46"
 
 KERNEL_MODULE_AUTOLOAD:append:sama5d27-wlsom1-ek-sd = " wilc-sdio"
