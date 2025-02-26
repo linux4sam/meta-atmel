@@ -4,7 +4,7 @@ require u-boot-envs-atmel.inc
 LICENSE = "GPL-2.0-or-later"
 LIC_FILES_CHKSUM = "file://README;beginline=1;endline=22;md5=b5410c33378a67de244a5877f9ff9a27"
 
-SRCREV = "ad869b2ab2b0d7779b8cc6dd5a3c554cd4aa16a3"
+SRCREV = "dc7aff3a3e957a73d2dfdaf84b227a1ea66dd730"
 
 PV = "v2024.07-mchp+git${SRCPV}"
 
