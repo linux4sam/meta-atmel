@@ -27,7 +27,7 @@ Sources
 - meta-atmel
 URI: https://github.com/linux4sam/meta-atmel.git
 Branch: scarthgap
-Tag/commit:53c6bb2eddceb62ae5120c7c68174ce423d341e2
+Tag/commit:linux4microchip+sama7d65-2025.02
 
 Dependencies
 ============
@@ -64,7 +64,7 @@ cd meta-openembedded && git checkout -b scarthgap 735ae0 && cd -
 
 3/ Clone meta-atmel layer with the proper branch ready
 git clone https://github.com/linux4sam/meta-atmel.git && cd meta-atmel && \
-git checkout -b scarthgap 53c6bb && cd -
+git checkout linux4microchip+sama7d65-2025.02 && cd -
 
 4/ Clone meta-arm layer with the proper branch ready
 git clone https://git.yoctoproject.org/meta-arm && cd meta-arm && \
