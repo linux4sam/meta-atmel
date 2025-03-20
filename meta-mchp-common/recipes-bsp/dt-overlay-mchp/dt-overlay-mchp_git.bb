@@ -12,7 +12,7 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
 DEPENDS = "virtual/kernel u-boot-mkimage-native dtc-native"
 
 SRC_URI = "git://github.com/linux4microchip/dt-overlay-mchp.git;protocol=https;branch=master"
-SRCREV  = "4c6f612138de2fc477e7aa1fd1ab527ab94cc461"
+SRCREV  = "38adadb46058737d700c8a8bc7722e1a33572469"
 PV      = "1.0+git${SRCPV}"
 
 do_compile[depends] += "virtual/kernel:do_deploy virtual/kernel:do_shared_workdir"
