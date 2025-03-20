@@ -1,3 +1,5 @@
+inherit core-image
+
 IMAGE_FEATURES += "ssh-server-openssh package-management debug-tweaks"
 
 WIFI_FIRMWARE_PACKAGES = "\
@@ -17,7 +19,7 @@ WIFI_FIRMWARE_PACKAGES = "\
     linux-firmware-sd8897 \
     "
 
-IMAGE_INSTALL = "\
+IMAGE_INSTALL += "\
     bridge-utils \
     can-utils \
     devmem2 \
@@ -40,7 +42,6 @@ IMAGE_INSTALL = "\
     nftables \
     opkg \
     packagegroup-base \
-    packagegroup-core-boot \
     packagegroup-core-full-cmdline \
     phytool \
     python3-ctypes \
@@ -51,7 +52,4 @@ IMAGE_INSTALL = "\
     tcpdump \
     wget \
     ${@bb.utils.contains('COMBINED_FEATURES', 'wifi', WIFI_FIRMWARE_PACKAGES, '', d)} \
-    ${CORE_IMAGE_EXTRA_INSTALL} \
     "
-
-inherit core-image
