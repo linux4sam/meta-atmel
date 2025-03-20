@@ -17,3 +17,15 @@ EXTRA_OEMAKE = 'CROSS_COMPILE=${TARGET_PREFIX} CC=${TARGET_PREFIX}gcc EXTRA_CC_A
 AT91BOOTSTRAP_BIN_PATH = "${S}/build/binaries"
 
 AT91BOOTSTRAP_CONFIG_PATH = "${S}/configs"
+
+do_deploy:append:sama7d65 () {
+    install ${AT91BOOTSTRAP_BIN_PATH}/boot-plaintextimg.bin ${DEPLOYDIR}/${AT91BOOTSTRAP_IMAGE}
+
+    cd ${DEPLOYDIR}
+    ln -sf ${AT91BOOTSTRAP_IMAGE} ${AT91BOOTSTRAP_SYMLINK}
+    ln -sf ${AT91BOOTSTRAP_IMAGE} boot-plaintextimg.bin
+
+    # Create a symlink ready for file copy on SD card
+    rm -f boot.bin BOOT.BIN
+    ln -sf ${AT91BOOTSTRAP_IMAGE} BOOT.BIN
+}
