@@ -1,0 +1,2 @@
+# Create symlinks for the input devices found on the PTC wings
+SUBSYSTEM=="input", KERNEL=="event[0-9]*", ATTRS{name}=="atmel_ptc[0-9]*", SYMLINK+="input/$attr{name}"
