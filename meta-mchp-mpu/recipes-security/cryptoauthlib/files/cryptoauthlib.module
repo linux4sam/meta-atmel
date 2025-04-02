@@ -1,0 +1,5 @@
+module: /usr/lib/libcryptoauth.so
+critical: yes
+trust-policy: yes
+managed: yes
+log-calls: no
