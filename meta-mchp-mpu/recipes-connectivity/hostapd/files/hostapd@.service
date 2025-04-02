@@ -1,0 +1,11 @@
+[Unit]
+Description=Advanced IEEE 802.11 AP and IEEE 802.1X/WPA/WPA2/EAP Authenticator
+Before=network.target
+Wants=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/sbin/hostapd /etc/network/wilc_hostapd_%I.conf
+
+[Install]
+WantedBy=multi-user.target
