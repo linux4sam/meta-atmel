@@ -1,0 +1,13 @@
+[Unit]
+Description=EGT Application Launcher Service
+After=network.target
+ConditionPathExists=/dev/dri/card0
+
+[Service]
+Type=simple
+ExecStart=sh -c 'egt-launcher /opt/applications/resources /usr/share/egt'
+RemainAfterExit=yes
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
