@@ -1,0 +1,11 @@
+[Unit]
+Description=WPA supplicant
+Before=network.target
+Wants=network.target
+
+[Service]
+Type=forking
+ExecStart=/usr/sbin/wpa_supplicant -B -iwlan0 -Dnl80211 -c /etc/wpa_supplicant.conf
+
+[Install]
+WantedBy=multi-user.target
