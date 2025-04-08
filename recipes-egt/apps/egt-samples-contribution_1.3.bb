@@ -11,10 +11,14 @@ DEPENDS = " libegt"
 
 SRC_URI = "git://github.com/linux4sam/egt-samples-contribution.git;protocol=https;branch=master "
 
-PV = "1.2+git${SRCPV}"
-SRCREV = "c2e5bc250a40d032ea93c2ef7c76c6b350b7d020"
+PV = "1.3+git${SRCPV}"
+SRCREV = "17372c2de1cc7517115e8726a5cde55b3d63927a"
 
 S = "${WORKDIR}/git"
+
+FILES:${PN} += " \
+    ${datadir}/egt/samples/* \
+"
 
 EXTRA_OECMAKE += "-DEGT_SAMPLES_CONTRIBUTION_SLIDERB=true"
 

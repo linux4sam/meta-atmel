@@ -1,4 +1,4 @@
-DESCRIPTION = "Microchip EGT Theroststat Demo Application"
+DESCRIPTION = "Microchip EGT launcher Application"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://COPYING;endline=202;md5=3b83ef96387f14655fc854ddc3c6bd57"
 
@@ -7,29 +7,31 @@ PACKAGES = "\
     ${PN}-dev \
     ${PN}-dbg \
 "
-DEPENDS = " libegt"
+DEPENDS = "libegt"
 
-SRC_URI = "gitsm://github.com/linux4sam/egt-samples.git;protocol=https;branch=master "
+RDEPENDS:${PN} = "evtest"
 
-PV = "1.6+git${SRCPV}"
-SRCREV = "607288de066239e2b472b716a45c43b0aa5cca87"
+SRC_URI = "git://github.com/linux4sam/egt-launcher.git;protocol=https;branch=master \
+	  file://0001-launch.sh-use-systemctl-to-restart-egt.patch"
+
+PV = "1.5.1+git${SRCPV}"
+SRCREV = "8eb835928343dad9083c3ce607dffe2f53fd420a"
 
 S = "${WORKDIR}/git"
 
-inherit pkgconfig autotools gettext
+inherit pkgconfig autotools gettext siteinfo
 
 do_configure:prepend() {
-     ( cd ${S}; ${S}/autogen.sh; cd -)
+	( cd ${S};
+	${S}/autogen.sh; cd -)
 }
+
+# out-of-tree building doesn't appear to work for this package.
+B = "${S}"
 
 FILES:${PN} += " \
     /usr/share/egt/* \
 "
-# out-of-tree building doesn't appear to work for this package.
-B = "${S}"
-
-EXTRA_OECONF = "--program-prefix='egt_'"
-
 python __anonymous () {
     endianness = d.getVar('SITEINFO_ENDIANNESS')
     if endianness == 'be':

@@ -13,9 +13,9 @@ DEPENDS = "\
     xxd-native \
 "
 
-SRC_URI = "gitsm://github.com/linux4sam/egt.git;protocol=https;branch=1.10"
+SRC_URI = "gitsm://github.com/linux4sam/egt.git;protocol=https;branch=1.11"
 
-SRCREV = "c1e51b028ce46595bf2b68304c613bdb026c43d7"
+SRCREV = "6c380b3a32cd46be312eca6d829fb4a2793af43d"
 
 S = "${WORKDIR}/git"
 
@@ -36,8 +36,7 @@ PACKAGECONFIG[gstreamer] = "--with-gstreamer,--without-gstreamer,gstreamer1.0 gs
 PACKAGECONFIG[libevdev] = ",,libevdev"
 PACKAGECONFIG[jpeg] = "--with-libjpeg,--without-libjpeg,jpeg"
 PACKAGECONFIG[tslib] = "--with-tslib,--without-tslib,tslib"
-PACKAGECONFIG[alsa] = "--with-alsa,--without-alsa,alsa-lib"
-PACKAGECONFIG[libsndfile] = "--with-sndfile,--without-sndfile,libsndfile1"
+PACKAGECONFIG[alsa] = "--with-soundeffect,--without-soundeffect,alsa-lib libsndfile1"
 PACKAGECONFIG[zlib] = "--with-zlib,--without-zlib,zlib"
 PACKAGECONFIG[libinput] = "--with-libinput,--without-libinput,libinput"
 PACKAGECONFIG[lua] = "--with-lua,--without-lua,lua"
