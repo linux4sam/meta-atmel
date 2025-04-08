@@ -58,11 +58,8 @@ FILES:${PN} += " \
 "
 
 #need to delete .a to avoid QA package errors
-#deleted audio files to avoid check_data_file_clashes error
 do_install:append() {
     rm -f ${D}/usr/lib/libegt.a
-    rm -f ${D}/usr/share/egt/examples/audioplayer/*.mp3
-    rm -f ${D}/usr/share/egt/examples/drummachine/*.wav
     sed -e 's@[^ ]*-ffile-prefix-map=[^ "]*@@g' \
         -e 's@[^ ]*-fdebug-prefix-map=[^ "]*@@g' \
         -e 's@[^ ]*-fmacro-prefix-map=[^ "]*@@g' \

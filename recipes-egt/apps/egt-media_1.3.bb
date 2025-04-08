@@ -22,12 +22,12 @@ RDEPENDS:${PN} = "gstreamer1.0 \
 inherit siteinfo
 
 FILES:${PN} += " \
-    /usr/share/egt/* \
+    ${datadir}/egt/examples/video/* \
 "
 
 do_install() {
-	install -d ${D}/usr/share/egt/examples
-	cp -Rf ${S}/* ${D}//usr/share/egt/
+	install -d ${D}/usr/share/egt/examples/video
+	cp -Rf ${S}/examples/video/* ${D}//usr/share/egt/examples/video/
 }
 
 ALLOW_EMPTY:${PN} = "1"
