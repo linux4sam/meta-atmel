@@ -9,7 +9,7 @@ SRC_URI = "git://github.com/MicrochipTech/cryptoauthlib.git;branch=main;protocol
            "
 
 PV = "1.0+git${SRCPV}"
-SRCREV = "5d8c9880f5c64a8664d5781c691cbc313cd4de76"
+SRCREV = "caf67be64865a126c0cb23ac610213083baa6a60"
 
 S = "${WORKDIR}/git"
 
