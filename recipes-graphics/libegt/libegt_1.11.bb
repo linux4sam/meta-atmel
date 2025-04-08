@@ -19,47 +19,33 @@ SRCREV = "6c380b3a32cd46be312eca6d829fb4a2793af43d"
 
 S = "${WORKDIR}/git"
 
-inherit pkgconfig autotools gettext
-
-EXTRA_OECONF += "--disable-debug"
-
-EXTRA_AUTORECONF:append = " -I ${STAGING_DATADIR}/aclocal"
+inherit pkgconfig cmake gettext
 
 PACKAGECONFIG ??= "tslib examples icons plplot curl librsvg gstreamer jpeg zlib libinput lua ${@bb.utils.filter('DISTRO_FEATURES', 'x11 alsa', d)}"
 
-PACKAGECONFIG[librsvg] = "--with-librsvg,-without-librsvg,librsvg"
-PACKAGECONFIG[curl] = "--with-libcurl,--without-libcurl,curl"
-PACKAGECONFIG[examples] = "--enable-examples,--disable-examples"
-PACKAGECONFIG[icons] = "--enable-icons,--disable-icons"
-PACKAGECONFIG[plplot] = "--with-plplot,--without-plplot,plplot"
-PACKAGECONFIG[gstreamer] = "--with-gstreamer,--without-gstreamer,gstreamer1.0 gstreamer1.0-plugins-base"
+PACKAGECONFIG[librsvg] = "-DWITH_LIBRSVG=ON,-DWITH_LIBRSVG=OFF,librsvg"
+PACKAGECONFIG[curl] = "-DWITH_LIBCURL=ON,-DWITH-LIBCURL=OFF,curl"
+PACKAGECONFIG[examples] = "-DENABLE_EXAMPLES=ON,-DENABLE_EXAMPLES=OFF"
+PACKAGECONFIG[icons] = "-DENABLE_ICONS=ON,-DENABLE_ICONS=OFF"
+PACKAGECONFIG[plplot] = "-DWITH_PLPLOT=ON,-DWITH_PLPLOT=OFF,plplot"
+PACKAGECONFIG[gstreamer] = "-DWITH_GSTREAMER=ON,-DWITH_GSTREAMER=OFF,gstreamer1.0 gstreamer1.0-plugins-base"
 PACKAGECONFIG[libevdev] = ",,libevdev"
-PACKAGECONFIG[jpeg] = "--with-libjpeg,--without-libjpeg,jpeg"
-PACKAGECONFIG[tslib] = "--with-tslib,--without-tslib,tslib"
-PACKAGECONFIG[alsa] = "--with-soundeffect,--without-soundeffect,alsa-lib libsndfile1"
-PACKAGECONFIG[zlib] = "--with-zlib,--without-zlib,zlib"
-PACKAGECONFIG[libinput] = "--with-libinput,--without-libinput,libinput"
-PACKAGECONFIG[lua] = "--with-lua,--without-lua,lua"
-PACKAGECONFIG[xkbcommon] = "--with-xkbcommon,--without-xkbcommon,libxkbcommon"
-PACKAGECONFIG[x11] = "--with-x11,--without-x11,libx11"
+PACKAGECONFIG[jpeg] = "-DWITH_LIBJPEG=ON,-DWITH_LIBJPEG=OFF,jpeg"
+PACKAGECONFIG[tslib] = "-DWITH_TSLIB=ON,-DWITH_TSLIB=OFF,tslib"
+PACKAGECONFIG[alsa] = "-DWITH_ALSA=ON,-DWITH_ALSA=OFF,alsa-lib"
+PACKAGECONFIG[zlib] = "-DWITH_ZLIB=ON,-DWITH_ZLIB=OFF,zlib"
+PACKAGECONFIG[libinput] = "-DWITH_LIBINPUT=ON,-DWITH_LIBINPUT=OFF,libinput"
+PACKAGECONFIG[lua] = "-DWITH_LUA=ON,-DWITH_LUA=OFF,lua"
+PACKAGECONFIG[xkbcommon] = "-DWITH_XKBCOMMON=ON,-DWITH_XKBCOMMON=OFF,libxkbcommon"
+PACKAGECONFIG[x11] = "-DWITH_X11=ON,-DWITH_X11=OFF,libx11"
 
 FULL_OPTIMIZATION:append = " -Ofast"
-
-do_configure:prepend() {
-	rm -rf ${S}/m4/libtool.m4 ${S}/m4/lt*.m4
-	( cd ${S} && ${S}/autogen.sh && cd - )
-}
-
-# out-of-tree building doesn't appear to work for this package.
-B = "${S}"
 
 FILES:${PN} += " \
   ${datadir}/egt/* \
 "
 
-#need to delete .a to avoid QA package errors
 do_install:append() {
-    rm -f ${D}/usr/lib/libegt.a
     sed -e 's@[^ ]*-ffile-prefix-map=[^ "]*@@g' \
         -e 's@[^ ]*-fdebug-prefix-map=[^ "]*@@g' \
         -e 's@[^ ]*-fmacro-prefix-map=[^ "]*@@g' \

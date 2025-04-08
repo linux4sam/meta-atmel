@@ -15,15 +15,7 @@ SRCREV = "72e8e33c4a47150b46d9265f82db705d660abf15"
 
 S = "${WORKDIR}/git"
 
-# out-of-tree building doesn't appear to work for this package.
-B = "${S}"
-
-inherit pkgconfig autotools gettext siteinfo
-
-do_configure:prepend() {
-	( cd ${S};
-	${S}/autogen.sh; cd -)
-}
+inherit pkgconfig cmake gettext siteinfo
 
 FILES:${PN} += " \
     ${datadir}/egt/* \

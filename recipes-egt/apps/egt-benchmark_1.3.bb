@@ -10,13 +10,7 @@ SRCREV = "3b73339bd5862dfac15c1126969f9dcd84d2ea2e"
 
 S = "${WORKDIR}/git"
 
-inherit pkgconfig autotools-brokensep siteinfo
-
-EXTRA_OECONF += "--program-prefix='egt_'"
-
-do_configure:prepend() {
-	( cd ${S} && ${S}/autogen.sh )
-}
+inherit pkgconfig cmake siteinfo
 
 FILES:${PN} += " \
     ${datadir}/egt/* \
