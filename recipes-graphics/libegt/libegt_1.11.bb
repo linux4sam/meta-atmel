@@ -12,10 +12,12 @@ DEPENDS = "\
     udev \
     xxd-native \
 "
+DEPENDS:append:sam9x60 = " libm2d"
+DEPENDS:append:sam9x75 = " libm2d"
 
 SRC_URI = "gitsm://github.com/linux4sam/egt.git;protocol=https;branch=1.11"
 
-SRCREV = "6c380b3a32cd46be312eca6d829fb4a2793af43d"
+SRCREV = "3af246022cb431a4edb567fb1fe5bed0233a003a"
 
 S = "${WORKDIR}/git"
 
