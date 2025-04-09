@@ -16,7 +16,6 @@ SRCREV  = "38adadb46058737d700c8a8bc7722e1a33572469"
 PV      = "1.0+git${SRCPV}"
 
 do_compile[depends] += "virtual/kernel:do_deploy virtual/kernel:do_shared_workdir"
-do_compile[nostamp] = "1"
 
 do_compile () {
     # Check to properly identify the board
