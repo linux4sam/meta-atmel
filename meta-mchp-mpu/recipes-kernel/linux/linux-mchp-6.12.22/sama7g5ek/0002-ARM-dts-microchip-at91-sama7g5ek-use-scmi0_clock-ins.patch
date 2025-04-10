@@ -1,6 +1,6 @@
-From 64b4a584fd7533a65f710740b66d562551ec03bd Mon Sep 17 00:00:00 2001
+From 1f02c9b0a3945ff6466c74cd879c974a0ebae14b Mon Sep 17 00:00:00 2001
 From: Dharma Balasubiramani <dharma.b@microchip.com>
-Date: Fri, 28 Mar 2025 13:49:14 +0530
+Date: Thu, 10 Apr 2025 20:50:16 +0530
 Subject: [PATCH] ARM: dts: microchip: at91-sama7g5ek: use scmi0_clock instead
  of pmc
 
@@ -14,18 +14,19 @@ Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
  1 file changed, 1 insertion(+), 2 deletions(-)
 
 diff --git a/arch/arm/boot/dts/microchip/at91-sama7g5ek.dts b/arch/arm/boot/dts/microchip/at91-sama7g5ek.dts
-index 7d32779ecf4d..05a414d9e300 100644
+index c6962c890ac9..434d22777944 100644
 --- a/arch/arm/boot/dts/microchip/at91-sama7g5ek.dts
 +++ b/arch/arm/boot/dts/microchip/at91-sama7g5ek.dts
-@@ -93,8 +93,7 @@ memory@60000000 {
-	sound: sound {
-		#address-cells = <1>;
-		#size-cells = <0>;
+@@ -101,8 +101,7 @@ reg_5v: regulator-5v {
+ 	sound: sound {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
 -		assigned-clocks = <&pmc PMC_TYPE_CORE PMC_AUDIOPMCPLL>;
 -		assigned-clock-rates = <196608000>;
 +		assigned-clocks = <&scmi0_clock AT91_SCMI_CLK_CORE_AUDIOPLLCK>;
-		compatible = "microchip,asrc-card";
-		microchip,model = "mchp-asrc-card @ sama7g5 EK";
-		status = "okay";
---
+ 		compatible = "microchip,asrc-card";
+ 		microchip,model = "mchp-asrc-card @ sama7g5 EK";
+ 		status = "okay";
+-- 
 2.45.2
+
