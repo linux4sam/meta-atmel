@@ -1,9 +1,5 @@
 # U-Boot Environments for Microchip boards
 
-FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
-
-SRC_URI:append = " file://envs/"
-
 ENV_FILENAME = "uboot.env"
 ENV_FILEPATH = "${WORKDIR}/envs"
 
