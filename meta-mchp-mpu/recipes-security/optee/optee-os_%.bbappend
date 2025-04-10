@@ -6,9 +6,7 @@ DEPENDS:append = " dtc-native python3-cryptography-native"
 
 SRCREV = "e6b19839e65a107ae4832f93bd801c10b3e8c3c5"
 
-SRC_URI:append = " file://0001-plat-sam-remove-NVMEM_HUK.patch \
-		   file://0001-drivers-clk-sam-extend-the-time-for-waiting-PLL-read.patch \
-		   "
+SRC_URI:append = " file://0001-plat-sam-remove-NVMEM_HUK.patch"
 
 PV = "4.5.0+git${SRCPV}"
 

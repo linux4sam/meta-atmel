@@ -1,3 +1,4 @@
+Upstream-Status: Inappropriate [only specific to optee configuration]
 diff --git a/core/arch/arm/plat-sam/conf.mk b/core/arch/arm/plat-sam/conf.mk
 index 761fba900..d22083398 100644
 --- a/core/arch/arm/plat-sam/conf.mk
