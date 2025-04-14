@@ -11,19 +11,11 @@ DEPENDS = " libegt"
 
 SRC_URI = "gitsm://github.com/linux4sam/egt-thermostat.git;protocol=https;branch=master"
 
-SRCREV = "f25d928fec6dc086930f574ad8e90bc1e760f6fd"
+SRCREV = "72e8e33c4a47150b46d9265f82db705d660abf15"
 
 S = "${WORKDIR}/git"
 
-# out-of-tree building doesn't appear to work for this package.
-B = "${S}"
-
-inherit pkgconfig autotools gettext siteinfo
-
-do_configure:prepend() {
-    ( cd ${S};
-    ${S}/autogen.sh; cd -)
-}
+inherit pkgconfig cmake gettext siteinfo
 
 FILES:${PN} += " \
     ${datadir}/egt/* \
