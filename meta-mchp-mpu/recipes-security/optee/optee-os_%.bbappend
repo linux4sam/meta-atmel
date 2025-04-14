@@ -4,7 +4,7 @@ OPTEEMACHINE = "sam"
 
 DEPENDS:append = " dtc-native python3-cryptography-native"
 
-SRCREV = "e6b19839e65a107ae4832f93bd801c10b3e8c3c5"
+SRCREV = "45c754cea36aa970be953a3e579ff81a63eb461f"
 
 SRC_URI:append = " file://0001-plat-sam-remove-NVMEM_HUK.patch"
 
