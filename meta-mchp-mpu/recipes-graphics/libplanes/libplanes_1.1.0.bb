@@ -8,12 +8,10 @@ DEPENDS = "libdrm cairo cjson lua swig-native python3"
 
 RDEPENDS:${PN} = "python3 udev-rules-mchp"
 
-SRC_URI = "git://github.com/linux4sam/libplanes.git;protocol=https;branch=master \
-           file://0001-Use-python3-by-default.patch \
-"
+SRC_URI = "git://github.com/linux4sam/libplanes.git;protocol=https;branch=master"
 
-PV = "1.0.4+git${SRCPV}"
-SRCREV = "12678b823614f9a40cd082d3735f95cab2e79ae3"
+PV = "1.1.0+git${SRCPV}"
+SRCREV = "5b1814da2d88f83b87714c80281912f6d8916ac7"
 
 S = "${WORKDIR}/git"
 
@@ -25,15 +23,15 @@ PACKAGECONFIG ??= "examples"
 PACKAGECONFIG[examples] = "--enable-examples,--disable-examples"
 
 do_configure:prepend() {
-    ( cd ${S};
-    ${S}/autogen.sh; cd -)
+	( cd ${S};
+	${S}/autogen.sh; cd -)
 }
 
 FILES:${PN} += " \
-    /opt/planes/planes-loop.sh \
-    /opt/planes/planes-loop.py \
-    /opt/applications/resources/* \
-    ${datadir}/planes/* \
+  /opt/planes/planes-loop.sh \
+  /opt/planes/planes-loop.py \
+  /opt/applications/resources/* \
+  ${datadir}/planes/* \
 "
 FILES:${PN}-python = "${libdir}/python${PYTHON_BASEVERSION}/site-packages/*"
 
