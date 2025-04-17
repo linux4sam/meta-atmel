@@ -5,8 +5,8 @@ LICENSE = "GPL-2.0-only"
 LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=b234ee4d69f5fce4486a80fdaf4a4263"
 
 SRC_URI = "https://github.com/atmelcorp/${BPN}/releases/download/v${PV}/${BPN}_v${PV}-linux_x86_64.tar.gz"
-SRC_URI[md5sum] = "b2d0eb543fedc0e6fc3e5fc971eacdb1"
-SRC_URI[sha256sum] = "22b362271815dad7666478d1c6cb20a111cdcbf2c82c81a63d553a00d6c92a0c"
+SRC_URI[md5sum] = "e2058ce25e6af072deff407ac57b443d"
+SRC_URI[sha256sum] = "59b77ae4b716aed4d9ffdbbf707f3f414f80da8357a42a1409d8740d7387e567"
 
 S = "${WORKDIR}/${BPN}_v${PV}"
 
