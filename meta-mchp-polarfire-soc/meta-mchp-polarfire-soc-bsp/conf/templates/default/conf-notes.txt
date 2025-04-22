@@ -1,0 +1,21 @@
+### Shell environment set up for builds. ###
+
+You can now run '[MACHINE=<machine>] bitbake <target>'
+
+Microchip supported machines are:
+- PolarFire SoC Icicle Kit Engineering Sample / mpfs-icicle-kit-es, mpfs-icicle-kit-es-amp, mpfs-icicle-kit-es-nand, mpfs-icicle-kit-es-nor
+- PolarFire SoC Video Kit / mpfs-video-kit
+- PolarFire SoC Discovery Kit / mpfs-disco-kit
+
+Microchip targets are:
+    core-image-mchp-base
+
+Common targets are:
+    core-image-minimal
+    core-image-minimal-dev
+    core-image-minimal-mtdutils
+
+Other commonly useful commands are:
+ - 'devtool' and 'recipetool' handle common recipe tasks
+ - 'bitbake-layers' handles common layer tasks
+ - 'oe-pkgdata-util' handles common target package tasks
