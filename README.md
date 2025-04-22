@@ -9,7 +9,7 @@ Microchip device families including the MPU series and PolarFire SoC.
 - **meta-mchp-mpu**: layer containing the platform/machine configurations
   for the 32-bit and 64-bit MPUs.
 
-- **meta-mchp-polarfire**: layer containing platform/machine configurations
+- **meta-mchp-polarfire-soc**: layer containing platform/machine configurations
   for the PolarFire SoC evaluation kits.
 
 Please see the meta-mchp-common [README](meta-mchp-common/README.md)
