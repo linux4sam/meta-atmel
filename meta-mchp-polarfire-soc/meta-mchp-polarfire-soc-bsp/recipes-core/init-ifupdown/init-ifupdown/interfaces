@@ -1,0 +1,10 @@
+auto lo
+iface lo inet loopback
+
+auto eth0
+iface eth0 inet dhcp
+  wait-delay 15
+  hostname $(hostname)
+
+auto eth1
+iface eth1 inet dhcp
