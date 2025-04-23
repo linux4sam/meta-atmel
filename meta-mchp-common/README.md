@@ -11,6 +11,7 @@ Project.
 
 This layer depends on the following layers:
 
+```text
 - **meta-openembedded**
   - URI: git://git.openembedded.org/meta-openembedded
   - Layers: meta-oe, meta-networking, meta-python
@@ -18,9 +19,9 @@ This layer depends on the following layers:
 - **openembedded-core**
   - URI: git://git.openembedded.org/openembedded-core
   - Layers: meta
+```
 
-Ensure these layers are included in your bblayers.conf to maintain
-compatibility.
+Ensure these layers are included in your `bblayers.conf` to maintain compatibility.
 
 ## Supported Machines
 
@@ -28,13 +29,11 @@ The meta-mchp-common layer supports a range of Microchip platforms. For
 detailed information on supported machines, please refer to the specific
 sub-layers and their documentation.
 
-## Prerequisite
+## Prerequisites
 
-Here are the reference pages for setting up a Yocto Project building
-environment: [What You Need](https://docs.yoctoproject.org/current/brief-yoctoprojectqs/index.html#build-host-packages).
+Before starting, please refer to the `Build Host Packages` section in the [Yocto Project's guide](https://docs.yoctoproject.org/current/brief-yoctoprojectqs/index.html#build-host-packages) to install required dependencies for the build environment:
 
-Note: add git-lfs to the package requirement list from whichever Linux
-distribution you use.
+> **Note:** Make sure to install `git-lfs` in addition to the required packages for your Linux distribution.
 
 For instance, on Ubuntu or debian, these packages need to be installed on
 your development host:
@@ -52,36 +51,54 @@ To integrate this layer into your Yocto Project build environment:
 
 1. **Clone the necessary repositories:**
 
-```bash
-git clone git://git.openembedded.org/bitbake
-git clone git://git.openembedded.org/openembedded-core
-git clone git://git.openembedded.org/meta-openembedded
-git clone https://github.com/microchip/meta-mchp
-```
-Ensure that the branches of all repositories are kept in sync with the
-corresponding branch of the meta-mchp layer.
+    ```bash
+    git clone git://git.openembedded.org/bitbake
+    git clone git://git.openembedded.org/openembedded-core
+    git clone git://git.openembedded.org/meta-openembedded
+    git clone https://github.com/microchip/meta-mchp
+    ```
+
+    > Make sure all repositories are checked out to branches that are compatible with the branch of the meta-mchp layer you intend to use.
 
 2. **Initialize the build environment:**
 
-```bash
-source openembedded-core/oe-init-build-env
-```
-3. **Add the layers:**
+    The `meta-mchp` repository provides sample configuration templates that help set up BitBake layers and key configuration files in the Yocto build directory.
 
-```bash
-bitbake-layers add-layer ../meta-openembedded/meta-oe
-bitbake-layers add-layer ../meta-openembedded/meta-python
-bitbake-layers add-layer ../meta-openembedded/meta-networking
-bitbake-layers add-layer ../meta-mchp/meta-mchp-common
-```
+    Set the `TEMPLATECONF` environment variable to point to the appropriate configuration template before initializing the build environment:
 
-4. **Set the target machine and build the image:**
+    ```bash
+    export TEMPLATECONF=${TEMPLATECONF:-../meta-mchp/meta-layer/conf/templates/default}
+    ```
 
-```bash
-MACHINE = <machine> bitbake core-image-minimal
-```
+    Replace `meta-layer` above with the desired layer based on your target platform. For example:
 
-The list of supported machines are provided in the sub-layers.
+    For MPU boards:
+
+      ```bash
+      export TEMPLATECONF=${TEMPLATECONF:-../meta-mchp/meta-mchp-mpu/conf/templates/default}
+      ```
+
+    For PolarFire SoC boards:
+
+      ```bash
+      export TEMPLATECONF=${TEMPLATECONF:-../meta-mchp/meta-mchp-polarfire-soc/meta-mchp-polarfire-soc-bsp/conf/templates/default}
+      ```
+
+    > Note: Setting `TEMPLATECONF` is only needed the first time you will run the source command.
+
+    Then initialize the Yocto build environment:
+
+    ```bash
+    source openembedded-core/oe-init-build-env
+    ```
+
+3. **Set the target machine and build the image:**
+
+    ```bash
+    MACHINE=<machine> bitbake core-image-minimal
+    ```
+
+    The list of supported machines and images is provided in the sub-layers' READMEs.
 
 ## Licensing
 
@@ -90,7 +107,7 @@ The contents of this layer are licensed under the MIT License. See COPYING.MIT f
 ## Contributing
 
 If you want to contribute changes, you can send Github pull requests at
-**https://github.com/linux4microchip/meta-mchp/pulls**.
+**<https://github.com/linux4microchip/meta-mchp/pulls>**.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for additional information about
 contribution guidelines.
