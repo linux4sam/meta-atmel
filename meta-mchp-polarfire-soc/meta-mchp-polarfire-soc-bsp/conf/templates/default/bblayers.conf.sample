@@ -13,4 +13,5 @@ BBLAYERS ?= " \
   ##OEROOT##/../meta-openembedded/meta-networking \
   ##OEROOT##/../meta-mchp/meta-mchp-common/ \
   ##OEROOT##/../meta-mchp/meta-mchp-polarfire-soc/meta-mchp-polarfire-soc-bsp \
+  ##OEROOT##/../meta-mchp/meta-mchp-polarfire-soc/meta-mchp-polarfire-soc-community \
   "

@@ -7,6 +7,10 @@ Microchip supported machines are:
 - PolarFire SoC Video Kit / mpfs-video-kit
 - PolarFire SoC Discovery Kit / mpfs-disco-kit
 
+Community supported machines are:
+- Beagle-V Fire / beaglev-fire
+- ARIES Embedded M100PFSEVP PolarFire SoC-FPGA Evaluation Platform / m100pfsevp
+
 Microchip targets are:
     core-image-mchp-base
 
