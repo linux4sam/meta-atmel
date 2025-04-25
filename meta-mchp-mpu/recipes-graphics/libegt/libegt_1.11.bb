@@ -17,7 +17,7 @@ DEPENDS:append:sam9x75 = " libm2d"
 
 SRC_URI = "gitsm://github.com/linux4sam/egt.git;protocol=https;branch=1.11"
 
-SRCREV = "3af246022cb431a4edb567fb1fe5bed0233a003a"
+SRCREV = "733eec872dbe00f5dc544b3bb1e115988d12c22c"
 
 S = "${WORKDIR}/git"
 
