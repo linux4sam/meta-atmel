@@ -16,6 +16,7 @@ TOOLCHAIN_TARGET_TASK += "\
 "
 
 IMAGE_INSTALL += "\
+    alsa-utils \
     cjson \
     dpkg-start-stop \
     fswebcam \
@@ -29,6 +30,7 @@ IMAGE_INSTALL += "\
     liberation-fonts \
     libicui18n \
     libplanes \
+    libsndfile1 \
     libv4l \
     lohit-fonts \
     lua \
