@@ -4,11 +4,11 @@ OPTEEMACHINE = "sam"
 
 DEPENDS:append = " dtc-native python3-cryptography-native"
 
-SRCREV = "45c754cea36aa970be953a3e579ff81a63eb461f"
+SRCREV = "71785645fa6ce42db40dbf5a54e0eaedc4f61591"
 
 SRC_URI:append = " file://0001-plat-sam-remove-NVMEM_HUK.patch"
 
-PV = "4.5.0+git${SRCPV}"
+PV = "4.6.0+git${SRCPV}"
 
 COMPATIBLE_MACHINE = "(sama5d27-som1-ek-optee-sd|sama7g5ek-optee-sd)"
 
