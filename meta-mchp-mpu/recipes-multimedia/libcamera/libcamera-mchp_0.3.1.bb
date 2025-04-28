@@ -27,7 +27,7 @@ DEPENDS = "python3-pyyaml-native python3-jinja2-native python3-ply-native python
 DEPENDS += "${@bb.utils.contains('DISTRO_FEATURES', 'qt', 'qtbase qtbase-native', '', d)}"
 RDEPENDS:${PN} = "${PN}-ipa ${@bb.utils.contains('DISTRO_FEATURES', 'wayland qt', 'qtwayland', '', d)}"
 
-PACKAGES += "${PN}-gst ${PN}-pycamera ${PN}-ipa ${PN}-pipelines"
+PACKAGES =+ "${PN}-gst ${PN}-pycamera ${PN}-ipa ${PN}-pipelines"
 
 PACKAGECONFIG ??= "mchpcam gst ipas"
 PACKAGECONFIG[gst] = "-Dgstreamer=enabled,-Dgstreamer=disabled,gstreamer1.0 gstreamer1.0-plugins-base"
