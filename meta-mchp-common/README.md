@@ -31,7 +31,7 @@ sub-layers and their documentation.
 
 ## Prerequisites
 
-Before starting, please refer to the `Build Host Packages` section in the [Yocto Project's guide](https://docs.yoctoproject.org/current/brief-yoctoprojectqs/index.html#build-host-packages) to install required dependencies for the build environment:
+Before starting, please refer to the `Required Packages for Build Host` section in the [Yocto Project Documentation](https://docs.yoctoproject.org/current/ref-manual/system-requirements.html#required-packages-for-the-build-host) to install required dependencies for the build environment:
 
 > **Note:** Make sure to install `git-lfs` in addition to the required packages for your Linux distribution.
 
@@ -51,14 +51,40 @@ To integrate this layer into your Yocto Project build environment:
 
 1. **Clone the necessary repositories:**
 
+    Create an empty directory to hold the workspace:
+
+      ```
+      $ mkdir yocto-dev
+      $ cd yocto-dev
+      ```
+
+    Use the repo tool to fetch all the required repositories
+
+    > Make sure to install the [repo](https://gerrit.googlesource.com/git-repo/+/HEAD/README.md) utility first.
+
     ```bash
-    git clone git://git.openembedded.org/bitbake
-    git clone git://git.openembedded.org/openembedded-core
-    git clone git://git.openembedded.org/meta-openembedded
-    git clone https://github.com/microchip/meta-mchp
+    repo init -u https://github.com/linux4microchip/meta-mchp-manifest.git -b <branch> -m <target>/default.xml
     ```
 
-    > Make sure all repositories are checked out to branches that are compatible with the branch of the meta-mchp layer you intend to use.
+    Replace `<branch>` and `<target>` with the Yocto release branch and the manifest required. For example:
+
+    For the MPU layer:
+
+      ```bash
+      repo init -u https://github.com/linux4microchip/meta-mchp-manifest.git -b scarthgap -m mpu/default.xml
+      ```
+
+    For the PolarFire SoC layer:
+
+      ```bash
+      repo init -u https://github.com/linux4microchip/meta-mchp-manifest.git -b scarthgap -m polarfire-soc/default.xml
+      ```
+
+    Fetch all the required repositories using the following repo command:
+
+      ```
+      repo sync
+      ```
 
 2. **Initialize the build environment:**
 
@@ -114,6 +140,6 @@ contribution guidelines.
 
 ## Maintainers
 
-- Hari Prasath G E <hari.prasathge@microchip.com>
-- Valentina Fernandez Alanis <valentina.fernandezalanis@microchip.com>
-- Dharma Balasubiramani <dharma.b@microchip.com>
+* Hari Prasath G E <hari.prasathge@microchip.com>
+* Valentina Fernandez Alanis <valentina.fernandezalanis@microchip.com>
+* Dharma Balasubiramani <dharma.b@microchip.com>
