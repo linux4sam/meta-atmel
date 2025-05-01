@@ -1,4 +1,5 @@
-FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
+FILESEXTRAPATHS:prepend:beaglev-fire := "${THISDIR}/files:"
+FILESEXTRAPATHS:prepend:m100pfsevp := "${THISDIR}/files:"
 
 COMPATIBLE_MACHINE:m100pfsevp = "m100pfsevp"
 COMPATIBLE_MACHINE:beaglev-fire = "beaglev-fire"
