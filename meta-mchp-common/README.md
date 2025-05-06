@@ -7,33 +7,21 @@ components and metadata for Microchip platforms, streamlining development
 across various Microchip devices for use with OpenEmbedded and/or Yocto
 Project.
 
-## Layer Dependencies
-
-This layer depends on the following layers:
-
-```text
-- **meta-openembedded**
-  - URI: git://git.openembedded.org/meta-openembedded
-  - Layers: meta-oe, meta-networking, meta-python
-
-- **openembedded-core**
-  - URI: git://git.openembedded.org/openembedded-core
-  - Layers: meta
-```
-
-Ensure these layers are included in your `bblayers.conf` to maintain compatibility.
-
 ## Supported Machines
 
-The meta-mchp-common layer supports a range of Microchip platforms. For
-detailed information on supported machines, please refer to the specific
-sub-layers and their documentation.
+The meta-mchp-common layer provides support for various Microchip platforms.
+For detailed information about supported machines, please refer to the
+documentation in the relevant sub-layers:
+
+- [MPU layer README](https://github.com/linux4microchip/meta-mchp/blob/scarthgap/meta-mchp-mpu/README.md)
+
+- [PolarFire SoC layer README](https://github.com/linux4microchip/meta-mchp/blob/scarthgap/meta-mchp-polarfire-soc/README.md)
 
 ## Prerequisites
 
 Before starting, please refer to the `Required Packages for Build Host` section in the [Yocto Project Documentation](https://docs.yoctoproject.org/current/ref-manual/system-requirements.html#required-packages-for-the-build-host) to install required dependencies for the build environment:
 
-> **Note:** Make sure to install `git-lfs` in addition to the required packages for your Linux distribution.
+> **Note:** Make sure to install `git-lfs`  and `repo` in addition to the required packages for your Linux distribution.
 
 For instance, on Ubuntu or debian, these packages need to be installed on
 your development host:
@@ -42,7 +30,7 @@ your development host:
 sudo apt-get install gawk wget git-core git-lfs diffstat unzip texinfo gcc-multilib \
      build-essential chrpath socat cpio python3 python3-pip python3-pexpect \
      xz-utils debianutils iputils-ping python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev \
-     pylint3 xterm
+     pylint3 xterm repo
 ```
 
 ## Usage
@@ -53,9 +41,9 @@ To integrate this layer into your Yocto Project build environment:
 
     Create an empty directory to hold the workspace:
 
-      ```
-      $ mkdir yocto-dev
-      $ cd yocto-dev
+      ```bash
+      mkdir yocto-dev
+      cd yocto-dev
       ```
 
     Use the repo tool to fetch all the required repositories
@@ -82,7 +70,7 @@ To integrate this layer into your Yocto Project build environment:
 
     Fetch all the required repositories using the following repo command:
 
-      ```
+      ```bash
       repo sync
       ```
 
@@ -93,7 +81,7 @@ To integrate this layer into your Yocto Project build environment:
     Set the `TEMPLATECONF` environment variable to point to the appropriate configuration template before initializing the build environment:
 
     ```bash
-    export TEMPLATECONF=${TEMPLATECONF:-../meta-mchp/meta-layer/conf/templates/default}
+    export TEMPLATECONF=${TEMPLATECONF:-../meta-mchp/<meta-layer>/conf/templates/default}
     ```
 
     Replace `meta-layer` above with the desired layer based on your target platform. For example:
@@ -124,7 +112,31 @@ To integrate this layer into your Yocto Project build environment:
     MACHINE=<machine> bitbake core-image-minimal
     ```
 
-    The list of supported machines and images is provided in the sub-layers' READMEs.
+    Each sub-layer provides several images that include demos and applications tailored for
+    its respective platform.
+
+    For more information on the supported images, please refer to the corresponding README:
+
+   - [MPU layer README](https://github.com/linux4microchip/meta-mchp/blob/scarthgap/meta-mchp-mpu/README.md)
+
+   - [PolarFire SoC layer README](https://github.com/linux4microchip/meta-mchp/blob/scarthgap/meta-mchp-polarfire-soc/README.md)
+
+## Layer Dependencies
+
+This layer depends on the following layers:
+
+```text
+- meta-openembedded
+  - URI: git://git.openembedded.org/meta-openembedded
+  - Layers: meta-oe, meta-networking, meta-python
+
+- openembedded-core
+  - URI: git://git.openembedded.org/openembedded-core
+  - Layers: meta
+```
+
+For information on the specific revisions used, refer to the
+[meta-mchp manifest](https://github.com/linux4microchip/meta-mchp-manifest) repository.
 
 ## Licensing
 
@@ -140,6 +152,6 @@ contribution guidelines.
 
 ## Maintainers
 
-* Hari Prasath G E <hari.prasathge@microchip.com>
-* Valentina Fernandez Alanis <valentina.fernandezalanis@microchip.com>
-* Dharma Balasubiramani <dharma.b@microchip.com>
+- Hari Prasath G E <hari.prasathge@microchip.com>
+- Valentina Fernandez Alanis <valentina.fernandezalanis@microchip.com>
+- Dharma Balasubiramani <dharma.b@microchip.com>
