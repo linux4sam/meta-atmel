@@ -6,7 +6,7 @@ DEPENDS = "cairo libdrm libplanes"
 
 SRC_URI = "git://github.com/linux4sam/libm2d.git;protocol=https;branch=master"
 
-SRCREV = "eeecbed5df220adbb3c3f4fb4eaaa5f2d11aea69"
+SRCREV = "ba9ef34f320e2d7f1620cedf88be63bd9e7c45e9"
 
 S = "${WORKDIR}/git"
 
