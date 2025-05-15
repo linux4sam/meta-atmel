@@ -1,0 +1,39 @@
+From 9a8fa96cd9e1e12e2c33ea22b178729b9a4000ca Mon Sep 17 00:00:00 2001
+From: Ludovic Desroches <ludovic.desroches@microchip.com>
+Date: Wed, 14 May 2025 10:10:26 +0200
+Subject: [egt-benchmark][PATCH] fix the overhead calibration
+
+There is an overhead calibration value that is computed to determine the
+overhead of just starting a test. The goal is to remove this duration
+from the test duration to get the real duration of the test.
+
+The computation of this overhead involves a subtraction that can end
+with a negative value while all the values are declared unsigned. Set
+the substraction result to 0 in this case.
+
+Signed-off-by: Ludovic Desroches <ludovic.desroches@microchip.com>
+---
+
+The hayai git repo is now in readonly. It is imported within
+egt-benchmark as a git submodule. The best way to patch it is probably
+through the build systems.
+
+ external/hayai/src/hayai_benchmarker.hpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/external/hayai/src/hayai_benchmarker.hpp b/external/hayai/src/hayai_benchmarker.hpp
+index 33f005c..7b6f63e 100644
+--- a/external/hayai/src/hayai_benchmarker.hpp
++++ b/external/hayai/src/hayai_benchmarker.hpp
+@@ -525,7 +525,7 @@ namespace hayai
+             while (p--)
+             {
+                 sumXSquared += x[p] * x[p];
+-                sumProducts += x[p] * (t[p] - interceptAvg);
++                sumProducts += x[p] * ((interceptAvg > t[p]) ? 0 : t[p] - interceptAvg);
+             }
+ 
+             uint64_t slope = sumProducts / sumXSquared;
+-- 
+2.48.1
+

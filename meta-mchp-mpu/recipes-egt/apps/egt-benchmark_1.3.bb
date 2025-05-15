@@ -4,7 +4,9 @@ LIC_FILES_CHKSUM = "file://COPYING;endline=202;md5=3b83ef96387f14655fc854ddc3c6b
 
 DEPENDS = "libegt"
 
-SRC_URI = "gitsm://github.com/linux4sam/egt-benchmark.git;protocol=https;branch=master"
+SRC_URI = "gitsm://github.com/linux4sam/egt-benchmark.git;protocol=https;branch=master \
+	   file://0001-fix-the-overhead-calibration.patch \
+	   "
 
 SRCREV = "c84ee9e6388944fe496e542c1d481129e3fefed6"
 
