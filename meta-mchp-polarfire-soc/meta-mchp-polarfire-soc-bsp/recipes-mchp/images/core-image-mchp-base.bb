@@ -19,4 +19,5 @@ IMAGE_INSTALL:append = "\
     python3-werkzeug \
     sqlite3 \
     zip \
+    netcat \
     "
