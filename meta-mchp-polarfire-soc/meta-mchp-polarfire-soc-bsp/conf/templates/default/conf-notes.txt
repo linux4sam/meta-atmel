@@ -12,7 +12,8 @@ Community supported machines are:
 - ARIES Embedded M100PFSEVP PolarFire SoC-FPGA Evaluation Platform / m100pfsevp
 
 Microchip targets are:
-    core-image-mchp-base
+    mchp-base-image
+    mchp-base-image-sdk
 
 Common targets are:
     core-image-minimal
