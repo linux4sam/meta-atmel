@@ -1,7 +1,3 @@
-require ../meta-mchp-common/recipes-mchp/images/core-image-mchp-base.inc
-
-MACHINE_FEATURES += "serial"
-
 IMAGE_INSTALL += "\
     9bit \
     alsa-utils \

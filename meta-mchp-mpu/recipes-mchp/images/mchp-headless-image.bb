@@ -4,7 +4,7 @@ PR = "r1"
 
 COMBINED_FEATURES += "wifi"
 
-require mchp-demo-image.bb
+require recipes-mchp/images/mchp-base-image.bb
 
 IMAGE_INSTALL += "\
     bluez5 \

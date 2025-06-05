@@ -2,7 +2,7 @@ DESCRIPTION = "An image for boards with screen and resistive touchscreen."
 LICENSE = "MIT"
 PR = "r1"
 
-require mchp-demo-image.inc
+require recipes-mchp/images/mchp-base-image.inc
 
 IMAGE_INSTALL += "\
     fb-test \
