@@ -14,4 +14,8 @@ RDEPENDS:packagegroup-mchp-apps = "\
 
 RDEPENDS:packagegroup-mchp-apps-amp:mpfs-icicle-kit-es-amp = "\
     polarfire-soc-amp-examples \
+    kernel-module-rpmsg-char \
+    kernel-module-rpmsg-client-sample \
+    kernel-module-rpmsg-ctrl \
+    kernel-module-rpmsg-tty \
 "
