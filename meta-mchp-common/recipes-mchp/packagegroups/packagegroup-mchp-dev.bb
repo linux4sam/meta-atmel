@@ -26,6 +26,4 @@ RDEPENDS:packagegroup-mchp-dev-tools = "\
 RDEPENDS:packagegroup-mchp-dev-python = "\
     python3-ctypes \
     python3-pip \
-    python3-pyserial \
-    python3-smbus \
 "

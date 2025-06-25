@@ -25,15 +25,9 @@ WIFI_FIRMWARE_PACKAGES = "\
 "
 
 RDEPENDS:packagegroup-mchp-networking = "\
-    bridge-utils \
-    hostapd \
-    iperf3 \
     iproute2 \
     iptables \
-    netcat \
-    nftables \
     rsync \
-    tcpdump \
     wget \
     ${@bb.utils.contains('COMBINED_FEATURES', 'wifi', WIFI_FIRMWARE_PACKAGES, '', d)} \
 "
