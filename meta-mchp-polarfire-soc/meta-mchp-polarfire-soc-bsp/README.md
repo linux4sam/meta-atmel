@@ -1,14 +1,13 @@
-# meta-mchp-polarfire-soc-community
+# meta-mchp-polarfire-soc-bsp
 
-This layer provides machine configuration files for evaluation
-kits from Microchip's partners.
+This layer provides support for PolarFire SoC evaluation boards
 
 ## Layer dependencies
 
 This layer depends on:
 
 URI: git://github.com/linux4microchip/meta-mchp.git
-layers: meta-mchp-polarfire-soc-bsp
+layers: meta-mchp-common
 
 ## Contributing
 

@@ -4,9 +4,9 @@
 
 Collection of OpenEmbedded/Yocto Project layers for PolarFire SoC.
 
-- **meta-polarfire-soc-bsp**: layer containing platform/machine configurations for PolarFire SoC evaluation boards
+- **meta-mchp-polarfire-soc-bsp**: layer containing platform/machine configurations for PolarFire SoC evaluation boards
 
-- **meta-polarfire-soc-community**: layer containing platform/machine configurations for Microchip's partners' evaluation kits
+- **meta-mchp-polarfire-soc-community**: layer containing platform/machine configurations for Microchip's partners' evaluation kits
 
 ## Supported machines
 
