@@ -109,7 +109,7 @@ To integrate this layer into your Yocto Project build environment:
 3. **Set the target machine and build the image:**
 
     ```bash
-    MACHINE=<machine> bitbake core-image-minimal
+    MACHINE=<machine> bitbake mchp-base-image
     ```
 
     Each sub-layer provides several images that include demos and applications tailored for
