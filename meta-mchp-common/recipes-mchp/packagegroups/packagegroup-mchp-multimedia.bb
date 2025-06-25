@@ -10,14 +10,14 @@ PACKAGES = " \
 
 RDEPENDS:packagegroup-mchp-multimedia = "\
     alsa-utils \
-    ffmpeg \
+    ${@bb.utils.contains("LICENSE_FLAGS_ACCEPTED", "commercial", "ffmpeg", "", d)} \
 "
 
 RDEPENDS:packagegroup-mchp-multimedia-gstreamer = "\
     gstreamer1.0 \
-    gstreamer1.0-libav \
+    ${@bb.utils.contains("LICENSE_FLAGS_ACCEPTED", "commercial", "gstreamer1.0-libav", "", d)} \
     gstreamer1.0-plugins-bad \
     gstreamer1.0-plugins-base \
     gstreamer1.0-plugins-good \
-    gstreamer1.0-plugins-ugly \
+    ${@bb.utils.contains("LICENSE_FLAGS_ACCEPTED", "commercial", "gstreamer1.0-plugins-ugly", "", d)} \
 "
