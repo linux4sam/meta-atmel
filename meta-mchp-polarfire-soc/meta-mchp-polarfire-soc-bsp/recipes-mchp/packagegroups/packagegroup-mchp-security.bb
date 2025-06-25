@@ -11,6 +11,5 @@ PACKAGES = " \
 
 RDEPENDS:packagegroup-mchp-security = "\
     cryptodev-module \
-    libkcapi \
     openssl-engines \
 "
