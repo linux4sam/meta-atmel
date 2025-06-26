@@ -22,3 +22,15 @@ SRC_URI:append:mpfs-video-kit = " \
 "
 
 do_assemble_fitimage[depends] = "${@'dt-overlay-mchp:do_deploy' if d.getVar('MACHINE') in d.getVar('DT_OVERLAY_MACHINES').split() else ''}"
+
+do_deploy:append() {
+
+    if [ -n "${INITRAMFS_IMAGE}" ]; then
+
+        if [ "${INITRAMFS_IMAGE_BUNDLE}" != "1" ]; then
+                ln -snf fitImage-${INITRAMFS_IMAGE_NAME}-${KERNEL_FIT_NAME}${KERNEL_FIT_BIN_EXT} "$deployDir/fitImage"
+        fi
+    fi
+}
+
+addtask deploy after do_install
