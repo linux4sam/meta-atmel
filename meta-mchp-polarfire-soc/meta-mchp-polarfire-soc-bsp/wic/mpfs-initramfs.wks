@@ -1,0 +1,6 @@
+# short-description: Create disk image for Polarfire SoC with u-boot tftp file /u-boot/linux FITImage
+
+part /boot --source bootimg-partition --ondisk mmcblk0 --fstype=vfat --label boot --active --size=1k --align 4096
+part /hssboot --source rawcopy --sourceparams="file=payload.bin" --ondisk mmcblk0 --fixed-size 8M --align 1 --align 1 --part-type 21686148-6449-6E6F-744E-656564454649
+
+bootloader --ptable gpt
