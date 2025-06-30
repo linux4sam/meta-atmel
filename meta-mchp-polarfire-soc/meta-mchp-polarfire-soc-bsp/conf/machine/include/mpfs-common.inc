@@ -13,7 +13,6 @@ EXTERNAL_KERNEL_DEVICETREE = "${DEPLOY_DIR_IMAGE}/overlays"
 KBUILD_DEFCONFIG = "mpfs_defconfig"
 
 PREFERRED_PROVIDER_virtual/kernel ?= "linux-mchp"
-PREFERRED_VERSION_linux-mchp = "6.6%"
 
 PREFERRED_VERSION_openocd-native = "riscv"
 PREFERRED_VERSION_openocd = "riscv"
