@@ -12,6 +12,7 @@ with a negative value while all the values are declared unsigned. Set
 the substraction result to 0 in this case.
 
 Signed-off-by: Ludovic Desroches <ludovic.desroches@microchip.com>
+Upstream-Status: Inappropriate [only specific to build systems]
 ---
 
 The hayai git repo is now in readonly. It is imported within

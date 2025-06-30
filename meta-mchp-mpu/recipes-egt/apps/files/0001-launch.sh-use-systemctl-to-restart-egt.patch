@@ -6,6 +6,7 @@ Subject: [PATCH] launch.sh: use systemctl to restart egt
 Use systemctl utility to properly restart egt service.
 
 Signed-off-by: Balakrishnan Sambath <balakrishnan.s@microchip.com>
+Upstream-Status: Inappropriate [only specific to build systems]
 ---
  launch.sh | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)

@@ -4,6 +4,7 @@ Date: Fri, 21 Feb 2020 11:19:07 +0100
 Subject: [PATCH 1/2] plplot: fix configure error for generating header files
 
 Signed-off-by: Sandeep Sheriker M <sandeep.sheriker@microchip.com>
+Upstream-Status: Pending
 ---
  include/CMakeLists.txt      | 27 --------------------
  lib/qsastime/CMakeLists.txt | 50 -------------------------------------

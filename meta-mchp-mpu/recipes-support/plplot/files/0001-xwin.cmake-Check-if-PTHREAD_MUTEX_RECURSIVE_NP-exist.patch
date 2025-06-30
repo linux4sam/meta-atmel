@@ -8,6 +8,7 @@ not enough, however PTHREAD_MUTEX_RECURSIVE is available on both and on
 glibc PTHREAD_MUTEX_RECURSIVE_NP = PTHREAD_MUTEX_RECURSIVE for unix98+
 
 Signed-off-by: Khem Raj <raj.khem@gmail.com>
+Upstream-Status: Pending
 ---
  cmake/modules/xwin.cmake | 4 +++-
  1 file changed, 3 insertions(+), 1 deletion(-)
