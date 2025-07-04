@@ -5,10 +5,10 @@ KBRANCH = "linux-6.12-mchp+fpga"
 SRCREV = "linux4microchip+fpga-2025.07-rc1"
 
 # Define a list of machines that depend on dt-overlay-mchp:do_deploy task
-DT_OVERLAY_MACHINES = "mpfs-icicle-kit-es \
-                       mpfs-icicle-kit-es-amp \
-                       mpfs-icicle-kit-es-nand \
-                       mpfs-icicle-kit-es-nor \
+DT_OVERLAY_MACHINES = "mpfs-icicle-kit \
+                       mpfs-icicle-kit-amp \
+                       mpfs-icicle-kit-nand \
+                       mpfs-icicle-kit-nor \
                        mpfs-video-kit"
 
 SRC_URI:append:mpfs-icicle-kit-all = " \

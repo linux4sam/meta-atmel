@@ -38,6 +38,6 @@ do_deploy() {
 
 addtask deploy after do_install
 
-COMPATIBLE_MACHINE = "(mpfs-icicle-kit-es-amp)"
+COMPATIBLE_MACHINE = "(mpfs-icicle-kit-amp)"
 
 FILES:${PN} += "/usr/lib/firmware/rproc-miv-rproc-fw"

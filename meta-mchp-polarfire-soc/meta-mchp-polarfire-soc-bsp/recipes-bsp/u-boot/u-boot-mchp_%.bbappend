@@ -2,7 +2,7 @@ FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 
 DEPENDS:append = " python3-setuptools-native"
 DEPENDS:append = " u-boot-tools-native hss-payload-generator-native"
-DEPENDS:append:mpfs-icicle-kit-es-amp = " polarfire-soc-amp-examples"
+DEPENDS:append:mpfs-icicle-kit-amp = " polarfire-soc-amp-examples"
 
 UBOOT_FILES = " file://${UBOOT_ENV}.cmd \
                 file://${MACHINE}.cfg \
@@ -14,10 +14,10 @@ SRC_URI:append:mpfs-icicle-kit-all = "${UBOOT_FILES}"
 SRC_URI:append:mpfs-disco-kit = "${UBOOT_FILES}"
 SRC_URI:append:mpfs-video-kit = "${UBOOT_FILES}"
 
-SRC_URI:append:mpfs-icicle-kit-es-auth = " file://${MACHINE}.env"
-SRC_URI:remove:mpfs-icicle-kit-es-auth = " file://${UBOOT_ENV}.cmd"
+SRC_URI:append:mpfs-icicle-kit-auth = " file://${MACHINE}.env"
+SRC_URI:remove:mpfs-icicle-kit-auth = " file://${UBOOT_ENV}.cmd"
 
-do_configure:append:mpfs-icicle-kit-es-auth () {
+do_configure:append:mpfs-icicle-kit-auth () {
     cp -f ${WORKDIR}/${MACHINE}.env ${S}/board/microchip/mpfs_icicle
 }
 
@@ -31,7 +31,7 @@ do_deploy:append () {
         cp -f ${DEPLOY_DIR_IMAGE}/amp-application.elf ${DEPLOYDIR}
     fi
 
-    if [ "${MACHINE}" = "mpfs-icicle-kit-es-auth" ]; then
+    if [ "${MACHINE}" = "mpfs-icicle-kit-auth-prod" ] || [ "${MACHINE}" = "mpfs-icicle-kit-es-auth" ]; then
 
         if [ ! -f "${HSS_PAYLOAD_KEYDIR}/${HSS_PAYLOAD_PRIVATE_KEYNAME}.pem" ];then
             bbfatal "Authentication Boot file check, missing: ${HSS_PAYLOAD_KEYDIR}/${HSS_PAYLOAD_PRIVATE_KEYNAME}.pem, Refer to the Polarfire SoC Documentation"

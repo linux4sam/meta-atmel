@@ -3,7 +3,7 @@
 You can now run '[MACHINE=<machine>] bitbake <target>'
 
 Microchip supported machines are:
-- PolarFire SoC Icicle Kit Engineering Sample / mpfs-icicle-kit-es, mpfs-icicle-kit-es-amp, mpfs-icicle-kit-es-nand, mpfs-icicle-kit-es-nor
+- PolarFire SoC Icicle Kit / mpfs-icicle-kit, mpfs-icicle-kit-amp, mpfs-icicle-kit-es-auth, mpfs-icicle-kit-prod-auth , mpfs-icicle-kit-nor, mpfs-icicle-kit-nand
 - PolarFire SoC Video Kit / mpfs-video-kit
 - PolarFire SoC Discovery Kit / mpfs-disco-kit
 
