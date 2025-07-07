@@ -12,7 +12,7 @@ DEPENDS = "makedepend-native"
 inherit deploy
 
 PV = "1.0+git${SRCPV}"
-SRCREV="v2024.02"
+SRCREV="9a75da543c685204330d97e24c134e93b13577de"
 SRC_URI = "git://github.com/polarfire-soc/polarfire-soc-amp-examples.git;protocol=https;nobranch=1"
 
 S = "${WORKDIR}/git"
@@ -25,7 +25,7 @@ PARALLEL_MAKE = ""
 EXTRA_OEMAKE = "REMOTE=1 REMOTEPROC=1 CROSS_COMPILE=${TARGET_PREFIX} EXT_CFLAGS='${EXT_CFLAGS}'"
 
 do_install() {
-    install -Dm 0644 ${S}/mpfs-rpmsg-${AMP_DEMO}/Remote-Default/mpfs-rpmsg-remote.elf ${D}/usr/lib/firmware/rproc-miv-rproc-fw
+    install -Dm 0644 ${S}/mpfs-rpmsg-${AMP_DEMO}/Remote-Default/mpfs-rpmsg-remote.elf ${D}/usr/lib/firmware/rproc-remote-context-fw
 }
 
 do_compile() {
@@ -40,4 +40,4 @@ addtask deploy after do_install
 
 COMPATIBLE_MACHINE = "(mpfs-icicle-kit-amp)"
 
-FILES:${PN} += "/usr/lib/firmware/rproc-miv-rproc-fw"
+FILES:${PN} += "/usr/lib/firmware/rproc-remote-context-fw"
