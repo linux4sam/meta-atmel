@@ -1,4 +1,4 @@
-DEPENDS:${PN}-gpio += "libgpiod"
+DEPENDS += "libgpiod"
 RDEPENDS:${PN}-gpio += "libgpiod"
 
 PACKAGES += " \

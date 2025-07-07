@@ -7,7 +7,7 @@ DESCRIPTION = "Linux Example applications, includes the following: \
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://${WORKDIR}/git/LICENSE;md5=06ec214e9fafe6d4515883d77674a453"
 
-DEPENDS:${PN}-system-services += "openssl"
+DEPENDS = "openssl"
 
 PV = "1.0+git${SRCPV}"
 SRCREV = "v2025.03"
@@ -49,6 +49,14 @@ EXAMPLE_FILES = "\
     pdma \
     system-services \
 "
+
+do_compile() {
+  for i in ${EXAMPLE_FILES}; do
+    if [ -f ${S}/$i/Makefile ]; then
+      oe_runmake -C ${S}/$i
+    fi
+  done
+}
 
 do_install() {
     install -d ${D}/opt/microchip
