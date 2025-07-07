@@ -2,7 +2,7 @@ FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 
 LINUX_VERSION = "6.12.22"
 KBRANCH = "linux-6.12-mchp+fpga"
-SRCREV = "linux4microchip+fpga-2025.07-rc1"
+SRCREV = "linux4microchip+fpga-2025.07-rc2"
 
 # Define a list of machines that depend on dt-overlay-mchp:do_deploy task
 DT_OVERLAY_MACHINES = "mpfs-icicle-kit \
