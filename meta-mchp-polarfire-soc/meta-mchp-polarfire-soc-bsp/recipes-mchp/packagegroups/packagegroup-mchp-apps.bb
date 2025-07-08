@@ -12,6 +12,7 @@ RDEPENDS:packagegroup-mchp-apps:mpfs-icicle-kit = "\
     polarfire-soc-linux-examples-can \
     polarfire-soc-linux-examples-dma \
     polarfire-soc-linux-examples-dt-overlays \
+    polarfire-soc-linux-examples-gateware \
     polarfire-soc-linux-examples-lsram \
     polarfire-soc-linux-examples-pdma \
     polarfire-soc-linux-examples-system-services \
