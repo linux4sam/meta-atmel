@@ -1,14 +1,12 @@
 FILESEXTRAPATHS:prepend := "${THISDIR}/files/:"
 
-S = "${WORKDIR}/hostapd-${PV}"
-
-SRC_URI:append = " \
+SRC_URI:append:mpuall = " \
     file://hostapd@.service \
     file://wilc_hostapd_open.conf \
     file://wilc_hostapd_wpa.conf \
 "
 
-do_configure:append() {
+do_configure:append:mpuall () {
     cat <<EOF >> ${S}/hostapd/.config
 CONFIG_SAE=y
 CONFIG_DPP=y
@@ -17,7 +15,7 @@ CONFIG_IEEE80211W=y
 EOF
 }
 
-do_install:append () {
+do_install:append:mpuall () {
     install -d ${D}${sysconfdir}/systemd/system
     install -d ${D}${sysconfdir}/network
     install -m 0644 ${WORKDIR}/hostapd@.service ${D}${sysconfdir}/systemd/system
@@ -25,7 +23,7 @@ do_install:append () {
     install -m 0644 ${WORKDIR}/wilc_hostapd_wpa.conf ${D}${sysconfdir}/network
 }
 
-FILES:${PN} += " \
+FILES:{PN}:append:mpuall = " \
     ${sysconfdir}/systemd/system/ \
     ${sysconfdir}/network/ \
 "

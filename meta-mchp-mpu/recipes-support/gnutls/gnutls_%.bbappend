@@ -1,1 +1,1 @@
-PACKAGECONFIG:append = " p11-kit"
+PACKAGECONFIG:append:mpuall = " p11-kit"

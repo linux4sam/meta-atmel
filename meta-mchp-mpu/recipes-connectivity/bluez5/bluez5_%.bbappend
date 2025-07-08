@@ -1,7 +1,6 @@
-EXTRA_OECONF += "\
-    --enable-client \
-    "
-do_install:append() {
+EXTRA_OECONF:append:mpuall = " --enable-client"
+
+do_install:append:mpuall () {
     install -d ${D}${includedir}/bluez5_utils/lib
     install -d ${D}${includedir}/bluez5_utils/gdbus
     install -d ${D}${includedir}/bluez5_utils/bluetooth
@@ -23,9 +22,9 @@ do_install:append() {
     install -m 644  ${S}/monitor/*.h ${D}${includedir}/bluez5_utils/monitor/
 }
 
-FILES:${PN} += "${usrbin}/bluez-gatt-server"
+FILES:{PN}:append:mpuall = " ${usrbin}/bluez-gatt-server"
 
-FILES:${PN}-staticdev += " \
+FILES:${PN}-staticdev:append:mpuall = " \
     ${libdir}/bluez5_utils/lib/*.a \
     ${includedir}/bluez5_utils/lib/*.h \
     ${includedir}/bluez5_utils/src/shared/*.h \

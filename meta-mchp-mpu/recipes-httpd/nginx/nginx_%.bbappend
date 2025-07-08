@@ -1,4 +1,4 @@
-do_install:append() {
+do_install:append:mpuall () {
 # Ensure the sites-available directory exists
 install -d ${D}${sysconfdir}/nginx/sites-available
 
