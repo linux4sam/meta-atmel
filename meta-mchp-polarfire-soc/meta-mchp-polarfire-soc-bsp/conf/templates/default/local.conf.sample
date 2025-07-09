@@ -273,6 +273,9 @@ SPDX_PRETTY = "1"
 # Set systemd as default init manager
 INIT_MANAGER = "systemd"
 
+# Remove the default syslog mechanism and use systemd-journald
+VIRTUAL-RUNTIME_syslog = ""
+
 DISTRO_FEATURES:remove ?= "x11 3g nfc pulseaudio"
 
 PACKAGECONFIG:append:pn-openssl = " cryptodev-linux"
