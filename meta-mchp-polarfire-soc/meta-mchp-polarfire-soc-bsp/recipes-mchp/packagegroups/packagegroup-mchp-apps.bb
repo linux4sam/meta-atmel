@@ -35,7 +35,6 @@ RDEPENDS:packagegroup-mchp-apps-amp:mpfs-icicle-kit-amp = "\
 
 RDEPENDS:packagegroup-mchp-apps:mpfs-video-kit = "\
     polarfire-soc-linux-examples-dt-overlays \
-    polarfire-soc-linux-examples-pdma \
 "
 
 RDEPENDS:packagegroup-mchp-apps:mpfs-disco-kit = "\
