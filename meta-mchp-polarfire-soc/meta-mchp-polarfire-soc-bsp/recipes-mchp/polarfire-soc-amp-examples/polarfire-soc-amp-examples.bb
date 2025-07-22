@@ -12,7 +12,7 @@ DEPENDS = "makedepend-native"
 inherit deploy
 
 PV = "1.0+git${SRCPV}"
-SRCREV="9a75da543c685204330d97e24c134e93b13577de"
+SRCREV="v2025.07"
 SRC_URI = "git://github.com/polarfire-soc/polarfire-soc-amp-examples.git;protocol=https;nobranch=1"
 
 S = "${WORKDIR}/git"
