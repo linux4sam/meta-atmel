@@ -59,7 +59,7 @@ To integrate this layer into your Yocto Project build environment:
     For the MPU layer:
 
       ```bash
-      repo init -u https://github.com/linux4microchip/meta-mchp-manifest.git -b scarthgap -m mpu/default.xml
+      repo init -u https://github.com/linux4microchip/meta-mchp-manifest.git -b refs/tags/linux4microchip-2025.04 -m mpu/default.xml
       ```
 
     For the PolarFire SoC layer:
