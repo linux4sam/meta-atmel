@@ -44,5 +44,4 @@ contribution guidelines.
 
 ## Maintainers
 
-- Hari Prasath G E <hari.prasathge@microchip.com>
 - Dharma Balasubiramani <dharma.b@microchip.com>
