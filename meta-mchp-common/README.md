@@ -152,6 +152,5 @@ contribution guidelines.
 
 ## Maintainers
 
-- Hari Prasath G E <hari.prasathge@microchip.com>
 - Valentina Fernandez Alanis <valentina.fernandezalanis@microchip.com>
 - Dharma Balasubiramani <dharma.b@microchip.com>
