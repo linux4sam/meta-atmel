@@ -29,6 +29,9 @@ RDEPENDS:packagegroup-mchp-networking = "\
     iproute2 \
     iptables \
     rsync \
+    openssh-sftp \
+    openssh-sftp-server \
     wget \
+    kea \
     ${@bb.utils.contains('COMBINED_FEATURES', 'wifi', WIFI_FIRMWARE_PACKAGES, '', d)} \
 "
