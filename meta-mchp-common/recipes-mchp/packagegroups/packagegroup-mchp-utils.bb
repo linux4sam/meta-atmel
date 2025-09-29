@@ -4,12 +4,12 @@ inherit packagegroup
 
 PROVIDES = "${PACKAGES}"
 PACKAGES = " \
+    packagegroup-mchp-utils \
     packagegroup-mchp-benchmark-utils \
     packagegroup-mchp-file-utils \
     packagegroup-mchp-hw-utils \
     packagegroup-mchp-system-utils \
     packagegroup-mchp-user-utils \
-    packagegroup-mchp-utils \
 "
 
 RDEPENDS:packagegroup-mchp-utils = "\
@@ -20,6 +20,10 @@ RDEPENDS:packagegroup-mchp-utils = "\
     packagegroup-mchp-user-utils \
 "
 
+RDEPENDS:packagegroup-mchp-benchmark-utils = "\
+    stress-ng \
+"
+
 RDEPENDS:packagegroup-mchp-file-utils = "\
     dosfstools \
     unzip \
@@ -27,6 +31,7 @@ RDEPENDS:packagegroup-mchp-file-utils = "\
 "
 
 RDEPENDS:packagegroup-mchp-system-utils = "\
+    ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'systemd-analyze', '', d)} \
     lrzsz \
     opkg \
     rng-tools \
@@ -42,8 +47,4 @@ RDEPENDS:packagegroup-mchp-hw-utils = "\
 RDEPENDS:packagegroup-mchp-user-utils = "\
     expect \
     screen \
-"
-
-RDEPENDS:packagegroup-mchp-benchmark-utils = "\
-    stress-ng \
 "

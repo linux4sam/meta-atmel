@@ -16,4 +16,6 @@ RDEPENDS:packagegroup-mchp-user-utils += "\
 RDEPENDS:packagegroup-mchp-benchmark-utils += "\
     lmbench \
     nbench-byte \
+    bonnie++ \
+    iozone3 \
 "
