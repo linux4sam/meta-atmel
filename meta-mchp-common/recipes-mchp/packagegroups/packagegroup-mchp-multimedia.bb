@@ -5,12 +5,17 @@ inherit packagegroup
 PROVIDES = "${PACKAGES}"
 PACKAGES = " \
     packagegroup-mchp-multimedia \
+    packagegroup-mchp-multimedia-audio \
     packagegroup-mchp-multimedia-gstreamer \
 "
 
 RDEPENDS:packagegroup-mchp-multimedia = "\
-    alsa-utils \
     ${@bb.utils.contains("LICENSE_FLAGS_ACCEPTED", "commercial", "ffmpeg", "", d)} \
+"
+
+RDEPENDS:packagegroup-mchp-multimedia-audio = "\
+    alsa-utils \
+    mpg123 \
 "
 
 RDEPENDS:packagegroup-mchp-multimedia-gstreamer = "\

@@ -12,4 +12,6 @@ RDEPENDS:packagegroup-mchp-media = "\
     media-ctl \
     v4l-utils \
     yavta \
+    fswebcam \
+    libcamera-mchp \
 "
