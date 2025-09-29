@@ -1,4 +1,4 @@
-RDEPENDS:packagegroup-mchp-security += "\
+RDEPENDS:packagegroup-mchp-security:mpuall += "\
     cryptoauthlib \
     python3-cryptoauthlib \
 "

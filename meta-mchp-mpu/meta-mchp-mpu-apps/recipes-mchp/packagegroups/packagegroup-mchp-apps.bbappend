@@ -2,7 +2,7 @@ PACKAGES += " \
     packagegroup-mchp-apps-egt \
 "
 
-RDEPENDS:packagegroup-mchp-apps += "\
+RDEPENDS:packagegroup-mchp-apps:mpuall += "\
     9bit \
     mpio \
     mxt-app \
@@ -22,7 +22,7 @@ RDEPENDS:packagegroup-mchp-apps:sama5d27-wlsom1-ek-sd += "\
     wilc-demo-fs-overlay \
 "
 
-RDEPENDS:packagegroup-mchp-apps-egt = "\
+RDEPENDS:packagegroup-mchp-apps-egt:mpuall = "\
     egt-benchmark \
     egt-launcher \
     egt-media \

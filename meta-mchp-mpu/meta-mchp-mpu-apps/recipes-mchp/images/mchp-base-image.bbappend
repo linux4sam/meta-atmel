@@ -1,4 +1,4 @@
-IMAGE_INSTALL:append = "\
+IMAGE_INSTALL:append:mpuall = "\
     packagegroup-mchp-graphics \
     packagegroup-base-bluetooth \
     packagegroup-base-usbgadget \
