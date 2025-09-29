@@ -124,15 +124,4 @@ Please see the meta-mchp-common [README](https://github.com/linux4microchip/meta
 
 ## Layer dependencies
 
-This layer depends on:
-
-```text
-URI: git://git.openembedded.org/openembedded-core
-layers: meta
-
-URI: git://git.yoctoproject.org/meta-openembedded
-layers: meta-oe, meta-python, meta-multimedia, meta-networking
-
-URI: git://github.com/linux4microchip/meta-mchp.git
-layers: meta-mchp-common
-```
+Please see the respective READMEs in the layer subdirectories.

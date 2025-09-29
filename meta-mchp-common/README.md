@@ -126,10 +126,6 @@ To integrate this layer into your Yocto Project build environment:
 This layer depends on the following layers:
 
 ```text
-- meta-openembedded
-  - URI: git://git.openembedded.org/meta-openembedded
-  - Layers: meta-oe, meta-networking, meta-python
-
 - openembedded-core
   - URI: git://git.openembedded.org/openembedded-core
   - Layers: meta

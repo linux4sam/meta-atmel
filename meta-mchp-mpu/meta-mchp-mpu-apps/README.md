@@ -9,6 +9,9 @@ This layer depends on:
 URI: git://github.com/linux4microchip/meta-mchp.git
 layers: meta-mchp-bsp
 
+URI: git://git.openembedded.org/meta-openembedded
+layers: meta-oe
+
 ## Contributing
 
 If you want to contribute changes, you can send patches via Github pull requests at
