@@ -1,6 +1,6 @@
 # The list of supported MPU machines.
 # Inherit this bbclass to include the compatible machines.
-COMPATIBLE_MACHINE = "(\
+COMPATIBLE_MACHINE:append = " |\
 sama5d2-icp|\
 sama5d2-ptc-ek|\
 sama5d2-xplained|\
@@ -15,4 +15,4 @@ sam9x60-curiosity|\
 sam9x60ek|\
 sam9x75-curiosity\
 sam9x75eb|\
-)"
+"
