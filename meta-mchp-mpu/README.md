@@ -1,8 +1,12 @@
 # Microchip MPU layer
 
 ## Description
-This layer hosts the recipes to build images for the widely supported boards of
-Microchip based on ARM cores.
+
+Collection of OpenEmbedded/Yocto Project layers for MPU SoC.
+
+- **meta-mchp-mpu-bsp**: Contains platform and machine configurations for MPU evaluation boards.
+
+- **meta-mchp-mpu-apps**: Provides recipes to build images with Microchip-specific applications (such as EGT) for widely supported ARM-based Microchip boards.
 
 ## Supported machines
 
@@ -27,21 +31,21 @@ Microchip based on ARM cores.
 
 For more info: https://www.linux4microchip.com/
 
+## Build Instructions
+
+Please see the meta-mchp-common [README](https://github.com/linux4microchip/meta-mchp/blob/scarthgap/meta-mchp-common/README.md) section for detailed steps on how to setup and start a build for any of the supported devices.
+
 ## Layer dependencies
 
 This layer depends on:
 
+```text
+URI: git://git.openembedded.org/openembedded-core
+layers: meta
+
+URI: git://git.yoctoproject.org/meta-openembedded
+layers: meta-oe, meta-python, meta-multimedia, meta-networking
+
 URI: git://github.com/linux4microchip/meta-mchp.git
 layers: meta-mchp-common
-
-## Contributing
-
-If you want to contribute changes, you can send patches via Github pull requests at
-**<https://github.com/linux4microchip/meta-mchp/pulls>**.
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for additional information about
-contribution guidelines.
-
-## Maintainers
-
-- Dharma Balasubiramani <dharma.b@microchip.com>
+```
