@@ -1,4 +1,5 @@
-FILESEXTRAPATHS:append := "${THISDIR}/${PN}:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/files/:"
+
 SRC_URI:append = " file://updatecommon-session"
 
 do_install:append() {
