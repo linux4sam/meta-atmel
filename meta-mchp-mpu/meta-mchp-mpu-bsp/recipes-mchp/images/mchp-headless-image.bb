@@ -40,7 +40,6 @@ IMAGE_INSTALL:append:sama5d4 = "\
 "
 IMAGE_INSTALL:append:sama5d2-ptc-ek = "ptc-examples"
 IMAGE_INSTALL:append:sama5d2-ptc-ek-sd = "ptc-examples"
-IMAGE_INSTALL:append:sama5d27-som1-ek-sd = "wilc-demo-fs-overlay"
 
 IMAGE_INSTALL:append:sama5d27-som1-ek-optee-sd = "\
     optee-examples \
@@ -50,7 +49,6 @@ IMAGE_INSTALL:append:sama5d27-som1-ek-optee-sd = "\
 IMAGE_INSTALL:append:sama5d27-wlsom1-ek-sd = "\
     ptc-examples \
     wilc-ble-demo \
-    wilc-demo-fs-overlay \
     wilc-websocket-demo \
 "
 IMAGE_INSTALL:append:sama7g5ek = "\
@@ -78,10 +76,8 @@ IMAGE_INSTALL:append:sama7g5ek-optee-sd = "\
 IMAGE_INSTALL:append:sam9x60 = "\
     bonnie++ \
     hostapd \
-    wilc-demo-fs-overlay \
 "
 IMAGE_INSTALL:append:sam9x75 = "\
-    ble-bluez-hci-apps \
     bonnie++ \
     ffmpeg \
     fswebcam \
@@ -90,7 +86,6 @@ IMAGE_INSTALL:append:sam9x75 = "\
     media-ctl \
     video-capture-at91 \
     v4l-utils \
-    wilc-demo-fs-overlay \
     wireless-kit-webpages \
     yavta \
 "

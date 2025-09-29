@@ -1,16 +1,4 @@
-FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
-
 OPTEEMACHINE = "sam"
-
-DEPENDS:append = " dtc-native python3-cryptography-native"
-
-SRCREV = "71785645fa6ce42db40dbf5a54e0eaedc4f61591"
-
-SRC_URI:append = " file://0001-plat-sam-remove-NVMEM_HUK.patch"
-
-PV = "4.6.0+git${SRCPV}"
-
-COMPATIBLE_MACHINE = "(sama5d27-som1-ek-optee-sd|sama7g5ek-optee-sd)"
 
 OPTEE_SUFFIX ?= "bin"
 OPTEE_IMAGE ?= "tee-${MACHINE}-${PV}-${PR}.${OPTEE_SUFFIX}"
@@ -20,7 +8,9 @@ OPTEE_SYMLINK ?= "tee-${MACHINE}.${OPTEE_SUFFIX}"
 OPTEE_PLATFORM_FLAVOR:sama5d27-som1-ek-optee-sd ??="sama5d27_som1_ek"
 OPTEE_PLATFORM_FLAVOR:sama7g5ek-optee-sd ??="sama7g54_ek"
 
-EXTRA_OEMAKE += "PLATFORM_FLAVOR=${OPTEE_PLATFORM_FLAVOR}"
+EXTRA_OEMAKE += " PLATFORM_FLAVOR=${OPTEE_PLATFORM_FLAVOR} \
+                  CFG_NVMEM_HUK=n \
+"
 
 do_install:append() {
     #install core in boot

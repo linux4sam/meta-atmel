@@ -1,5 +1,4 @@
 IMAGE_INSTALL += "\
-    9bit \
     alsa-utils \
     libdrm \
     libdrm-tests \
