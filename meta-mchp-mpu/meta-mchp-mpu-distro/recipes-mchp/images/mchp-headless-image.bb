@@ -48,7 +48,6 @@ IMAGE_INSTALL:append:sama5d27-som1-ek-optee-sd = "\
     optee-test \
 "
 IMAGE_INSTALL:append:sama5d27-wlsom1-ek-sd = "\
-    nginx \
     ptc-examples \
     wilc-ble-demo \
     wilc-demo-fs-overlay \
@@ -89,7 +88,6 @@ IMAGE_INSTALL:append:sam9x75 = "\
     libcamera-mchp \
     libv4l \
     media-ctl \
-    nginx \
     video-capture-at91 \
     v4l-utils \
     wilc-demo-fs-overlay \
