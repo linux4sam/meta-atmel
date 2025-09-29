@@ -276,7 +276,12 @@ INIT_MANAGER = "systemd"
 # Remove the default syslog mechanism and use systemd-journald
 VIRTUAL-RUNTIME_syslog = ""
 
+DISTRO="mchp-distro"
+MCHP_FEATURES= "mchpcore"
 DISTRO_FEATURES:remove ?= "x11 3g nfc pulseaudio"
+
+MCHP_RELEASE_VERSION="v2025.07"
+MCHP_RELEASE_URL="https://github.com/polarfire-soc/"
 
 PACKAGECONFIG:append:pn-openssl = " cryptodev-linux"
 PACKAGECONFIG:remove:pn-rng-tools = " libjitterentropy"
