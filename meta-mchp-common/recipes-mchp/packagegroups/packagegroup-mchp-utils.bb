@@ -37,7 +37,6 @@ RDEPENDS:packagegroup-mchp-hw-utils = "\
     i2c-tools \
     mtd-utils \
     mtd-utils-ubifs \
-    watchdog \
 "
 
 RDEPENDS:packagegroup-mchp-user-utils = "\
