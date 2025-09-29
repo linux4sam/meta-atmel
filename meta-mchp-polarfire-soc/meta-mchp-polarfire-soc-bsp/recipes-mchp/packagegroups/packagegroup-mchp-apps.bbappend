@@ -1,10 +1,4 @@
-SUMMARY = "PolarFire SoC Applications and Demos"
-
-inherit packagegroup
-
-PROVIDES = "${PACKAGES}"
-PACKAGES = " \
-    packagegroup-mchp-apps \
+PACKAGES += " \
     packagegroup-mchp-apps-amp \
 "
 
