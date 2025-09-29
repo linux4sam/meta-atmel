@@ -1,15 +1,15 @@
-FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
+FILESEXTRAPATHS:prepend:mpfs := "${THISDIR}/files:"
 
-DEPENDS:append = " python3-setuptools-native"
-DEPENDS:append = " u-boot-tools-native hss-payload-generator-native"
+DEPENDS:append:mpfs = " python3-setuptools-native"
+DEPENDS:append:mpfs = " u-boot-tools-native hss-payload-generator-native"
 DEPENDS:append:mpfs-icicle-kit-amp = " polarfire-soc-amp-examples"
 
-UBOOT_FILES = " file://${UBOOT_ENV}.cmd \
+UBOOT_FILES:mpfs = " file://${UBOOT_ENV}.cmd \
                 file://${MACHINE}.cfg \
                 file://${HSS_PAYLOAD}.yaml"
 
 
-SRC_URI:append = " file://envs/"
+SRC_URI:append:mpfs = " file://envs/"
 SRC_URI:append:mpfs-icicle-kit-all = "${UBOOT_FILES}"
 SRC_URI:append:mpfs-disco-kit = "${UBOOT_FILES}"
 SRC_URI:append:mpfs-video-kit = "${UBOOT_FILES}"
@@ -21,7 +21,7 @@ do_configure:append:mpfs-icicle-kit-auth () {
     cp -f ${WORKDIR}/${MACHINE}.env ${S}/board/microchip/mpfs_icicle
 }
 
-do_deploy:append () {
+do_deploy:append:mpfs () {
 
     #
     # for icicle-kit-es-amp, we'll already have an amp-application.elf in

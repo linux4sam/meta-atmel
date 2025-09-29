@@ -1,8 +1,8 @@
 FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 
-LINUX_VERSION = "6.12.22"
-KBRANCH = "linux-6.12-mchp+fpga"
-SRCREV = "linux4microchip+fpga-2025.07"
+LINUX_VERSION:mpfs = "6.12.22"
+KBRANCH:mpfs = "linux-6.12-mchp+fpga"
+SRCREV:mpfs = "linux4microchip+fpga-2025.07"
 
 # Define a list of machines that depend on dt-overlay-mchp:do_deploy task
 DT_OVERLAY_MACHINES = "mpfs-icicle-kit \
@@ -23,7 +23,7 @@ SRC_URI:append:mpfs-video-kit = " \
 
 do_assemble_fitimage[depends] = "${@'dt-overlay-mchp:do_deploy' if d.getVar('MACHINE') in d.getVar('DT_OVERLAY_MACHINES').split() else ''}"
 
-do_deploy:append() {
+do_deploy:append:mpfs() {
 
     if [ -n "${INITRAMFS_IMAGE}" ]; then
 
