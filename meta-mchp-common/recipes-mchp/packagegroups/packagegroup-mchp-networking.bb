@@ -22,6 +22,7 @@ WIFI_FIRMWARE_PACKAGES = "\
     linux-firmware-sd8801 \
     linux-firmware-sd8887 \
     linux-firmware-sd8897 \
+    mchp-wireless-firmware \
 "
 
 RDEPENDS:packagegroup-mchp-networking = "\
