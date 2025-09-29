@@ -1,10 +1,8 @@
-IMAGE_INSTALL += "\
-    alsa-utils \
-    libdrm \
-    libdrm-tests \
+IMAGE_INSTALL:append = "\
+    packagegroup-mchp-graphics \
     packagegroup-base-bluetooth \
     packagegroup-base-usbgadget \
     packagegroup-base-usbhost \
     packagegroup-base-wifi \
-    mchp-wireless-firmware \
+    packagegroup-mchp-multimedia-audio \
     "

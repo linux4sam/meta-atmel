@@ -9,7 +9,7 @@ LIC_FILES_CHKSUM = "file://src/COPYING;md5=e23fadd6ceef8c618fc1c65191d846fa \
                     file://fw/LICENCE.ptc_fw;beginline=6;md5=6c2a5175a10e876229208f0a4924daf1 \
                     "
 NO_GENERIC_LICENSE[PTC_config] = "cfg/LICENCE.ptc_cfg"
-DEPENDS = "libevdev"
+DEPENDS = "libevdev libgpiod"
 RDEPENDS:${PN} = "udev-rules-mchp"
 PV = "1.3+git${SRCPV}"
 

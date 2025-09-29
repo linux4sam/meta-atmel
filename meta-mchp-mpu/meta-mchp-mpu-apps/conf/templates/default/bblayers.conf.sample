@@ -15,6 +15,7 @@ BBLAYERS ?= " \
   ##OEROOT##/../meta-arm/meta-arm-toolchain \
   ##OEROOT##/../meta-arm/meta-arm \
   ##OEROOT##/../meta-mchp/meta-mchp-common \
+  ##OEROOT##/../meta-mchp/meta-mchp-distro \
   ##OEROOT##/../meta-mchp/meta-mchp-mpu/meta-mchp-mpu-bsp \
-  ##OEROOT##/../meta-mchp/meta-mchp-mpu/meta-mchp-mpu-distro \
+  ##OEROOT##/../meta-mchp/meta-mchp-mpu/meta-mchp-mpu-apps \
   "

@@ -15,22 +15,15 @@ TOOLCHAIN_TARGET_TASK += "\
     libstdc++-dev \
 "
 
-IMAGE_INSTALL += "\
-    alsa-utils \
-    cjson \
-    dpkg-start-stop \
-    ffmpeg \
+IMAGE_INSTALL:append = "\
+    ${@oe.utils.conditional('SITEINFO_ENDIANNESS', 'le', 'libegt egt-launcher egt-samples egt-samples-contribution egt-media egt-thermostat egt-benchmark', '', d)} \
     liberation-fonts \
-    libicui18n \
+    libplanes \
     libsndfile1 \
-    libv4l \
     lohit-fonts \
-    lua \
-    mchp-wireless-firmware \
-    mxt-app \
     noto-fonts \
-    openssh-sftp \
-    openssh-sftp-server \
+    packagegroup-mchp-multimedia \
+    packagegroup-mchp-multimedia-camera \
+    packagegroup-mchp-multimedia-gstreamer \
     usbutils \
-    v4l-utils \
 "

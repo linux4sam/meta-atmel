@@ -266,12 +266,11 @@ INHERIT += "rm_work"
 #Include build information in the image generated
 INHERIT += "image-buildinfo"
 
-# Set the init manager to systemd
-INIT_MANAGER = "systemd"
+#Set the distro
+DISTRO = "mchp-distro"
 
-# Remove the default syslog mechanism's "sysklogd" and "busybox-syslog"
-VIRTUAL-RUNTIME_syslog = ""
-VIRTUAL-RUNTIME_base-utils-syslog = ""
+#Enable the MCHP features
+MCHP_FEATURES = "mchpcore mchp-pixman mchpfont"
 
 #Set the preferred version for libgpiod as our ptc_examples
 #(https://github.com/linux4sam/ptc_examples) is not yet compatible with the
