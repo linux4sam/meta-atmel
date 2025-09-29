@@ -1,5 +1,5 @@
-# openssh_%.bbappend
 FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
+
 SRC_URI:append = "file://harden_sshd_config.cfg"
 
 do_install:append() {
