@@ -5,7 +5,7 @@ Wants=network.target
 
 [Service]
 Type=simple
-ExecStart=/usr/sbin/hostapd /etc/network/wilc_hostapd_%I.conf
+ExecStart=/usr/sbin/hostapd /etc/network/hostapd_%I.conf
 
 [Install]
 WantedBy=multi-user.target
