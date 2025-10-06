@@ -277,7 +277,7 @@ INIT_MANAGER = "systemd"
 VIRTUAL-RUNTIME_syslog = ""
 
 DISTRO="mchp-distro"
-MCHP_FEATURES= "mchpcore"
+MCHP_FEATURES= "mchpcore mchp-autoresize"
 DISTRO_FEATURES:remove ?= "x11 3g nfc pulseaudio"
 
 MCHP_RELEASE_VERSION="v2025.07"

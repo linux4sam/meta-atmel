@@ -270,7 +270,7 @@ INHERIT += "image-buildinfo"
 DISTRO = "mchp-distro"
 
 #Enable the MCHP features
-MCHP_FEATURES = "mchpcore mchp-pixman mchpfont"
+MCHP_FEATURES = "mchpcore mchp-pixman mchpfont mchp-autoresize"
 
 #Set the preferred version for libgpiod as our ptc_examples
 #(https://github.com/linux4sam/ptc_examples) is not yet compatible with the
