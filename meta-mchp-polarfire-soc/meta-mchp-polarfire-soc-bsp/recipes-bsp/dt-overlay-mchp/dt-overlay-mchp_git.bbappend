@@ -2,6 +2,9 @@ inherit devicetree
 
 S = "${WORKDIR}/git"
 
+COMPATIBLE_MACHINE:append:mpfs-video-kit = "|mpfs-video-kit"
+COMPATIBLE_MACHINE:append:mpfs-icicle-kit-all = "|mpfs-icicle-kit-all"
+
 DT_FILES_PATH:mpfs-icicle-kit-all = "${WORKDIR}/git/mpfs_icicle"
 DT_FILES_PATH:mpfs-video-kit = "${WORKDIR}/git/mpfs_video"
 
