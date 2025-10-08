@@ -10,6 +10,7 @@ sama5d29-curiosity|\
 sama5d3-xplained|\
 sama5d4-xplained|\
 sama7d65-curiosity|\
+sama7d65-curiosity-pro|\
 sama7g5ek|\
 sam9x60-curiosity|\
 sam9x60ek|\
