@@ -10,22 +10,15 @@ RDEPENDS:${PN} = "python3 udev-rules-mchp"
 
 SRC_URI = "git://github.com/linux4sam/libplanes.git;protocol=https;branch=master"
 
-PV = "1.1.0+git${SRCPV}"
-SRCREV = "97f53044c6773bed285a056b1d474d7e4a6a0fd5"
+PV = "2.0.0+git${SRCPV}"
+SRCREV = "8b0fb57bc27962a2dbcbefafa188aeb7dad25923"
 
 S = "${WORKDIR}/git"
 
-inherit pkgconfig autotools python3-dir
+inherit pkgconfig cmake python3-dir python3targetconfig
 
-EXTRA_OECONF += "--enable-shared --disable-static"
-
-PACKAGECONFIG ??= "examples"
-PACKAGECONFIG[examples] = "--enable-examples,--disable-examples"
-
-do_configure:prepend() {
-	( cd ${S};
-	${S}/autogen.sh; cd -)
-}
+PACKAGECONFIG ??= "enable-engine"
+PACKAGECONFIG[enable-engine] = "-DENABLE_ENGINE=ON,-DENABLE_ENGINE=OFF"
 
 FILES:${PN} += " \
   /opt/planes/planes-loop.sh \
@@ -43,6 +36,5 @@ do_install:append() {
     install -Dm 0755 ${S}/scripts/planes-loop.py ${D}/opt/planes/planes-loop.py
     install -Dm 0755 ${S}/python/examples/splash.py ${D}${datadir}/planes/splash.py
     install -Dm 0755 ${S}/python/examples/example.py ${D}${datadir}/planes/example.py
-    rm -f ${D}/usr/lib/python*/site-packages/planes/_planes.a
-    rm -f ${D}/usr/lib/libplanes.a
+    install -Dm 0644 ${S}/configs/* ${D}${datadir}/planes/
 }

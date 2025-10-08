@@ -8,7 +8,7 @@ SRC_URI = "gitsm://github.com/linux4sam/egt-benchmark.git;protocol=https;branch=
 	   file://0001-fix-the-overhead-calibration.patch \
 	   "
 
-SRCREV = "c84ee9e6388944fe496e542c1d481129e3fefed6"
+SRCREV = "2d7e5695f517846ca1883274d7f4cfbe4af809dd"
 
 S = "${WORKDIR}/git"
 
