@@ -9,6 +9,6 @@ PACKAGES = " \
     packagegroup-mchp-security \
 "
 
-RDEPENDS:packagegroup-mchp-graphics = "\
+RDEPENDS:packagegroup-mchp-security = "\
     p11-kit \
 "
