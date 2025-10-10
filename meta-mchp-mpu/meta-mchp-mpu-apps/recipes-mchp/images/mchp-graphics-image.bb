@@ -23,6 +23,7 @@ IMAGE_INSTALL:append = "\
     lohit-fonts \
     mchp-egt-demo-init \
     noto-fonts \
+    packagegroup-mchp-graphics \
     packagegroup-mchp-multimedia \
     packagegroup-mchp-multimedia-camera \
     packagegroup-mchp-multimedia-gstreamer \

@@ -7,7 +7,11 @@ COMBINED_FEATURES += "wifi"
 require recipes-mchp/images/mchp-base-image.bb
 
 IMAGE_INSTALL:append = "\
-    packagegroup-mchp-apps \
+    packagegroup-base-bluetooth \
+    packagegroup-base-usbgadget \
+    packagegroup-base-usbhost \
+    packagegroup-base-wifi \
+    packagegroup-mchp-multimedia-audio \
 "
 
 IMAGE_INSTALL:append:sam9x75 = "\
