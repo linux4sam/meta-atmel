@@ -23,7 +23,6 @@ PREFERRED_VERSION_openocd = "riscv"
 
 PREFERRED_PROVIDER_virtual/bootloader = "u-boot-mchp"
 PREFERRED_PROVIDER_u-boot = "u-boot-mchp"
-PREFERRED_VERSION_u-boot-mchp = "v2023.07%"
 
 PREFERRED_VERSION_libgpiod = "1.6.4"
 
