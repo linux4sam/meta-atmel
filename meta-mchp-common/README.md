@@ -68,6 +68,11 @@ To integrate this layer into your Yocto Project build environment:
       repo init -u https://github.com/linux4microchip/meta-mchp-manifest.git -b refs/tags/linux4microchip+fpga-2025.07 -m polarfire-soc/default.xml
       ```
 
+    For the PIC64GX Curiosity Kit layer:
+
+      ```bash
+      repo init -u https://github.com/linux4microchip/meta-mchp-manifest.git -b scarthgap -m pic64/pic64gx/default.xml
+      ```
     Fetch all the required repositories using the following repo command:
 
       ```bash
@@ -96,6 +101,12 @@ To integrate this layer into your Yocto Project build environment:
 
       ```bash
       export TEMPLATECONF=${TEMPLATECONF:-../meta-mchp/meta-mchp-polarfire-soc/meta-mchp-polarfire-soc-bsp/conf/templates/default}
+      ```
+
+    For PIC64GX Curiosity Kit:
+
+      ```bash
+      export TEMPLATECONF=${TEMPLATECONF:-../meta-mchp/meta-mchp-pic64/conf/templates/pic64gx}
       ```
 
     > Note: Setting `TEMPLATECONF` is only needed the first time you will run the source command.
