@@ -89,7 +89,7 @@ To integrate this layer into your Yocto Project build environment:
     For MPU boards:
 
       ```bash
-      export TEMPLATECONF=${TEMPLATECONF:-../meta-mchp/meta-mchp-mpu-apps/conf/templates/default}
+      export TEMPLATECONF=${TEMPLATECONF:-../meta-mchp/meta-mchp-mpu/meta-mchp-mpu-apps/conf/templates/default}
       ```
 
     For PolarFire SoC boards:
