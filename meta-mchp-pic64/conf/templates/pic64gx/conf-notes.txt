@@ -1,0 +1,20 @@
+### Shell environment set up for builds. ###
+
+You can now run '[MACHINE=<machine>] bitbake <target>'
+
+Microchip supported machines are:
+- PIC64GX Curiosity Kit / pic64gx-curiosity-kit, pic64gx-curiosity-kit-amp
+
+Microchip targets are:
+    mchp-base-image
+    mchp-base-image-sdk
+
+Common targets are:
+    core-image-minimal
+    core-image-minimal-dev
+    core-image-minimal-mtdutils
+
+Other commonly useful commands are:
+ - 'devtool' and 'recipetool' handle common recipe tasks
+ - 'bitbake-layers' handles common layer tasks
+ - 'oe-pkgdata-util' handles common target package tasks
