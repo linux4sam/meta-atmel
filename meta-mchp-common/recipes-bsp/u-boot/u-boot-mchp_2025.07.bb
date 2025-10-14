@@ -8,7 +8,7 @@ LIC_FILES_CHKSUM = "file://Licenses/README;beginline=1;endline=22;md5=b20e22cd4f
 DEPENDS += "coreutils-native"
 
 SRC_URI = "git://github.com/linux4microchip/u-boot-mchp.git;protocol=https;branch=${UBRANCH}"
-SRCREV	= "4ec2827cdf730297f000a4e2787704a62aa23d0a"
+SRCREV	= "88ada0cb9600b0d47e050512dcd7a9c698ef43f6"
 
 UBRANCH = "u-boot-2025.07-mchp"
 PV	= "v2025.07-mchp+git${SRCPV}"
