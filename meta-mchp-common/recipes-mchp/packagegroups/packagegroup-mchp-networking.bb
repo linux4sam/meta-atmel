@@ -33,5 +33,5 @@ RDEPENDS:packagegroup-mchp-networking = "\
     openssh-sftp-server \
     wget \
     kea \
-    ${@bb.utils.contains('COMBINED_FEATURES', 'wifi', WIFI_FIRMWARE_PACKAGES, '', d)} \
+    ${@bb.utils.contains('MACHINE_FEATURES', 'wifi', WIFI_FIRMWARE_PACKAGES, '', d)} \
 "
