@@ -32,6 +32,10 @@ RDEPENDS:packagegroup-mchp-apps-egt:mpuall = "\
     mchp-egt-demo-init \
 "
 
-RDEPENDS:packagegroup-mchp-apps:sama5d2_ptc_ek = "\
+RDEPENDS:packagegroup-mchp-apps:sama5d2_ptc_ek += "\
+    ptc-examples \
+"
+
+RDEPENDS:packagegroup-mchp-apps:sama5d27-wlsom1-ek-sd += "\
     ptc-examples \
 "
