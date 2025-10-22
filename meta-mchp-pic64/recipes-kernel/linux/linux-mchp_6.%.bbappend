@@ -2,7 +2,7 @@ FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 
 LINUX_VERSION = "6.12.22"
 KBRANCH = "linux-6.12-mchp+fpga"
-SRCREV = "linux4microchip+fpga-2025.07"
+SRCREV = "linux4microchip+fpga-2025.10-rc1"
 
 SRC_URI:append:pic64gx-curiosity-kit = " file://pic64gx_v4l2.cfg"
 
