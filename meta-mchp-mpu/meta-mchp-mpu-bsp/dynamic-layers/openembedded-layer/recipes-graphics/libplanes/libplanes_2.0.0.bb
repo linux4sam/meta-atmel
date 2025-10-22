@@ -6,7 +6,7 @@ PACKAGES =+ "${PN}-python"
 
 DEPENDS = "libdrm cairo cjson lua swig-native python3"
 
-RDEPENDS:${PN} = "python3 udev-rules-mchp"
+RDEPENDS:${PN} = "python3 udev-rules-mchp mpio"
 
 SRC_URI = "git://github.com/linux4sam/libplanes.git;protocol=https;branch=master"
 
