@@ -21,8 +21,8 @@ IMAGE_INSTALL:append = "\
     libplanes \
     libsndfile1 \
     lohit-fonts \
-    mchp-egt-demo-init \
     noto-fonts \
+    packagegroup-mchp-egt-apps \
     packagegroup-mchp-graphics \
     packagegroup-mchp-multimedia \
     packagegroup-mchp-multimedia-camera \

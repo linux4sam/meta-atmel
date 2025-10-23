@@ -1,5 +1,5 @@
 PACKAGES += " \
-    packagegroup-mchp-apps-egt \
+    packagegroup-mchp-egt-apps \
 "
 
 RDEPENDS:packagegroup-mchp-apps:mpuall += "\
@@ -17,12 +17,7 @@ RDEPENDS:packagegroup-mchp-apps:sama5d27-wlsom1-ek-sd += "\
     wilc-demo-fs-overlay \
 "
 
-RDEPENDS:packagegroup-mchp-apps:sama5d27-wlsom1-ek-sd += "\
-    wilc-ble-demo \
-    wilc-demo-fs-overlay \
-"
-
-RDEPENDS:packagegroup-mchp-apps-egt:mpuall = "\
+RDEPENDS:packagegroup-mchp-egt-apps:mpuall += "\
     egt-benchmark \
     egt-launcher \
     egt-media \
