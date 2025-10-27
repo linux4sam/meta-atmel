@@ -4,6 +4,6 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=6bc538ed5bd9a7fc9398086aedcd7e46"
 
 LINUX_VERSION = "6.12.48"
 KBRANCH = "linux-6.12-mchp"
-SRCREV = "38e902d5f7a0b4e4cbe2a293960f931321456bb7"
+SRCREV = "f2a0d1029ccea6e63219497e37c5dd636ae90455"
 
 SRC_URI = "git://github.com/linux4microchip/linux.git;protocol=https;branch=${KBRANCH}"
