@@ -1,4 +1,4 @@
 
-RDEPENDS:packagegroup-mchp-apps:mpfs-beaglev-fire = "\
+RDEPENDS:packagegroup-mchp-apps:beaglev-fire = "\
     polarfire-soc-linux-examples-gateware \
 "
