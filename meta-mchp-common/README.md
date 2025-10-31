@@ -65,13 +65,13 @@ To integrate this layer into your Yocto Project build environment:
     For the PolarFire SoC layer:
 
       ```bash
-      repo init -u https://github.com/linux4microchip/meta-mchp-manifest.git -b refs/tags/linux4microchip+fpga-2025.07 -m polarfire-soc/default.xml
+      repo init -u https://github.com/linux4microchip/meta-mchp-manifest.git -b refs/tags/linux4microchip+fpga-2025.10 -m polarfire-soc/default.xml
       ```
 
     For the PIC64GX Curiosity Kit layer:
 
       ```bash
-      repo init -u https://github.com/linux4microchip/meta-mchp-manifest.git -b scarthgap -m pic64/pic64gx/default.xml
+      repo init -u https://github.com/linux4microchip/meta-mchp-manifest.git -b refs/tags/linux4microchip+fpga-2025.10 -m pic64/pic64gx/default.xml
       ```
     Fetch all the required repositories using the following repo command:
 
