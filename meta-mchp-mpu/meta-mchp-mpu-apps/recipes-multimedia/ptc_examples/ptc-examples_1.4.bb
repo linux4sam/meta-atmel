@@ -11,26 +11,19 @@ LIC_FILES_CHKSUM = "file://src/COPYING;md5=e23fadd6ceef8c618fc1c65191d846fa \
 NO_GENERIC_LICENSE[PTC_config] = "cfg/LICENCE.ptc_cfg"
 DEPENDS = "libevdev libgpiod"
 RDEPENDS:${PN} = "udev-rules-mchp"
-PV = "1.3+git${SRCPV}"
+PV = "1.4+git${SRCPV}"
 
 SRC_URI = "git://github.com/linux4sam/ptc_examples.git;protocol=https;branch=master"
-SRCREV = "625f1066a1da81c146947855f4b4686bb0079b50"
+SRCREV = "bb450b8a1db37d9ad4ce5d6ac849abec95f955b3"
 
 S = "${WORKDIR}/git"
 
-EXTRA_OEMAKE = 'CROSS_COMPILE=${TARGET_PREFIX} \
-                CFLAGS="${TARGET_CC_ARCH} ${TOOLCHAIN_OPTIONS} ${CFLAGS}" \
-                LDFLAGS="${TARGET_CC_ARCH} ${TOOLCHAIN_OPTIONS} ${LDFLAGS}" \
-                '
+inherit pkgconfig cmake
 
-EXTRA_OEMAKE:append:sama5d27-wlsom1-ek-sd = ' CFLAGS+="-DSAMA5D27_WLSOM1_EK"'
+PACKAGECONFIG:apend:sama5d27-wlsom1-ek-sd = " sama5d27-wlsom1-ek"
+PACKAGECONFIG[sama5d27-wlsom1-ek] = "-DSAMA5D27_WLSOM1_EK=ON,"
 
-do_compile () {
-    oe_runmake
-}
-
-do_install () {
-    install -D -m 0755 --target-directory=${D}/usr/bin ${S}/src/ptc_qt*_demo
+do_install:append () {
     install -D -m 0755 --target-directory=${D}${ROOT_HOME} ${S}/src/start_ptc_qt*
     install -D -m 0644 --target-directory=${D}${base_libdir}/firmware/microchip \
                        ${S}/fw/*.bin ${S}/cfg/*.bin

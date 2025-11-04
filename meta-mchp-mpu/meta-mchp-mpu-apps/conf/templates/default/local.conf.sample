@@ -272,11 +272,6 @@ DISTRO = "mchp-distro"
 #Enable the MCHP features
 MCHP_FEATURES = "mchpcore mchp-pixman mchpfont mchp-autoresize mchp-strip-systemd"
 
-#Set the preferred version for libgpiod as our ptc_examples
-#(https://github.com/linux4sam/ptc_examples) is not yet compatible with the
-#latest version.
-PREFERRED_VERSION_libgpiod = "1.6.4"
-
 # ENABLE_BINARY_LOCALE_GENERATION controls the generation of binary locale
 # packages at build time using qemu-native. Disabling it (by setting it to 0)
 # will save some build time at the expense of breaking i18n on devices with
