@@ -8,7 +8,7 @@ SRC_URI:append = " \
 "
 
 do_configure:append () {
-    cp ${WORKDIR}/hostapd.conf ${S}/hostapd/.config
+    cat ${WORKDIR}/hostapd.conf >> ${S}/hostapd/.config
 }
 
 do_install:append () {

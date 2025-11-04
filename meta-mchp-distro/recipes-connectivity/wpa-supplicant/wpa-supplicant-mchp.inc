@@ -5,7 +5,7 @@ SRC_URI:append = "file://wpa_supplicant.service \
 		  "
 
 do_configure:append () {
-    cp ${WORKDIR}/wpa_supplicant.conf ${S}/wpa_supplicant/.config
+    cat ${WORKDIR}/wpa_supplicant.conf >> ${S}/wpa_supplicant/.config
 }
 
 do_install:append () {
