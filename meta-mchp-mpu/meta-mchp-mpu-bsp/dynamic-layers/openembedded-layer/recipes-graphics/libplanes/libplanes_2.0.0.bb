@@ -11,7 +11,7 @@ RDEPENDS:${PN} = "python3 udev-rules-mchp mpio"
 SRC_URI = "git://github.com/linux4sam/libplanes.git;protocol=https;branch=master"
 
 PV = "2.0.0+git${SRCPV}"
-SRCREV = "8b0fb57bc27962a2dbcbefafa188aeb7dad25923"
+SRCREV = "9047c43dd87645c092b609c04518c96fc52f9696"
 
 S = "${WORKDIR}/git"
 
