@@ -4,6 +4,8 @@ LICENSE = "MIT"
 require recipes-mchp/images/mchp-base-image.inc
 
 IMAGE_INSTALL:append = "\
+    kernel-dev \
+    kernel-devsrc \
     packagegroup-mchp-apps \
     packagegroup-core-sdk \
     packagegroup-core-standalone-sdk-target \
