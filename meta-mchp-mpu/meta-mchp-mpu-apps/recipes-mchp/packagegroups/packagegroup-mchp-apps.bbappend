@@ -10,9 +10,11 @@ RDEPENDS:packagegroup-mchp-apps:mpuall += "\
 
 RDEPENDS:packagegroup-mchp-apps:sam9x75_curiosity += "\
     ble-bluez-hci-apps \
+    wilc-demo-fs-overlay \
 "
 
 RDEPENDS:packagegroup-mchp-apps:sama5d27-wlsom1-ek-sd += "\
+    ptc-examples \
     wilc-ble-demo \
     wilc-demo-fs-overlay \
 "
@@ -28,9 +30,5 @@ RDEPENDS:packagegroup-mchp-egt-apps:mpuall += "\
 "
 
 RDEPENDS:packagegroup-mchp-apps:sama5d2_ptc_ek += "\
-    ptc-examples \
-"
-
-RDEPENDS:packagegroup-mchp-apps:sama5d27-wlsom1-ek-sd += "\
     ptc-examples \
 "
