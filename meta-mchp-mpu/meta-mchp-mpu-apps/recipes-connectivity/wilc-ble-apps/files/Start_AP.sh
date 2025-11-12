@@ -97,8 +97,8 @@ case $ap_choice in
         echo "Starting WPA-secured AP..."
         systemctl start hostapd@wpa.service
         AP_NAME="microchip-WpaAP"
-        if grep -q "wpa_passphrase" /etc/network/wilc_hostapd_wpa.conf; then
-            AP_PSK=$(sed -n 's/wpa_passphrase=//p' /etc/network/wilc_hostapd_wpa.conf)
+        if grep -q "wpa_passphrase" /etc/network/hostapd_wpa.conf; then
+            AP_PSK=$(sed -n 's/wpa_passphrase=//p' /etc/network/hostapd_wpa.conf)
             echo "Secured network with password: $AP_PSK"
         fi
         ;;

@@ -13,5 +13,3 @@ do_install () {
 }
 
 FILES:${PN} += "${ROOT_HOME}"
-
-COMPATIBLE_MACHINE = "(at91sam9|sama5)"
