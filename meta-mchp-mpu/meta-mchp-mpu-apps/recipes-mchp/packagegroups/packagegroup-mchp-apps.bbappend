@@ -1,24 +1,24 @@
-PACKAGES += " \
+PACKAGES:append = " \
     packagegroup-mchp-egt-apps \
 "
 
-RDEPENDS:packagegroup-mchp-apps:mpuall += "\
+RDEPENDS:packagegroup-mchp-apps:append:mpuall = "\
     9bit \
     mpio \
     mxt-app \
     wilc-demo-fs-overlay \
 "
 
-RDEPENDS:packagegroup-mchp-apps:sam9x75_curiosity += "\
+RDEPENDS:packagegroup-mchp-apps:append:sam9x75_curiosity = "\
     ble-bluez-hci-apps \
 "
 
-RDEPENDS:packagegroup-mchp-apps:sama5d27-wlsom1-ek-sd += "\
+RDEPENDS:packagegroup-mchp-apps:append:sama5d27-wlsom1-ek-sd = "\
     ptc-examples \
     wilc-ble-demo \
 "
 
-RDEPENDS:packagegroup-mchp-egt-apps:mpuall += "\
+RDEPENDS:packagegroup-mchp-egt-apps:append:mpuall = "\
     egt-benchmark \
     egt-launcher \
     egt-media \
@@ -28,6 +28,6 @@ RDEPENDS:packagegroup-mchp-egt-apps:mpuall += "\
     mchp-egt-demo-init \
 "
 
-RDEPENDS:packagegroup-mchp-apps:sama5d2_ptc_ek += "\
+RDEPENDS:packagegroup-mchp-apps:append:sama5d2_ptc_ek = "\
     ptc-examples \
 "
