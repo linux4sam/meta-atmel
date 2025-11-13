@@ -106,6 +106,18 @@ esac
 
 if pgrep "hostapd" > /dev/null; then
     echo "hostapd process has started successfully"
+    if systemctl is-active --quiet kea-dhcp4.service; then
+	echo "kea-dhcp4.service is already running"
+    else
+        echo "Starting kea-dhcp4.service..."
+        systemctl start kea-dhcp4.service
+        if systemctl is-active --quiet kea-dhcp4.service; then
+            echo "kea-dhcp4.service started successfully"
+        else
+            echo "Failed to start kea-dhcp4.service"
+            exit 5
+        fi
+    fi
 else
     echo "hostapd has failed to start"
     exit 4
