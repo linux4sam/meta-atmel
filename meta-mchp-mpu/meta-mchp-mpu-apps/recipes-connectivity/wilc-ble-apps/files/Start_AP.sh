@@ -23,15 +23,24 @@ check_wlan_interface() {
         echo "Wireless LAN interface is UP!"
     else
         echo "Wireless LAN interface has FAILED"
-        echo "Reloading the wilc-sdio module"
+        echo "Reloading the wifi modules"
         modprobe -r wilc-sdio
+        modprobe -r mmc_spi
         modprobe wilc-sdio
-        if lsmod | grep -q "wilc_sdio";  then
-            echo "WILC-SDIO module inserted successfully"
-        else
+        modprobe mmc_spi
+
+        # Verify wilc_sdio
+        if ! lsmod | grep -q "wilc_sdio"; then
             echo "WILC-SDIO module insert failed"
             exit 1
         fi
+
+        # Verify mmc_spi
+        if ! lsmod | grep -q "mmc_spi"; then
+            echo "MMC-SPI module insert failed"
+            exit 1
+        fi
+	echo "Wifi modules reloaded successfully"
     fi
 }
 
@@ -52,12 +61,21 @@ if lsmod | grep -q "wilc_sdio" ; then
 else
     echo "1. Inserting the wilc-sdio module"
     modprobe wilc-sdio
-    if lsmod | grep -q "wilc_sdio";  then
-        echo "WILC-SDIO module insterted successfully"
-    else
+    modprobe mmc_spi
+
+    # Verify wilc_sdio
+    if ! lsmod | grep -q "wilc_sdio"; then
         echo "WILC-SDIO module insert failed"
         exit 3
     fi
+
+    # Verify mmc_spi if applicable
+    if ! lsmod | grep -q "mmc_spi"; then
+        echo "MMC-SPI module insert failed"
+        exit 3
+    fi
+
+    echo "WiFi modules inserted successfully"
 fi
 
 echo "2.############## Bringing up the wlan0 interface ##############"
