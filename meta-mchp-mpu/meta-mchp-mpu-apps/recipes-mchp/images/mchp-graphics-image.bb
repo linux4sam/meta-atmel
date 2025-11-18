@@ -18,7 +18,7 @@ TOOLCHAIN_TARGET_TASK += "\
 IMAGE_INSTALL:append = "\
     ${@oe.utils.conditional('SITEINFO_ENDIANNESS', 'le', 'libegt egt-launcher egt-samples egt-samples-contribution egt-media egt-thermostat egt-benchmark', '', d)} \
     liberation-fonts \
-    libplanes \
+    libplanes libplanes-python \
     libsndfile1 \
     lohit-fonts \
     noto-fonts \
