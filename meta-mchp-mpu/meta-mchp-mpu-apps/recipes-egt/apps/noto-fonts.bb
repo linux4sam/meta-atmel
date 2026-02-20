@@ -2,14 +2,18 @@ DESCRIPTION = "Google noto fonts"
 LICENSE = "OFL-1.1"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/OFL-1.1;md5=fac3a519e5e9eb96316656e0ca4f2b90"
 
-PR = "2017-10-24"
+PR = "2025-01-19"
 
-SRC_URI = "https://noto-website-2.storage.googleapis.com/pkgs/Noto-unhinted.zip"
-
-SRC_URI[md5sum] = "d26b29b10c3c8d05df4ade8286963722"
-SRC_URI[sha256sum] = "7d0e099c208d11d7bf64091ea7f62f85bc07dedfaf2c01de53985a5b981025e3"
-
+SRC_URI = " \
+    https://github.com/notofonts/notofonts.github.io/raw/main/fonts/NotoSans/unhinted/ttf/NotoSans-Regular.ttf;name=notosans \
+    https://github.com/notofonts/noto-cjk/raw/main/Sans/OTF/SimplifiedChinese/NotoSansCJKsc-Regular.otf;name=notosanssc \
+    https://github.com/googlefonts/noto-emoji/raw/main/fonts/NotoColorEmoji.ttf;name=notoemoji \
+"
 S = "${WORKDIR}"
+
+SRC_URI[notosans.sha256sum] = "f3961a9cde016d41a4879aecda1474d3a36d6bf54fa0e4643de029cc2248b0e8"
+SRC_URI[notosanssc.sha256sum] = "2c76254f6fc379fddfce0a7e84fb5385bb135d3e399294f6eeb6680d0365b74b"
+SRC_URI[notoemoji.sha256sum] = "72a635cb3d2f3524c51620cdde406b217204e8a6a06c6a096ff8ed4b5fd6e27b"
 
 inherit allarch fontcache
 
