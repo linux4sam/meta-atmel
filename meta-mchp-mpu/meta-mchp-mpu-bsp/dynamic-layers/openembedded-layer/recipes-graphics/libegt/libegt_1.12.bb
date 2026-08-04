@@ -15,15 +15,15 @@ DEPENDS = "\
 DEPENDS:append:sam9x60 = " libm2d"
 DEPENDS:append:sam9x75 = " libm2d"
 
-SRC_URI = "gitsm://github.com/linux4sam/egt.git;protocol=https;branch=1.12"
+SRC_URI = "gitsm://github.com/linux4sam/egt.git;protocol=https;branch=perf_monitor"
 
-SRCREV = "c5b9cb435c8960a4aa07d7845c5c855d5e4a9c23"
+SRCREV = "d31b98d7712dde8ed877b9650588a79575ec47eb"
 
 S = "${WORKDIR}/git"
 
 inherit pkgconfig cmake gettext
 
-PACKAGECONFIG ??= "tslib examples icons plplot curl librsvg gstreamer jpeg zlib libinput lua ${@bb.utils.filter('DISTRO_FEATURES', 'x11 alsa', d)}"
+PACKAGECONFIG ??= "tslib examples icons plplot curl librsvg gstreamer jpeg zlib libinput lua iio ${@bb.utils.filter('DISTRO_FEATURES', 'x11 alsa', d)}"
 
 PACKAGECONFIG[librsvg] = "-DWITH_LIBRSVG=ON,-DWITH_LIBRSVG=OFF,librsvg"
 PACKAGECONFIG[curl] = "-DWITH_LIBCURL=ON,-DWITH-LIBCURL=OFF,curl"
@@ -40,6 +40,7 @@ PACKAGECONFIG[libinput] = "-DWITH_LIBINPUT=ON,-DWITH_LIBINPUT=OFF,libinput"
 PACKAGECONFIG[lua] = "-DWITH_LUA=ON,-DWITH_LUA=OFF,lua"
 PACKAGECONFIG[xkbcommon] = "-DWITH_XKBCOMMON=ON,-DWITH_XKBCOMMON=OFF,libxkbcommon"
 PACKAGECONFIG[x11] = "-DWITH_X11=ON,-DWITH_X11=OFF,libx11"
+PACKAGECONFIG[iio] = "-DWITH_LIBIIO=ON,-DWITH_LIBIIO=OFF,libiio"
 
 FULL_OPTIMIZATION:append = " -Ofast"
 
