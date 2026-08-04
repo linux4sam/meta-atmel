@@ -1,0 +1,40 @@
+DESCRIPTION = "Microchip libplanes library for sama5 lcd controller"
+LICENSE = "MIT"
+LIC_FILES_CHKSUM = "file://COPYING;endline=20;md5=b884a464579c410fd1dace93db8e97b3"
+
+PACKAGES =+ "${PN}-python"
+
+DEPENDS = "libdrm cairo cjson lua swig-native python3"
+
+RDEPENDS:${PN} = "python3 udev-rules-mchp mpio"
+
+SRC_URI = "gitsm://github.com/linux4sam/libplanes.git;protocol=https;branch=page_flip_events"
+
+PV = "2.1.0+git${SRCPV}"
+SRCREV = "4fbc1d3008698ddf0ec688e4dfe741ceea0e3716"
+
+S = "${WORKDIR}/git"
+
+inherit pkgconfig cmake python3-dir python3targetconfig
+
+PACKAGECONFIG ??= "enable-engine"
+PACKAGECONFIG[enable-engine] = "-DENABLE_ENGINE=ON,-DENABLE_ENGINE=OFF"
+
+FILES:${PN} += " \
+  /opt/planes/planes-loop.sh \
+  /opt/planes/planes-loop.py \
+  /opt/applications/resources/* \
+  ${datadir}/planes/* \
+"
+FILES:${PN}-python = "${libdir}/python${PYTHON_BASEVERSION}/site-packages/*"
+
+#need to delete _planes.a to avoid QA package errors
+do_install:append() {
+    install -Dm 0644 ${S}/scripts/planes.png  ${D}/opt/applications/resources/planes.png
+    install -Dm 0644 ${S}/scripts/09-planes.xml  ${D}/opt/applications/resources/09-planes.xml
+    install -Dm 0755 ${S}/scripts/planes-loop.sh ${D}/opt/planes/planes-loop.sh
+    install -Dm 0755 ${S}/scripts/planes-loop.py ${D}/opt/planes/planes-loop.py
+    install -Dm 0755 ${S}/python/examples/splash.py ${D}${datadir}/planes/splash.py
+    install -Dm 0755 ${S}/python/examples/example.py ${D}${datadir}/planes/example.py
+    install -Dm 0644 ${S}/configs/* ${D}${datadir}/planes/
+}
