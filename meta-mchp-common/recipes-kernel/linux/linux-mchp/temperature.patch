@@ -1,0 +1,27 @@
+diff --git a/arch/arm/boot/dts/microchip/sama7d65.dtsi b/arch/arm/boot/dts/microchip/sama7d65.dtsi
+index 050b5f240980..5429b2159f10 100644
+--- a/arch/arm/boot/dts/microchip/sama7d65.dtsi
++++ b/arch/arm/boot/dts/microchip/sama7d65.dtsi
+@@ -126,19 +126,19 @@ cpu_thermal: cpu-thermal {
+ 
+ 			trips {
+ 				cpu_normal: cpu-alert0 {
+-					temperature = <90000>;
++					temperature = <150000>;
+ 					hysteresis = <0>;
+ 					type = "passive";
+ 				};
+ 
+ 				cpu_hot: cpu-alert1 {
+-					temperature = <95000>;
++					temperature = <150000>;
+ 					hysteresis = <0>;
+ 					type = "passive";
+ 				};
+ 
+ 				cpu_critical: cpu-critical {
+-					temperature = <100000>;
++					temperature = <150000>;
+ 					hysteresis = <0>;
+ 					type = "critical";
+ 				};

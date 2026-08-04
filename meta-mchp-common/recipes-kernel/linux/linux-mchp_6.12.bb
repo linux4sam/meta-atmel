@@ -7,3 +7,6 @@ KBRANCH = "linux-6.12-mchp"
 SRCREV = "eed0a6f4a0e1b403c99906c49bdabb547e4b23fe"
 
 SRC_URI = "git://github.com/linux4microchip/linux.git;protocol=https;branch=${KBRANCH}"
+
+FILESEXTRAPATHS:prepend := "${THISDIR}/${BPN}:"
+SRC_URI += "file://temperature.patch"
