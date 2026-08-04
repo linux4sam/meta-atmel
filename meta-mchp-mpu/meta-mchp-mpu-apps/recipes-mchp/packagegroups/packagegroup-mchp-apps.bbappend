@@ -26,6 +26,7 @@ RDEPENDS:packagegroup-mchp-egt-apps:append:mpuall = "\
     egt-samples-contribution \
     egt-thermostat \
     mchp-egt-demo-init \
+    sama7d65-power-consumption-app-note \
 "
 
 RDEPENDS:packagegroup-mchp-apps:append:sama5d2_ptc_ek = "\
